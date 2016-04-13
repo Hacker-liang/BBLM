@@ -9,15 +9,15 @@
 #import "LMHomeViewController.h"
 #import "constants.h"
 #import "iCarousel.h"
-
-
+#import "LMHomeShowView.h"
+#import "LMShowDetailModel.h"
 
 @interface LMHomeViewController () <iCarouselDataSource, iCarouselDelegate>
 
 @property (nonatomic, strong) UIScrollView *bgScrollView;
 @property (nonatomic, strong) iCarousel *carousel;
 
-@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) NSMutableArray *dataSource;
 
 
 
@@ -27,15 +27,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.items = [NSMutableArray array];
+    _dataSource = [NSMutableArray array];
     for (int i = 0; i < 10; i++)
     {
-        [self.items addObject:@(i)];
+        [_dataSource addObject:[[LMShowDetailModel alloc] init]];
     }
     _bgScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     _bgScrollView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_bgScrollView];
-    _carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 100, kWindowWidth, 400)];
+    _carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 130, kWindowWidth, kWindowHeight-130)];
     _carousel.delegate = self;
     _carousel.dataSource = self;
     _carousel.type = iCarouselTypeRotary;
@@ -48,43 +48,20 @@
 
 - (NSInteger)numberOfItemsInCarousel:(__unused iCarousel *)carousel
 {
-    return (NSInteger)[self.items count];
+    return (NSInteger)[self.dataSource count];
 }
 
 - (UIView *)carousel:(__unused iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
 {
-    UILabel *label = nil;
-    
-    //create new view if no view is available for recycling
     if (view == nil)
     {
-        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
-        view.backgroundColor = [UIColor greenColor];
-        view.contentMode = UIViewContentModeCenter;
-        label = [[UILabel alloc] initWithFrame:view.bounds];
-        label.backgroundColor = [UIColor clearColor];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [label.font fontWithSize:50];
-        label.tag = 1;
-        [view addSubview:label];
+        view = [[LMHomeShowView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-60, carousel.bounds.size.height)];
     }
-    else
-    {
-        //get a reference to the label in the recycled view
-        label = (UILabel *)[view viewWithTag:1];
-    }
-    
-    //set item label
-    //remember to always set any properties of your carousel item
-    //views outside of the `if (view == nil) {...}` check otherwise
-    //you'll get weird issues with carousel item content appearing
-    //in the wrong place in the carousel
-    label.text = [self.items[(NSUInteger)index] stringValue];
-    
+    ((LMHomeShowView *)view).showDetail = [_dataSource objectAtIndex:index];
     return view;
 }
 
-- (CATransform3D)carousel:(__unused iCarousel *)carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
+- (CATransform3D)carousel:(__unused iCarousel *)carousel dataSourceTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
 {
     //implement 'flip3D' style carousel
     transform = CATransform3DRotate(transform, M_PI / 8.0f, 0.0f, 1.0f, 0.0f);
@@ -103,7 +80,7 @@
         }
         case iCarouselOptionSpacing:
         {
-            //add a bit of spacing between the item views
+            //add a bit of spacing between the dataSource views
             return value * 1.05f;
         }
         case iCarouselOptionFadeMax:
@@ -136,8 +113,8 @@
 
 - (void)carousel:(__unused iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    NSNumber *item = (self.items)[(NSUInteger)index];
-    NSLog(@"Tapped view number: %@", item);
+    NSNumber *dataSource = (self.dataSource)[(NSUInteger)index];
+    NSLog(@"Tapped view number: %@", dataSource);
 }
 
 - (void)carouselCurrentItemIndexDidChange:(__unused iCarousel *)carousel

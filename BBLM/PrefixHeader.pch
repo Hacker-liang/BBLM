@@ -10,5 +10,6 @@
 #define PrefixHeader_pch
 
 #import "constants.h"
+#import "UIImageView+WebCache.h"
 
 #endif /* PrefixHeader_pch */

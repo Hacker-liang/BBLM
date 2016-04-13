@@ -21,6 +21,9 @@
 		D95387951CBE1889004BD51F /* MineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95387931CBE1889004BD51F /* MineViewController.xib */; };
 		D95387991CBE1920004BD51F /* LMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387981CBE1920004BD51F /* LMTabBar.m */; };
 		D95387AB1CBE3FA6004BD51F /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387AA1CBE3FA6004BD51F /* iCarousel.m */; };
+		D95387AF1CBE4513004BD51F /* LMHomeShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387AE1CBE4513004BD51F /* LMHomeShowView.m */; };
+		D95387B21CBE4B6C004BD51F /* LMShowDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387B11CBE4B6C004BD51F /* LMShowDetailModel.m */; };
+		D95387C11CBE4BF0004BD51F /* LMUserDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387C01CBE4BF0004BD51F /* LMUserDetailModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,12 @@
 		D95387981CBE1920004BD51F /* LMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTabBar.m; sourceTree = "<group>"; };
 		D95387A91CBE3FA6004BD51F /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
 		D95387AA1CBE3FA6004BD51F /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		D95387AD1CBE4513004BD51F /* LMHomeShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMHomeShowView.h; sourceTree = "<group>"; };
+		D95387AE1CBE4513004BD51F /* LMHomeShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMHomeShowView.m; sourceTree = "<group>"; };
+		D95387B01CBE4B6C004BD51F /* LMShowDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMShowDetailModel.h; sourceTree = "<group>"; };
+		D95387B11CBE4B6C004BD51F /* LMShowDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMShowDetailModel.m; sourceTree = "<group>"; };
+		D95387BF1CBE4BF0004BD51F /* LMUserDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMUserDetailModel.h; sourceTree = "<group>"; };
+		D95387C01CBE4BF0004BD51F /* LMUserDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMUserDetailModel.m; sourceTree = "<group>"; };
 		FCD4932A41E4CF79D72E9D6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,20 +150,13 @@
 		D95387481CBDF95F004BD51F /* BBLM */ = {
 			isa = PBXGroup;
 			children = (
+				D95387BE1CBE4BE2004BD51F /* UserModel */,
 				D953878B1CBE1861004BD51F /* LMDetail */,
 				D953878C1CBE1861004BD51F /* LMHome */,
 				D953878D1CBE1861004BD51F /* Mine */,
 				D953877F1CBDF99D004BD51F /* Common */,
 				D95387801CBDF99D004BD51F /* Libs */,
-				D953874C1CBDF95F004BD51F /* AppDelegate.h */,
-				D953874D1CBDF95F004BD51F /* AppDelegate.m */,
-				D95387841CBE156A004BD51F /* LMRootViewController.h */,
-				D95387851CBE156A004BD51F /* LMRootViewController.m */,
-				D95387871CBE16FA004BD51F /* PrefixHeader.pch */,
-				D95387551CBDF95F004BD51F /* Main.storyboard */,
-				D95387581CBDF95F004BD51F /* Assets.xcassets */,
-				D953875A1CBDF95F004BD51F /* LaunchScreen.storyboard */,
-				D953875D1CBDF95F004BD51F /* Info.plist */,
+				D95387B31CBE4B8D004BD51F /* LMRootViewController */,
 				D95387491CBDF95F004BD51F /* Supporting Files */,
 			);
 			path = BBLM;
@@ -163,6 +165,13 @@
 		D95387491CBDF95F004BD51F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D95387551CBDF95F004BD51F /* Main.storyboard */,
+				D95387581CBDF95F004BD51F /* Assets.xcassets */,
+				D953875A1CBDF95F004BD51F /* LaunchScreen.storyboard */,
+				D953875D1CBDF95F004BD51F /* Info.plist */,
+				D953874C1CBDF95F004BD51F /* AppDelegate.h */,
+				D953874D1CBDF95F004BD51F /* AppDelegate.m */,
+				D95387871CBE16FA004BD51F /* PrefixHeader.pch */,
 				D953874A1CBDF95F004BD51F /* main.m */,
 			);
 			name = "Supporting Files";
@@ -206,6 +215,7 @@
 		D953878B1CBE1861004BD51F /* LMDetail */ = {
 			isa = PBXGroup;
 			children = (
+				D95387C21CBE4CC9004BD51F /* Model */,
 			);
 			path = LMDetail;
 			sourceTree = "<group>";
@@ -215,6 +225,7 @@
 			children = (
 				D953878E1CBE1877004BD51F /* LMHomeViewController.h */,
 				D953878F1CBE1877004BD51F /* LMHomeViewController.m */,
+				D95387AC1CBE44F5004BD51F /* Views */,
 			);
 			path = LMHome;
 			sourceTree = "<group>";
@@ -245,6 +256,42 @@
 				D95387AA1CBE3FA6004BD51F /* iCarousel.m */,
 			);
 			path = iCarousel;
+			sourceTree = "<group>";
+		};
+		D95387AC1CBE44F5004BD51F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D95387AD1CBE4513004BD51F /* LMHomeShowView.h */,
+				D95387AE1CBE4513004BD51F /* LMHomeShowView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D95387B31CBE4B8D004BD51F /* LMRootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D95387841CBE156A004BD51F /* LMRootViewController.h */,
+				D95387851CBE156A004BD51F /* LMRootViewController.m */,
+			);
+			name = LMRootViewController;
+			sourceTree = "<group>";
+		};
+		D95387BE1CBE4BE2004BD51F /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				D95387BF1CBE4BF0004BD51F /* LMUserDetailModel.h */,
+				D95387C01CBE4BF0004BD51F /* LMUserDetailModel.m */,
+			);
+			path = UserModel;
+			sourceTree = "<group>";
+		};
+		D95387C21CBE4CC9004BD51F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D95387B01CBE4B6C004BD51F /* LMShowDetailModel.h */,
+				D95387B11CBE4B6C004BD51F /* LMShowDetailModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,9 +477,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D953874E1CBDF95F004BD51F /* AppDelegate.m in Sources */,
+				D95387B21CBE4B6C004BD51F /* LMShowDetailModel.m in Sources */,
+				D95387AF1CBE4513004BD51F /* LMHomeShowView.m in Sources */,
 				D95387901CBE1877004BD51F /* LMHomeViewController.m in Sources */,
 				D95387941CBE1889004BD51F /* MineViewController.m in Sources */,
 				D95387AB1CBE3FA6004BD51F /* iCarousel.m in Sources */,
+				D95387C11CBE4BF0004BD51F /* LMUserDetailModel.m in Sources */,
 				D953874B1CBDF95F004BD51F /* main.m in Sources */,
 				D95387991CBE1920004BD51F /* LMTabBar.m in Sources */,
 				D95387861CBE156A004BD51F /* LMRootViewController.m in Sources */,
@@ -577,6 +627,7 @@
 			baseConfigurationReference = 8842D4975AB52F4B2E732EC3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = BBLM/PrefixHeader.pch;
 				INFOPLIST_FILE = BBLM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -590,6 +641,7 @@
 			baseConfigurationReference = FCD4932A41E4CF79D72E9D6D /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = BBLM/PrefixHeader.pch;
 				INFOPLIST_FILE = BBLM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

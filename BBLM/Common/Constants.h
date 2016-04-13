@@ -11,3 +11,9 @@
 #define kWindowHeight  [UIApplication sharedApplication].keyWindow.frame.size.height
 
 #define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define COLOR_TEXT_I                    UIColorFromRGB(0x323232)
+#define COLOR_TEXT_II                   UIColorFromRGB(0x646464)
+#define COLOR_TEXT_III                  UIColorFromRGB(0x969696)
+#define COLOR_LINE                      UIColorFromRGB(0xe2e2e2)
+#define APP_PAGE_COLOR                  UIColorFromRGB(0xf7faf7)
