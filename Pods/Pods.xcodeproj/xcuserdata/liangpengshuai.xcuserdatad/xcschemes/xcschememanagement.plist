@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MDCSwipeToChoose.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -44,6 +39,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RGCardViewLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -61,6 +61,62 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>425E7CF2DA24DC5787350228618708D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5291483EC7A106BAB35CC4FA08ED3982</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6627E2CE58504A680DE862D5526B302C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6F1428350E0255E1BA8F0B301F0BAB9F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>822B09D3321B4A2F831111C7581E5CEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>84FBE13B9143D1696443452BA960E71F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8A6B03F132CEFAE693069332D9A8E246</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8B090755233C44E8E118A8DA48015C08</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8F74D9EA91F4C43190670066BAC37D44</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D14964859436372881EFE4491E417402</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>
