@@ -39,11 +39,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RGCardViewLayout.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,17 +57,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>09A1F78AE86E60B8F106746A4DD82CE9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>113CD9B7D245064B7D19767CEBBF4876</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>425E7CF2DA24DC5787350228618708D7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5291483EC7A106BAB35CC4FA08ED3982</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,22 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6F1428350E0255E1BA8F0B301F0BAB9F</key>
+		<key>758222713AC766A79B3627339F155DFF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>77AE49A652A24E046794D5B4DB7E28C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>822B09D3321B4A2F831111C7581E5CEF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>84FBE13B9143D1696443452BA960E71F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8A6B03F132CEFAE693069332D9A8E246</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D14964859436372881EFE4491E417402</key>
+		<key>E0792702AABB7FBF5F5280663BBFD04F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

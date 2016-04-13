@@ -20,7 +20,7 @@
 		D95387941CBE1889004BD51F /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387921CBE1889004BD51F /* MineViewController.m */; };
 		D95387951CBE1889004BD51F /* MineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95387931CBE1889004BD51F /* MineViewController.xib */; };
 		D95387991CBE1920004BD51F /* LMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387981CBE1920004BD51F /* LMTabBar.m */; };
-		D953879C1CBE1E26004BD51F /* LMHomeShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D953879B1CBE1E26004BD51F /* LMHomeShowView.m */; };
+		D95387AB1CBE3FA6004BD51F /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387AA1CBE3FA6004BD51F /* iCarousel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +68,8 @@
 		D95387931CBE1889004BD51F /* MineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineViewController.xib; sourceTree = "<group>"; };
 		D95387971CBE1920004BD51F /* LMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMTabBar.h; sourceTree = "<group>"; };
 		D95387981CBE1920004BD51F /* LMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMTabBar.m; sourceTree = "<group>"; };
-		D953879A1CBE1E26004BD51F /* LMHomeShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMHomeShowView.h; sourceTree = "<group>"; };
-		D953879B1CBE1E26004BD51F /* LMHomeShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMHomeShowView.m; sourceTree = "<group>"; };
+		D95387A91CBE3FA6004BD51F /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		D95387AA1CBE3FA6004BD51F /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		FCD4932A41E4CF79D72E9D6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +198,7 @@
 		D95387801CBDF99D004BD51F /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				D95387A81CBE3FA6004BD51F /* iCarousel */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -214,8 +215,6 @@
 			children = (
 				D953878E1CBE1877004BD51F /* LMHomeViewController.h */,
 				D953878F1CBE1877004BD51F /* LMHomeViewController.m */,
-				D953879A1CBE1E26004BD51F /* LMHomeShowView.h */,
-				D953879B1CBE1E26004BD51F /* LMHomeShowView.m */,
 			);
 			path = LMHome;
 			sourceTree = "<group>";
@@ -237,6 +236,15 @@
 				D95387981CBE1920004BD51F /* LMTabBar.m */,
 			);
 			path = LMTabBar;
+			sourceTree = "<group>";
+		};
+		D95387A81CBE3FA6004BD51F /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				D95387A91CBE3FA6004BD51F /* iCarousel.h */,
+				D95387AA1CBE3FA6004BD51F /* iCarousel.m */,
+			);
+			path = iCarousel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,8 +432,8 @@
 				D953874E1CBDF95F004BD51F /* AppDelegate.m in Sources */,
 				D95387901CBE1877004BD51F /* LMHomeViewController.m in Sources */,
 				D95387941CBE1889004BD51F /* MineViewController.m in Sources */,
+				D95387AB1CBE3FA6004BD51F /* iCarousel.m in Sources */,
 				D953874B1CBDF95F004BD51F /* main.m in Sources */,
-				D953879C1CBE1E26004BD51F /* LMHomeShowView.m in Sources */,
 				D95387991CBE1920004BD51F /* LMTabBar.m in Sources */,
 				D95387861CBE156A004BD51F /* LMRootViewController.m in Sources */,
 			);
