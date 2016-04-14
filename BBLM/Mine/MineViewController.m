@@ -8,7 +8,11 @@
 
 #import "MineViewController.h"
 
-@interface MineViewController ()
+@interface MineViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSArray *dataSource;
 
 @end
 
@@ -16,22 +20,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.separatorColor = COLOR_LINE;
+    _dataSource = @[@"我的辣妈空间", @"我的收藏", @"辣度规则", @"关于芭比辣妈", @"退出"];
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _dataSource.count;
 }
-*/
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.textLabel.textColor = COLOR_TEXT_I;
+    cell.textLabel.font = [UIFont systemFontOfSize:16.0];
+    cell.textLabel.text = [_dataSource objectAtIndex:indexPath.row];
+    return cell;
+}
+
 
 @end

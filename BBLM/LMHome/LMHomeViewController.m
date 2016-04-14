@@ -11,6 +11,7 @@
 #import "iCarousel.h"
 #import "LMHomeShowView.h"
 #import "LMShowDetailModel.h"
+#import "AutoSlideScrollView.h"
 
 @interface LMHomeViewController () <iCarouselDataSource, iCarouselDelegate>
 
@@ -18,7 +19,9 @@
 @property (nonatomic, strong) iCarousel *carousel;
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) UIImageView *galleryImageView;
 
+@property (nonatomic, strong) AutoSlideScrollView *galleryView;
 
 
 @end
@@ -40,6 +43,32 @@
     _carousel.dataSource = self;
     _carousel.type = iCarouselTypeRotary;
     [_bgScrollView addSubview:_carousel];
+    
+    _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 130-64) animationDuration:10];
+    [self.bgScrollView addSubview:_galleryView];
+    _galleryView.totalPagesCount = ^NSInteger(void){
+        return 4;
+    };
+    __weak typeof(self)weakSelf = self;
+
+    _galleryView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, weakSelf.galleryView.bounds.size.width, weakSelf.galleryView.bounds.size.width)];
+    };
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_galleryView.scrollView setContentOffset:CGPointZero];
+}
+
+
+- (UIImageView *)galleryImageView
+{
+    if (!_galleryImageView) {
+        _galleryImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 150)];
+    }
+    return _galleryImageView;
 }
 
 - (void)didReceiveMemoryWarning {

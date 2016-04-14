@@ -24,6 +24,12 @@
 		D95387AF1CBE4513004BD51F /* LMHomeShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387AE1CBE4513004BD51F /* LMHomeShowView.m */; };
 		D95387B21CBE4B6C004BD51F /* LMShowDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387B11CBE4B6C004BD51F /* LMShowDetailModel.m */; };
 		D95387C11CBE4BF0004BD51F /* LMUserDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387C01CBE4BF0004BD51F /* LMUserDetailModel.m */; };
+		D95387CC1CBE5123004BD51F /* AutoSlideScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387C51CBE5123004BD51F /* AutoSlideScrollView.m */; };
+		D95387CD1CBE5123004BD51F /* MyPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387C71CBE5123004BD51F /* MyPageControl.m */; };
+		D95387CE1CBE5123004BD51F /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387C91CBE5123004BD51F /* NSTimer+Addition.m */; };
+		D95387CF1CBE5123004BD51F /* AutoSlideScrollView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D95387CB1CBE5123004BD51F /* AutoSlideScrollView.bundle */; };
+		D95387D41CBE52A6004BD51F /* LMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387D21CBE52A6004BD51F /* LMLoginViewController.m */; };
+		D95387D51CBE52A6004BD51F /* LMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95387D31CBE52A6004BD51F /* LMLoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +85,16 @@
 		D95387B11CBE4B6C004BD51F /* LMShowDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMShowDetailModel.m; sourceTree = "<group>"; };
 		D95387BF1CBE4BF0004BD51F /* LMUserDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMUserDetailModel.h; sourceTree = "<group>"; };
 		D95387C01CBE4BF0004BD51F /* LMUserDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMUserDetailModel.m; sourceTree = "<group>"; };
+		D95387C41CBE5123004BD51F /* AutoSlideScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoSlideScrollView.h; sourceTree = "<group>"; };
+		D95387C51CBE5123004BD51F /* AutoSlideScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoSlideScrollView.m; sourceTree = "<group>"; };
+		D95387C61CBE5123004BD51F /* MyPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageControl.h; sourceTree = "<group>"; };
+		D95387C71CBE5123004BD51F /* MyPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageControl.m; sourceTree = "<group>"; };
+		D95387C81CBE5123004BD51F /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Addition.h"; sourceTree = "<group>"; };
+		D95387C91CBE5123004BD51F /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Addition.m"; sourceTree = "<group>"; };
+		D95387CB1CBE5123004BD51F /* AutoSlideScrollView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AutoSlideScrollView.bundle; sourceTree = "<group>"; };
+		D95387D11CBE52A6004BD51F /* LMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMLoginViewController.h; sourceTree = "<group>"; };
+		D95387D21CBE52A6004BD51F /* LMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMLoginViewController.m; sourceTree = "<group>"; };
+		D95387D31CBE52A6004BD51F /* LMLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMLoginViewController.xib; sourceTree = "<group>"; };
 		FCD4932A41E4CF79D72E9D6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +166,7 @@
 		D95387481CBDF95F004BD51F /* BBLM */ = {
 			isa = PBXGroup;
 			children = (
+				D95387D01CBE5256004BD51F /* Login */,
 				D95387BE1CBE4BE2004BD51F /* UserModel */,
 				D953878B1CBE1861004BD51F /* LMDetail */,
 				D953878C1CBE1861004BD51F /* LMHome */,
@@ -207,6 +224,7 @@
 		D95387801CBDF99D004BD51F /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				D95387C31CBE5123004BD51F /* AutoSlideScrollView */,
 				D95387A81CBE3FA6004BD51F /* iCarousel */,
 			);
 			path = Libs;
@@ -292,6 +310,38 @@
 				D95387B11CBE4B6C004BD51F /* LMShowDetailModel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D95387C31CBE5123004BD51F /* AutoSlideScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				D95387C41CBE5123004BD51F /* AutoSlideScrollView.h */,
+				D95387C51CBE5123004BD51F /* AutoSlideScrollView.m */,
+				D95387C61CBE5123004BD51F /* MyPageControl.h */,
+				D95387C71CBE5123004BD51F /* MyPageControl.m */,
+				D95387C81CBE5123004BD51F /* NSTimer+Addition.h */,
+				D95387C91CBE5123004BD51F /* NSTimer+Addition.m */,
+				D95387CA1CBE5123004BD51F /* Resources */,
+			);
+			path = AutoSlideScrollView;
+			sourceTree = "<group>";
+		};
+		D95387CA1CBE5123004BD51F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D95387CB1CBE5123004BD51F /* AutoSlideScrollView.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D95387D01CBE5256004BD51F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D95387D11CBE52A6004BD51F /* LMLoginViewController.h */,
+				D95387D21CBE52A6004BD51F /* LMLoginViewController.m */,
+				D95387D31CBE52A6004BD51F /* LMLoginViewController.xib */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +450,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95387CF1CBE5123004BD51F /* AutoSlideScrollView.bundle in Resources */,
+				D95387D51CBE52A6004BD51F /* LMLoginViewController.xib in Resources */,
 				D953875C1CBDF95F004BD51F /* LaunchScreen.storyboard in Resources */,
 				D95387591CBDF95F004BD51F /* Assets.xcassets in Resources */,
 				D95387571CBDF95F004BD51F /* Main.storyboard in Resources */,
@@ -476,7 +528,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95387CC1CBE5123004BD51F /* AutoSlideScrollView.m in Sources */,
 				D953874E1CBDF95F004BD51F /* AppDelegate.m in Sources */,
+				D95387CE1CBE5123004BD51F /* NSTimer+Addition.m in Sources */,
+				D95387CD1CBE5123004BD51F /* MyPageControl.m in Sources */,
 				D95387B21CBE4B6C004BD51F /* LMShowDetailModel.m in Sources */,
 				D95387AF1CBE4513004BD51F /* LMHomeShowView.m in Sources */,
 				D95387901CBE1877004BD51F /* LMHomeViewController.m in Sources */,
@@ -484,6 +539,7 @@
 				D95387AB1CBE3FA6004BD51F /* iCarousel.m in Sources */,
 				D95387C11CBE4BF0004BD51F /* LMUserDetailModel.m in Sources */,
 				D953874B1CBDF95F004BD51F /* main.m in Sources */,
+				D95387D41CBE52A6004BD51F /* LMLoginViewController.m in Sources */,
 				D95387991CBE1920004BD51F /* LMTabBar.m in Sources */,
 				D95387861CBE156A004BD51F /* LMRootViewController.m in Sources */,
 			);
