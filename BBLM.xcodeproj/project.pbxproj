@@ -30,6 +30,8 @@
 		D95387CF1CBE5123004BD51F /* AutoSlideScrollView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D95387CB1CBE5123004BD51F /* AutoSlideScrollView.bundle */; };
 		D95387D41CBE52A6004BD51F /* LMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387D21CBE52A6004BD51F /* LMLoginViewController.m */; };
 		D95387D51CBE52A6004BD51F /* LMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95387D31CBE52A6004BD51F /* LMLoginViewController.xib */; };
+		D95387D91CBF98B0004BD51F /* MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387D81CBF98B0004BD51F /* MineHeaderView.m */; };
+		D95387E01CBFB90C004BD51F /* ConvertMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387DF1CBFB90C004BD51F /* ConvertMethods.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,10 @@
 		D95387D11CBE52A6004BD51F /* LMLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMLoginViewController.h; sourceTree = "<group>"; };
 		D95387D21CBE52A6004BD51F /* LMLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMLoginViewController.m; sourceTree = "<group>"; };
 		D95387D31CBE52A6004BD51F /* LMLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMLoginViewController.xib; sourceTree = "<group>"; };
+		D95387D71CBF98B0004BD51F /* MineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
+		D95387D81CBF98B0004BD51F /* MineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
+		D95387DE1CBFB90C004BD51F /* ConvertMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertMethods.h; sourceTree = "<group>"; };
+		D95387DF1CBFB90C004BD51F /* ConvertMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertMethods.m; sourceTree = "<group>"; };
 		FCD4932A41E4CF79D72E9D6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,6 +221,7 @@
 		D953877F1CBDF99D004BD51F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D95387DD1CBFB90C004BD51F /* ConvertMethods */,
 				D95387961CBE1920004BD51F /* LMTabBar */,
 				D95387881CBE1729004BD51F /* Constants.h */,
 			);
@@ -251,6 +258,7 @@
 		D953878D1CBE1861004BD51F /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				D95387D61CBF989D004BD51F /* Views */,
 				D95387911CBE1889004BD51F /* MineViewController.h */,
 				D95387921CBE1889004BD51F /* MineViewController.m */,
 				D95387931CBE1889004BD51F /* MineViewController.xib */,
@@ -342,6 +350,24 @@
 				D95387D31CBE52A6004BD51F /* LMLoginViewController.xib */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		D95387D61CBF989D004BD51F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D95387D71CBF98B0004BD51F /* MineHeaderView.h */,
+				D95387D81CBF98B0004BD51F /* MineHeaderView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D95387DD1CBFB90C004BD51F /* ConvertMethods */ = {
+			isa = PBXGroup;
+			children = (
+				D95387DE1CBFB90C004BD51F /* ConvertMethods.h */,
+				D95387DF1CBFB90C004BD51F /* ConvertMethods.m */,
+			);
+			path = ConvertMethods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,11 +554,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95387E01CBFB90C004BD51F /* ConvertMethods.m in Sources */,
 				D95387CC1CBE5123004BD51F /* AutoSlideScrollView.m in Sources */,
 				D953874E1CBDF95F004BD51F /* AppDelegate.m in Sources */,
 				D95387CE1CBE5123004BD51F /* NSTimer+Addition.m in Sources */,
 				D95387CD1CBE5123004BD51F /* MyPageControl.m in Sources */,
 				D95387B21CBE4B6C004BD51F /* LMShowDetailModel.m in Sources */,
+				D95387D91CBF98B0004BD51F /* MineHeaderView.m in Sources */,
 				D95387AF1CBE4513004BD51F /* LMHomeShowView.m in Sources */,
 				D95387901CBE1877004BD51F /* LMHomeViewController.m in Sources */,
 				D95387941CBE1889004BD51F /* MineViewController.m in Sources */,

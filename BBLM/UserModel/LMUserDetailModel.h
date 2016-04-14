@@ -15,4 +15,6 @@
 @property (nonatomic, copy) NSString *avatar;
 @property (nonatomic, copy) NSString *s_avatar;
 
+@property (nonatomic, strong) NSArray <NSString *> *userTags;
+
 @end

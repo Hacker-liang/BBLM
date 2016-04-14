@@ -7,12 +7,15 @@
 //
 
 #import "MineViewController.h"
+#import "MineHeaderView.h"
 
 @interface MineViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong) MineHeaderView *headerView;
+
 
 @end
 
@@ -25,6 +28,8 @@
     _tableView.separatorColor = COLOR_LINE;
     _dataSource = @[@"我的辣妈空间", @"我的收藏", @"辣度规则", @"关于芭比辣妈", @"退出"];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    _headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 150)];
+    _tableView.tableHeaderView = _headerView;
 }
 
 - (void)didReceiveMemoryWarning {

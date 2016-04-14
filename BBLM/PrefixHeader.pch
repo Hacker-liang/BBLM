@@ -11,5 +11,7 @@
 
 #import "constants.h"
 #import "UIImageView+WebCache.h"
+#import "LMUserDetailModel.h"
+#import "ConvertMethods.h"
 
 #endif /* PrefixHeader_pch */
