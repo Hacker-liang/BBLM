@@ -18,7 +18,7 @@
 
     for (int j=0; j < dataSource.count; j++) {
         CGSize itemSize = [[dataSource objectAtIndex:j] sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:11.0]}];
-        itemSize = CGSizeMake(itemSize.width+30, 40);
+        itemSize = CGSizeMake(itemSize.width+50, 45);
         
         if (offsetX + itemSize.width > (kWindowWidth-40)) {
             offsetX = itemSize.width;
@@ -30,14 +30,12 @@
         }
     }
 
-    return line*40 + 40;
+    return line*45 + 55;
 
 }
 
 - (void)awakeFromNib {
     
-    _collectionView.backgroundColor = APP_PAGE_COLOR;
-    _dataSource = [@[@"收银员",@"收银员",@"收银员",@"收银员",@"收银员",@"收银员", @"收银员",@"收银员",@"收银员",@"收银员",@"收银员"] mutableCopy];
     TaoziCollectionLayout *layou = (TaoziCollectionLayout *)_collectionView.collectionViewLayout;
     layou.delegate = self;
     
@@ -71,7 +69,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LMUserTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"grabTagCollectionCell" forIndexPath:indexPath];
-    cell.tabBkgImage = @"icon_tage_bg.png";
+    cell.tabBkgImage = @"icon_tag_selected";
     [cell.grabTagBtn setTitle:[_dataSource objectAtIndex:indexPath.row] forState:UIControlStateNormal];
     
     return cell;
@@ -83,7 +81,7 @@
 {
     NSString *title = [_dataSource objectAtIndex:indexPath.row];
     CGSize size = [title sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:11.0]}];
-    return CGSizeMake(size.width+30, 40);
+    return CGSizeMake(size.width+40, 45);
 }
 
 - (CGSize)collectionview:(UICollectionView *)collectionView sizeForHeaderView:(NSIndexPath *)indexPath

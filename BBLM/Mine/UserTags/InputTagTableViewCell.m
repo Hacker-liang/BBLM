@@ -13,10 +13,11 @@
 - (void)awakeFromNib {
     _addBtn.layer.cornerRadius = 3.0;
     _addBtn.clipsToBounds = YES;
-    _textField.layer.borderColor = UIColorFromRGB(0x3DC219).CGColor;
+    _textField.layer.borderColor = APP_THEME_COLOR.CGColor;
     _textField.layer.borderWidth = 0.5;
     _textField.layer.cornerRadius = 3.0;
     _textField.delegate = self;
+    [_addBtn setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateNormal];
     
 }
 

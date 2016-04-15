@@ -51,7 +51,7 @@
 		D95388201CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388151CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m */; };
 		D95388211CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388161CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib */; };
 		D95388221CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388181CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m */; };
-		D95388231CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388191CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib */; };
+		D95388231CC0C4C3004BD51F /* LMUserSetTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388191CC0C4C3004BD51F /* LMUserSetTagTableViewCell.xib */; };
 		D95388241CC0C4C3004BD51F /* InputTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D953881B1CC0C4C3004BD51F /* InputTagTableViewCell.m */; };
 		D95388251CC0C4C3004BD51F /* InputTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D953881C1CC0C4C3004BD51F /* InputTagTableViewCell.xib */; };
 		D95388261CC0C4C3004BD51F /* HotTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D953881E1CC0C4C3004BD51F /* HotTagTableViewCell.m */; };
@@ -161,7 +161,7 @@
 		D95388161CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMUserTagCollectionViewCell.xib; sourceTree = "<group>"; };
 		D95388171CC0C4C3004BD51F /* LMUserSetTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMUserSetTagTableViewCell.h; sourceTree = "<group>"; };
 		D95388181CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMUserSetTagTableViewCell.m; sourceTree = "<group>"; };
-		D95388191CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GrabSetTagTableViewCell.xib; sourceTree = "<group>"; };
+		D95388191CC0C4C3004BD51F /* LMUserSetTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMUserSetTagTableViewCell.xib; sourceTree = "<group>"; };
 		D953881A1CC0C4C3004BD51F /* InputTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTagTableViewCell.h; sourceTree = "<group>"; };
 		D953881B1CC0C4C3004BD51F /* InputTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTagTableViewCell.m; sourceTree = "<group>"; };
 		D953881C1CC0C4C3004BD51F /* InputTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTagTableViewCell.xib; sourceTree = "<group>"; };
@@ -520,7 +520,7 @@
 				D95388161CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib */,
 				D95388171CC0C4C3004BD51F /* LMUserSetTagTableViewCell.h */,
 				D95388181CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m */,
-				D95388191CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib */,
+				D95388191CC0C4C3004BD51F /* LMUserSetTagTableViewCell.xib */,
 				D953881A1CC0C4C3004BD51F /* InputTagTableViewCell.h */,
 				D953881B1CC0C4C3004BD51F /* InputTagTableViewCell.m */,
 				D953881C1CC0C4C3004BD51F /* InputTagTableViewCell.xib */,
@@ -661,7 +661,7 @@
 				D95387951CBE1889004BD51F /* MineViewController.xib in Resources */,
 				D95388011CC090E5004BD51F /* LMPushMessageDetailTableViewCell.xib in Resources */,
 				D95388211CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib in Resources */,
-				D95388231CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib in Resources */,
+				D95388231CC0C4C3004BD51F /* LMUserSetTagTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

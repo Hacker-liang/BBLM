@@ -16,8 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     __weak TZNavigationViewController *weakSelf = self;
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
     {
@@ -30,7 +28,6 @@
       didShowViewController:(UIViewController *)viewController
                    animated:(BOOL)animate
 {
-    // Enable the gesture again once the new controller is shown
     if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.interactivePopGestureRecognizer.enabled = YES;
     }

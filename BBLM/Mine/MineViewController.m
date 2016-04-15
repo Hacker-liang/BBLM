@@ -8,6 +8,8 @@
 
 #import "MineViewController.h"
 #import "MineHeaderView.h"
+#import "LMUserTagsAddViewController.h"
+#import "LMUserTagsAddViewController.h"
 
 @interface MineViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -33,6 +35,7 @@
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     _headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 150)];
     _headerView.userInfo = _userInfo;
+    [_headerView.addTagButton addTarget:self action:@selector(addUserTags:) forControlEvents:UIControlEventTouchUpInside];
     _tableView.tableHeaderView = _headerView;
     self.navigationItem.title = _userInfo.nickname;
 }
@@ -41,6 +44,12 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)addUserTags:(UIButton *)sender
+{
+    LMUserTagsAddViewController *ctl = [[LMUserTagsAddViewController alloc] init];
+    ctl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:ctl animated:YES];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TaoziCollectionLayout.h"
+#import "LMUserSetTagTableViewCell.h"
+#import "InputTagTableViewCell.h"
+#import "HotTagTableViewCell.h"
 
 @protocol LMUserSetTagTableViewCellDelegate <NSObject>
 

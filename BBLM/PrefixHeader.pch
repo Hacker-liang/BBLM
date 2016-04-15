@@ -16,5 +16,6 @@
 #import "TZViewController.h"
 #import "TZTableViewController.h"
 #import "TZNavigationViewController.h"
+#import "SVProgressHUD.h"
 
 #endif /* PrefixHeader_pch */

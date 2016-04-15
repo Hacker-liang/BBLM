@@ -133,13 +133,13 @@
         i++;
         offsetX += (width+30);
     }
-    UIButton *addTagButton = [[UIButton alloc] initWithFrame:CGRectMake(offsetX, 0, 40, 25)];
-    addTagButton.layer.borderColor = COLOR_LINE.CGColor;
-    addTagButton.layer.borderWidth = 0.5;
-    addTagButton.layer.cornerRadius = 3.0;
-    [addTagButton setTitle:@"+" forState:UIControlStateNormal];
-    [addTagButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
-    [_tagBgView addSubview:addTagButton];
+    _addTagButton = [[UIButton alloc] initWithFrame:CGRectMake(offsetX, 0, 40, 25)];
+    _addTagButton.layer.borderColor = COLOR_LINE.CGColor;
+    _addTagButton.layer.borderWidth = 0.5;
+    _addTagButton.layer.cornerRadius = 3.0;
+    [_addTagButton setTitle:@"+" forState:UIControlStateNormal];
+    [_addTagButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
+    [_tagBgView addSubview:_addTagButton];
     _tagBgView.contentSize = CGSizeMake(offsetX+50, 25);
 }
 

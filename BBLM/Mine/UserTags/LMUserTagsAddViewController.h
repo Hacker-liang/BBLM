@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LMUserTagsAddViewController : UIViewController
+@interface LMUserTagsAddViewController : TZViewController
 
 @end
