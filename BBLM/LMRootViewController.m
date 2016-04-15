@@ -43,7 +43,7 @@
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     // 为子控制器包装导航控制器
-    UINavigationController *navigationVc = [[UINavigationController alloc] initWithRootViewController:childVc];
+    TZNavigationViewController *navigationVc = [[TZNavigationViewController alloc] initWithRootViewController:childVc];
     // 添加子控制器
     [self addChildViewController:navigationVc];
 }

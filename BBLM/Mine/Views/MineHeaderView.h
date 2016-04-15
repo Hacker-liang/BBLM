@@ -10,4 +10,6 @@
 
 @interface MineHeaderView : UIView
 
+@property (nonatomic, strong) LMUserDetailModel *userInfo;
+
 @end

@@ -32,6 +32,32 @@
 		D95387D51CBE52A6004BD51F /* LMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95387D31CBE52A6004BD51F /* LMLoginViewController.xib */; };
 		D95387D91CBF98B0004BD51F /* MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387D81CBF98B0004BD51F /* MineHeaderView.m */; };
 		D95387E01CBFB90C004BD51F /* ConvertMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387DF1CBFB90C004BD51F /* ConvertMethods.m */; };
+		D95387ED1CBFCA89004BD51F /* NSDate+TEAExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387E31CBFCA89004BD51F /* NSDate+TEAExtensions.m */; };
+		D95387EE1CBFCA89004BD51F /* TEABarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387E51CBFCA89004BD51F /* TEABarChart.m */; };
+		D95387EF1CBFCA89004BD51F /* TEAClockChart.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387E81CBFCA89004BD51F /* TEAClockChart.m */; };
+		D95387F01CBFCA89004BD51F /* TEAContributionGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387EA1CBFCA89004BD51F /* TEAContributionGraph.m */; };
+		D95387F11CBFCA89004BD51F /* TEATimeRange.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387EC1CBFCA89004BD51F /* TEATimeRange.m */; };
+		D95387F61CC08F79004BD51F /* LMPushMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387F41CC08F79004BD51F /* LMPushMessageViewController.m */; };
+		D95387F71CC08F79004BD51F /* LMPushMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95387F51CC08F79004BD51F /* LMPushMessageViewController.xib */; };
+		D95387FB1CC08FF9004BD51F /* LMPushMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387F91CC08FF9004BD51F /* LMPushMessageTableViewCell.m */; };
+		D95387FC1CC08FF9004BD51F /* LMPushMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95387FA1CC08FF9004BD51F /* LMPushMessageTableViewCell.xib */; };
+		D95388001CC090E5004BD51F /* LMPushMessageDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95387FE1CC090E5004BD51F /* LMPushMessageDetailTableViewCell.m */; };
+		D95388011CC090E5004BD51F /* LMPushMessageDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95387FF1CC090E5004BD51F /* LMPushMessageDetailTableViewCell.xib */; };
+		D95388081CC0BDFE004BD51F /* TZTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388051CC0BDFE004BD51F /* TZTableViewController.m */; };
+		D95388091CC0BDFE004BD51F /* TZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388071CC0BDFE004BD51F /* TZViewController.m */; };
+		D953880C1CC0C0AB004BD51F /* TZNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D953880B1CC0C0AB004BD51F /* TZNavigationViewController.m */; };
+		D95388111CC0C430004BD51F /* LMUserTagsAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D953880F1CC0C430004BD51F /* LMUserTagsAddViewController.m */; };
+		D95388121CC0C430004BD51F /* LMUserTagsAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388101CC0C430004BD51F /* LMUserTagsAddViewController.xib */; };
+		D95388201CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388151CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m */; };
+		D95388211CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388161CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib */; };
+		D95388221CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388181CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m */; };
+		D95388231CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388191CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib */; };
+		D95388241CC0C4C3004BD51F /* InputTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D953881B1CC0C4C3004BD51F /* InputTagTableViewCell.m */; };
+		D95388251CC0C4C3004BD51F /* InputTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D953881C1CC0C4C3004BD51F /* InputTagTableViewCell.xib */; };
+		D95388261CC0C4C3004BD51F /* HotTagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D953881E1CC0C4C3004BD51F /* HotTagTableViewCell.m */; };
+		D95388271CC0C4C3004BD51F /* HotTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D953881F1CC0C4C3004BD51F /* HotTagTableViewCell.xib */; };
+		D953882E1CC0C5B0004BD51F /* CityCardReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D953882D1CC0C5B0004BD51F /* CityCardReusableView.m */; };
+		D95388311CC0C648004BD51F /* TaoziCollectionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388301CC0C648004BD51F /* TaoziCollectionLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +127,51 @@
 		D95387D81CBF98B0004BD51F /* MineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
 		D95387DE1CBFB90C004BD51F /* ConvertMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertMethods.h; sourceTree = "<group>"; };
 		D95387DF1CBFB90C004BD51F /* ConvertMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertMethods.m; sourceTree = "<group>"; };
+		D95387E21CBFCA89004BD51F /* NSDate+TEAExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TEAExtensions.h"; sourceTree = "<group>"; };
+		D95387E31CBFCA89004BD51F /* NSDate+TEAExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TEAExtensions.m"; sourceTree = "<group>"; };
+		D95387E41CBFCA89004BD51F /* TEABarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEABarChart.h; sourceTree = "<group>"; };
+		D95387E51CBFCA89004BD51F /* TEABarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEABarChart.m; sourceTree = "<group>"; };
+		D95387E61CBFCA89004BD51F /* TEAChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAChart.h; sourceTree = "<group>"; };
+		D95387E71CBFCA89004BD51F /* TEAClockChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAClockChart.h; sourceTree = "<group>"; };
+		D95387E81CBFCA89004BD51F /* TEAClockChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAClockChart.m; sourceTree = "<group>"; };
+		D95387E91CBFCA89004BD51F /* TEAContributionGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEAContributionGraph.h; sourceTree = "<group>"; };
+		D95387EA1CBFCA89004BD51F /* TEAContributionGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEAContributionGraph.m; sourceTree = "<group>"; };
+		D95387EB1CBFCA89004BD51F /* TEATimeRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TEATimeRange.h; sourceTree = "<group>"; };
+		D95387EC1CBFCA89004BD51F /* TEATimeRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TEATimeRange.m; sourceTree = "<group>"; };
+		D95387F31CC08F79004BD51F /* LMPushMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPushMessageViewController.h; sourceTree = "<group>"; };
+		D95387F41CC08F79004BD51F /* LMPushMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPushMessageViewController.m; sourceTree = "<group>"; };
+		D95387F51CC08F79004BD51F /* LMPushMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMPushMessageViewController.xib; sourceTree = "<group>"; };
+		D95387F81CC08FF9004BD51F /* LMPushMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPushMessageTableViewCell.h; sourceTree = "<group>"; };
+		D95387F91CC08FF9004BD51F /* LMPushMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPushMessageTableViewCell.m; sourceTree = "<group>"; };
+		D95387FA1CC08FF9004BD51F /* LMPushMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMPushMessageTableViewCell.xib; sourceTree = "<group>"; };
+		D95387FD1CC090E5004BD51F /* LMPushMessageDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPushMessageDetailTableViewCell.h; sourceTree = "<group>"; };
+		D95387FE1CC090E5004BD51F /* LMPushMessageDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPushMessageDetailTableViewCell.m; sourceTree = "<group>"; };
+		D95387FF1CC090E5004BD51F /* LMPushMessageDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMPushMessageDetailTableViewCell.xib; sourceTree = "<group>"; };
+		D95388041CC0BDFE004BD51F /* TZTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZTableViewController.h; sourceTree = "<group>"; };
+		D95388051CC0BDFE004BD51F /* TZTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTableViewController.m; sourceTree = "<group>"; };
+		D95388061CC0BDFE004BD51F /* TZViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZViewController.h; sourceTree = "<group>"; };
+		D95388071CC0BDFE004BD51F /* TZViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZViewController.m; sourceTree = "<group>"; };
+		D953880A1CC0C0AB004BD51F /* TZNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZNavigationViewController.h; sourceTree = "<group>"; };
+		D953880B1CC0C0AB004BD51F /* TZNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZNavigationViewController.m; sourceTree = "<group>"; };
+		D953880E1CC0C430004BD51F /* LMUserTagsAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMUserTagsAddViewController.h; sourceTree = "<group>"; };
+		D953880F1CC0C430004BD51F /* LMUserTagsAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMUserTagsAddViewController.m; sourceTree = "<group>"; };
+		D95388101CC0C430004BD51F /* LMUserTagsAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMUserTagsAddViewController.xib; sourceTree = "<group>"; };
+		D95388141CC0C4C3004BD51F /* LMUserTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMUserTagCollectionViewCell.h; sourceTree = "<group>"; };
+		D95388151CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMUserTagCollectionViewCell.m; sourceTree = "<group>"; };
+		D95388161CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMUserTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		D95388171CC0C4C3004BD51F /* LMUserSetTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMUserSetTagTableViewCell.h; sourceTree = "<group>"; };
+		D95388181CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMUserSetTagTableViewCell.m; sourceTree = "<group>"; };
+		D95388191CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GrabSetTagTableViewCell.xib; sourceTree = "<group>"; };
+		D953881A1CC0C4C3004BD51F /* InputTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTagTableViewCell.h; sourceTree = "<group>"; };
+		D953881B1CC0C4C3004BD51F /* InputTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTagTableViewCell.m; sourceTree = "<group>"; };
+		D953881C1CC0C4C3004BD51F /* InputTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTagTableViewCell.xib; sourceTree = "<group>"; };
+		D953881D1CC0C4C3004BD51F /* HotTagTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotTagTableViewCell.h; sourceTree = "<group>"; };
+		D953881E1CC0C4C3004BD51F /* HotTagTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotTagTableViewCell.m; sourceTree = "<group>"; };
+		D953881F1CC0C4C3004BD51F /* HotTagTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotTagTableViewCell.xib; sourceTree = "<group>"; };
+		D953882C1CC0C5B0004BD51F /* CityCardReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityCardReusableView.h; sourceTree = "<group>"; };
+		D953882D1CC0C5B0004BD51F /* CityCardReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityCardReusableView.m; sourceTree = "<group>"; };
+		D953882F1CC0C648004BD51F /* TaoziCollectionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoziCollectionLayout.h; sourceTree = "<group>"; };
+		D95388301CC0C648004BD51F /* TaoziCollectionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoziCollectionLayout.m; sourceTree = "<group>"; };
 		FCD4932A41E4CF79D72E9D6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +292,8 @@
 		D953877F1CBDF99D004BD51F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D95388281CC0C589004BD51F /* TaoziCollectionLayout */,
+				D95388031CC0BDF8004BD51F /* SuperViewController */,
 				D95387DD1CBFB90C004BD51F /* ConvertMethods */,
 				D95387961CBE1920004BD51F /* LMTabBar */,
 				D95387881CBE1729004BD51F /* Constants.h */,
@@ -231,6 +304,7 @@
 		D95387801CBDF99D004BD51F /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				D95387E11CBFCA89004BD51F /* TEAChart */,
 				D95387C31CBE5123004BD51F /* AutoSlideScrollView */,
 				D95387A81CBE3FA6004BD51F /* iCarousel */,
 			);
@@ -258,6 +332,8 @@
 		D953878D1CBE1861004BD51F /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				D953880D1CC0C346004BD51F /* UserTags */,
+				D95387F21CC08F65004BD51F /* PushMessage */,
 				D95387D61CBF989D004BD51F /* Views */,
 				D95387911CBE1889004BD51F /* MineViewController.h */,
 				D95387921CBE1889004BD51F /* MineViewController.m */,
@@ -370,6 +446,102 @@
 			path = ConvertMethods;
 			sourceTree = "<group>";
 		};
+		D95387E11CBFCA89004BD51F /* TEAChart */ = {
+			isa = PBXGroup;
+			children = (
+				D95387E21CBFCA89004BD51F /* NSDate+TEAExtensions.h */,
+				D95387E31CBFCA89004BD51F /* NSDate+TEAExtensions.m */,
+				D95387E41CBFCA89004BD51F /* TEABarChart.h */,
+				D95387E51CBFCA89004BD51F /* TEABarChart.m */,
+				D95387E61CBFCA89004BD51F /* TEAChart.h */,
+				D95387E71CBFCA89004BD51F /* TEAClockChart.h */,
+				D95387E81CBFCA89004BD51F /* TEAClockChart.m */,
+				D95387E91CBFCA89004BD51F /* TEAContributionGraph.h */,
+				D95387EA1CBFCA89004BD51F /* TEAContributionGraph.m */,
+				D95387EB1CBFCA89004BD51F /* TEATimeRange.h */,
+				D95387EC1CBFCA89004BD51F /* TEATimeRange.m */,
+			);
+			path = TEAChart;
+			sourceTree = "<group>";
+		};
+		D95387F21CC08F65004BD51F /* PushMessage */ = {
+			isa = PBXGroup;
+			children = (
+				D95388021CC09250004BD51F /* Views */,
+				D95387F31CC08F79004BD51F /* LMPushMessageViewController.h */,
+				D95387F41CC08F79004BD51F /* LMPushMessageViewController.m */,
+				D95387F51CC08F79004BD51F /* LMPushMessageViewController.xib */,
+			);
+			path = PushMessage;
+			sourceTree = "<group>";
+		};
+		D95388021CC09250004BD51F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D95387FD1CC090E5004BD51F /* LMPushMessageDetailTableViewCell.h */,
+				D95387FE1CC090E5004BD51F /* LMPushMessageDetailTableViewCell.m */,
+				D95387FF1CC090E5004BD51F /* LMPushMessageDetailTableViewCell.xib */,
+				D95387F81CC08FF9004BD51F /* LMPushMessageTableViewCell.h */,
+				D95387F91CC08FF9004BD51F /* LMPushMessageTableViewCell.m */,
+				D95387FA1CC08FF9004BD51F /* LMPushMessageTableViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D95388031CC0BDF8004BD51F /* SuperViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D953880A1CC0C0AB004BD51F /* TZNavigationViewController.h */,
+				D953880B1CC0C0AB004BD51F /* TZNavigationViewController.m */,
+				D95388041CC0BDFE004BD51F /* TZTableViewController.h */,
+				D95388051CC0BDFE004BD51F /* TZTableViewController.m */,
+				D95388061CC0BDFE004BD51F /* TZViewController.h */,
+				D95388071CC0BDFE004BD51F /* TZViewController.m */,
+			);
+			path = SuperViewController;
+			sourceTree = "<group>";
+		};
+		D953880D1CC0C346004BD51F /* UserTags */ = {
+			isa = PBXGroup;
+			children = (
+				D95388131CC0C4A9004BD51F /* Views */,
+				D953880E1CC0C430004BD51F /* LMUserTagsAddViewController.h */,
+				D953880F1CC0C430004BD51F /* LMUserTagsAddViewController.m */,
+				D95388101CC0C430004BD51F /* LMUserTagsAddViewController.xib */,
+			);
+			path = UserTags;
+			sourceTree = "<group>";
+		};
+		D95388131CC0C4A9004BD51F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D95388141CC0C4C3004BD51F /* LMUserTagCollectionViewCell.h */,
+				D95388151CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m */,
+				D95388161CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib */,
+				D95388171CC0C4C3004BD51F /* LMUserSetTagTableViewCell.h */,
+				D95388181CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m */,
+				D95388191CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib */,
+				D953881A1CC0C4C3004BD51F /* InputTagTableViewCell.h */,
+				D953881B1CC0C4C3004BD51F /* InputTagTableViewCell.m */,
+				D953881C1CC0C4C3004BD51F /* InputTagTableViewCell.xib */,
+				D953881D1CC0C4C3004BD51F /* HotTagTableViewCell.h */,
+				D953881E1CC0C4C3004BD51F /* HotTagTableViewCell.m */,
+				D953881F1CC0C4C3004BD51F /* HotTagTableViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D95388281CC0C589004BD51F /* TaoziCollectionLayout */ = {
+			isa = PBXGroup;
+			children = (
+				D953882F1CC0C648004BD51F /* TaoziCollectionLayout.h */,
+				D95388301CC0C648004BD51F /* TaoziCollectionLayout.m */,
+				D953882C1CC0C5B0004BD51F /* CityCardReusableView.h */,
+				D953882D1CC0C5B0004BD51F /* CityCardReusableView.m */,
+			);
+			path = TaoziCollectionLayout;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -476,12 +648,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95388271CC0C4C3004BD51F /* HotTagTableViewCell.xib in Resources */,
+				D95388251CC0C4C3004BD51F /* InputTagTableViewCell.xib in Resources */,
+				D95387FC1CC08FF9004BD51F /* LMPushMessageTableViewCell.xib in Resources */,
+				D95388121CC0C430004BD51F /* LMUserTagsAddViewController.xib in Resources */,
 				D95387CF1CBE5123004BD51F /* AutoSlideScrollView.bundle in Resources */,
 				D95387D51CBE52A6004BD51F /* LMLoginViewController.xib in Resources */,
 				D953875C1CBDF95F004BD51F /* LaunchScreen.storyboard in Resources */,
+				D95387F71CC08F79004BD51F /* LMPushMessageViewController.xib in Resources */,
 				D95387591CBDF95F004BD51F /* Assets.xcassets in Resources */,
 				D95387571CBDF95F004BD51F /* Main.storyboard in Resources */,
 				D95387951CBE1889004BD51F /* MineViewController.xib in Resources */,
+				D95388011CC090E5004BD51F /* LMPushMessageDetailTableViewCell.xib in Resources */,
+				D95388211CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib in Resources */,
+				D95388231CC0C4C3004BD51F /* GrabSetTagTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,16 +738,34 @@
 				D95387CC1CBE5123004BD51F /* AutoSlideScrollView.m in Sources */,
 				D953874E1CBDF95F004BD51F /* AppDelegate.m in Sources */,
 				D95387CE1CBE5123004BD51F /* NSTimer+Addition.m in Sources */,
+				D95388081CC0BDFE004BD51F /* TZTableViewController.m in Sources */,
+				D95387F11CBFCA89004BD51F /* TEATimeRange.m in Sources */,
 				D95387CD1CBE5123004BD51F /* MyPageControl.m in Sources */,
 				D95387B21CBE4B6C004BD51F /* LMShowDetailModel.m in Sources */,
+				D95388201CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m in Sources */,
+				D95388091CC0BDFE004BD51F /* TZViewController.m in Sources */,
 				D95387D91CBF98B0004BD51F /* MineHeaderView.m in Sources */,
 				D95387AF1CBE4513004BD51F /* LMHomeShowView.m in Sources */,
+				D95388111CC0C430004BD51F /* LMUserTagsAddViewController.m in Sources */,
 				D95387901CBE1877004BD51F /* LMHomeViewController.m in Sources */,
+				D95387F01CBFCA89004BD51F /* TEAContributionGraph.m in Sources */,
+				D95387F61CC08F79004BD51F /* LMPushMessageViewController.m in Sources */,
 				D95387941CBE1889004BD51F /* MineViewController.m in Sources */,
+				D953880C1CC0C0AB004BD51F /* TZNavigationViewController.m in Sources */,
+				D95388001CC090E5004BD51F /* LMPushMessageDetailTableViewCell.m in Sources */,
 				D95387AB1CBE3FA6004BD51F /* iCarousel.m in Sources */,
+				D95387EE1CBFCA89004BD51F /* TEABarChart.m in Sources */,
+				D95388241CC0C4C3004BD51F /* InputTagTableViewCell.m in Sources */,
 				D95387C11CBE4BF0004BD51F /* LMUserDetailModel.m in Sources */,
+				D95388311CC0C648004BD51F /* TaoziCollectionLayout.m in Sources */,
+				D95387ED1CBFCA89004BD51F /* NSDate+TEAExtensions.m in Sources */,
+				D953882E1CC0C5B0004BD51F /* CityCardReusableView.m in Sources */,
 				D953874B1CBDF95F004BD51F /* main.m in Sources */,
+				D95387FB1CC08FF9004BD51F /* LMPushMessageTableViewCell.m in Sources */,
+				D95388261CC0C4C3004BD51F /* HotTagTableViewCell.m in Sources */,
+				D95387EF1CBFCA89004BD51F /* TEAClockChart.m in Sources */,
 				D95387D41CBE52A6004BD51F /* LMLoginViewController.m in Sources */,
+				D95388221CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m in Sources */,
 				D95387991CBE1920004BD51F /* LMTabBar.m in Sources */,
 				D95387861CBE156A004BD51F /* LMRootViewController.m in Sources */,
 			);

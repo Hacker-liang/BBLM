@@ -61,7 +61,7 @@
     _showDetail = showDetail;
     [_headerImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.s_avatar] placeholderImage:nil];
     [_contentImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.coverImage] placeholderImage:nil];
-    _nicknameLabel.text = _showDetail.publishUser.nickName;
+    _nicknameLabel.text = _showDetail.publishUser.nickname;
     _dateLabel.text = _showDetail.publishDateDesc;
     _playVideoButton.hidden = !_showDetail.isVideo;
 }

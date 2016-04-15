@@ -12,6 +12,7 @@
 #import "LMHomeShowView.h"
 #import "LMShowDetailModel.h"
 #import "AutoSlideScrollView.h"
+#import "LMPushMessageViewController.h"
 
 @interface LMHomeViewController () <iCarouselDataSource, iCarouselDelegate>
 
@@ -30,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     _dataSource = [NSMutableArray array];
     for (int i = 0; i < 10; i++)
     {
@@ -54,6 +56,9 @@
     _galleryView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
         return [[UIView alloc] initWithFrame:CGRectMake(0, 0, weakSelf.galleryView.bounds.size.width, weakSelf.galleryView.bounds.size.width)];
     };
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pushMessage"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoPushMessage:)];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -73,6 +78,13 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)gotoPushMessage:(UIButton *)sender
+{
+    LMPushMessageViewController *ctl = [[LMPushMessageViewController alloc] init];
+    ctl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (NSInteger)numberOfItemsInCarousel:(__unused iCarousel *)carousel

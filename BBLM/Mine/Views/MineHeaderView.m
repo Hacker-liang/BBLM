@@ -18,7 +18,6 @@
 @property (nonatomic, strong) UIScrollView *tagBgView;
 
 
-@property (nonatomic, strong) LMUserDetailModel *userInfo;
 
 
 @end

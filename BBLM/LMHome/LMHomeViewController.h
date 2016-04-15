@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LMHomeViewController : UIViewController
+@interface LMHomeViewController : TZViewController
 
 @end

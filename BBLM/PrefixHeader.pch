@@ -13,5 +13,8 @@
 #import "UIImageView+WebCache.h"
 #import "LMUserDetailModel.h"
 #import "ConvertMethods.h"
+#import "TZViewController.h"
+#import "TZTableViewController.h"
+#import "TZNavigationViewController.h"
 
 #endif /* PrefixHeader_pch */
