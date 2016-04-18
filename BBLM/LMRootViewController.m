@@ -76,13 +76,18 @@
 
 - (void)publishImage
 {
-    
+    [self closePublishView];
+
 }
 
 - (void)publishVideo
 {
-    UIViewController *ctl = [_qupaiSDK createRecordViewControllerWithMinDuration:10 maxDuration:60 bitRate:600*1200];
-    [self presentViewController:ctl animated:YES completion:^{
+    [self closePublishView];
+    UIViewController *ctl = [self.qupaiSDK createRecordViewControllerWithMinDuration:10 maxDuration:60 bitRate:600*1200];
+    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:ctl];
+    navigation.navigationBarHidden = YES;
+    
+    [self presentViewController:navigation animated:YES completion:^{
         
     }];
 }
@@ -147,6 +152,15 @@
 
 - (void)qupaiSDK:(id<ALBBQuPaiService>)sdk compeleteVideoPath:(NSString *)videoPath thumbnailPath:(NSString *)thumbnailPath
 {
+    NSLog(@"Qupai SDK compelete %@",videoPath);
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if (videoPath) {
+        UISaveVideoAtPathToSavedPhotosAlbum(videoPath, nil, nil, nil);
+    }
+    if (thumbnailPath) {
+        UIImageWriteToSavedPhotosAlbum([UIImage imageWithContentsOfFile:thumbnailPath], nil, nil, nil);
+    }
+
 }
 
 
