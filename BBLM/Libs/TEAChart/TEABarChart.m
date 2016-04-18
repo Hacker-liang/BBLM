@@ -128,7 +128,10 @@
         // 闭合路径
         CGContextClosePath(context);
         // 填充半透明黑色
-        CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 0.5);
+        
+        CGFloat r, g, b, a;
+        [_barColor getRed: &r green:&g blue:&b alpha:&a];
+        CGContextSetRGBFillColor(context, r, g, b, a);
         CGContextDrawPath(context, kCGPathFill);
 
 

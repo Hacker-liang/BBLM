@@ -9,7 +9,9 @@
 #import "MineViewController.h"
 #import "MineHeaderView.h"
 #import "LMUserTagsAddViewController.h"
-#import "LMUserTagsAddViewController.h"
+#import "LMUserProfileViewController.h"
+#import "LMEditUserProfileViewController.h"
+
 
 @interface MineViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -36,6 +38,10 @@
     _headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 150)];
     _headerView.userInfo = _userInfo;
     [_headerView.addTagButton addTarget:self action:@selector(addUserTags:) forControlEvents:UIControlEventTouchUpInside];
+    [_headerView.avatarButton addTarget:self action:@selector(showUserProfile:) forControlEvents:UIControlEventTouchUpInside];
+    [_headerView.editUserInfoButton addTarget:self action:@selector(editUserInfo:) forControlEvents:UIControlEventTouchUpInside];
+
+
     _tableView.tableHeaderView = _headerView;
     self.navigationItem.title = _userInfo.nickname;
 }
@@ -47,6 +53,22 @@
 - (void)addUserTags:(UIButton *)sender
 {
     LMUserTagsAddViewController *ctl = [[LMUserTagsAddViewController alloc] init];
+    ctl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+
+- (void)showUserProfile:(UIButton *)sender
+{
+    LMUserProfileViewController *ctl = [[LMUserProfileViewController alloc] init];
+    ctl.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)editUserInfo:(UIButton *)sender
+{
+    LMEditUserProfileViewController *ctl = [[LMEditUserProfileViewController alloc] init];
+    ctl.userInfo = _userInfo;
     ctl.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:ctl animated:YES];
 }

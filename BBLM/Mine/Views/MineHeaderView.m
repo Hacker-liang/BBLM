@@ -10,15 +10,12 @@
 
 @interface MineHeaderView ()
 
-@property (nonatomic, strong) UIButton *avatarButton;
 @property (nonatomic, strong) UIButton *rankButton;
 
 @property (nonatomic, strong) UILabel *publishCntLabel;
 @property (nonatomic, strong) UILabel *followerCntLabel;
+
 @property (nonatomic, strong) UIScrollView *tagBgView;
-
-
-
 
 @end
 
@@ -86,14 +83,14 @@
         buttomSpaceView.backgroundColor = COLOR_LINE;
         [self addSubview:buttomSpaceView];
         
-        UIButton *editUserInfoButton = [[UIButton alloc] initWithFrame:CGRectMake(kWindowWidth-80, 110, 70, 25)];
-        editUserInfoButton.clipsToBounds = YES;
-        editUserInfoButton.layer.cornerRadius = 3.0;
-        editUserInfoButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
-        [editUserInfoButton setTitle:@"编辑资料" forState:UIControlStateNormal];
-        [editUserInfoButton setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateNormal];
-        [editUserInfoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self addSubview:editUserInfoButton];
+        _editUserInfoButton = [[UIButton alloc] initWithFrame:CGRectMake(kWindowWidth-80, 110, 70, 25)];
+        _editUserInfoButton.clipsToBounds = YES;
+        _editUserInfoButton.layer.cornerRadius = 3.0;
+        _editUserInfoButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
+        [_editUserInfoButton setTitle:@"编辑资料" forState:UIControlStateNormal];
+        [_editUserInfoButton setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateNormal];
+        [_editUserInfoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self addSubview:_editUserInfoButton];
 
         self.userInfo = [[LMUserDetailModel alloc] init];
         

@@ -13,6 +13,11 @@
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *nickname;
 @property (nonatomic, copy) NSString *avatar;
+@property (nonatomic, copy) NSString *gender;
+@property (nonatomic, copy) NSString *locationCity;
+@property (nonatomic, copy) NSString *xingzuo;
+@property (nonatomic) NSInteger babyAge;
+
 @property (nonatomic, copy) NSString *s_avatar;
 
 @property (nonatomic, strong) NSArray <NSString *> *userTags;

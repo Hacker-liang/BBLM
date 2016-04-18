@@ -13,5 +13,7 @@
 @property (nonatomic, strong) LMUserDetailModel *userInfo;
 
 @property (nonatomic, strong) UIButton *addTagButton;
+@property (nonatomic, strong) UIButton *avatarButton;
+@property (nonatomic, strong) UIButton *editUserInfoButton;
 
 @end
