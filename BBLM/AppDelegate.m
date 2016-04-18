@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <ALBBSDK/ALBBSDK.h>
+
 
 @interface AppDelegate ()
 
@@ -21,6 +23,10 @@
     [UINavigationBar appearance].tintColor = [UIColor grayColor];
     [UINavigationBar appearance].barTintColor = [UIColor whiteColor];
     [UINavigationBar appearance].translucent = YES;
+    
+    [[ALBBSDK sharedInstance] asyncInit:^{
+    } failure:^(NSError *error) {
+    }];
 
     return YES;
 }
