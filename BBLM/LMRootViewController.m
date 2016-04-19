@@ -14,6 +14,8 @@
 #import "LMTabBar.h"
 #import "LMHomeViewController.h"
 #import "MineViewController.h"
+#import "UserAlbumOverViewTableViewController.h"
+#import "UploadUserAlbumViewController.h"
 
 @interface LMRootViewController () <LMTabBarDelegate, QupaiSDKDelegate>
 
@@ -33,7 +35,7 @@
     
     [self addChildVc:[[LMHomeViewController alloc] init] title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     [self addChildVc:[[MineViewController alloc] init] title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photoHasSelected:) name:@"uploadUserAlbumNoti" object:nil];
 }
 
 - (id <ALBBQuPaiService>)qupaiSDK
@@ -77,7 +79,9 @@
 - (void)publishImage
 {
     [self closePublishView];
-
+    UserAlbumOverViewTableViewController *ctl = [[UserAlbumOverViewTableViewController alloc] init];
+    ctl.selectedPhotos = [[NSMutableArray alloc] init];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
 }
 
 - (void)publishVideo
@@ -90,6 +94,15 @@
     [self presentViewController:navigation animated:YES completion:^{
         
     }];
+}
+
+- (void)photoHasSelected:(NSNotification *)noti
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSMutableArray *selectedPhotos = [noti.userInfo objectForKey:@"images"];
+    UploadUserAlbumViewController *ctl = [[UploadUserAlbumViewController alloc] init];
+    ctl.selectedPhotos = [[NSMutableArray alloc] initWithArray:selectedPhotos];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
 }
 
 #pragma LMTabBarDelegate
@@ -132,7 +145,7 @@
     [videoButton addTarget:self action:@selector(publishVideo) forControlEvents:UIControlEventTouchUpInside];
     [_publishContentView addSubview:videoButton];
     UILabel *title1 = [[UILabel alloc] initWithFrame:CGRectMake(space*3+60, 120, 60, 60)];
-    title1.text = @"视频";
+    title1.text = @"小视频";
     title1.textAlignment = NSTextAlignmentCenter;
     title1.font = [UIFont systemFontOfSize:16];
     title1.textColor = COLOR_TEXT_I;
