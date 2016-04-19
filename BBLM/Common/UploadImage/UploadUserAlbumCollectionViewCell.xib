@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -30,6 +30,15 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1eU-uJ-57V">
+                        <rect key="frame" x="131" y="0.0" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="g3f-Ne-AEW"/>
+                            <constraint firstAttribute="height" constant="30" id="oR4-5C-6hI"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="6"/>
+                        <state key="normal" image="icon_publish_image_delete"/>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -41,12 +50,15 @@
                 <constraint firstItem="nL5-8H-9Rp" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Wrf-oe-b6h"/>
                 <constraint firstAttribute="trailing" secondItem="WJD-aW-PyK" secondAttribute="trailing" id="bVP-gX-Bc8"/>
                 <constraint firstItem="oeB-7B-ZiJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cNd-ej-OkM"/>
+                <constraint firstAttribute="trailing" secondItem="1eU-uJ-57V" secondAttribute="trailing" id="en3-6q-6pI"/>
                 <constraint firstAttribute="bottom" secondItem="WJD-aW-PyK" secondAttribute="bottom" id="kuM-YA-fQJ"/>
                 <constraint firstAttribute="trailing" secondItem="oeB-7B-ZiJ" secondAttribute="trailing" id="rGU-l9-VDX"/>
+                <constraint firstItem="1eU-uJ-57V" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rWV-qH-Nww"/>
                 <constraint firstItem="nL5-8H-9Rp" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="wQ5-qd-1x5"/>
             </constraints>
             <size key="customSize" width="161" height="159"/>
             <connections>
+                <outlet property="deleteButton" destination="1eU-uJ-57V" id="TQk-lj-z6O"/>
                 <outlet property="failureTextLabel" destination="WJD-aW-PyK" id="oXq-z9-xGP"/>
                 <outlet property="imageView" destination="oeB-7B-ZiJ" id="xgf-A9-7jV"/>
                 <outlet property="progressView" destination="nL5-8H-9Rp" id="vxr-f4-rqC"/>
@@ -54,4 +66,7 @@
             <point key="canvasLocation" x="113.5" y="302.5"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="icon_publish_image_delete" width="17" height="17"/>
+    </resources>
 </document>

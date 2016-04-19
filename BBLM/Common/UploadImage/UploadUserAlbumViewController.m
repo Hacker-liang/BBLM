@@ -19,6 +19,8 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) ALAssetsLibrary *library;
+@property (nonatomic, strong) UIView *locationBgView;
+@property (nonatomic, strong) UIButton *locationButton;
 
 @property (nonatomic, strong) NSMutableArray *userAlbumUploadStatusList;
 
@@ -49,6 +51,14 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [_containterView.collectionView registerNib:[UINib nibWithNibName:@"UploadUserAlbumCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     [_scrollView addSubview:_containterView];
     [self.view addSubview:_scrollView];
+    
+    _locationBgView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_containterView.frame), kWindowWidth, 45)];
+    _locationBgView.backgroundColor = [UIColor whiteColor];
+    _locationButton = [[UIButton alloc] initWithFrame:CGRectMake(12, 0, kWindowWidth-100, 45)];
+    [_locationButton setImage:[UIImage imageNamed:@"icon_publish_location"] forState:UIControlStateNormal];
+    [_locationButton addTarget:self action:@selector(changeUserLocation) forControlEvents:UIControlEventTouchUpInside];
+    [_locationBgView addSubview:_locationButton];
+    [_scrollView addSubview:_locationBgView];
     
     _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [_backBtn setTitle:@"取消" forState:UIControlStateNormal];
@@ -100,7 +110,16 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
         [self.navigationController popViewControllerAnimated:YES];
 
     }
-    
+}
+
+- (void)renderContentView
+{
+    CGFloat height = [UploadUserPhotoOperationView heigthWithPhotoCount:_selectedPhotos.count + 1];
+    _containterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
+    CGFloat scrollViewHeight = height > _scrollView.bounds.size.height ? height : _scrollView.bounds.size.height+1;
+    [_scrollView setContentSize:CGSizeMake(_scrollView.bounds.size.width, scrollViewHeight)];
+    [_containterView.collectionView reloadData];
+    _locationBgView.frame = CGRectMake(0, CGRectGetMaxY(_containterView.frame), kWindowWidth, 45);
 }
 
 - (NSMutableArray *)userAlbumUploadStatusList
@@ -109,6 +128,12 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
         _userAlbumUploadStatusList = [[NSMutableArray alloc] init];
     }
     return _userAlbumUploadStatusList;
+}
+
+- (void)deleteSelectImages:(UIButton *)sender
+{
+    [_selectedPhotos removeObjectAtIndex:sender.tag];
+    [self renderContentView];
 }
 
 - (void)uploadUserAlbum
@@ -177,11 +202,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 {
     NSMutableArray *selectedPhotos = [noti.userInfo objectForKey:@"images"];
     self.selectedPhotos = [[NSMutableArray alloc] initWithArray:selectedPhotos];
-    CGFloat height = [UploadUserPhotoOperationView heigthWithPhotoCount:_selectedPhotos.count + 1];
-    _containterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
-    CGFloat scrollViewHeight = height > _scrollView.bounds.size.height ? height : _scrollView.bounds.size.height+1;
-    [_scrollView setContentSize:CGSizeMake(_scrollView.bounds.size.width, scrollViewHeight)];
-    [_containterView.collectionView reloadData];
+    [self renderContentView];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -218,9 +239,13 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     UploadUserAlbumCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     if (indexPath.row == _selectedPhotos.count) {
         cell.image = [UIImage imageNamed:@"icon_big_add_photo.png"];
+        cell.deleteButton.hidden = YES;
     } else {
+        cell.deleteButton.hidden = NO;
         ALAsset *asset = _selectedPhotos[indexPath.row];
         cell.image = [UIImage imageWithCGImage:asset.thumbnail];
+        [cell.deleteButton addTarget:self action:@selector(deleteSelectImages:) forControlEvents:UIControlEventTouchUpInside];
+        cell.deleteButton.tag = indexPath.row;
     }
     
     if (self.userAlbumUploadStatusList.count >= indexPath.row+1) {
@@ -268,11 +293,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
              [_library assetForURL:assetURL resultBlock:^(ALAsset *asset )
               {
                   [_selectedPhotos addObject:asset];
-                  CGFloat height = [UploadUserPhotoOperationView heigthWithPhotoCount:_selectedPhotos.count + 1];
-                  _containterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
-                  CGFloat scrollViewHeight = height > _scrollView.bounds.size.height ? height : _scrollView.bounds.size.height+1;
-                  [_scrollView setContentSize:CGSizeMake(_scrollView.bounds.size.width, scrollViewHeight)];
-                  [_containterView.collectionView reloadData];
+                  [self renderContentView];
               }
                      failureBlock:^(NSError *error )
               {
@@ -280,35 +301,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
               }];
          }];
     }
-    
-    /*
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    [library writeImageToSavedPhotosAlbum:image.CGImage
-                                 metadata:[info objectForKey:UIImagePickerControllerMediaMetadata]
-                          completionBlock:^(NSURL *assetURL, NSError *error) {
-                              NSLog(@"assetURL %@", assetURL);
-                              [library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
-                                  // If asset exists
-                                  if (asset) {
-                                      [_selectedPhotos addObject:asset];
-                                      CGFloat height = [UploadUserPhotoOperationView heigthWithPhotoCount:_selectedPhotos.count + 1];
-                                      _containterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
-                                      CGFloat scrollViewHeight = height > _scrollView.bounds.size.height ? height : _scrollView.bounds.size.height+1;
-                                      [_scrollView setContentSize:CGSizeMake(_scrollView.bounds.size.width, scrollViewHeight)];
-                                      [_containterView.collectionView reloadData];
-                                      
-                                  } else {
-                                      // Type your code here for not existing asset
-                                  }
-                              } failureBlock:^(NSError *error) {
-                                  // Type your code here for failure (when user doesn't allow location in your app)
-                              }];
-                              
-                          }];
-     */
-    
 
 }
 @end
