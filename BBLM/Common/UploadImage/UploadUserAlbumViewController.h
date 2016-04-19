@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
 
 @interface UploadUserAlbumViewController : UIViewController
 
-@property (nonatomic, strong) NSMutableArray *selectedPhotos;
+@property (nonatomic, strong) NSMutableArray<ALAsset *> *selectedPhotos;   //相册选中的图片
 
 @end
 

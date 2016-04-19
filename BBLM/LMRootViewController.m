@@ -35,7 +35,6 @@
     
     [self addChildVc:[[LMHomeViewController alloc] init] title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
     [self addChildVc:[[MineViewController alloc] init] title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photoHasSelected:) name:@"uploadUserAlbumNoti" object:nil];
 }
 
 - (id <ALBBQuPaiService>)qupaiSDK
@@ -79,7 +78,7 @@
 - (void)publishImage
 {
     [self closePublishView];
-    UserAlbumOverViewTableViewController *ctl = [[UserAlbumOverViewTableViewController alloc] init];
+    UploadUserAlbumViewController *ctl = [[UploadUserAlbumViewController alloc] init];
     ctl.selectedPhotos = [[NSMutableArray alloc] init];
     [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
 }
@@ -94,15 +93,6 @@
     [self presentViewController:navigation animated:YES completion:^{
         
     }];
-}
-
-- (void)photoHasSelected:(NSNotification *)noti
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    NSMutableArray *selectedPhotos = [noti.userInfo objectForKey:@"images"];
-    UploadUserAlbumViewController *ctl = [[UploadUserAlbumViewController alloc] init];
-    ctl.selectedPhotos = [[NSMutableArray alloc] initWithArray:selectedPhotos];
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
 }
 
 #pragma LMTabBarDelegate

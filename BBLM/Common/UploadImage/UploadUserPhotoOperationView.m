@@ -19,7 +19,7 @@
 + (CGFloat)heigthWithPhotoCount:(NSUInteger)count
 {
     CGFloat retHeight = 0.0;
-    retHeight += 100;
+    retHeight += 140;
     
     NSUInteger line = ceilf(count/4.0);
     CGFloat itemWidth = (kWindowWidth-20 - 3*8)/4;

@@ -13,11 +13,12 @@
 #import "UserAlbumPreviewViewController.h"
 #import "UploadUserPhotoStatus.h"
 
-@interface UploadUserAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
+@interface UploadUserAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UploadUserPhotoOperationView *containterView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIButton *backBtn;
+@property (nonatomic, strong) ALAssetsLibrary *library;
 
 @property (nonatomic, strong) NSMutableArray *userAlbumUploadStatusList;
 
@@ -29,6 +30,8 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _library = [[ALAssetsLibrary alloc] init];
+
     self.navigationItem.title = @"图片发布";
     self.view.backgroundColor = APP_PAGE_COLOR;
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -46,7 +49,6 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [_containterView.collectionView registerNib:[UINib nibWithNibName:@"UploadUserAlbumCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
     [_scrollView addSubview:_containterView];
     [self.view addSubview:_scrollView];
-    
     
     _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [_backBtn setTitle:@"取消" forState:UIControlStateNormal];
@@ -167,10 +169,8 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 */
 - (void)choseMorePhotos
 {
-    NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:_selectedPhotos];
-    UserAlbumOverViewTableViewController *ctl = [[UserAlbumOverViewTableViewController alloc] init];
-    ctl.selectedPhotos = tempArray;
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
+    UIActionSheet *sheetDelegate = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"还可以选择%ld张图片", (5-_selectedPhotos.count)] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"相册", nil];
+    [sheetDelegate showInView:self.view];
 }
 
 - (void)photoHasSelected:(NSNotification *)noti
@@ -182,6 +182,25 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     CGFloat scrollViewHeight = height > _scrollView.bounds.size.height ? height : _scrollView.bounds.size.height+1;
     [_scrollView setContentSize:CGSizeMake(_scrollView.bounds.size.width, scrollViewHeight)];
     [_containterView.collectionView reloadData];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:picker animated:YES completion:nil];
+    
+    } else if (buttonIndex == 1) {
+        NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:_selectedPhotos];
+        UserAlbumOverViewTableViewController *ctl = [[UserAlbumOverViewTableViewController alloc] init];
+        ctl.selectedPhotos = tempArray;
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
+    }
 }
 
 
@@ -211,7 +230,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -231,6 +250,66 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
+}
+
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    if( [picker sourceType] == UIImagePickerControllerSourceTypeCamera )
+    {
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [_library writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error )
+         {
+             NSLog(@"IMAGE SAVED TO PHOTO ALBUM");
+             [_library assetForURL:assetURL resultBlock:^(ALAsset *asset )
+              {
+                  [_selectedPhotos addObject:asset];
+                  CGFloat height = [UploadUserPhotoOperationView heigthWithPhotoCount:_selectedPhotos.count + 1];
+                  _containterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
+                  CGFloat scrollViewHeight = height > _scrollView.bounds.size.height ? height : _scrollView.bounds.size.height+1;
+                  [_scrollView setContentSize:CGSizeMake(_scrollView.bounds.size.width, scrollViewHeight)];
+                  [_containterView.collectionView reloadData];
+              }
+                     failureBlock:^(NSError *error )
+              {
+                  NSLog(@"Error loading asset");
+              }];
+         }];
+    }
+    
+    /*
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    [library writeImageToSavedPhotosAlbum:image.CGImage
+                                 metadata:[info objectForKey:UIImagePickerControllerMediaMetadata]
+                          completionBlock:^(NSURL *assetURL, NSError *error) {
+                              NSLog(@"assetURL %@", assetURL);
+                              [library assetForURL:assetURL resultBlock:^(ALAsset *asset) {
+                                  // If asset exists
+                                  if (asset) {
+                                      [_selectedPhotos addObject:asset];
+                                      CGFloat height = [UploadUserPhotoOperationView heigthWithPhotoCount:_selectedPhotos.count + 1];
+                                      _containterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, height);
+                                      CGFloat scrollViewHeight = height > _scrollView.bounds.size.height ? height : _scrollView.bounds.size.height+1;
+                                      [_scrollView setContentSize:CGSizeMake(_scrollView.bounds.size.width, scrollViewHeight)];
+                                      [_containterView.collectionView reloadData];
+                                      
+                                  } else {
+                                      // Type your code here for not existing asset
+                                  }
+                              } failureBlock:^(NSError *error) {
+                                  // Type your code here for failure (when user doesn't allow location in your app)
+                              }];
+                              
+                          }];
+     */
+    
+
 }
 @end
 

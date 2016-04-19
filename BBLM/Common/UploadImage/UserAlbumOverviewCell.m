@@ -21,12 +21,12 @@
 - (void)setAssetsGroup:(ALAssetsGroup *)assetsGroup
 {
     _assetsGroup = assetsGroup;
-    CGImageRef posterImage      = assetsGroup.posterImage;
-    self.headerImageView.image        = [UIImage imageWithCGImage:posterImage scale:2 orientation:UIImageOrientationUp];
+    CGImageRef posterImage = assetsGroup.posterImage;
+    self.headerImageView.image = [UIImage imageWithCGImage:posterImage scale:2 orientation:UIImageOrientationUp];
     
     NSString *title = [NSString stringWithFormat:@"%@ (共%ld张)",[assetsGroup valueForProperty:ALAssetsGroupPropertyName],  (long)[assetsGroup numberOfAssets]];
     self.titleLabel.text = title;
-    self.accessoryType          = UITableViewCellAccessoryDisclosureIndicator;
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 @end

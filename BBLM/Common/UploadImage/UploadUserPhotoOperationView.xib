@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -20,7 +20,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="umc-RT-soJ">
-                    <rect key="frame" x="0.0" y="100" width="600" height="500"/>
+                    <rect key="frame" x="0.0" y="100" width="600" height="459"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zJK-tO-0ox">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -28,14 +28,27 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注：图片限5张，视频限1个5M内" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUm-NU-tuM">
+                    <rect key="frame" x="8" y="571" width="582" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="0IX-AC-KVD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="KUm-NU-tuM" secondAttribute="trailing" constant="10" id="5Wk-tN-3ml"/>
+                <constraint firstAttribute="bottom" secondItem="KUm-NU-tuM" secondAttribute="bottom" constant="8" id="BDy-49-oQb"/>
                 <constraint firstItem="umc-RT-soJ" firstAttribute="top" secondItem="vrA-1v-ZGH" secondAttribute="bottom" constant="10" id="Fgi-lb-DCp"/>
+                <constraint firstItem="KUm-NU-tuM" firstAttribute="top" secondItem="umc-RT-soJ" secondAttribute="bottom" constant="12" id="ND6-RH-b6T"/>
                 <constraint firstItem="vrA-1v-ZGH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="TGj-tm-KRm"/>
                 <constraint firstAttribute="trailing" secondItem="vrA-1v-ZGH" secondAttribute="trailing" constant="10" id="gvP-3d-fWI"/>
-                <constraint firstAttribute="bottom" secondItem="umc-RT-soJ" secondAttribute="bottom" id="hED-XK-ZZC"/>
+                <constraint firstAttribute="bottom" secondItem="umc-RT-soJ" secondAttribute="bottom" constant="41" id="hED-XK-ZZC"/>
                 <constraint firstItem="umc-RT-soJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="m0w-ZT-IaC"/>
+                <constraint firstItem="KUm-NU-tuM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="pbI-mu-ROF"/>
                 <constraint firstItem="vrA-1v-ZGH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="tDX-lD-1En"/>
                 <constraint firstAttribute="trailing" secondItem="umc-RT-soJ" secondAttribute="trailing" id="uQc-VU-asl"/>
             </constraints>
