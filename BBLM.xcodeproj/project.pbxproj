@@ -94,36 +94,36 @@
 		D95388BB1CC4FC85004BD51F /* ZipArchive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95388B21CC4FC85004BD51F /* ZipArchive.framework */; };
 		D95388BE1CC4FCC2004BD51F /* ALBBQuPai.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95388BC1CC4FCC2004BD51F /* ALBBQuPai.framework */; };
 		D95388BF1CC4FCC2004BD51F /* ALBBQuPaiPlugin.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D95388BD1CC4FCC2004BD51F /* ALBBQuPaiPlugin.bundle */; };
-		D95388DF1CC507E8004BD51F /* UploadUserPhotoStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388C21CC507E8004BD51F /* UploadUserPhotoStatus.m */; };
-		D95388E01CC507E8004BD51F /* UserAlbumOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388C41CC507E8004BD51F /* UserAlbumOverviewCell.m */; };
-		D95388E11CC507E8004BD51F /* UserAlbumOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388C51CC507E8004BD51F /* UserAlbumOverviewCell.xib */; };
-		D95388E21CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388C71CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.m */; };
-		D95388E31CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388C81CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.xib */; };
-		D95388E41CC507E8004BD51F /* UserAlbumSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388CA1CC507E8004BD51F /* UserAlbumSelectViewController.m */; };
-		D95388E51CC507E8004BD51F /* UserAlbumPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388CC1CC507E8004BD51F /* UserAlbumPreviewViewController.m */; };
-		D95388E61CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388CE1CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.m */; };
-		D95388E71CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388CF1CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.xib */; };
-		D95388E81CC507E8004BD51F /* PhotoPreivewView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388D11CC507E8004BD51F /* PhotoPreivewView.m */; };
-		D95388E91CC507E8004BD51F /* UploadUserAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388D31CC507E8004BD51F /* UploadUserAlbumViewController.m */; };
-		D95388EA1CC507E8004BD51F /* UploadUserPhotoOperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388D51CC507E8004BD51F /* UploadUserPhotoOperationView.m */; };
-		D95388EB1CC507E8004BD51F /* UploadUserPhotoOperationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388D61CC507E8004BD51F /* UploadUserPhotoOperationView.xib */; };
-		D95388EC1CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388D81CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.m */; };
-		D95388ED1CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388D91CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.xib */; };
-		D95388EF1CC507E8004BD51F /* UserAlbumOverViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388DD1CC507E8004BD51F /* UserAlbumOverViewTableViewController.m */; };
-		D95388F01CC507E8004BD51F /* UserAlbumOverViewTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95388DE1CC507E8004BD51F /* UserAlbumOverViewTableViewController.xib */; };
 		D95388F41CC50821004BD51F /* UCZProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95388F31CC50821004BD51F /* UCZProgressView.m */; };
-		D95388F71CC5D111004BD51F /* icon_photo_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95388F51CC5D111004BD51F /* icon_photo_normal@2x.png */; };
-		D95388F81CC5D111004BD51F /* icon_photo_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95388F61CC5D111004BD51F /* icon_photo_normal@3x.png */; };
-		D95388FB1CC5D138004BD51F /* icon_photo_bar_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95388F91CC5D138004BD51F /* icon_photo_bar_normal@2x.png */; };
-		D95388FC1CC5D138004BD51F /* icon_photo_bar_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95388FA1CC5D138004BD51F /* icon_photo_bar_normal@3x.png */; };
-		D95388FF1CC5D161004BD51F /* icon_big_add_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95388FD1CC5D161004BD51F /* icon_big_add_photo@2x.png */; };
-		D95389001CC5D161004BD51F /* icon_big_add_photo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95388FE1CC5D161004BD51F /* icon_big_add_photo@3x.png */; };
-		D95389031CC5D179004BD51F /* UserAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389021CC5D179004BD51F /* UserAlbumManager.m */; };
-		D95389061CC5D188004BD51F /* AlbumImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389051CC5D188004BD51F /* AlbumImageModel.m */; };
-		D95389091CC5D20C004BD51F /* icon_photo_bar_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389071CC5D20C004BD51F /* icon_photo_bar_selected@2x.png */; };
-		D953890A1CC5D20C004BD51F /* icon_photo_bar_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389081CC5D20C004BD51F /* icon_photo_bar_selected@3x.png */; };
-		D953890D1CC5D242004BD51F /* icon_photo_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D953890B1CC5D242004BD51F /* icon_photo_selected@2x.png */; };
-		D953890E1CC5D242004BD51F /* icon_photo_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D953890C1CC5D242004BD51F /* icon_photo_selected@3x.png */; };
+		D953893A1CC60A01004BD51F /* AlbumImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389111CC60A00004BD51F /* AlbumImageModel.m */; };
+		D953893B1CC60A01004BD51F /* icon_big_add_photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389121CC60A00004BD51F /* icon_big_add_photo@2x.png */; };
+		D953893C1CC60A01004BD51F /* icon_big_add_photo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389131CC60A00004BD51F /* icon_big_add_photo@3x.png */; };
+		D953893D1CC60A01004BD51F /* icon_photo_bar_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389141CC60A00004BD51F /* icon_photo_bar_normal@2x.png */; };
+		D953893E1CC60A01004BD51F /* icon_photo_bar_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389151CC60A00004BD51F /* icon_photo_bar_normal@3x.png */; };
+		D953893F1CC60A01004BD51F /* icon_photo_bar_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389161CC60A00004BD51F /* icon_photo_bar_selected@2x.png */; };
+		D95389401CC60A01004BD51F /* icon_photo_bar_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389171CC60A00004BD51F /* icon_photo_bar_selected@3x.png */; };
+		D95389411CC60A01004BD51F /* icon_photo_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389181CC60A00004BD51F /* icon_photo_normal@2x.png */; };
+		D95389421CC60A01004BD51F /* icon_photo_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D95389191CC60A00004BD51F /* icon_photo_normal@3x.png */; };
+		D95389431CC60A01004BD51F /* icon_photo_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D953891A1CC60A00004BD51F /* icon_photo_selected@2x.png */; };
+		D95389441CC60A01004BD51F /* icon_photo_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D953891B1CC60A00004BD51F /* icon_photo_selected@3x.png */; };
+		D95389451CC60A01004BD51F /* PhotoPreivewView.m in Sources */ = {isa = PBXBuildFile; fileRef = D953891D1CC60A00004BD51F /* PhotoPreivewView.m */; };
+		D95389461CC60A01004BD51F /* UploadUserAlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D953891F1CC60A00004BD51F /* UploadUserAlbumCollectionViewCell.m */; };
+		D95389471CC60A01004BD51F /* UploadUserAlbumCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95389201CC60A00004BD51F /* UploadUserAlbumCollectionViewCell.xib */; };
+		D95389481CC60A01004BD51F /* UploadUserAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389221CC60A00004BD51F /* UploadUserAlbumViewController.m */; };
+		D95389491CC60A01004BD51F /* UploadUserPhotoOperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389241CC60A00004BD51F /* UploadUserPhotoOperationView.m */; };
+		D953894A1CC60A01004BD51F /* UploadUserPhotoOperationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95389251CC60A00004BD51F /* UploadUserPhotoOperationView.xib */; };
+		D953894B1CC60A01004BD51F /* UploadUserPhotoStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389271CC60A00004BD51F /* UploadUserPhotoStatus.m */; };
+		D953894C1CC60A01004BD51F /* UserAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389291CC60A00004BD51F /* UserAlbumManager.m */; };
+		D953894D1CC60A01004BD51F /* UserAlbumOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D953892B1CC60A00004BD51F /* UserAlbumOverviewCell.m */; };
+		D953894E1CC60A01004BD51F /* UserAlbumOverviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D953892C1CC60A00004BD51F /* UserAlbumOverviewCell.xib */; };
+		D953894F1CC60A01004BD51F /* UserAlbumOverViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D953892E1CC60A01004BD51F /* UserAlbumOverViewTableViewController.m */; };
+		D95389501CC60A01004BD51F /* UserAlbumOverViewTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D953892F1CC60A01004BD51F /* UserAlbumOverViewTableViewController.xib */; };
+		D95389511CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389311CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.m */; };
+		D95389521CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95389321CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.xib */; };
+		D95389531CC60A01004BD51F /* UserAlbumPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389341CC60A01004BD51F /* UserAlbumPreviewViewController.m */; };
+		D95389541CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389361CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.m */; };
+		D95389551CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D95389371CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.xib */; };
+		D95389561CC60A01004BD51F /* UserAlbumSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389391CC60A01004BD51F /* UserAlbumSelectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,50 +281,50 @@
 		D95388B21CC4FC85004BD51F /* ZipArchive.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZipArchive.framework; sourceTree = "<group>"; };
 		D95388BC1CC4FCC2004BD51F /* ALBBQuPai.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ALBBQuPai.framework; sourceTree = "<group>"; };
 		D95388BD1CC4FCC2004BD51F /* ALBBQuPaiPlugin.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ALBBQuPaiPlugin.bundle; sourceTree = "<group>"; };
-		D95388C11CC507E8004BD51F /* UploadUserPhotoStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadUserPhotoStatus.h; sourceTree = "<group>"; };
-		D95388C21CC507E8004BD51F /* UploadUserPhotoStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadUserPhotoStatus.m; sourceTree = "<group>"; };
-		D95388C31CC507E8004BD51F /* UserAlbumOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumOverviewCell.h; sourceTree = "<group>"; };
-		D95388C41CC507E8004BD51F /* UserAlbumOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumOverviewCell.m; sourceTree = "<group>"; };
-		D95388C51CC507E8004BD51F /* UserAlbumOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAlbumOverviewCell.xib; sourceTree = "<group>"; };
-		D95388C61CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumSelectCollectionViewCell.h; sourceTree = "<group>"; };
-		D95388C71CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumSelectCollectionViewCell.m; sourceTree = "<group>"; };
-		D95388C81CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAlbumSelectCollectionViewCell.xib; sourceTree = "<group>"; };
-		D95388C91CC507E8004BD51F /* UserAlbumSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumSelectViewController.h; sourceTree = "<group>"; };
-		D95388CA1CC507E8004BD51F /* UserAlbumSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumSelectViewController.m; sourceTree = "<group>"; };
-		D95388CB1CC507E8004BD51F /* UserAlbumPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumPreviewViewController.h; sourceTree = "<group>"; };
-		D95388CC1CC507E8004BD51F /* UserAlbumPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumPreviewViewController.m; sourceTree = "<group>"; };
-		D95388CD1CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumPreviewCollectionViewCell.h; sourceTree = "<group>"; };
-		D95388CE1CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumPreviewCollectionViewCell.m; sourceTree = "<group>"; };
-		D95388CF1CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAlbumPreviewCollectionViewCell.xib; sourceTree = "<group>"; };
-		D95388D01CC507E8004BD51F /* PhotoPreivewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPreivewView.h; sourceTree = "<group>"; };
-		D95388D11CC507E8004BD51F /* PhotoPreivewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPreivewView.m; sourceTree = "<group>"; };
-		D95388D21CC507E8004BD51F /* UploadUserAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadUserAlbumViewController.h; sourceTree = "<group>"; };
-		D95388D31CC507E8004BD51F /* UploadUserAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadUserAlbumViewController.m; sourceTree = "<group>"; };
-		D95388D41CC507E8004BD51F /* UploadUserPhotoOperationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadUserPhotoOperationView.h; sourceTree = "<group>"; };
-		D95388D51CC507E8004BD51F /* UploadUserPhotoOperationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadUserPhotoOperationView.m; sourceTree = "<group>"; };
-		D95388D61CC507E8004BD51F /* UploadUserPhotoOperationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadUserPhotoOperationView.xib; sourceTree = "<group>"; };
-		D95388D71CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadUserAlbumCollectionViewCell.h; sourceTree = "<group>"; };
-		D95388D81CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadUserAlbumCollectionViewCell.m; sourceTree = "<group>"; };
-		D95388D91CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadUserAlbumCollectionViewCell.xib; sourceTree = "<group>"; };
-		D95388DC1CC507E8004BD51F /* UserAlbumOverViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumOverViewTableViewController.h; sourceTree = "<group>"; };
-		D95388DD1CC507E8004BD51F /* UserAlbumOverViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumOverViewTableViewController.m; sourceTree = "<group>"; };
-		D95388DE1CC507E8004BD51F /* UserAlbumOverViewTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAlbumOverViewTableViewController.xib; sourceTree = "<group>"; };
 		D95388F21CC50821004BD51F /* UCZProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCZProgressView.h; sourceTree = "<group>"; };
 		D95388F31CC50821004BD51F /* UCZProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCZProgressView.m; sourceTree = "<group>"; };
-		D95388F51CC5D111004BD51F /* icon_photo_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_normal@2x.png"; sourceTree = "<group>"; };
-		D95388F61CC5D111004BD51F /* icon_photo_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_normal@3x.png"; sourceTree = "<group>"; };
-		D95388F91CC5D138004BD51F /* icon_photo_bar_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_bar_normal@2x.png"; sourceTree = "<group>"; };
-		D95388FA1CC5D138004BD51F /* icon_photo_bar_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_bar_normal@3x.png"; sourceTree = "<group>"; };
-		D95388FD1CC5D161004BD51F /* icon_big_add_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_big_add_photo@2x.png"; sourceTree = "<group>"; };
-		D95388FE1CC5D161004BD51F /* icon_big_add_photo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_big_add_photo@3x.png"; sourceTree = "<group>"; };
-		D95389011CC5D179004BD51F /* UserAlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumManager.h; sourceTree = "<group>"; };
-		D95389021CC5D179004BD51F /* UserAlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumManager.m; sourceTree = "<group>"; };
-		D95389041CC5D188004BD51F /* AlbumImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumImageModel.h; sourceTree = "<group>"; };
-		D95389051CC5D188004BD51F /* AlbumImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumImageModel.m; sourceTree = "<group>"; };
-		D95389071CC5D20C004BD51F /* icon_photo_bar_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_bar_selected@2x.png"; sourceTree = "<group>"; };
-		D95389081CC5D20C004BD51F /* icon_photo_bar_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_bar_selected@3x.png"; sourceTree = "<group>"; };
-		D953890B1CC5D242004BD51F /* icon_photo_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_selected@2x.png"; sourceTree = "<group>"; };
-		D953890C1CC5D242004BD51F /* icon_photo_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_selected@3x.png"; sourceTree = "<group>"; };
+		D95389101CC60A00004BD51F /* AlbumImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumImageModel.h; sourceTree = "<group>"; };
+		D95389111CC60A00004BD51F /* AlbumImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumImageModel.m; sourceTree = "<group>"; };
+		D95389121CC60A00004BD51F /* icon_big_add_photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_big_add_photo@2x.png"; sourceTree = "<group>"; };
+		D95389131CC60A00004BD51F /* icon_big_add_photo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_big_add_photo@3x.png"; sourceTree = "<group>"; };
+		D95389141CC60A00004BD51F /* icon_photo_bar_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_bar_normal@2x.png"; sourceTree = "<group>"; };
+		D95389151CC60A00004BD51F /* icon_photo_bar_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_bar_normal@3x.png"; sourceTree = "<group>"; };
+		D95389161CC60A00004BD51F /* icon_photo_bar_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_bar_selected@2x.png"; sourceTree = "<group>"; };
+		D95389171CC60A00004BD51F /* icon_photo_bar_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_bar_selected@3x.png"; sourceTree = "<group>"; };
+		D95389181CC60A00004BD51F /* icon_photo_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_normal@2x.png"; sourceTree = "<group>"; };
+		D95389191CC60A00004BD51F /* icon_photo_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_normal@3x.png"; sourceTree = "<group>"; };
+		D953891A1CC60A00004BD51F /* icon_photo_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_selected@2x.png"; sourceTree = "<group>"; };
+		D953891B1CC60A00004BD51F /* icon_photo_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_photo_selected@3x.png"; sourceTree = "<group>"; };
+		D953891C1CC60A00004BD51F /* PhotoPreivewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPreivewView.h; sourceTree = "<group>"; };
+		D953891D1CC60A00004BD51F /* PhotoPreivewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPreivewView.m; sourceTree = "<group>"; };
+		D953891E1CC60A00004BD51F /* UploadUserAlbumCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadUserAlbumCollectionViewCell.h; sourceTree = "<group>"; };
+		D953891F1CC60A00004BD51F /* UploadUserAlbumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadUserAlbumCollectionViewCell.m; sourceTree = "<group>"; };
+		D95389201CC60A00004BD51F /* UploadUserAlbumCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadUserAlbumCollectionViewCell.xib; sourceTree = "<group>"; };
+		D95389211CC60A00004BD51F /* UploadUserAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadUserAlbumViewController.h; sourceTree = "<group>"; };
+		D95389221CC60A00004BD51F /* UploadUserAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadUserAlbumViewController.m; sourceTree = "<group>"; };
+		D95389231CC60A00004BD51F /* UploadUserPhotoOperationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadUserPhotoOperationView.h; sourceTree = "<group>"; };
+		D95389241CC60A00004BD51F /* UploadUserPhotoOperationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadUserPhotoOperationView.m; sourceTree = "<group>"; };
+		D95389251CC60A00004BD51F /* UploadUserPhotoOperationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadUserPhotoOperationView.xib; sourceTree = "<group>"; };
+		D95389261CC60A00004BD51F /* UploadUserPhotoStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadUserPhotoStatus.h; sourceTree = "<group>"; };
+		D95389271CC60A00004BD51F /* UploadUserPhotoStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadUserPhotoStatus.m; sourceTree = "<group>"; };
+		D95389281CC60A00004BD51F /* UserAlbumManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumManager.h; sourceTree = "<group>"; };
+		D95389291CC60A00004BD51F /* UserAlbumManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumManager.m; sourceTree = "<group>"; };
+		D953892A1CC60A00004BD51F /* UserAlbumOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumOverviewCell.h; sourceTree = "<group>"; };
+		D953892B1CC60A00004BD51F /* UserAlbumOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumOverviewCell.m; sourceTree = "<group>"; };
+		D953892C1CC60A00004BD51F /* UserAlbumOverviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAlbumOverviewCell.xib; sourceTree = "<group>"; };
+		D953892D1CC60A00004BD51F /* UserAlbumOverViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumOverViewTableViewController.h; sourceTree = "<group>"; };
+		D953892E1CC60A01004BD51F /* UserAlbumOverViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumOverViewTableViewController.m; sourceTree = "<group>"; };
+		D953892F1CC60A01004BD51F /* UserAlbumOverViewTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAlbumOverViewTableViewController.xib; sourceTree = "<group>"; };
+		D95389301CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumPreviewCollectionViewCell.h; sourceTree = "<group>"; };
+		D95389311CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumPreviewCollectionViewCell.m; sourceTree = "<group>"; };
+		D95389321CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAlbumPreviewCollectionViewCell.xib; sourceTree = "<group>"; };
+		D95389331CC60A01004BD51F /* UserAlbumPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumPreviewViewController.h; sourceTree = "<group>"; };
+		D95389341CC60A01004BD51F /* UserAlbumPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumPreviewViewController.m; sourceTree = "<group>"; };
+		D95389351CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumSelectCollectionViewCell.h; sourceTree = "<group>"; };
+		D95389361CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumSelectCollectionViewCell.m; sourceTree = "<group>"; };
+		D95389371CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAlbumSelectCollectionViewCell.xib; sourceTree = "<group>"; };
+		D95389381CC60A01004BD51F /* UserAlbumSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAlbumSelectViewController.h; sourceTree = "<group>"; };
+		D95389391CC60A01004BD51F /* UserAlbumSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAlbumSelectViewController.m; sourceTree = "<group>"; };
 		FCD4932A41E4CF79D72E9D6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -481,8 +481,8 @@
 		D953877F1CBDF99D004BD51F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D953890F1CC60A00004BD51F /* UploadImage&Video */,
 				D95388F11CC50821004BD51F /* UCZProgressView */,
-				D95388C01CC507D7004BD51F /* UploadImage */,
 				D95388711CC4E0A1004BD51F /* Category */,
 				D95388281CC0C589004BD51F /* TaoziCollectionLayout */,
 				D95388031CC0BDF8004BD51F /* SuperViewController */,
@@ -818,55 +818,6 @@
 			path = OneSDK;
 			sourceTree = "<group>";
 		};
-		D95388C01CC507D7004BD51F /* UploadImage */ = {
-			isa = PBXGroup;
-			children = (
-				D95389041CC5D188004BD51F /* AlbumImageModel.h */,
-				D95389051CC5D188004BD51F /* AlbumImageModel.m */,
-				D95389011CC5D179004BD51F /* UserAlbumManager.h */,
-				D95389021CC5D179004BD51F /* UserAlbumManager.m */,
-				D95388FD1CC5D161004BD51F /* icon_big_add_photo@2x.png */,
-				D95388FE1CC5D161004BD51F /* icon_big_add_photo@3x.png */,
-				D95388F91CC5D138004BD51F /* icon_photo_bar_normal@2x.png */,
-				D95388FA1CC5D138004BD51F /* icon_photo_bar_normal@3x.png */,
-				D953890B1CC5D242004BD51F /* icon_photo_selected@2x.png */,
-				D953890C1CC5D242004BD51F /* icon_photo_selected@3x.png */,
-				D95388F51CC5D111004BD51F /* icon_photo_normal@2x.png */,
-				D95388F61CC5D111004BD51F /* icon_photo_normal@3x.png */,
-				D95389071CC5D20C004BD51F /* icon_photo_bar_selected@2x.png */,
-				D95389081CC5D20C004BD51F /* icon_photo_bar_selected@3x.png */,
-				D95388C11CC507E8004BD51F /* UploadUserPhotoStatus.h */,
-				D95388C21CC507E8004BD51F /* UploadUserPhotoStatus.m */,
-				D95388C31CC507E8004BD51F /* UserAlbumOverviewCell.h */,
-				D95388C41CC507E8004BD51F /* UserAlbumOverviewCell.m */,
-				D95388C51CC507E8004BD51F /* UserAlbumOverviewCell.xib */,
-				D95388C61CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.h */,
-				D95388C71CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.m */,
-				D95388C81CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.xib */,
-				D95388C91CC507E8004BD51F /* UserAlbumSelectViewController.h */,
-				D95388CA1CC507E8004BD51F /* UserAlbumSelectViewController.m */,
-				D95388CB1CC507E8004BD51F /* UserAlbumPreviewViewController.h */,
-				D95388CC1CC507E8004BD51F /* UserAlbumPreviewViewController.m */,
-				D95388CD1CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.h */,
-				D95388CE1CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.m */,
-				D95388CF1CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.xib */,
-				D95388D01CC507E8004BD51F /* PhotoPreivewView.h */,
-				D95388D11CC507E8004BD51F /* PhotoPreivewView.m */,
-				D95388D21CC507E8004BD51F /* UploadUserAlbumViewController.h */,
-				D95388D31CC507E8004BD51F /* UploadUserAlbumViewController.m */,
-				D95388D41CC507E8004BD51F /* UploadUserPhotoOperationView.h */,
-				D95388D51CC507E8004BD51F /* UploadUserPhotoOperationView.m */,
-				D95388D61CC507E8004BD51F /* UploadUserPhotoOperationView.xib */,
-				D95388D71CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.h */,
-				D95388D81CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.m */,
-				D95388D91CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.xib */,
-				D95388DC1CC507E8004BD51F /* UserAlbumOverViewTableViewController.h */,
-				D95388DD1CC507E8004BD51F /* UserAlbumOverViewTableViewController.m */,
-				D95388DE1CC507E8004BD51F /* UserAlbumOverViewTableViewController.xib */,
-			);
-			path = UploadImage;
-			sourceTree = "<group>";
-		};
 		D95388F11CC50821004BD51F /* UCZProgressView */ = {
 			isa = PBXGroup;
 			children = (
@@ -874,6 +825,55 @@
 				D95388F31CC50821004BD51F /* UCZProgressView.m */,
 			);
 			path = UCZProgressView;
+			sourceTree = "<group>";
+		};
+		D953890F1CC60A00004BD51F /* UploadImage&Video */ = {
+			isa = PBXGroup;
+			children = (
+				D95389101CC60A00004BD51F /* AlbumImageModel.h */,
+				D95389111CC60A00004BD51F /* AlbumImageModel.m */,
+				D95389121CC60A00004BD51F /* icon_big_add_photo@2x.png */,
+				D95389131CC60A00004BD51F /* icon_big_add_photo@3x.png */,
+				D95389141CC60A00004BD51F /* icon_photo_bar_normal@2x.png */,
+				D95389151CC60A00004BD51F /* icon_photo_bar_normal@3x.png */,
+				D95389161CC60A00004BD51F /* icon_photo_bar_selected@2x.png */,
+				D95389171CC60A00004BD51F /* icon_photo_bar_selected@3x.png */,
+				D95389181CC60A00004BD51F /* icon_photo_normal@2x.png */,
+				D95389191CC60A00004BD51F /* icon_photo_normal@3x.png */,
+				D953891A1CC60A00004BD51F /* icon_photo_selected@2x.png */,
+				D953891B1CC60A00004BD51F /* icon_photo_selected@3x.png */,
+				D953891C1CC60A00004BD51F /* PhotoPreivewView.h */,
+				D953891D1CC60A00004BD51F /* PhotoPreivewView.m */,
+				D953891E1CC60A00004BD51F /* UploadUserAlbumCollectionViewCell.h */,
+				D953891F1CC60A00004BD51F /* UploadUserAlbumCollectionViewCell.m */,
+				D95389201CC60A00004BD51F /* UploadUserAlbumCollectionViewCell.xib */,
+				D95389211CC60A00004BD51F /* UploadUserAlbumViewController.h */,
+				D95389221CC60A00004BD51F /* UploadUserAlbumViewController.m */,
+				D95389231CC60A00004BD51F /* UploadUserPhotoOperationView.h */,
+				D95389241CC60A00004BD51F /* UploadUserPhotoOperationView.m */,
+				D95389251CC60A00004BD51F /* UploadUserPhotoOperationView.xib */,
+				D95389261CC60A00004BD51F /* UploadUserPhotoStatus.h */,
+				D95389271CC60A00004BD51F /* UploadUserPhotoStatus.m */,
+				D95389281CC60A00004BD51F /* UserAlbumManager.h */,
+				D95389291CC60A00004BD51F /* UserAlbumManager.m */,
+				D953892A1CC60A00004BD51F /* UserAlbumOverviewCell.h */,
+				D953892B1CC60A00004BD51F /* UserAlbumOverviewCell.m */,
+				D953892C1CC60A00004BD51F /* UserAlbumOverviewCell.xib */,
+				D953892D1CC60A00004BD51F /* UserAlbumOverViewTableViewController.h */,
+				D953892E1CC60A01004BD51F /* UserAlbumOverViewTableViewController.m */,
+				D953892F1CC60A01004BD51F /* UserAlbumOverViewTableViewController.xib */,
+				D95389301CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.h */,
+				D95389311CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.m */,
+				D95389321CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.xib */,
+				D95389331CC60A01004BD51F /* UserAlbumPreviewViewController.h */,
+				D95389341CC60A01004BD51F /* UserAlbumPreviewViewController.m */,
+				D95389351CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.h */,
+				D95389361CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.m */,
+				D95389371CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.xib */,
+				D95389381CC60A01004BD51F /* UserAlbumSelectViewController.h */,
+				D95389391CC60A01004BD51F /* UserAlbumSelectViewController.m */,
+			);
+			path = "UploadImage&Video";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -982,43 +982,43 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D95388E71CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.xib in Resources */,
-				D95388FF1CC5D161004BD51F /* icon_big_add_photo@2x.png in Resources */,
+				D95389521CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.xib in Resources */,
 				D95388271CC0C4C3004BD51F /* HotTagTableViewCell.xib in Resources */,
 				D95388251CC0C4C3004BD51F /* InputTagTableViewCell.xib in Resources */,
-				D95388F71CC5D111004BD51F /* icon_photo_normal@2x.png in Resources */,
-				D95388FC1CC5D138004BD51F /* icon_photo_bar_normal@3x.png in Resources */,
 				D95388611CC4CC4E004BD51F /* LMEditUserProfileViewController.xib in Resources */,
+				D953894E1CC60A01004BD51F /* UserAlbumOverviewCell.xib in Resources */,
+				D95389411CC60A01004BD51F /* icon_photo_normal@2x.png in Resources */,
+				D953893B1CC60A01004BD51F /* icon_big_add_photo@2x.png in Resources */,
 				D95387FC1CC08FF9004BD51F /* LMPushMessageTableViewCell.xib in Resources */,
-				D953890E1CC5D242004BD51F /* icon_photo_selected@3x.png in Resources */,
 				D95388BA1CC4FC85004BD51F /* yw_1222.jpg in Resources */,
-				D95388E31CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.xib in Resources */,
 				D95388121CC0C430004BD51F /* LMUserTagsAddViewController.xib in Resources */,
 				D95387CF1CBE5123004BD51F /* AutoSlideScrollView.bundle in Resources */,
-				D95388E11CC507E8004BD51F /* UserAlbumOverviewCell.xib in Resources */,
-				D953890A1CC5D20C004BD51F /* icon_photo_bar_selected@3x.png in Resources */,
 				D95387D51CBE52A6004BD51F /* LMLoginViewController.xib in Resources */,
-				D95389001CC5D161004BD51F /* icon_big_add_photo@3x.png in Resources */,
-				D95388EB1CC507E8004BD51F /* UploadUserPhotoOperationView.xib in Resources */,
 				D95388671CC4CD4C004BD51F /* LMEditUserAvatarTableViewCell.xib in Resources */,
 				D953875C1CBDF95F004BD51F /* LaunchScreen.storyboard in Resources */,
 				D95387F71CC08F79004BD51F /* LMPushMessageViewController.xib in Resources */,
 				D95387591CBDF95F004BD51F /* Assets.xcassets in Resources */,
-				D953890D1CC5D242004BD51F /* icon_photo_selected@2x.png in Resources */,
-				D95388F81CC5D111004BD51F /* icon_photo_normal@3x.png in Resources */,
-				D95389091CC5D20C004BD51F /* icon_photo_bar_selected@2x.png in Resources */,
-				D95388ED1CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.xib in Resources */,
-				D95388F01CC507E8004BD51F /* UserAlbumOverViewTableViewController.xib in Resources */,
+				D95389401CC60A01004BD51F /* icon_photo_bar_selected@3x.png in Resources */,
+				D953893E1CC60A01004BD51F /* icon_photo_bar_normal@3x.png in Resources */,
 				D95387571CBDF95F004BD51F /* Main.storyboard in Resources */,
+				D95389421CC60A01004BD51F /* icon_photo_normal@3x.png in Resources */,
+				D95389471CC60A01004BD51F /* UploadUserAlbumCollectionViewCell.xib in Resources */,
 				D95388BF1CC4FCC2004BD51F /* ALBBQuPaiPlugin.bundle in Resources */,
+				D95389551CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.xib in Resources */,
+				D953894A1CC60A01004BD51F /* UploadUserPhotoOperationView.xib in Resources */,
 				D95387951CBE1889004BD51F /* MineViewController.xib in Resources */,
 				D95388571CC4BABC004BD51F /* LMUserProfileViewController.xib in Resources */,
 				D95388011CC090E5004BD51F /* LMPushMessageDetailTableViewCell.xib in Resources */,
+				D953893C1CC60A01004BD51F /* icon_big_add_photo@3x.png in Resources */,
 				D95388211CC0C4C3004BD51F /* LMUserTagCollectionViewCell.xib in Resources */,
 				D95388231CC0C4C3004BD51F /* LMUserSetTagTableViewCell.xib in Resources */,
 				D953886C1CC4CE31004BD51F /* LMEditUserInfoTableViewCell.xib in Resources */,
+				D953893F1CC60A01004BD51F /* icon_photo_bar_selected@2x.png in Resources */,
+				D95389441CC60A01004BD51F /* icon_photo_selected@3x.png in Resources */,
+				D95389431CC60A01004BD51F /* icon_photo_selected@2x.png in Resources */,
 				D95388B51CC4FC85004BD51F /* baichuan.bundle in Resources */,
-				D95388FB1CC5D138004BD51F /* icon_photo_bar_normal@2x.png in Resources */,
+				D95389501CC60A01004BD51F /* UserAlbumOverViewTableViewController.xib in Resources */,
+				D953893D1CC60A01004BD51F /* icon_photo_bar_normal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,35 +1091,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95389451CC60A01004BD51F /* PhotoPreivewView.m in Sources */,
 				D95387E01CBFB90C004BD51F /* ConvertMethods.m in Sources */,
 				D953886B1CC4CE31004BD51F /* LMEditUserInfoTableViewCell.m in Sources */,
 				D95388601CC4CC4E004BD51F /* LMEditUserProfileViewController.m in Sources */,
 				D95387CC1CBE5123004BD51F /* AutoSlideScrollView.m in Sources */,
 				D953874E1CBDF95F004BD51F /* AppDelegate.m in Sources */,
 				D95387CE1CBE5123004BD51F /* NSTimer+Addition.m in Sources */,
-				D95389031CC5D179004BD51F /* UserAlbumManager.m in Sources */,
 				D95388081CC0BDFE004BD51F /* TZTableViewController.m in Sources */,
 				D95387F11CBFCA89004BD51F /* TEATimeRange.m in Sources */,
-				D95388E91CC507E8004BD51F /* UploadUserAlbumViewController.m in Sources */,
-				D95389061CC5D188004BD51F /* AlbumImageModel.m in Sources */,
-				D95388E01CC507E8004BD51F /* UserAlbumOverviewCell.m in Sources */,
 				D95387CD1CBE5123004BD51F /* MyPageControl.m in Sources */,
 				D95387B21CBE4B6C004BD51F /* LMShowDetailModel.m in Sources */,
-				D95388E41CC507E8004BD51F /* UserAlbumSelectViewController.m in Sources */,
 				D95388201CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m in Sources */,
 				D95388091CC0BDFE004BD51F /* TZViewController.m in Sources */,
 				D95387D91CBF98B0004BD51F /* MineHeaderView.m in Sources */,
+				D953894F1CC60A01004BD51F /* UserAlbumOverViewTableViewController.m in Sources */,
 				D95387AF1CBE4513004BD51F /* LMHomeShowView.m in Sources */,
 				D95388111CC0C430004BD51F /* LMUserTagsAddViewController.m in Sources */,
+				D95389491CC60A01004BD51F /* UploadUserPhotoOperationView.m in Sources */,
 				D953885B1CC4BB72004BD51F /* LMUserPorfileHeaderView.m in Sources */,
-				D95388E21CC507E8004BD51F /* UserAlbumSelectCollectionViewCell.m in Sources */,
 				D95388741CC4E0C1004BD51F /* UIAlertView+Block.m in Sources */,
 				D95387901CBE1877004BD51F /* LMHomeViewController.m in Sources */,
 				D95387F01CBFCA89004BD51F /* TEAContributionGraph.m in Sources */,
+				D953894D1CC60A01004BD51F /* UserAlbumOverviewCell.m in Sources */,
 				D95388561CC4BABC004BD51F /* LMUserProfileViewController.m in Sources */,
 				D95388701CC4DE95004BD51F /* ZHPickView.m in Sources */,
+				D95389541CC60A01004BD51F /* UserAlbumSelectCollectionViewCell.m in Sources */,
 				D95388F41CC50821004BD51F /* UCZProgressView.m in Sources */,
-				D95388E61CC507E8004BD51F /* UserAlbumPreviewCollectionViewCell.m in Sources */,
+				D953893A1CC60A01004BD51F /* AlbumImageModel.m in Sources */,
 				D95388661CC4CD4C004BD51F /* LMEditUserAvatarTableViewCell.m in Sources */,
 				D95387F61CC08F79004BD51F /* LMPushMessageViewController.m in Sources */,
 				D95387941CBE1889004BD51F /* MineViewController.m in Sources */,
@@ -1129,23 +1128,24 @@
 				D95387EE1CBFCA89004BD51F /* TEABarChart.m in Sources */,
 				D95388241CC0C4C3004BD51F /* InputTagTableViewCell.m in Sources */,
 				D95387C11CBE4BF0004BD51F /* LMUserDetailModel.m in Sources */,
-				D95388DF1CC507E8004BD51F /* UploadUserPhotoStatus.m in Sources */,
 				D95388311CC0C648004BD51F /* TaoziCollectionLayout.m in Sources */,
-				D95388E81CC507E8004BD51F /* PhotoPreivewView.m in Sources */,
 				D95387ED1CBFCA89004BD51F /* NSDate+TEAExtensions.m in Sources */,
+				D953894B1CC60A01004BD51F /* UploadUserPhotoStatus.m in Sources */,
+				D95389531CC60A01004BD51F /* UserAlbumPreviewViewController.m in Sources */,
 				D953882E1CC0C5B0004BD51F /* CityCardReusableView.m in Sources */,
+				D95389461CC60A01004BD51F /* UploadUserAlbumCollectionViewCell.m in Sources */,
 				D953874B1CBDF95F004BD51F /* main.m in Sources */,
 				D95387FB1CC08FF9004BD51F /* LMPushMessageTableViewCell.m in Sources */,
 				D95388261CC0C4C3004BD51F /* HotTagTableViewCell.m in Sources */,
-				D95388EF1CC507E8004BD51F /* UserAlbumOverViewTableViewController.m in Sources */,
 				D95387EF1CBFCA89004BD51F /* TEAClockChart.m in Sources */,
 				D95387D41CBE52A6004BD51F /* LMLoginViewController.m in Sources */,
-				D95388E51CC507E8004BD51F /* UserAlbumPreviewViewController.m in Sources */,
 				D95388221CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m in Sources */,
 				D95387991CBE1920004BD51F /* LMTabBar.m in Sources */,
-				D95388EC1CC507E8004BD51F /* UploadUserAlbumCollectionViewCell.m in Sources */,
+				D95389511CC60A01004BD51F /* UserAlbumPreviewCollectionViewCell.m in Sources */,
+				D95389561CC60A01004BD51F /* UserAlbumSelectViewController.m in Sources */,
+				D953894C1CC60A01004BD51F /* UserAlbumManager.m in Sources */,
+				D95389481CC60A01004BD51F /* UploadUserAlbumViewController.m in Sources */,
 				D95387861CBE156A004BD51F /* LMRootViewController.m in Sources */,
-				D95388EA1CC507E8004BD51F /* UploadUserPhotoOperationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

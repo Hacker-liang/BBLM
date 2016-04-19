@@ -52,6 +52,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [_scrollView addSubview:_containterView];
     [self.view addSubview:_scrollView];
     
+    /*
     _locationBgView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_containterView.frame), kWindowWidth, 45)];
     _locationBgView.backgroundColor = [UIColor whiteColor];
     _locationButton = [[UIButton alloc] initWithFrame:CGRectMake(12, 0, kWindowWidth-100, 45)];
@@ -59,6 +60,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [_locationButton addTarget:self action:@selector(changeUserLocation) forControlEvents:UIControlEventTouchUpInside];
     [_locationBgView addSubview:_locationButton];
     [_scrollView addSubview:_locationBgView];
+     */
     
     _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [_backBtn setTitle:@"取消" forState:UIControlStateNormal];
