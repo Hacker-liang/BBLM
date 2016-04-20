@@ -21,6 +21,7 @@
 @property (nonatomic, strong) ALAssetsLibrary *library;
 @property (nonatomic, strong) UIView *locationBgView;
 @property (nonatomic, strong) UIButton *locationButton;
+@property (nonatomic, strong) UIView *publishBgView;
 
 @property (nonatomic, strong) NSMutableArray *userAlbumUploadStatusList;
 
@@ -66,15 +67,25 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [_backBtn setTitle:@"取消" forState:UIControlStateNormal];
     [_backBtn setTitleColor:COLOR_TEXT_I forState:UIControlStateNormal];
     [_backBtn addTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
-    
-    UIButton *uploadBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    [uploadBtn setTitle:@"上传" forState:UIControlStateNormal];
-    [uploadBtn setTitleColor:COLOR_TEXT_I forState:UIControlStateNormal];
-    [uploadBtn addTarget:self action:@selector(uploadUserAlbum) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:uploadBtn];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backBtn];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(photoHasSelected:) name:@"uploadUserAlbumNoti" object:nil];
+    
+    UIButton *uploadBtn = [[UIButton alloc] initWithFrame:CGRectMake((kWindowWidth-200)/2, 0, 200, 40)];
+    [uploadBtn setTitle:@"发布" forState:UIControlStateNormal];
+    [uploadBtn setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateNormal];
+    [uploadBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [uploadBtn addTarget:self action:@selector(uploadUserAlbum) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, kWindowWidth, 20)];
+    title.text = @"成功发布视频将增加10个辣度,照片增加5个辣度";
+    title.textColor = COLOR_TEXT_II;
+    title.textAlignment = NSTextAlignmentCenter;
+    title.font = [UIFont systemFontOfSize:12.0];
+    _publishBgView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_containterView.frame)+20, kWindowWidth, 80)];
+    [_publishBgView addSubview:uploadBtn];
+    [_publishBgView addSubview:title];
+    [_scrollView addSubview:_publishBgView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -121,7 +132,9 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     CGFloat scrollViewHeight = height > _scrollView.bounds.size.height ? height : _scrollView.bounds.size.height+1;
     [_scrollView setContentSize:CGSizeMake(_scrollView.bounds.size.width, scrollViewHeight)];
     [_containterView.collectionView reloadData];
-    _locationBgView.frame = CGRectMake(0, CGRectGetMaxY(_containterView.frame), kWindowWidth, 45);
+
+    _publishBgView.frame = CGRectMake(0, CGRectGetMaxY(_containterView.frame)+20, kWindowWidth, 80);
+
 }
 
 - (NSMutableArray *)userAlbumUploadStatusList
