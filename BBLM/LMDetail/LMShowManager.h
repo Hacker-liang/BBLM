@@ -48,6 +48,22 @@
  */
 + (void)asyncLoadShowDetialWithShowId:(NSInteger)showId completionBlock:(void (^) (BOOL isSuccess, LMShowDetailModel *showDetail))completion;
 
+/**
+ *  点赞
+ *
+ *  @param showId
+ *  @param completion
+ */
++ (void)asyncZanShowWithItemId:(NSInteger)showId completionBlock:(void (^) (BOOL isSuccess))completion;
+
+/**
+ *  取消赞
+ *
+ *  @param showId
+ *  @param completion
+ */
++ (void)asyncCancelZanShowWithItemId:(NSInteger)showId completionBlock:(void (^) (BOOL isSuccess))completion;
+
 
 /**
  *  加载首页广告图

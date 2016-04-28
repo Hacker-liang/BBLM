@@ -8,6 +8,7 @@
 
 #import "LMShowDetailView.h"
 #import "LMUserProfileViewController.h"
+#import "LMShowManager.h"
 
 @interface LMShowDetailView()
 
@@ -137,6 +138,19 @@
 
 - (void)zanShowAction:(UIButton *)sender
 {
+    if (!sender.selected) {
+        [LMShowManager asyncZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                
+            }
+        }];
+    } else {
+        [LMShowManager asyncCancelZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                
+            }
+        }];
+    }
     sender.selected = !sender.selected;
 }
 
