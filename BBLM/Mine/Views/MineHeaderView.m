@@ -57,14 +57,12 @@
         
         _publishCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 40, 20)];
         _publishCntLabel.font = [UIFont systemFontOfSize:16.0];
-        _publishCntLabel.text = @"58";
         _publishCntLabel.textAlignment = NSTextAlignmentCenter;
         _publishCntLabel.textColor = APP_THEME_COLOR;
         [self addSubview:_publishCntLabel];
         
         _followerCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 50, 40, 20)];
         _followerCntLabel.font = [UIFont systemFontOfSize:16.0];
-        _followerCntLabel.text = @"58";
         _followerCntLabel.textAlignment = NSTextAlignmentCenter;
         _followerCntLabel.textColor = APP_THEME_COLOR;
         [self addSubview:_followerCntLabel];
@@ -74,7 +72,6 @@
         _rankButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         [_rankButton setImage:[UIImage imageNamed:@"icon_mine_rank.png"] forState:UIControlStateNormal];
         _rankButton.userInteractionEnabled = NO;
-        [_rankButton setTitle:@"121" forState:UIControlStateNormal];
         [_rankButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
         [_rankButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 5)];
         [self addSubview:_rankButton];
@@ -101,6 +98,13 @@
 - (void)setUserInfo:(LMUserDetailModel *)userInfo
 {
     _userInfo = userInfo;
+    
+    [_rankButton setTitle:[NSString stringWithFormat:@"%ld", _userInfo.heat] forState:UIControlStateNormal];
+    _publishCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.publishCnt];
+    _followerCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.fansCnt];
+    
+    [_avatarButton sd_setImageWithURL:[NSURL URLWithString:_userInfo.avatar] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    
     if (_tagBgView) {
         [_tagBgView removeFromSuperview];
         _tagBgView = nil;

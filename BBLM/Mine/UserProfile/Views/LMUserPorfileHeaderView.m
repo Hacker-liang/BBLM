@@ -23,6 +23,8 @@
 @property (nonatomic, strong) UIScrollView *tagBgView;
 @property (nonatomic, strong) UIView *conentBgView;
 
+@property (nonatomic) BOOL isMyselfInfo;   //是否是我自己的信息
+
 @end
 
 @implementation LMUserPorfileHeaderView
@@ -152,6 +154,15 @@
 - (void)setUserInfo:(LMUserDetailModel *)userInfo
 {
     _userInfo = userInfo;
+    _isMyselfInfo = [LMAccountManager shareInstance].account.userId == _userInfo.userId;
+    
+    _floowButton.hidden = _isMyselfInfo;
+    [_rankButton setTitle:[NSString stringWithFormat:@"%ld", _userInfo.heat] forState:UIControlStateNormal];
+    _shareCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.shareCnt];
+    _publishCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.publishCnt];
+    _followerCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.fansCnt];
+    [_avatarButton sd_setImageWithURL:[NSURL URLWithString:_userInfo.avatar] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    
     if (_tagBgView) {
         [_tagBgView removeFromSuperview];
         _tagBgView = nil;

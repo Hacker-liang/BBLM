@@ -10,8 +10,10 @@
 #import "LMEditUserInfoTableViewCell.h"
 #import "LMEditUserAvatarTableViewCell.h"
 #import "ZHPickView.h"
+#import "UploadShowImageModel.h"
+#import "UserAlbumManager.h"
 
-@interface LMEditUserProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
+@interface LMEditUserProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataSource;
@@ -52,7 +54,12 @@
         tf.text = _userInfo.nickname;
         [alertView showAlertViewWithBlock:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
-                
+                [[LMAccountManager shareInstance] asyncChangeUserInfoWithChangeType:@"nickname" andChangeContent:tf.text completionBlock:^(BOOL isSuccess) {
+                    if (isSuccess) {
+                        _userInfo.nickname = tf.text;
+                        [_tableView reloadData];
+                    }
+                }];
             }
         }];
         
@@ -69,7 +76,12 @@
         tf.text = [NSString stringWithFormat:@"%ld", _userInfo.babyAge];
         [alertView showAlertViewWithBlock:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
-                
+                [[LMAccountManager shareInstance] asyncChangeUserInfoWithChangeType:@"childAge" andChangeContent:[NSNumber numberWithInt:tf.text.intValue] completionBlock:^(BOOL isSuccess) {
+                    if (isSuccess) {
+                        _userInfo.babyAge = [tf.text integerValue];
+                        [_tableView reloadData];
+                    }
+                }];
             }
         }];
         
@@ -79,6 +91,13 @@
         [pickView showPickView:self.navigationController];
         pickView.block = ^(NSString *selectedStr)
         {
+            [[LMAccountManager shareInstance] asyncChangeUserInfoWithChangeType:@"constellation" andChangeContent:selectedStr completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    _userInfo.xingzuo = selectedStr;
+                    [_tableView reloadData];
+                }
+            }];
+
         };
        
     } else if (sender.tag == 5) {
@@ -89,12 +108,30 @@
         tf.text = _userInfo.locationCity;
         [alertView showAlertViewWithBlock:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
-                
+                [[LMAccountManager shareInstance] asyncChangeUserInfoWithChangeType:@"city" andChangeContent:tf.text completionBlock:^(BOOL isSuccess) {
+                    if (isSuccess) {
+                        _userInfo.locationCity = tf.text;
+                        [_tableView reloadData];
+                    }
+                }];
+
             }
         }];
         
     }
 }
+
+- (void)uploadIncrementWithProgress:(float)progress itemIndex:(NSInteger)index
+{
+    
+}
+
+
+- (void)uploadCompletion:(BOOL)isSuccess albumImage:(UploadShowImageModel *)albumImage itemIndex:(NSInteger)index
+{
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -125,6 +162,7 @@
         LMEditUserAvatarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"avatarcell" forIndexPath:indexPath];
         cell.headerImageButton.layer.cornerRadius = 32;
         cell.headerImageButton.clipsToBounds = YES;
+        [cell.headerImageButton sd_setImageWithURL:[NSURL URLWithString:_userInfo.avatar] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default"]];
         [cell.headerImageButton addTarget:self action:@selector(changeUserInfo:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
         
@@ -136,7 +174,7 @@
         if (indexPath.row == 1) {
             [cell.contentButton setTitle:_userInfo.nickname forState:UIControlStateNormal];
         } else if (indexPath.row == 2) {
-            [cell.contentButton setTitle:_userInfo.gender forState:UIControlStateNormal];
+            [cell.contentButton setTitle:_userInfo.genderDesc forState:UIControlStateNormal];
         } else if (indexPath.row == 3) {
             [cell.contentButton setTitle:[NSString stringWithFormat:@"%ld岁", _userInfo.babyAge] forState:UIControlStateNormal];
         } else if (indexPath.row == 4) {
@@ -144,10 +182,69 @@
         } else if (indexPath.row == 5) {
             [cell.contentButton setTitle:_userInfo.locationCity forState:UIControlStateNormal];
         }
+        
         return cell;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
+    UIImage *headerImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    [UserAlbumManager uploadUserAlbumPhoto:headerImage withPhotoDesc:nil progress:^(CGFloat progressValue) {
+        [SVProgressHUD showProgress:progressValue status:@"正在上传"];
+        NSLog(@"%f", progressValue);
+        
+    } completion:^(BOOL isSuccess, UploadShowImageModel *image) {
+        if (isSuccess) {
+            [[LMAccountManager shareInstance] asyncChangeUserInfoWithChangeType:@"portrait" andChangeContent:image.imageId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    LMEditUserAvatarTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                    [cell.headerImageButton setImage:headerImage forState:UIControlStateNormal];
+                }
+            }];
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"修改失败"];
+        }
+        
+    }];
     
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 101) {  //选择上传头像方式
+        UIImagePickerControllerSourceType sourceType;
+
+        if (buttonIndex == 0) {
+            sourceType  = UIImagePickerControllerSourceTypeCamera;
+        } else if (buttonIndex == 1) {
+            sourceType  = UIImagePickerControllerSourceTypePhotoLibrary;
+        } else {
+            return;
+        }
+        UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.allowsEditing = YES;
+        picker.sourceType = sourceType;
+        [self presentViewController:picker animated:YES completion:nil];
+        
+    } else if (actionSheet.tag == 102) {  //选择性别
+        [[LMAccountManager shareInstance] asyncChangeUserInfoWithChangeType:@"sex" andChangeContent:[NSNumber numberWithInteger:buttonIndex+1] completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                _userInfo.gender = buttonIndex+1;
+                [_tableView reloadData];
+            }
+        }];
+    }
 }
 
 @end

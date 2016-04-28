@@ -29,19 +29,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _userInfo = [[LMUserDetailModel alloc] init];
+    _userInfo = [LMAccountManager shareInstance].account;
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorColor = COLOR_LINE;
     _dataSource = @[@"我的辣妈空间", @"我的收藏", @"辣度规则", @"关于芭比辣妈", @"退出"];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     _headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 150)];
-    _headerView.userInfo = _userInfo;
     [_headerView.addTagButton addTarget:self action:@selector(addUserTags:) forControlEvents:UIControlEventTouchUpInside];
     [_headerView.avatarButton addTarget:self action:@selector(showUserProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_headerView.editUserInfoButton addTarget:self action:@selector(editUserInfo:) forControlEvents:UIControlEventTouchUpInside];
+    _headerView.userInfo = _userInfo;
+    self.navigationItem.title = _userInfo.nickname;
 
-
+    [LMUserManager asyncLoadUserInfoWithUserId:[LMAccountManager shareInstance].account.userId completionBlock:^(BOOL isSuccess, LMUserDetailModel *userInfo) {
+        if (isSuccess) {
+            _userInfo = userInfo;
+            _headerView.userInfo = _userInfo;
+            self.navigationItem.title = _userInfo.nickname;
+        }
+        
+    }];
     _tableView.tableHeaderView = _headerView;
     self.navigationItem.title = _userInfo.nickname;
 }
@@ -61,6 +69,7 @@
 - (void)showUserProfile:(UIButton *)sender
 {
     LMUserProfileViewController *ctl = [[LMUserProfileViewController alloc] init];
+    ctl.userId = [LMAccountManager shareInstance].account.userId;
     ctl.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:ctl animated:YES];
 }
@@ -96,6 +105,20 @@
     cell.textLabel.text = [_dataSource objectAtIndex:indexPath.row];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        LMUserProfileViewController *ctl = [[LMUserProfileViewController alloc] init];
+        ctl.userId = [LMAccountManager shareInstance].account.userId;
+        ctl.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    
+}
+
+
 
 
 @end

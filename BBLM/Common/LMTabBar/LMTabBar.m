@@ -21,10 +21,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         UIButton *plusBtn = [[UIButton alloc] init];
-        [plusBtn setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_button"] forState:UIControlStateNormal];
-        [plusBtn setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_button_highlighted"] forState:UIControlStateHighlighted];
-        [plusBtn setImage:[UIImage imageNamed:@"tabbar_compose_icon_add"] forState:UIControlStateNormal];
-        [plusBtn setImage:[UIImage imageNamed:@"tabbar_compose_icon_add_highlighted"] forState:UIControlStateHighlighted];
+        [plusBtn setBackgroundImage:[UIImage imageNamed:@"icon_tabbar_compose_icon_add_normal"] forState:UIControlStateNormal];
+        [plusBtn setBackgroundImage:[UIImage imageNamed:@"icon_tabbar_compose_icon_add_highlight"] forState:UIControlStateHighlighted];
 
         plusBtn.frame = CGRectMake(plusBtn.frame.origin.x, plusBtn.frame.origin.y, plusBtn.currentBackgroundImage.size.width, plusBtn.currentBackgroundImage.size.height);
         [plusBtn addTarget:self action:@selector(plusBtnClick) forControlEvents:UIControlEventTouchUpInside];

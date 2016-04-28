@@ -14,15 +14,47 @@
 {
     self = [super init];
     if (self) {
-        _nickname = @"世界第一辣妈";
-        _userTags = @[@"爱做服饰", @"汤达人", @"一条测试数据", @"哈哈"];
-        _gender = @"女";
-        _babyAge = 2;
-        _xingzuo = @"白羊座";
-        _locationCity = @"北京市";
+        
     }
     return self;
 }
 
+- (id)initWithJson:(id)json
+{
+    if (self = [super init]) {
+        _userId = [[json objectForKey:@"id"] integerValue];
+        _nickname = [json objectForKey:@"nickname"];
+        _backgroundImage = [json objectForKey:@"background"];
+        _locationCity = [json objectForKey:@"city"];
+        _xingzuo = [json objectForKey:@"constellation"];
+        _userTags = [[json objectForKey:@"labels"] componentsSeparatedByString:@","];
+        _tel = [json objectForKey:@"mobile"];
+        _avatar = [json objectForKey:@"portrait"];
+        _publishCnt = [[json objectForKey:@"publish"] integerValue];
+        _shareCnt = [[json objectForKey:@"share"] integerValue];
+        _fansCnt = [[json objectForKey:@"fans"] integerValue];
+        _heat = [[json objectForKey:@"heat"] integerValue];
+        if ([[json objectForKey:@"sex"] integerValue] == 1) {
+            _gender = kMale;
+        } else if ([[json objectForKey:@"sex"] integerValue] == 2) {
+            _gender = kFemale;
+        } else {
+            _gender = kUnknow;
+        }
+    }
+    return self;
+}
+
+
+- (NSString *)genderDesc
+{
+    if (_gender == kMale) {
+        return @"男";
+    }
+    if (_gender == kFemale) {
+        return @"女";
+    }
+    return @"未知";
+}
 
 @end

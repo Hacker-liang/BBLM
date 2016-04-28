@@ -12,6 +12,8 @@
 #import "UserAlbumOverViewTableViewController.h"
 #import "UserAlbumPreviewViewController.h"
 #import "UploadUserPhotoStatus.h"
+#import "UserAlbumManager.h"
+#import "LMShowManager.h"
 
 @interface UploadUserAlbumViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -22,6 +24,8 @@
 @property (nonatomic, strong) UIView *locationBgView;
 @property (nonatomic, strong) UIButton *locationButton;
 @property (nonatomic, strong) UIView *publishBgView;
+
+@property (nonatomic, strong) NSMutableArray *uploadSuccessImageList;   //上传成功的图片
 
 @property (nonatomic, strong) NSMutableArray *userAlbumUploadStatusList;
 
@@ -34,7 +38,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     _library = [[ALAssetsLibrary alloc] init];
-
+    _uploadSuccessImageList = [[NSMutableArray alloc] init];
     self.navigationItem.title = @"图片发布";
     self.view.backgroundColor = APP_PAGE_COLOR;
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -154,7 +158,11 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 - (void)uploadUserAlbum
 {
     [self.view endEditing:YES];
+    if (!_containterView.textView.text.length) {
+        [SVProgressHUD showErrorWithStatus:@"请输入图片描述"];
+    }
     [_userAlbumUploadStatusList removeAllObjects];
+    [SVProgressHUD showWithStatus:@"正在上传"];
     
     for (int i = 0; i < _selectedPhotos.count; i++) {
         
@@ -166,12 +174,12 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
         ALAssetRepresentation* representation = [asset defaultRepresentation];
         CGImageRef ref = [representation fullScreenImage];
         UIImage *uploadImage = [UIImage imageWithCGImage:ref];
-//        [UserAlbumManager uploadUserAlbumPhoto:uploadImage withPhotoDesc:_containterView.textView.text progress:^(CGFloat progressValue) {
-//            [self uploadIncrementWithProgress:progressValue itemIndex:i];
-//            
-//        } completion:^(BOOL isSuccess, AlbumImageModel *image) {
-//            [self uploadCompletion:isSuccess  albumImage:image itemIndex:i];
-//        }];
+        [UserAlbumManager uploadUserAlbumPhoto:uploadImage withPhotoDesc:_containterView.textView.text progress:^(CGFloat progressValue) {
+            [self uploadIncrementWithProgress:progressValue itemIndex:i];
+            
+        } completion:^(BOOL isSuccess, UploadShowImageModel *image) {
+            [self uploadCompletion:isSuccess  albumImage:image itemIndex:i];
+        }];
     }
 }
 
@@ -183,12 +191,9 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     cell.uploadStatus = status;
 }
 
-/*
-- (void)uploadCompletion:(BOOL)isSuccess albumImage:(AlbumImageModel *)albumImage itemIndex:(NSInteger)index
+
+- (void)uploadCompletion:(BOOL)isSuccess albumImage:(UploadShowImageModel *)albumImage itemIndex:(NSInteger)index
 {
-    if (isSuccess) {
-        [[AccountManager shareAccountManager].account.userAlbum insertObject:albumImage atIndex:0];
-    }
     UploadUserAlbumCollectionViewCell *cell = (UploadUserAlbumCollectionViewCell *)[_containterView.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
     UploadUserPhotoStatus *status = [_userAlbumUploadStatusList objectAtIndex:index];
     status.isFailure = !isSuccess;
@@ -196,19 +201,31 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     status.isFinish = YES;
     cell.uploadStatus = status;
     
+    [_uploadSuccessImageList addObject:albumImage];
+    
     for (UploadUserPhotoStatus *status in _userAlbumUploadStatusList) {
         if (!status.isFinish) {
             return;
         }
     }
-    [SVProgressHUD showHint:@"上传完成"];
-    [_backBtn setTitle:@"完成" forState:UIControlStateNormal];
-    [_backBtn removeTarget:self action:@selector(goBack) forControlEvents:UIControlEventTouchUpInside];
-    [_backBtn addTarget:self action:@selector(dismissCtl) forControlEvents:UIControlEventTouchUpInside];
+    
+    [LMShowManager asyncPublishImageWithImageList:_uploadSuccessImageList desc:_containterView.textView.text completionBlock:^(BOOL isSuccess, NSInteger showId) {
+        if (isSuccess) {
+            [SVProgressHUD showSuccessWithStatus:@"发布成功"];
+            [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.3];
+
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"发布失败"];
+        }
+    }];
 }
-*/
+
 - (void)choseMorePhotos
 {
+    if (_selectedPhotos.count == 5) {
+        [SVProgressHUD showErrorWithStatus:@"最多只能选择5张图片"];
+        return;
+    }
     UIActionSheet *sheetDelegate = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"还可以选择%ld张图片", (5-_selectedPhotos.count)] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"相册", nil];
     [sheetDelegate showInView:self.view];
 }

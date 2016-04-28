@@ -13,15 +13,19 @@
 #import "LMRootViewController.h"
 #import "LMTabBar.h"
 #import "LMHomeViewController.h"
-#import "MineViewController.h"
+#import "LMHotShowListViewController.h"
 #import "UserAlbumOverViewTableViewController.h"
 #import "UploadUserAlbumViewController.h"
+#import "LMLoginViewController.h"
 
 @interface LMRootViewController () <LMTabBarDelegate, QupaiSDKDelegate>
 
 @property (nonatomic, strong) UIView *publishBgView;
 @property (nonatomic, strong) UIView *publishContentView;
 @property (nonatomic, strong) id <ALBBQuPaiService> qupaiSDK;
+
+@property (nonatomic, strong) LMHomeViewController *homeCtl;
+@property (nonatomic, strong) LMHotShowListViewController *hotShowListCtl;
 
 @end
 
@@ -33,8 +37,10 @@
     tabBar.myDelegate = self;
     [self setValue:tabBar forKey:@"tabBar"];
     
-    [self addChildVc:[[LMHomeViewController alloc] init] title:@"首页" image:@"tabbar_home" selectedImage:@"tabbar_home_selected"];
-    [self addChildVc:[[MineViewController alloc] init] title:@"我" image:@"tabbar_profile" selectedImage:@"tabbar_profile_selected"];
+    _homeCtl = [[LMHomeViewController alloc] init];
+    _hotShowListCtl = [[LMHotShowListViewController alloc] init];
+    [self addChildVc:_homeCtl title:nil image:@"icon_tabbar_home_normal" selectedImage:@"icon_tabbar_home_selected"];
+    [self addChildVc:_hotShowListCtl title:nil image:@"icon_tabbar_hot_normal" selectedImage:@"icon_tabbar_hot_selected"];
 }
 
 - (id <ALBBQuPaiService>)qupaiSDK
@@ -57,6 +63,7 @@
     
     // 设置子控制器的tabBarItem图片
     childVc.tabBarItem.image = [UIImage imageNamed:image];
+    childVc.tabBarItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
     // 禁用图片渲染
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     

@@ -10,4 +10,6 @@
 
 @interface LMUserProfileViewController : UIViewController
 
+@property (nonatomic) NSInteger userId;
+
 @end

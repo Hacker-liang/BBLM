@@ -16,10 +16,54 @@
     if (self) {
         _publishUser = [[LMUserDetailModel alloc] init];
         _publishDateDesc = @"2014-04-16";
+    
         
     }
     return self;
 }
 
+- (id)initWithJson:(id)json
+{
+    if (self = [super init]) {
+        _itemId = [[json objectForKey:@"dynamicId"] integerValue];
+        _videoImage = [json objectForKey:@"videoPictureUrl"];
+        _videoUrl = [json objectForKey:@"videoUrl"];
+        _imageList = [[json objectForKey:@"pictureUrl"] componentsSeparatedByString:@","];
+        _heat = [[json objectForKey:@"heat"] integerValue];
+        _commentCount = [[json objectForKey:@"commentCount"] integerValue];
+        _publishDateDesc = [json objectForKey:@"date"];
+        _showDesc = [json objectForKey:@"words"];
+        _zanCount = [[json objectForKey:@"praiseCount"] integerValue];
+        
+        _publishUser = [[LMUserDetailModel alloc] init];
+        _publishUser.userId = [[json objectForKey:@"memberId"] integerValue];
+        _publishUser.nickname = [json objectForKey:@"nickname"];
+        _publishUser.avatar = [json objectForKey:@"portrait"];
+        
+        _firstComment = [[LMShowCommentDetail alloc] init];
+        _firstComment.commentId = [[json objectForKey:@"firstCommentId"] integerValue];
+        _firstComment.user = [[LMUserDetailModel alloc] init];
+        _firstComment.user.nickname = [json objectForKey:@"firstCommentNickname"];
+        _firstComment.user.avatar = [json objectForKey:@"firstCommentPortrait"];
 
+    }
+    return self;
+}
+
+- (BOOL)isVideo
+{
+    if ([_imageList count]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSString *)coverImage
+{
+    if (self.isVideo) {
+        return _videoImage;
+    } else {
+        return [_imageList firstObject];
+    }
+}
 @end

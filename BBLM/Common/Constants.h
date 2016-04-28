@@ -18,3 +18,6 @@
 #define COLOR_LINE                      UIColorFromRGB(0xe2e2e2)
 #define APP_PAGE_COLOR                  UIColorFromRGB(0xf7faf7)
 #define APP_THEME_COLOR                 UIColorFromRGB(0xFF2144)
+
+
+#define BASE_API    @"http://jtest.babilama.com/"

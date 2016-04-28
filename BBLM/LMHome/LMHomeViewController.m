@@ -13,17 +13,24 @@
 #import "LMShowDetailModel.h"
 #import "AutoSlideScrollView.h"
 #import "LMPushMessageViewController.h"
+#import "LMShowDetailViewController.h"
+#import "MineViewController.h"
+#import "LMLoginViewController.h"
+#import "LMShowManager.h"
 
 @interface LMHomeViewController () <iCarouselDataSource, iCarouselDelegate>
 
 @property (nonatomic, strong) UIScrollView *bgScrollView;
 @property (nonatomic, strong) iCarousel *carousel;
 
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray<LMShowDetailModel *> *dataSource;
+@property (nonatomic, strong) NSArray *adDataSource;  //头顶广告
+
 @property (nonatomic, strong) UIImageView *galleryImageView;
 
 @property (nonatomic, strong) AutoSlideScrollView *galleryView;
-
+@property (nonatomic) NSInteger page;
+@property (nonatomic) BOOL isLoading;
 
 @end
 
@@ -31,34 +38,66 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationItem.title = @"芭比辣妈";
+
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    _page = 1;
     _dataSource = [NSMutableArray array];
-    for (int i = 0; i < 10; i++)
-    {
-        [_dataSource addObject:[[LMShowDetailModel alloc] init]];
-    }
+  
     _bgScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    _bgScrollView.backgroundColor = [UIColor whiteColor];
+    _bgScrollView.backgroundColor = APP_PAGE_COLOR;
     [self.view addSubview:_bgScrollView];
-    _carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 130, kWindowWidth, kWindowHeight-130)];
+    _carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 200, kWindowWidth, kWindowHeight-200)];
     _carousel.delegate = self;
     _carousel.dataSource = self;
     _carousel.type = iCarouselTypeRotary;
     [_bgScrollView addSubview:_carousel];
     
-    _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 130-64) animationDuration:10];
+    _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 120) animationDuration:10];
+    _galleryView.backgroundColor = [UIColor whiteColor];
     [self.bgScrollView addSubview:_galleryView];
-    _galleryView.totalPagesCount = ^NSInteger(void){
-        return 4;
-    };
-    __weak typeof(self)weakSelf = self;
+    
+    UIButton *showPushMessageBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [showPushMessageBtn setImage:[UIImage imageNamed:@"icon_pushMessage"] forState:UIControlStateNormal];
+    [showPushMessageBtn addTarget:self action:@selector(gotoPushMessage:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:showPushMessageBtn];
+    
+    UIButton *showMineBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [showMineBtn setImage:[UIImage imageNamed:@"icon_home_mine"] forState:UIControlStateNormal];
+    [showMineBtn addTarget:self action:@selector(gotoMine:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:showMineBtn];
+    
+    _isLoading = YES;
+    [LMShowManager asyncLoadRecommendShowWithPage:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
+        _isLoading = NO;
+        if (isSuccess) {
+            [_dataSource addObjectsFromArray:showList];
+            [_carousel reloadData];
+        }
+    }];
+    [LMShowManager asyncLoadHomeAdWithCompletionBlock:^(BOOL isSuccess, NSArray<NSDictionary *> *adList) {
+        if (isSuccess) {
+            _adDataSource = adList;
+            _galleryView.totalPagesCount = ^NSInteger(void){
+                return adList.count;
+            };
+            
+            NSMutableArray *viewsArray = [[NSMutableArray alloc] init];
 
-    _galleryView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
-        return [[UIView alloc] initWithFrame:CGRectMake(0, 0, weakSelf.galleryView.bounds.size.width, weakSelf.galleryView.bounds.size.width)];
-    };
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_pushMessage"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoPushMessage:)];
-    
+            for (NSDictionary *dic in _adDataSource) {
+                NSString *imageUrl = [dic objectForKey:@"imgUrl"];
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 150)];
+                [imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"banner_default.png"]];
+                [viewsArray addObject:imageView];
+            }
+            
+            _galleryView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+                return viewsArray[pageIndex];
+            };
+
+
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,6 +124,24 @@
     LMPushMessageViewController *ctl = [[LMPushMessageViewController alloc] init];
     ctl.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)gotoMine:(UIButton *)sender
+{
+    if (![[LMAccountManager shareInstance] isLogin]) {
+        LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin) {
+            if (isLogin) {
+               
+                
+            }
+        }];
+        [self presentViewController:ctl animated:YES completion:nil];
+    } else {
+        MineViewController *ctl = [[MineViewController alloc] init];
+        ctl.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+    
 }
 
 - (NSInteger)numberOfItemsInCarousel:(__unused iCarousel *)carousel
@@ -154,12 +211,26 @@
 
 - (void)carousel:(__unused iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    NSNumber *dataSource = (self.dataSource)[(NSUInteger)index];
-    NSLog(@"Tapped view number: %@", dataSource);
+    LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
+    ctl.hidesBottomBarWhenPushed = YES;
+    ctl.showId = [_dataSource objectAtIndex:index].itemId;
+    [self.navigationController pushViewController:ctl animated:YES];
+    
 }
 
 - (void)carouselCurrentItemIndexDidChange:(__unused iCarousel *)carousel
 {
-    NSLog(@"Index: %@", @(self.carousel.currentItemIndex));
+    if (self.carousel.currentItemIndex >= _dataSource.count-3 && !_isLoading) {
+        
+        [LMShowManager asyncLoadRecommendShowWithPage:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
+            _isLoading = NO;
+            if (isSuccess) {
+                [_dataSource addObjectsFromArray:showList];
+                [_carousel reloadData];
+            }
+        }];
+    }
+    NSLog(@"首页第 %ld", carousel.currentItemIndex);
+    
 }
 @end

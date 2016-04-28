@@ -59,9 +59,24 @@
 - (void)setShowDetail:(LMShowDetailModel *)showDetail
 {
     _showDetail = showDetail;
-    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.s_avatar] placeholderImage:nil];
+    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.s_avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
     [_contentImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.coverImage] placeholderImage:nil];
-    _nicknameLabel.text = _showDetail.publishUser.nickname;
+    
+    NSMutableAttributedString *titleAttr = [[NSMutableAttributedString alloc] init];
+    
+    NSAttributedString *nicknameAttr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@    ", _showDetail.publishUser.nickname] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0], NSForegroundColorAttributeName: COLOR_TEXT_I}];
+    [titleAttr appendAttributedString:nicknameAttr];
+    
+    NSTextAttachment *attch = [[NSTextAttachment alloc] init];
+    attch.image = [UIImage imageNamed:@"icon_mine_rank"];
+    attch.bounds = CGRectMake(0, 0, 16, 11);
+    NSAttributedString *string = [NSAttributedString attributedStringWithAttachment:attch];
+    [titleAttr appendAttributedString:string];
+    
+    NSAttributedString *rankAttr = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" %ld", _showDetail.heat] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0], NSForegroundColorAttributeName: APP_THEME_COLOR}];
+    [titleAttr appendAttributedString:rankAttr];
+    _nicknameLabel.attributedText = titleAttr;
+    
     _dateLabel.text = _showDetail.publishDateDesc;
     _playVideoButton.hidden = !_showDetail.isVideo;
 }

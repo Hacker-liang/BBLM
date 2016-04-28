@@ -12,12 +12,12 @@
 
 @implementation UserAlbumManager
 
-+ (void)uploadUserAlbumPhoto:(UIImage *)photo withPhotoDesc:(NSString *)desc progress:(void (^)(CGFloat))progressBlock completion:(void (^)(BOOL isSuccess, AlbumImageModel *albumImage))completionBlock
++ (void)uploadUserAlbumPhoto:(UIImage *)photo withPhotoDesc:(NSString *)desc progress:(void (^)(CGFloat))progressBlock completion:(void (^)(BOOL isSuccess, UploadShowImageModel *albumImage))completionBlock
 {
     [UserAlbumManager requestUploadTokeAndUploadPhoto:photo photoDesc:desc progress:^(CGFloat progress) {
         progressBlock(progress);
         
-    } completion:^(BOOL isSuccess, AlbumImageModel *image) {
+    } completion:^(BOOL isSuccess, UploadShowImageModel *image) {
         completionBlock(isSuccess, image);
     }];
 }
@@ -27,24 +27,22 @@
  *
  *  @param image
  */
-+ (void)requestUploadTokeAndUploadPhoto:(UIImage *)image photoDesc:(NSString *)desc progress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL isSuccess, AlbumImageModel *image))completionBlock
++ (void)requestUploadTokeAndUploadPhoto:(UIImage *)image photoDesc:(NSString *)desc progress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL isSuccess, UploadShowImageModel *image))completionBlock
 {
-    
+    NSString *url = [NSString stringWithFormat:@"%@qiniu/auth", BASE_API];
     progressBlock(0.0);
     NSDictionary *params;
     if (desc) {
-        params = @{@"caption": desc};
+        params = @{@"memberId": [NSNumber numberWithInteger: [LMAccountManager shareInstance].account.userId]};
     }
     
-    /*
-    
-    [LXPNetworking GET:API_POST_PHOTOALBUM parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [LMNetworking GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
         if (code == 0) {
-            [self uploadPhotoToQINIUServer:image withToken:[[responseObject objectForKey:@"result"] objectForKey:@"uploadToken"] andKey:[[responseObject objectForKey:@"result"] objectForKey:@"key"] progress:^(CGFloat progress) {
+            [self uploadPhotoToQINIUServer:image withToken:[[responseObject objectForKey:@"data"]  objectForKey:@"auth"] andKey:nil progress:^(CGFloat progress) {
                 progressBlock(progress);
                 
-            } completion:^(BOOL isSuccess, AlbumImageModel *image) {
+            } completion:^(BOOL isSuccess, UploadShowImageModel *image) {
                 completionBlock(isSuccess, image);
             }];
             
@@ -55,7 +53,6 @@
         completionBlock(NO, nil);
 
     }];
-     */
 }
 
 /**
@@ -65,7 +62,7 @@
  *  @param uploadToken 上传的 token
  *  @param key         上传的 key
  */
-+ (void)uploadPhotoToQINIUServer:(UIImage *)image withToken:(NSString *)uploadToken andKey:(NSString *)key progress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL isSuccess, AlbumImageModel *image))completionBlock
++ (void)uploadPhotoToQINIUServer:(UIImage *)image withToken:(NSString *)uploadToken andKey:(NSString *)key progress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL isSuccess, UploadShowImageModel *image))completionBlock
 {
     NSData *data = UIImageJPEGRepresentation(image, 1.0);
     QNUploadManager *upManager = [[QNUploadManager alloc] init];
@@ -85,11 +82,8 @@
     [upManager putData:data key:key token:uploadToken
               complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                   if (resp) {
-                      AlbumImageModel *image = [[AlbumImageModel alloc] init];
-                      image.imageId = [resp objectForKey:@"id"];
-                      image.imageUrl = [resp objectForKey:@"url"];
-                      image.smallImageUrl = [resp objectForKey:@"urlSmall"];
-                      image.imageDesc = [resp objectForKey:@"caption"];
+                      UploadShowImageModel *image = [[UploadShowImageModel alloc] init];
+                      image.imageId = [resp objectForKey:@"key"];
                       dispatch_async(dispatch_get_main_queue(), ^{
                           completionBlock(YES, image);
                       });
@@ -101,95 +95,5 @@
               } option:opt];
     
 }
-
-+ (void)asyncDelegateUserAlbumImage:(AlbumImageModel *)albumImage userId:(NSInteger)userId completion:(void (^)(BOOL, NSString *))completion
-{
-      /*
-    NSString *urlStr = [NSString stringWithFormat:@"%@%ld/albums/%@", API_USERS, (long)userId, albumImage.imageId];
-    
-  
-    [LXPNetworking DELETE:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
-        if (code == 0) {
-            completion(YES, nil);
-            
-        } else {
-            completion(NO, nil);
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(NO, nil);
-    }];
-     */
-}
-
-/**
- *  异步加载用户相册
- *
- *  @param userId     用户Id
- *  @param completion 完成后回调
- *
- *  @return
- */
-+ (void)asyncLoadUserAlbum:(NSInteger)userId completion:(void (^)(BOOL isSuccess, NSArray *albumList))completion
-{
-    /*
-    AccountManager *accountManager = [AccountManager shareAccountManager];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-
-    AppUtils *utils = [[AppUtils alloc] init];
-    [manager.requestSerializer setValue:utils.appVersion forHTTPHeaderField:@"Version"];
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"iOS %@",utils.systemVersion] forHTTPHeaderField:@"Platform"];
-    [manager.requestSerializer setValue:@"application/vnd.lvxingpai.v1+json" forHTTPHeaderField:@"Accept"];
-    
-    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"%ld", accountManager.account.userId] forHTTPHeaderField:@"UserId"];
-    
-    NSString *url = [NSString stringWithFormat:@"%@%ld/albums", API_USERS, userId];
-    
-    [manager GET:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
-        if (code == 0) {
-            NSMutableArray *retArray = [[NSMutableArray alloc] init];
-
-            NSArray *albumArray = [responseObject objectForKey:@"result"];
-            for (id album in albumArray) {
-                [retArray addObject:[[AlbumImageModel alloc] initWithJson:album]];
-            }
-            
-            completion(YES, retArray);
-        } else {
-            completion(NO,nil);
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(NO,nil);
-    }];
-     */
-}
-
-+ (void)asyncUpdateUserAlbumCaption:(NSString *)caption withImageId:(NSString *)imageId completion:(void (^)(BOOL))completion
-{
-    /*
-    NSString *url = [NSString stringWithFormat:@"%@%ld/albums/%@", API_USERS, [AccountManager shareAccountManager].account.userId, imageId];
-    
-    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-    [dic safeSetObject:caption forKey:@"caption"];
-    
-    [LXPNetworking PUT:url parameters:dic success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
-        if (code == 0) {
-            completion(YES);
-        } else {
-            completion(NO);
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completion(NO);
-    }];
-     */
-
-}
-
 
 @end
