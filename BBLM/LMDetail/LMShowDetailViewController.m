@@ -10,6 +10,7 @@
 #import "LMShowManager.h"
 #import "LMShowCommentManager.h"
 #import "LMShowDetailView.h"
+#import "LMInputToolBar.h"
 
 @interface LMShowDetailViewController ()
 
@@ -17,6 +18,7 @@
 
 @property (nonatomic, strong) LMShowDetailModel *showDetail;
 @property (nonatomic, strong) LMShowDetailView *showDetailView;
+@property (nonatomic, strong) LMInputToolBar *inputToolBar;
 
 @end
 
@@ -43,6 +45,9 @@
         _showDetail.zanUserList = users;
         _showDetailView.showDetail = _showDetail;
     }];
+    
+    _inputToolBar = [[LMInputToolBar alloc] initWithFrame:CGRectMake(0, kWindowHeight-49, kWindowWidth, 49)];
+    [self.view addSubview:_inputToolBar];
 }
 
 - (void)didReceiveMemoryWarning {
