@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AGEmojiKeyboard.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>HappyDNS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,12 +62,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09A1F78AE86E60B8F106746A4DD82CE9</key>
+		<key>1C0EC91522A83565F513ACCE78C10277</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>113CD9B7D245064B7D19767CEBBF4876</key>
+		<key>2C2E034B7B8F6645BF5141F2FBCD41A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,17 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4428DF129BC16C8418781460B439B2BC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4A4B80B66D029912B4179D33308955AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6627E2CE58504A680DE862D5526B302C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>758222713AC766A79B3627339F155DFF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>77AE49A652A24E046794D5B4DB7E28C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E0792702AABB7FBF5F5280663BBFD04F</key>
+		<key>9F2BB19749CFC7F9EF6BDD128A9BF75E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F7B328AF77377159381532DAD0A6785F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

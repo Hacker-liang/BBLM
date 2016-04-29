@@ -7,12 +7,15 @@
 //
 
 #import "LMInputToolBar.h"
+#import "AGEmojiKeyboardView.h"
 
-@interface LMInputToolBar () <UITextFieldDelegate>
+@interface LMInputToolBar () <UITextFieldDelegate, AGEmojiKeyboardViewDataSource, AGEmojiKeyboardViewDelegate>
 
 @property (nonatomic, strong) UITextField *inputTextField;
 @property (nonatomic, strong) UIButton *emojiButton;
 @property (nonatomic, strong) UIButton *sendButton;
+@property (nonatomic, strong) AGEmojiKeyboardView *emojiInputView;
+
 
 @end
 
@@ -24,8 +27,14 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         
+         _emojiInputView = [[AGEmojiKeyboardView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 216) dataSource:self];
+        _emojiInputView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _emojiInputView.delegate = self;
+        
         _emojiButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, frame.size.height)];
         [_emojiButton setImage:[UIImage imageNamed:@"icon_input_switchEmoji"] forState:UIControlStateNormal];
+        [_emojiButton setImage:[UIImage imageNamed:@"icon_input_switchKeyboard"] forState:UIControlStateSelected];
+
         [_emojiButton addTarget:self action:@selector(inputEmoji:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_emojiButton];
         
@@ -39,6 +48,7 @@
         _inputTextField.textColor = COLOR_TEXT_II;
         _inputTextField.delegate = self;
         _inputTextField.placeholder = @" 说点什么吧";
+        
         [self addSubview:_inputTextField];
         
         _sendButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width-60, 0, 60, frame.size.height)];
@@ -53,22 +63,46 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
 - (void)inputEmoji:(UIButton *)button
 {
-    
+    self.alpha = 0;
+    if (button.selected) {
+        [_inputTextField resignFirstResponder];
+        _inputTextField.inputView = nil;
+        [self performSelector:@selector(becomeActivity) withObject:nil afterDelay:0.2];
+        
+    } else {
+        [_inputTextField resignFirstResponder];
+        _inputTextField.inputView = _emojiInputView;
+        [self performSelector:@selector(becomeActivity) withObject:nil afterDelay:0.2];
+    }
+    button.selected = !button.selected;
+    self.alpha = 1;
+}
+
+- (void)becomeActivity
+{
+    [_inputTextField becomeFirstResponder];
 }
 
 - (void)sendButtonAction:(UIButton *)button
 {
-    
+    [self endEditing:YES];
 }
 
 - (void)keyboardFrameDidChange:(NSNotification *)noti
 {
+    
     NSValue *keyboardBoundsValue = [[noti userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
 
     CGRect keyboardEndRect = [keyboardBoundsValue CGRectValue];
     
+    NSLog(@"当前y 为: %lf", keyboardEndRect.origin.y-self.bounds.size.height);
     self.frame = CGRectMake(0, keyboardEndRect.origin.y-self.bounds.size.height, self.bounds.size.width, self.bounds.size.height);
 }
 
@@ -81,6 +115,33 @@
         return NO;
     }
     return YES;
+}
+
+
+- (void)emojiKeyBoardView:(AGEmojiKeyboardView *)emojiKeyBoardView didUseEmoji:(NSString *)emoji {
+    self.inputTextField.text = [self.inputTextField.text stringByAppendingString:emoji];
+}
+
+- (void)emojiKeyBoardViewDidPressBackSpace:(AGEmojiKeyboardView *)emojiKeyBoardView {
+    
+    [self.inputTextField deleteBackward];
+    
+}
+
+- (UIImage *)emojiKeyboardView:(AGEmojiKeyboardView *)emojiKeyboardView imageForSelectedCategory:(AGEmojiKeyboardViewCategoryImage)category {
+    UIImage *img = [UIImage imageNamed:@"icon_input_switchEmoji"];
+    return img;
+}
+
+- (UIImage *)emojiKeyboardView:(AGEmojiKeyboardView *)emojiKeyboardView imageForNonSelectedCategory:(AGEmojiKeyboardViewCategoryImage)category {
+    UIImage *img = [UIImage imageNamed:@"icon_input_switchEmoji"];
+    
+    return img;
+}
+
+- (UIImage *)backSpaceButtonImageForEmojiKeyboardView:(AGEmojiKeyboardView *)emojiKeyboardView {
+    UIImage *img = [UIImage imageNamed:@"icon_input_switchEmoji"];
+    return img;
 }
 
 

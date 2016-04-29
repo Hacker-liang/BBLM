@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3DE9032EC349AB751A6BB255'
-               BlueprintName = 'SVProgressHUD'
+               BlueprintIdentifier = '141DA0D9CFF89377C6DE1919'
+               BlueprintName = 'AGEmojiKeyboard'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libSVProgressHUD.a'>
+               BuildableName = 'libAGEmojiKeyboard.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
