@@ -1,19 +1,19 @@
 //
-//  LMHotShowListViewController.m
+//  UserShowCollectionViewController.m
 //  BBLM
 //
 //  Created by liangpengshuai on 4/26/16.
 //  Copyright © 2016 com.xuejian. All rights reserved.
 //
 
-#import "LMHotShowListViewController.h"
+#import "UserShowCollectionViewController.h"
 #import "LMShowManager.h"
 #import "MJRefresh.h"
-#import "LMShowTableViewCell.h"
+#import "LMSimpleShowTableViewCell.h"
 #import "LMShowDetailViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface LMHotShowListViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface UserShowCollectionViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSInteger page;
@@ -23,25 +23,18 @@
 
 @end
 
-@implementation LMHotShowListViewController
+@implementation UserShowCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"辣度榜";
+    self.navigationItem.title = @"我的收藏";
     
     _dataSource = [[NSMutableArray alloc] init];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorColor = COLOR_LINE;
-    [_tableView registerNib:[UINib nibWithNibName:@"LMShowTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"LMSimpleShowTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
-    UIButton *aboutButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
-    [aboutButton setTitle:@"辣度规则" forState:UIControlStateNormal];
-    aboutButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
-    [aboutButton setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
-    [aboutButton addTarget:self action:@selector(aboutAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:aboutButton];
-
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _page = 1;
@@ -49,7 +42,7 @@
     
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page = 1;
-        [LMShowManager asyncLoadHotShowWithPage:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
+        [LMShowManager asyncLoadUserCollectionShowWithUserId:[LMAccountManager shareInstance].account.userId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
             [self.tableView.header endRefreshing];
             if (isSuccess) {
                 [_dataSource removeAllObjects];
@@ -59,12 +52,11 @@
             }
         }];
     }];
-
+    
     header.lastUpdatedTimeLabel.hidden = YES;
     header.stateLabel.hidden = YES;
     self.tableView.header = header;
     [header beginRefreshing];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -76,11 +68,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-
-- (void)aboutAction:(UIButton *)sender
-{
-    
 }
 
 - (void)loadMoreData
@@ -105,7 +92,7 @@
     
     
     self.playerController.contentURL = url;
-    LMShowTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sender.tag]];
+    LMSimpleShowTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sender.tag]];
     CGPoint point = [cell.coverImageView convertRect:CGRectZero toView:_tableView].origin;
     self.playerController.view.frame = CGRectMake(point.x, point.y, cell.coverImageView.bounds.size.width, cell.coverImageView.bounds.size.height);
     [_tableView addSubview:self.playerController.view];
@@ -145,12 +132,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [LMShowTableViewCell heightOfShowListCell];
+    return [LMSimpleShowTableViewCell heightOfShowListCell];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LMShowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    LMSimpleShowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.showDetail = [_dataSource objectAtIndex:indexPath.row];
     [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
     if (indexPath.section < 5) {

@@ -19,13 +19,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *getCatchaButton;
 
-@property (nonatomic, copy) void (^loginCompletionBlock) (BOOL isLogin);
+@property (nonatomic, copy) void (^loginCompletionBlock) (BOOL isLogin, NSString *errorStr);
 
 @end
 
 @implementation LMLoginViewController
 
-- (id)initWithCompletionBlock:(void (^)(BOOL))completion
+- (id)initWithCompletionBlock:(void (^)(BOOL isLogin, NSString *errorStr))completion
 {
     if (self = [super initWithNibName:@"LMLoginViewController" bundle:nil]) {
         _loginCompletionBlock = completion;
@@ -59,11 +59,17 @@
 }
 
 - (IBAction)loginAction:(id)sender {
-    [[LMAccountManager shareInstance] asyncLoginWithTel:self.telTextField.text captcha:self.captchaTextField.text completionBlock:^(BOOL isSuccess) {
+    [[LMAccountManager shareInstance] asyncLoginWithTel:self.telTextField.text captcha:self.captchaTextField.text completionBlock:^(BOOL isSuccess, NSString *errorStr) {
         if (_loginCompletionBlock) {
-            _loginCompletionBlock(isSuccess);
+            _loginCompletionBlock(isSuccess, errorStr);
         }
-        [self dismissViewControllerAnimated:YES completion:nil];
+        if (isSuccess) {
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [LMUserManager asyncLoadUserInfoWithUserId:[LMAccountManager shareInstance].account.userId completionBlock:^(BOOL isSuccess, LMUserDetailModel *userInfo) {
+                
+            }]; //登录成功去取一遍自己的信息
+        }
     }];
     
 }
@@ -76,10 +82,13 @@
     [self.view endEditing:YES];
     [SVProgressHUD showWithStatus:@"正在获取验证吗"];
     NSString *url = [NSString stringWithFormat:@"%@sms/sendCode", BASE_API];
-    [LMNetworking GET:url parameters:@{@"phone": self.telTextField.text} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    [LMNetworking GET:url parameters:@{@"mobile": self.telTextField.text} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             [self startTimer];
             [SVProgressHUD showSuccessWithStatus:@"验证码获取成功"];
+            
+        } else {
+            [SVProgressHUD showErrorWithStatus:@"验证码获取失败"];
         }
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {

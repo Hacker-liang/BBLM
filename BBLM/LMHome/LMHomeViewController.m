@@ -54,7 +54,7 @@
     [_bgScrollView addSubview:_carousel];
     
     _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 120) animationDuration:10];
-    _galleryView.backgroundColor = [UIColor whiteColor];
+    _galleryView.backgroundColor = [UIColor clearColor];
     [self.bgScrollView addSubview:_galleryView];
     
     UIButton *showPushMessageBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
@@ -129,10 +129,11 @@
 - (void)gotoMine:(UIButton *)sender
 {
     if (![[LMAccountManager shareInstance] isLogin]) {
-        LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin) {
+        LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin, NSString *errorStr) {
             if (isLogin) {
-               
-                
+                MineViewController *ctl = [[MineViewController alloc] init];
+                ctl.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:ctl animated:YES];
             }
         }];
         [self presentViewController:ctl animated:YES completion:nil];
@@ -153,7 +154,7 @@
 {
     if (view == nil)
     {
-        view = [[LMHomeShowView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-60, carousel.bounds.size.height)];
+        view = [[LMHomeShowView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
     }
     ((LMHomeShowView *)view).showDetail = [_dataSource objectAtIndex:index];
     return view;

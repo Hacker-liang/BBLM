@@ -11,7 +11,7 @@
 #import "LMUserTagsAddViewController.h"
 #import "LMUserProfileViewController.h"
 #import "LMEditUserProfileViewController.h"
-
+#import "UserShowCollectionViewController.h"
 
 @interface MineViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -54,6 +54,12 @@
     self.navigationItem.title = _userInfo.nickname;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    _headerView.userInfo = _userInfo;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -62,6 +68,7 @@
 {
     LMUserTagsAddViewController *ctl = [[LMUserTagsAddViewController alloc] init];
     ctl.hidesBottomBarWhenPushed = YES;
+    ctl.userInfo = _userInfo;
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
@@ -114,8 +121,27 @@
         ctl.userId = [LMAccountManager shareInstance].account.userId;
         ctl.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:ctl animated:YES];
+        
+    } else if (indexPath.row == 1) {
+        UserShowCollectionViewController *ctl = [[UserShowCollectionViewController alloc] init];
+        ctl.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:ctl animated:YES];
+    } else if (indexPath.row == 4) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定退出登录?" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView showAlertViewWithBlock:^(NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                [SVProgressHUD showWithStatus:@"正在退出登录"];
+                [[LMAccountManager shareInstance] asyncLogoutWichCompletionBlock:^(BOOL isSuccess, NSString *errorStr) {
+                    if (isSuccess) {
+                        [SVProgressHUD showSuccessWithStatus:@"退出登录成功"];
+                        [self goBack];
+                    } else {
+                        [SVProgressHUD showErrorWithStatus:@"退出登录失败"];
+                    }
+                }];
+            }
+        }];
     }
-    
 }
 
 

@@ -68,7 +68,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LMUserTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"grabTagCollectionCell" forIndexPath:indexPath];
-    cell.tabBkgImage = @"icon_tag_selected";
+    cell.tabBkgImage = @"icon_tag_normal";
     [cell.grabTagBtn setTitle:[_dataSource objectAtIndex:indexPath.row] forState:UIControlStateNormal];
     
     return cell;

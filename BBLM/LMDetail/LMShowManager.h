@@ -31,6 +31,16 @@
 + (void)asyncLoadHotShowWithPage:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowDetailModel *>* showList))completion;
 
 /**
+ *  加载用户的收藏列表
+ *
+ *  @param userId
+ *  @param page
+ *  @param pageSize
+ *  @param completion
+ */
++ (void)asyncLoadUserCollectionShowWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowDetailModel *>* showList))completion;
+
+/**
  *  加载用户的 show 列表
  *
  *  @param userId

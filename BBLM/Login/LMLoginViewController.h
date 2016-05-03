@@ -10,6 +10,6 @@
 
 @interface LMLoginViewController : UIViewController
 
-- (id)initWithCompletionBlock:(void (^) (BOOL isLogin))completion;
+- (id)initWithCompletionBlock:(void (^) (BOOL isLogin, NSString *errorStr))completion;
 
 @end

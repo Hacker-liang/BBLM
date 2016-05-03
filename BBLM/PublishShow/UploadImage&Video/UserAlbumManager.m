@@ -27,29 +27,27 @@
     __block NSString *coverImageKey;
     __block NSString *videoKey;
 
-    [self requestUploadTokeAndUploadData:[NSData dataWithContentsOfFile:coverPath] progress:^(CGFloat progress) {
+    [self requestUploadTokeAndUploadData:[NSData dataWithContentsOfFile:coverPath] andKey:nil progress:^(CGFloat progress) {
         
     } completion:^(BOOL isSuccess, NSString *key) {
         if (isSuccess) {
             coverImageKey = key;
-            if (videoKey) {
-                completionBlock(isSuccess, coverImageKey, videoKey);
-            }
+            NSURL *fileUrl = [NSURL URLWithString:videoPath];
+            NSString *fileName = fileUrl.lastPathComponent;
+            [self requestUploadTokeAndUploadData:[NSData dataWithContentsOfFile:videoPath] andKey:fileName progress:progressBlock completion:^(BOOL isSuccess, NSString *key) {
+                if (isSuccess) {
+                    videoKey = key;
+                    completionBlock(isSuccess, videoKey, coverImageKey);
+                } else {
+                    completionBlock(NO, nil, nil);
+                }
+                
+            }];
         } else {
             completionBlock(NO, nil, nil);
         }
     }];
-    [self requestUploadTokeAndUploadData:[NSData dataWithContentsOfFile:videoPath] progress:progressBlock completion:^(BOOL isSuccess, NSString *key) {
-        if (isSuccess) {
-            videoKey = key;
-            if (coverImageKey) {
-                completionBlock(isSuccess, coverImageKey, videoKey);
-            }
-        } else {
-            completionBlock(NO, nil, nil);
-        }
-
-    }];
+    
 }
 
 /**
@@ -126,7 +124,7 @@
 }
 
 
-+ (void)requestUploadTokeAndUploadData:(NSData *)data progress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL isSuccess, NSString *key))completionBlock
++ (void)requestUploadTokeAndUploadData:(NSData *)data andKey:(NSString *)key progress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL isSuccess, NSString *key))completionBlock
 {
     NSString *url = [NSString stringWithFormat:@"%@qiniu/auth", BASE_API];
     progressBlock(0.0);
@@ -136,7 +134,7 @@
     [LMNetworking GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
         if (code == 0) {
-            [self uploadDataToQINIUServer:data withToken:[[responseObject objectForKey:@"data"]  objectForKey:@"auth"] andKey:nil progress:progressBlock completion:completionBlock];
+            [self uploadDataToQINIUServer:data withToken:[[responseObject objectForKey:@"data"]  objectForKey:@"auth"] andKey:key progress:progressBlock completion:completionBlock];
         } else {
             completionBlock(NO, nil);
         }

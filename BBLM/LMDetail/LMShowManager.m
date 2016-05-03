@@ -65,6 +65,35 @@
     }];
 }
 
++ (void)asyncLoadUserCollectionShowWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowDetailModel *>* showList))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@dynamic/collect/list", BASE_API];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:[NSNumber numberWithInteger:userId] forKey:@"memberId"];
+    [dic setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [dic setObject:[NSNumber numberWithInteger:pageSize] forKey:@"pageSize"];
+    
+    [LMNetworking GET:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            NSMutableArray *retList = [[NSMutableArray alloc] init];
+            NSArray *data = [responseObject objectForKey:@"data"];
+            for (NSDictionary *dic in data) {
+                LMShowDetailModel *show = [[LMShowDetailModel alloc] initWithJson:dic];
+                [retList addObject:show];
+            }
+            completion(YES, retList);
+            
+        } else {
+            completion(NO, nil);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO, nil);
+        
+    }];
+
+}
+
 + (void)asyncLoadUserShowWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowDetailModel *>* showList))completion
 {
     NSString *url = [NSString stringWithFormat:@"%@dynamic/barbie", BASE_API];

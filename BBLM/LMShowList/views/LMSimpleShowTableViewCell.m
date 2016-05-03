@@ -1,19 +1,19 @@
 //
-//  LMShowTableViewCell.m
+//  LMSimpleShowTableViewCell.m
 //  BBLM
 //
 //  Created by liangpengshuai on 4/27/16.
 //  Copyright © 2016 com.xuejian. All rights reserved.
 //
 
-#import "LMShowTableViewCell.h"
+#import "LMSimpleShowTableViewCell.h"
 
-@interface LMShowTableViewCell ()
+@interface LMSimpleShowTableViewCell ()
 
 
 @end
 
-@implementation LMShowTableViewCell
+@implementation LMSimpleShowTableViewCell
 
 + (CGFloat)heightOfShowListCell
 {

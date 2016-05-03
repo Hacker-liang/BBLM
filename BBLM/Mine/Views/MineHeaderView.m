@@ -89,8 +89,7 @@
         [_editUserInfoButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self addSubview:_editUserInfoButton];
 
-        self.userInfo = [[LMUserDetailModel alloc] init];
-        
+        _addTagButton = [[UIButton alloc] init];
     }
     return self;
 }
@@ -134,7 +133,7 @@
         i++;
         offsetX += (width+30);
     }
-    _addTagButton = [[UIButton alloc] initWithFrame:CGRectMake(offsetX, 0, 40, 25)];
+    _addTagButton.frame = CGRectMake(offsetX, 0, 40, 25);
     _addTagButton.layer.borderColor = COLOR_LINE.CGColor;
     _addTagButton.layer.borderWidth = 0.5;
     _addTagButton.layer.cornerRadius = 3.0;

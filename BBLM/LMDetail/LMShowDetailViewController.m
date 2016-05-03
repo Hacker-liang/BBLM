@@ -6,6 +6,8 @@
 //  Copyright © 2016 com.xuejian. All rights reserved.
 //
 
+#import <MediaPlayer/MediaPlayer.h>
+
 #import "LMShowDetailViewController.h"
 #import "LMShowManager.h"
 #import "LMShowCommentManager.h"
@@ -20,6 +22,8 @@
 @property (nonatomic, strong) LMShowDetailView *showDetailView;
 @property (nonatomic, strong) LMInputToolBar *inputToolBar;
 
+@property (nonatomic, strong) MPMoviePlayerController *playerController;
+
 @end
 
 @implementation LMShowDetailViewController
@@ -33,22 +37,86 @@
     [self.view addSubview:_tableView];
     
     _showDetailView = [[LMShowDetailView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 460)];
+    [_showDetailView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
     _tableView.tableHeaderView = _showDetailView;
+    [_showDetailView.zanButton addTarget:self action:@selector(zanShowAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [LMShowManager asyncLoadShowDetialWithShowId:_showId completionBlock:^(BOOL isSuccess, LMShowDetailModel *showDetail) {
         _showDetail = showDetail;
-        NSMutableArray *users = [[NSMutableArray alloc] init];
-        for (int i = 0; i<10; i++) {
-            LMUserDetailModel *user = [[LMUserDetailModel alloc] init];
-            [users addObject:user];
-        }
-        _showDetail.zanUserList = users;
         _showDetailView.showDetail = _showDetail;
     }];
     
     _inputToolBar = [[LMInputToolBar alloc] initWithFrame:CGRectMake(0, kWindowHeight-49, kWindowWidth, 49)];
     _inputToolBar.delegate = self;
     [self.view addSubview:_inputToolBar];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [_playerController stop];
+    [_playerController.view removeFromSuperview];
+}
+
+- (void)playVideo:(UIButton *)sender
+{
+    if (self.playerController.view.superview) {
+        [self.playerController.view removeFromSuperview];
+        [self.playerController stop];
+    }
+    NSURL *url = [NSURL URLWithString:_showDetail.videoUrl];
+    
+    self.playerController.contentURL = url;
+    
+    self.playerController.view.frame = _showDetailView.contentImageView.bounds;
+    [_showDetailView.contentImageView addSubview:self.playerController.view];
+    [self.playerController play];
+}
+
+- (void)zanShowAction:(UIButton *)sender
+{
+    if (!sender.selected) {
+        [LMShowManager asyncZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                LMUserDetailModel *user = [[LMUserDetailModel alloc] init];
+                user.userId = [LMAccountManager shareInstance].account.userId;
+                user.nickname = [LMAccountManager shareInstance].account.nickname;
+                user.avatar = [LMAccountManager shareInstance].account.avatar;
+
+                NSMutableArray *userList = [[NSMutableArray alloc] initWithArray:_showDetail.zanUserList];
+                [userList addObject:user];
+                _showDetail.zanUserList = userList;
+                _showDetail.hasZan = YES;
+                _showDetailView.showDetail = _showDetail;
+            }
+        }];
+    } else {
+        [LMShowManager asyncCancelZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                NSMutableArray *userList = [[NSMutableArray alloc] initWithArray:_showDetail.zanUserList];
+
+                for (LMUserDetailModel *user in userList) {
+                    if (user.userId == [LMAccountManager shareInstance].account.userId) {
+                        [userList removeObject:user];
+                        break;
+                    }
+                }
+                _showDetail.zanUserList = userList;
+                _showDetail.hasZan = NO;
+                _showDetailView.showDetail = _showDetail;
+            }
+        }];
+    }
+}
+
+#pragma mark - 懒加载代码
+- (MPMoviePlayerController *)playerController
+{
+    if (_playerController == nil) {
+        _playerController = [[MPMoviePlayerController alloc] init];
+        _playerController.movieSourceType = MPMovieSourceTypeUnknown;
+    }
+    return _playerController;
 }
 
 - (void)didReceiveMemoryWarning {

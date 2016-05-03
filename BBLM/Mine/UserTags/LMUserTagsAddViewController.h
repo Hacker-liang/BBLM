@@ -10,4 +10,7 @@
 
 @interface LMUserTagsAddViewController : TZViewController
 
+
+@property (nonatomic, strong) LMUserDetailModel *userInfo;
+
 @end

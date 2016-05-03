@@ -13,13 +13,10 @@
 @interface LMShowDetailView()
 
 @property (nonatomic, strong) UIImageView *headerImageView;
-@property (nonatomic, strong) UIImageView *contentImageView;
 @property (nonatomic, strong) UILabel *nicknameLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
-@property (nonatomic, strong) UIButton *zanButton;
 @property (nonatomic, strong) NSArray<LMUserDetailModel *> *zanUserList;
 
-@property (nonatomic, strong) UIButton *playVideoButton;
 @property (nonatomic, strong) UILabel *descLabel;
 @property (nonatomic, strong) UIView *zanUserBgView;
 @property (nonatomic, strong) UIButton *shareButton;
@@ -50,6 +47,7 @@
         
         _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, 300)];
         _contentImageView.backgroundColor = APP_PAGE_COLOR;
+        _contentImageView.userInteractionEnabled = YES;
         [self addSubview:_contentImageView];
         
         _playVideoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
@@ -66,7 +64,6 @@
         _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(12, CGRectGetMaxY(_descLabel.frame)+5, 60, 35)];
         [_zanButton setImage:[UIImage imageNamed:@"icon_showDetail_zan_normal"] forState:UIControlStateNormal];
         [_zanButton setImage:[UIImage imageNamed:@"icon_showDetail_zan_selected"] forState:UIControlStateSelected];
-        [_zanButton addTarget:self action:@selector(zanShowAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_zanButton];
         
         _zanUserBgView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame)+10, _zanButton.frame.origin.y, kWindowWidth-120, 35)];
@@ -134,24 +131,6 @@
         zanUserCntLabel.textAlignment = NSTextAlignmentCenter;
         [_zanUserBgView addSubview:zanUserCntLabel];
     }
-}
-
-- (void)zanShowAction:(UIButton *)sender
-{
-    if (!sender.selected) {
-        [LMShowManager asyncZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
-            if (isSuccess) {
-                
-            }
-        }];
-    } else {
-        [LMShowManager asyncCancelZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
-            if (isSuccess) {
-                
-            }
-        }];
-    }
-    sender.selected = !sender.selected;
 }
 
 - (void)showUserProfile:(UIButton *)sender

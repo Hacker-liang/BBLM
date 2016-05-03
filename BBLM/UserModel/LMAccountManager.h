@@ -35,7 +35,9 @@
  *  @param captcha    验证码
  *  @param completion 登录结束的回掉
  */
-- (void)asyncLoginWithTel:(NSString *)tel captcha:(NSString *)captcha completionBlock:(void (^) (BOOL isSuccess))completion;
+- (void)asyncLoginWithTel:(NSString *)tel captcha:(NSString *)captcha completionBlock:(void (^) (BOOL isSuccess, NSString *errorStr))completion;
+
+- (void)asyncLogoutWichCompletionBlock:(void (^) (BOOL isSuccess, NSString *errorStr))completion;
 
 /**
  *  修改用户信息
@@ -45,6 +47,22 @@
  *  @param completion 
  */
 - (void)asyncChangeUserInfoWithChangeType:(NSString *)typeKey andChangeContent:(id)content completionBlock:(void (^) (BOOL isSuccess))completion;
+
+/**
+ *  添加一个标签
+ *
+ *  @param tag
+ *  @param completion
+ */
+- (void)asyncAddUserTag:(NSString *)tag completionBlock:(void (^) (BOOL isSuccess, NSString *errorStr))completion;
+
+/**
+ *  删除一个标签
+ *
+ *  @param tag
+ *  @param completion
+ */
+- (void)asyncDeleteUserTag:(NSString *)tag completionBlock:(void (^) (BOOL isSuccess, NSString *errorStr))completion;
 
 
 @end

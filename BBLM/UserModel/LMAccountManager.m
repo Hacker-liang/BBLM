@@ -30,11 +30,6 @@
         if (userInfoDic) {
             _account = [[LMUserDetailModel alloc] initWithJson:userInfoDic];
         }
-        
-#warning 测试用户数据
-        _account = [[LMUserDetailModel alloc] initWithJson:userInfoDic];
-        _account.userId = 9;
-
     }
     
     return _account;
@@ -58,7 +53,7 @@
     [ud synchronize];
 }
 
-- (void)asyncLoginWithTel:(NSString *)tel captcha:(NSString *)captcha completionBlock:(void (^) (BOOL isSuccess))completion
+- (void)asyncLoginWithTel:(NSString *)tel captcha:(NSString *)captcha completionBlock:(void (^) (BOOL isSuccess, NSString *errorStr))completion;
 {
     NSString *url = [NSString stringWithFormat:@"%@login", BASE_API];
     [LMNetworking GET:url parameters:@{@"phone": tel, @"code": captcha} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
@@ -70,9 +65,32 @@
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
             [ud setObject:dic forKey:kAccountInfoCacheKey];
             [ud synchronize];
+            completion(YES, nil);
+        } else {
+            completion(NO, nil);
         }
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO, nil);
+    }];
+}
+
+- (void)asyncLogoutWichCompletionBlock:(void (^)(BOOL, NSString *))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@login", BASE_API];
+    [LMNetworking GET:url parameters:@{@"memberId": [NSNumber numberWithInteger:_account.userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            _account = nil;
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            [ud removeObjectForKey:kAccountInfoCacheKey];
+            [ud synchronize];
+            completion(YES, nil);
+        } else {
+            completion(NO, nil);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO, nil);
         
     }];
 }
@@ -103,6 +121,41 @@
     }];
 }
 
+- (void)asyncAddUserTag:(NSString *)tag completionBlock:(void (^) (BOOL isSuccess, NSString *errorStr))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@barbie/addLabel", BASE_API];
+    [LMNetworking GET:url parameters:@{@"label": tag, @"memberId": [NSNumber numberWithInteger:_account.userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            completion(YES, nil);
+            
+        } else {
+            if ([[responseObject objectForKey:@"code"] integerValue] == 2301) {
+                completion(NO, @"标签已存在");
+            } else {
+                completion(NO, @"添加失败");
+            }
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO, @"添加失败");
+    }];
+}
+
+- (void)asyncDeleteUserTag:(NSString *)tag completionBlock:(void (^) (BOOL isSuccess, NSString *errorStr))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@barbie/delLabel", BASE_API];
+    [LMNetworking GET:url parameters:@{@"label": tag, @"memberId": [NSNumber numberWithInteger:_account.userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            completion(YES, nil);
+            
+        } else {
+            completion(NO, @"删除失败");
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO, @"删除失败");
+    }];
+}
 
 
 @end

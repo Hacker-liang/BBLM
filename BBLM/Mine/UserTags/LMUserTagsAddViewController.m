@@ -14,8 +14,8 @@
 @interface LMUserTagsAddViewController () <UITableViewDataSource, UITableViewDelegate, LMUserSetTagTableViewCellDelegate, HotTagTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *selectedTagsList;
 @property (strong, nonatomic) NSMutableArray *hotTagsList;
+@property (strong, nonatomic) NSMutableArray *selectedTagsList;
 
 @end
 
@@ -28,7 +28,6 @@
     _tableView.delegate = self;
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.separatorColor = COLOR_LINE;
-    _selectedTagsList = [@[@"90后", @"辣妹子", @"测试数据"] mutableCopy];
     _hotTagsList = [@[@"90后", @"辣妹子", @"测试数据", @"90后", @"辣妹子", @"测试数据", @"90后", @"辣妹子", @"测试数据", @"90后", @"辣妹子", @"测试数据"] mutableCopy];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"LMUserSetTagTableViewCell" bundle:nil] forCellReuseIdentifier:@"grabSetTagCell"];
@@ -40,16 +39,71 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)setUserInfo:(LMUserDetailModel *)userInfo
+{
+    _userInfo = userInfo;
+    _selectedTagsList = [_userInfo.userTags mutableCopy];
+}
+
 - (void)addTagAction:(UIButton *)btn
 {
-    InputTagTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:4]];
+    InputTagTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:1]];
     if (cell.textField.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"输入的标签不能为空"];
         return;
     }
-    [_selectedTagsList addObject:cell.textField.text];
-    [_tableView reloadData];
+    [self addUserTag:cell.textField.text];
     cell.textField.text = @"";
+    [cell.textField resignFirstResponder];
+}
+
+- (void)addUserTag:(NSString *)tag
+{
+    [[LMAccountManager shareInstance] asyncAddUserTag:tag completionBlock:^(BOOL isSuccess, NSString *errorStr) {
+        if (isSuccess) {
+            for (NSString *temp in _selectedTagsList) {
+                if ([temp isEqualToString:tag]) {
+                    [_selectedTagsList removeObject:temp];
+                    break;
+                }
+            }
+            [_selectedTagsList addObject:tag];
+            [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+            _userInfo.userTags = _selectedTagsList;
+            [_tableView reloadData];
+        } else {
+            if (errorStr) {
+                [SVProgressHUD showErrorWithStatus:errorStr];
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"添加失败"];
+            }
+        }
+    }];
+}
+
+- (void)deleteUserTag:(NSString *)tag
+{
+    [[LMAccountManager shareInstance] asyncDeleteUserTag:tag completionBlock:^(BOOL isSuccess, NSString *errorStr) {
+        if (isSuccess) {
+            for (NSString *temp in _selectedTagsList) {
+                if ([temp isEqualToString:tag]) {
+                    [_selectedTagsList removeObject:temp];
+                    break;
+                }
+            }
+            [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+            _userInfo.userTags = _selectedTagsList;
+            [_tableView reloadData];
+
+        } else {
+            if (errorStr) {
+                [SVProgressHUD showErrorWithStatus:errorStr];
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"删除失败"];
+            }
+            
+        }
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -108,16 +162,17 @@
 }
 
 #pragma mark - LMUserSetTagTableViewCellDelegate
+
 - (void)setTagDidSelectItemAtIndex:(NSIndexPath *)indexPath
 {
-    [_selectedTagsList removeObjectAtIndex:indexPath.row];
-    [_tableView reloadData];
+    [self deleteUserTag:[_selectedTagsList objectAtIndex:indexPath.row]];
+    
 }
 
 #pragma mark - HotTagTableViewCellDelegate
 - (void)hotTagDidSelectItemAtIndex:(NSIndexPath *)indexPath
 {
-    
+    [self addUserTag:[_hotTagsList objectAtIndex:indexPath.row]];
 }
 
 @end

@@ -6,10 +6,13 @@
 //  Copyright © 2016 com.xuejian. All rights reserved.
 //
 
+#import <MediaPlayer/MediaPlayer.h>
+
 #import "LMUserProfileViewController.h"
 #import "LMUserPorfileHeaderView.h"
 #import "LMShowTableViewCell.h"
 #import "LMShowManager.h"
+#import "LMShowDetailViewController.h"
 
 #define pageCount   10
 
@@ -17,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<LMShowDetailModel *> *dataSource;
+
+@property (nonatomic, strong) MPMoviePlayerController *playerController;
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) LMUserDetailModel *userInfo;
@@ -71,7 +76,6 @@
             [_tableView reloadData];
         }
     }];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,6 +88,8 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [_playerController stop];
+    [_playerController.view removeFromSuperview];
 }
 
 - (void)dismissCtl
@@ -91,9 +97,31 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)playVideo:(UIButton *)sender
+{
+    if (self.playerController.view.superview) {
+        [self.playerController.view removeFromSuperview];
+        [self.playerController stop];
+    }
+    NSURL *url = [NSURL URLWithString:[_dataSource objectAtIndex:sender.tag].videoUrl];
+
+    self.playerController.contentURL = url;
+    LMShowTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sender.tag]];
+    CGPoint point = [cell.coverImageView convertRect:CGRectZero toView:_tableView].origin;
+    self.playerController.view.frame = CGRectMake(point.x, point.y, cell.coverImageView.bounds.size.width, cell.coverImageView.bounds.size.height);
+    [_tableView addSubview:self.playerController.view];
+    [self.playerController play];
+}
+
+
+#pragma mark - 懒加载代码
+- (MPMoviePlayerController *)playerController
+{
+    if (_playerController == nil) {
+        _playerController = [[MPMoviePlayerController alloc] init];
+        _playerController.movieSourceType = MPMovieSourceTypeUnknown;
+    }
+    return _playerController;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -124,8 +152,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LMShowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.showDetail = [_dataSource objectAtIndex:indexPath.row];
+    cell.showDetail = [_dataSource objectAtIndex:indexPath.section];
+    [cell.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+    cell.playVideoButton.tag = indexPath.section;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
+    ctl.showId = [_dataSource objectAtIndex:indexPath.section].itemId;
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

@@ -14,9 +14,6 @@
 {
     self = [super init];
     if (self) {
-        _publishUser = [[LMUserDetailModel alloc] init];
-        _publishDateDesc = @"2014-04-16";
-    
         
     }
     return self;
@@ -28,12 +25,15 @@
         _itemId = [[json objectForKey:@"dynamicId"] integerValue];
         _videoImage = [json objectForKey:@"videoPictureUrl"];
         _videoUrl = [json objectForKey:@"videoUrl"];
-        _imageList = [[json objectForKey:@"pictureUrl"] componentsSeparatedByString:@","];
+        if ([[json objectForKey:@"pictureUrl"] length]) {
+            _imageList = [[json objectForKey:@"pictureUrl"] componentsSeparatedByString:@","];
+        }
         _heat = [[json objectForKey:@"heat"] integerValue];
         _commentCount = [[json objectForKey:@"commentCount"] integerValue];
         _publishDateDesc = [json objectForKey:@"date"];
         _showDesc = [json objectForKey:@"words"];
         _zanCount = [[json objectForKey:@"praiseCount"] integerValue];
+        
         
         _publishUser = [[LMUserDetailModel alloc] init];
         _publishUser.userId = [[json objectForKey:@"memberId"] integerValue];

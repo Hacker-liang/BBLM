@@ -15,4 +15,8 @@
 
 @property (nonatomic, weak) UIViewController *containerCtl;
 
+@property (nonatomic, strong) UIImageView *contentImageView;
+@property (nonatomic, strong) UIButton *playVideoButton;
+@property (nonatomic, strong) UIButton *zanButton;
+
 @end
