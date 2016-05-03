@@ -206,4 +206,27 @@
         
     }];
 }
+
++ (void)asyncPublishVidwoWithCoverImageKey:(NSString *)coverKey videoKey:(NSString *)videoKey desc:(NSString *)desc completionBlock:(void (^) (BOOL isSuccess, NSInteger showId))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@dynamic/publish", BASE_API];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:[NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId] forKey:@"memberId"];
+    [dic safeSetObject:desc forKey:@"words"];
+    [dic safeSetObject:coverKey forKey:@"videoPictureUrl"];
+    [dic safeSetObject:videoKey forKey:@"videoUrl"];
+
+    [LMNetworking GET:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            completion(YES, [[[responseObject objectForKey:@"data"] objectForKey:@"id"] integerValue]);
+            
+        } else {
+            completion(NO, 0);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO, 0);
+        
+    }];
+}
 @end

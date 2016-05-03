@@ -201,7 +201,9 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     status.isFinish = YES;
     cell.uploadStatus = status;
     
-    [_uploadSuccessImageList addObject:albumImage];
+    if (albumImage) {
+        [_uploadSuccessImageList addObject:albumImage];
+    }
     
     for (UploadUserPhotoStatus *status in _userAlbumUploadStatusList) {
         if (!status.isFinish) {
@@ -212,7 +214,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [LMShowManager asyncPublishImageWithImageList:_uploadSuccessImageList desc:_containterView.textView.text completionBlock:^(BOOL isSuccess, NSInteger showId) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"发布成功"];
-            [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.3];
+            [self performSelector:@selector(dismissCtl) withObject:nil afterDelay:0.3];
 
         } else {
             [SVProgressHUD showErrorWithStatus:@"发布失败"];
@@ -283,6 +285,11 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     if (self.userAlbumUploadStatusList.count >= indexPath.row+1) {
         UploadUserPhotoStatus *status = [_userAlbumUploadStatusList objectAtIndex:indexPath.row];
         cell.uploadStatus = status;
+        if (status.isSuccess) {
+            cell.deleteButton.hidden = YES;
+        } else {
+            cell.deleteButton.hidden = NO;
+        }
     }
     return cell;
 }

@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LMInputToolBarDelegate <NSObject>
+
+- (void)toolbarSendComment:(NSString *)comment;
+
+@end
+
 @interface LMInputToolBar : UIView
+
+@property (nonatomic, strong) UITextField *inputTextField;
+
+@property (nonatomic, weak) id<LMInputToolBarDelegate> delegate;
 
 @end

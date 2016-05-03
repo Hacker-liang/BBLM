@@ -11,7 +11,6 @@
 
 @interface LMInputToolBar () <UITextFieldDelegate, AGEmojiKeyboardViewDataSource, AGEmojiKeyboardViewDelegate>
 
-@property (nonatomic, strong) UITextField *inputTextField;
 @property (nonatomic, strong) UIButton *emojiButton;
 @property (nonatomic, strong) UIButton *sendButton;
 @property (nonatomic, strong) AGEmojiKeyboardView *emojiInputView;
@@ -93,6 +92,9 @@
 - (void)sendButtonAction:(UIButton *)button
 {
     [self endEditing:YES];
+    if ([_delegate respondsToSelector:@selector(toolbarSendComment:)]) {
+        [_delegate toolbarSendComment:_inputTextField.text];
+    }
 }
 
 - (void)keyboardFrameDidChange:(NSNotification *)noti

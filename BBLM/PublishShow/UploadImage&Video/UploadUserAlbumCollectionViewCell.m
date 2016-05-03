@@ -50,6 +50,7 @@
         _progressView.progress = 0;
     }
     if (_uploadStatus.uploadProgressValue > 0.0) {
+        NSLog(@"正在上传%f", _uploadStatus.uploadProgressValue);
         _progressView.progress = _uploadStatus.uploadProgressValue;
     }
     

@@ -44,9 +44,11 @@
 - (void)initData
 {
     _page = 1;
+    self.allowsSelection = NO;
+    self.backgroundColor = APP_PAGE_COLOR;
     _commentsList = [[NSMutableArray alloc] init];
     [self registerClass:[LMCommentsTableViewCell class] forCellReuseIdentifier:@"cell"];
-    self.separatorColor = COLOR_LINE;
+    self.separatorStyle = UITableViewCellSelectionStyleNone;
     self.dataSource = self;
     self.delegate = self;
     [LMShowCommentManager asyncLoadShowCommentsListWithShowId:_showId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList) {
@@ -58,6 +60,14 @@
     }];
 }
 
+- (void)addNewComment:(LMShowCommentDetail *)comment
+{
+    [_commentsList addObject:comment];
+    [self reloadData];
+    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_commentsList.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _commentsList.count;
@@ -66,6 +76,11 @@
 - (NSInteger)numberOfSections
 {
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

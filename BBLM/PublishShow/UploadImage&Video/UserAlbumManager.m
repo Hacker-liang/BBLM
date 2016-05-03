@@ -22,6 +22,36 @@
     }];
 }
 
++ (void)uploadUserVideo:(NSString *)videoPath coverImagePath:(NSString *)coverPath withDesc:(NSString *)desc progress:(void (^)(CGFloat))progressBlock completion:(void (^)(BOOL isSuccess, NSString *videoKey, NSString *coverImageKey))completionBlock
+{
+    __block NSString *coverImageKey;
+    __block NSString *videoKey;
+
+    [self requestUploadTokeAndUploadData:[NSData dataWithContentsOfFile:coverPath] progress:^(CGFloat progress) {
+        
+    } completion:^(BOOL isSuccess, NSString *key) {
+        if (isSuccess) {
+            coverImageKey = key;
+            if (videoKey) {
+                completionBlock(isSuccess, coverImageKey, videoKey);
+            }
+        } else {
+            completionBlock(NO, nil, nil);
+        }
+    }];
+    [self requestUploadTokeAndUploadData:[NSData dataWithContentsOfFile:videoPath] progress:progressBlock completion:^(BOOL isSuccess, NSString *key) {
+        if (isSuccess) {
+            videoKey = key;
+            if (coverImageKey) {
+                completionBlock(isSuccess, coverImageKey, videoKey);
+            }
+        } else {
+            completionBlock(NO, nil, nil);
+        }
+
+    }];
+}
+
 /**
  *  获取上传七牛服务器所需要的 token，key
  *
@@ -93,7 +123,62 @@
                       });
                   }
               } option:opt];
+}
+
+
++ (void)requestUploadTokeAndUploadData:(NSData *)data progress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL isSuccess, NSString *key))completionBlock
+{
+    NSString *url = [NSString stringWithFormat:@"%@qiniu/auth", BASE_API];
+    progressBlock(0.0);
+    NSDictionary *params;
+    params = @{@"memberId": [NSNumber numberWithInteger: [LMAccountManager shareInstance].account.userId]};
     
+    [LMNetworking GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
+        if (code == 0) {
+            [self uploadDataToQINIUServer:data withToken:[[responseObject objectForKey:@"data"]  objectForKey:@"auth"] andKey:nil progress:progressBlock completion:completionBlock];
+        } else {
+            completionBlock(NO, nil);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completionBlock(NO, nil);
+        
+    }];
+}
+
+/**
+ *  将二进制文件上传到七牛服务器
+ */
++ (void)uploadDataToQINIUServer:(NSData *)data withToken:(NSString *)uploadToken andKey:(NSString *)key progress:(void (^)(CGFloat progress))progressBlock completion:(void (^)(BOOL isSuccess, NSString *key))completionBlock
+{
+    QNUploadManager *upManager = [[QNUploadManager alloc] init];
+    
+    typedef void (^QNUpProgressHandler)(NSString *key, float percent);
+    
+    QNUploadOption *opt = [[QNUploadOption alloc] initWithMime:@"text/plain"
+                                               progressHandler:^(NSString *key, float percent) {
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       if (progressBlock) {
+                                                           progressBlock(percent);
+                                                       }
+                                                   });
+                                               }
+                                                        params:@{ @"x:foo":@"fooval" }
+                                                      checkCrc:YES
+                                            cancellationSignal:nil];
+    
+    [upManager putData:data key:key token:uploadToken
+              complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                  if (resp) {
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          completionBlock(YES, [resp objectForKey:@"key"]);
+                      });
+                  } else {
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          completionBlock(NO, nil);
+                      });
+                  }
+              } option:opt];
 }
 
 @end

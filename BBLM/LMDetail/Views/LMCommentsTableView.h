@@ -13,4 +13,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame andShowId:(NSInteger)showId;
 
+- (void)addNewComment:(LMShowCommentDetail *)comment;
+
 @end

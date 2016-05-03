@@ -15,6 +15,8 @@
 @property (nonatomic) BOOL isMine;
 @property (nonatomic, strong) LMUserDetailModel *user;
 @property (nonatomic, copy, readonly) NSString *publishDateDesc;
-@property (nonatomic) NSString *publishDate;
+@property (nonatomic) long publishDate;
+
+- (id)initWithJson:(id)json;
 
 @end

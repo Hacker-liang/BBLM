@@ -17,6 +17,7 @@
 #import "UserAlbumOverViewTableViewController.h"
 #import "UploadUserAlbumViewController.h"
 #import "LMLoginViewController.h"
+#import "UploadUserVideoViewController.h"
 
 @interface LMRootViewController () <LMTabBarDelegate, QupaiSDKDelegate>
 
@@ -93,7 +94,7 @@
 - (void)publishVideo
 {
     [self closePublishView];
-    UIViewController *ctl = [self.qupaiSDK createRecordViewControllerWithMinDuration:10 maxDuration:60 bitRate:600*1200];
+    UIViewController *ctl = [self.qupaiSDK createRecordViewControllerWithMinDuration:2 maxDuration:10 bitRate:600*1200];
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:ctl];
     navigation.navigationBarHidden = YES;
     
@@ -164,12 +165,10 @@
 {
     NSLog(@"Qupai SDK compelete %@",videoPath);
     [self dismissViewControllerAnimated:YES completion:nil];
-    if (videoPath) {
-        UISaveVideoAtPathToSavedPhotosAlbum(videoPath, nil, nil, nil);
-    }
-    if (thumbnailPath) {
-        UIImageWriteToSavedPhotosAlbum([UIImage imageWithContentsOfFile:thumbnailPath], nil, nil, nil);
-    }
+    UploadUserVideoViewController *ctl = [[UploadUserVideoViewController alloc] init];
+    ctl.selectedVideoPath = videoPath;
+    ctl.selectedVideoCoverPath = thumbnailPath;
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
 
 }
 

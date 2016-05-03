@@ -14,14 +14,21 @@
 {
     self = [super init];
     if (self) {
-        _user = [[LMUserDetailModel alloc] init];
-//        _content = @"好棒啊！继续努力";
-        _isMine = YES;
-        _content = @"色调分离收快递房间少的可怜房间收快递房间收到了开发建设都看到了";
-
-        _publishDateDesc = @"2分钟前";
     }
     return self;
 }
 
+- (id)initWithJson:(id)json
+{
+    if (self = [super init]) {
+        _commentId = [[json objectForKey:@"id"] integerValue];
+        _content = [json objectForKey:@"content"];
+        _user = [[LMUserDetailModel alloc] init];
+        _user.userId = [[json objectForKey:@"fromId"] integerValue];
+        _user.nickname = [json objectForKey:@"nickname"];
+        _user.avatar = [json objectForKey:@"portrait"];
+        _isMine = _user.userId == [LMAccountManager shareInstance].account.userId;
+    }
+    return self;
+}
 @end

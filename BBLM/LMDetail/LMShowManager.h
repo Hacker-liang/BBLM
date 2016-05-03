@@ -81,5 +81,14 @@
  */
 + (void)asyncPublishImageWithImageList:(NSArray <UploadShowImageModel *> *)imageList desc:(NSString *)desc completionBlock:(void (^) (BOOL isSuccess, NSInteger showId))completion;
 
+/**
+ *  发布一个视频 show
+ *
+ *  @param coverKey   视频封面图的 key
+ *  @param videoKey   视频 key
+ *  @param desc       视频描述
+ *  @param completion 回调
+ */
++ (void)asyncPublishVidwoWithCoverImageKey:(NSString *)coverKey videoKey:(NSString *)videoKey desc:(NSString *)desc completionBlock:(void (^) (BOOL isSuccess, NSInteger showId))completion;
 
 @end
