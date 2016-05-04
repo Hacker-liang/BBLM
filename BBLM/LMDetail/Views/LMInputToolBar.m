@@ -142,7 +142,7 @@
 }
 
 - (UIImage *)backSpaceButtonImageForEmojiKeyboardView:(AGEmojiKeyboardView *)emojiKeyboardView {
-    UIImage *img = [UIImage imageNamed:@"icon_input_switchEmoji"];
+    UIImage *img = [UIImage imageNamed:@"icon_input_emoji_delete"];
     return img;
 }
 
