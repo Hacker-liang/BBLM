@@ -13,6 +13,7 @@
 #import "LMShowTableViewCell.h"
 #import "LMShowManager.h"
 #import "LMShowDetailViewController.h"
+#import "PopoverView.h"
 
 #define pageCount   10
 
@@ -160,6 +161,11 @@
     cell.showDetail = [_dataSource objectAtIndex:indexPath.section];
     [cell.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
     cell.playVideoButton.tag = indexPath.section;
+    cell.actionButton.tag = indexPath.section;
+    
+    if (_isMyselfInfo) {
+        
+    }
     return cell;
 }
 

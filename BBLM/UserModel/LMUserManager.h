@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LMShowCommentDetail.h"
 
 @interface LMUserManager : NSObject
 
@@ -25,5 +26,16 @@
  *  @param completion 
  */
 + (void)asyncLoadUserRankInfoWithUserId:(NSInteger)userId completionBlock:(void (^) (BOOL isSuccess, NSDictionary *rankInfo))completion;
+
+/**
+ *  加载用户的被评论列表
+ *
+ *  @param userId
+ *  @param completion
+ */
++ (void)asyncLoadUserCommentsListInfoWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)size completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList))completion;
+
+
+
 
 @end

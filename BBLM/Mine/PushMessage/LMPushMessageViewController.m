@@ -9,10 +9,14 @@
 #import "LMPushMessageViewController.h"
 #import "LMPushMessageTableViewCell.h"
 #import "LMPushMessageDetailTableViewCell.h"
+#import "MyCommentsListViewController.h"
 
 @interface LMPushMessageViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) NSInteger commentUnreadCnt;
+@property (nonatomic) NSInteger zanUnreadCnt;
+@property (nonatomic) NSInteger lmbbUnreadCnt;
 
 @end
 
@@ -28,7 +32,27 @@
     [_tableView registerNib:[UINib nibWithNibName:@"LMPushMessageTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [_tableView registerNib:[UINib nibWithNibName:@"LMPushMessageDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellDetail"];
     self.navigationItem.title = @"消息";
+    
+    [self loadUnreadMessageCount];
 
+}
+
+- (void)loadUnreadMessageCount
+{
+    NSString *url = [NSString stringWithFormat:@"%@message/count", BASE_API];
+    [LMNetworking GET:url parameters:@{@"memberId": [NSNumber numberWithInteger: [LMAccountManager shareInstance].account.userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            _commentUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"commentUnread"] integerValue];
+            _zanUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"praiseUnread"] integerValue];
+            _lmbbUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"praiseUnread"] integerValue];
+            [self.tableView reloadData];
+        } else {
+            
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,6 +85,9 @@
         LMPushMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.contentLabel.text = @"评论";
+        if (_commentUnreadCnt>0) {
+            cell.unReadCntLabel.text = [NSString stringWithFormat:@"%ld", _commentUnreadCnt];
+        }
         cell.headerImageView.image = [UIImage imageNamed:@"icon_pushMessage_comment"];
         return cell;
     }
@@ -68,6 +95,9 @@
         LMPushMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.contentLabel.text = @"赞我的";
+        if (_zanUnreadCnt>0) {
+            cell.unReadCntLabel.text = [NSString stringWithFormat:@"%ld", _zanUnreadCnt];
+        }
         cell.headerImageView.image = [UIImage imageNamed:@"icon_pushMessage_zan"];
         return cell;
     }
@@ -85,6 +115,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        MyCommentsListViewController *ctl = [[MyCommentsListViewController alloc] init];
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "LMShowCommentDetail.h"
+#import "LMShowDetailModel.h"
 
 @implementation LMShowCommentDetail
 
@@ -28,6 +29,11 @@
         _user.nickname = [json objectForKey:@"nickname"];
         _user.avatar = [json objectForKey:@"portrait"];
         _isMine = _user.userId == [LMAccountManager shareInstance].account.userId;
+        
+        _show = [[LMShowDetailModel alloc] init];
+        _show.itemId = [[json objectForKey:@"id"] integerValue];
+        _show.imageList = [[json objectForKey:@"imgs"] componentsSeparatedByString:@","];
+
     }
     return self;
 }

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class LMShowDetailModel;
+
 @interface LMShowCommentDetail : NSObject
 
 @property (nonatomic) NSInteger commentId;
@@ -16,6 +18,8 @@
 @property (nonatomic, strong) LMUserDetailModel *user;
 @property (nonatomic, copy, readonly) NSString *publishDateDesc;
 @property (nonatomic) long publishDate;
+
+@property (nonatomic) LMShowDetailModel *show;
 
 - (id)initWithJson:(id)json;
 

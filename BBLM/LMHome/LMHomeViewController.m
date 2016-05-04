@@ -121,9 +121,21 @@
 
 - (void)gotoPushMessage:(UIButton *)sender
 {
-    LMPushMessageViewController *ctl = [[LMPushMessageViewController alloc] init];
-    ctl.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:ctl animated:YES];
+    if (![[LMAccountManager shareInstance] isLogin]) {
+        LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin, NSString *errorStr) {
+            if (isLogin) {
+                LMPushMessageViewController *ctl = [[LMPushMessageViewController alloc] init];
+                ctl.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:ctl animated:YES];
+            }
+        }];
+        [self presentViewController:ctl animated:YES completion:nil];
+    } else {
+        LMPushMessageViewController *ctl = [[LMPushMessageViewController alloc] init];
+        ctl.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:ctl animated:YES];
+
+    }
 }
 
 - (void)gotoMine:(UIButton *)sender

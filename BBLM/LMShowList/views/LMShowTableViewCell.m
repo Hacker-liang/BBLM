@@ -7,6 +7,7 @@
 //
 
 #import "LMShowTableViewCell.h"
+#import "PopoverView.h"
 
 @interface LMShowTableViewCell ()
 
@@ -22,6 +23,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -59,7 +62,11 @@
     
     [_commentButton setImage:[UIImage imageNamed:@"icon_showList_comment"] forState:UIControlStateNormal];
     [_commentButton setTitle:[NSString stringWithFormat:@"%ld", _showDetail.commentCount] forState:UIControlStateNormal];
+    
+    
+    
 }
+
 
 
 

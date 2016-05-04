@@ -221,7 +221,7 @@
             maxValue = [[dic.allValues firstObject] integerValue];
         }
         if ([[dic.allValues firstObject] integerValue] > 0) {
-//            isNotRank = NO;
+            isNotRank = NO;
         }
     }
     
