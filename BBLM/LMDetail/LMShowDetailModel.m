@@ -30,11 +30,16 @@
         }
         _heat = [[json objectForKey:@"heat"] integerValue];
         _commentCount = [[json objectForKey:@"commentCount"] integerValue];
-        _publishDateDesc = [json objectForKey:@"date"];
+        _publishDateDesc = [json objectForKey:@"commitdate"];
         _showDesc = [json objectForKey:@"words"];
         _zanCount = [[json objectForKey:@"praiseCount"] integerValue];
         
-        
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *dic in [json objectForKey:@"praiseList"]) {
+            LMUserDetailModel *user = [[LMUserDetailModel alloc] initWithJson:dic];
+            [tempArray addObject:user];
+        }
+        _zanUserList = tempArray;
         _publishUser = [[LMUserDetailModel alloc] init];
         _publishUser.userId = [[json objectForKey:@"memberId"] integerValue];
         _publishUser.nickname = [json objectForKey:@"nickname"];

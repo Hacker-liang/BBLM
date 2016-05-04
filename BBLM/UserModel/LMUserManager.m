@@ -32,4 +32,19 @@
     }];
 }
 
++ (void)asyncLoadUserRankInfoWithUserId:(NSInteger)userId completionBlock:(void (^) (BOOL isSuccess, NSDictionary *rankInfo))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@barbie/rank", BASE_API];
+    [LMNetworking GET:url parameters:@{@"memberId": [NSNumber numberWithInteger:userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            completion(YES, [responseObject objectForKey:@"data"]);
+        } else {
+            completion(NO, nil);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO, nil);
+        
+    }];
+}
 @end

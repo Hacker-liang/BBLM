@@ -30,7 +30,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, copy) NSString *xingzuo;
 @property (nonatomic) NSInteger babyAge;
 
-@property (nonatomic, copy) NSString *s_avatar;
 @property (nonatomic, strong) NSArray <NSString *> *userTags;
 
 @property (nonatomic) NSInteger fansCnt;

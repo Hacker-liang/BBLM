@@ -22,7 +22,11 @@
 - (id)initWithJson:(id)json
 {
     if (self = [super init]) {
-        _userId = [[json objectForKey:@"id"] integerValue];
+        if ([json objectForKey:@"memberId"]) {
+            _userId = [[json objectForKey:@"memberId"] integerValue];
+        } else {
+            _userId = [[json objectForKey:@"id"] integerValue];
+        }
         _nickname = [json objectForKey:@"nickname"];
         _backgroundImage = [json objectForKey:@"background"];
         _locationCity = [json objectForKey:@"city"];

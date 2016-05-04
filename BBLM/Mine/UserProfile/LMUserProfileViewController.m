@@ -76,6 +76,11 @@
             [_tableView reloadData];
         }
     }];
+    [LMUserManager asyncLoadUserRankInfoWithUserId:_userId completionBlock:^(BOOL isSuccess, NSDictionary *rankInfo) {
+        if (isSuccess) {
+            headerView.userRankInfo = rankInfo;
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated

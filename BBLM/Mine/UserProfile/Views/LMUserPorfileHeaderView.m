@@ -20,8 +20,11 @@
 @property (nonatomic, strong) UILabel *followerCntLabel;
 @property (nonatomic, strong) UILabel *shareCntLabel;
 
+@property (nonatomic, strong) UILabel *noRankLabel;
+
 @property (nonatomic, strong) UIScrollView *tagBgView;
 @property (nonatomic, strong) UIView *conentBgView;
+@property (nonatomic, strong) TEABarChart *userRankChart;
 
 @property (nonatomic) BOOL isMyselfInfo;   //是否是我自己的信息
 
@@ -43,21 +46,29 @@
         rankingBgView.backgroundColor = APP_THEME_COLOR;
         [self addSubview:rankingBgView];
 
-        TEABarChart *secondBarChart = [[TEABarChart alloc] initWithFrame:CGRectMake(40, 10, kWindowWidth-80, 165)];
-        secondBarChart.barColor = [UIColor whiteColor];
-        secondBarChart.backgroundColor = [UIColor clearColor];
-        secondBarChart.barSpacing = (kWindowWidth-80-12*7)/6;
-        secondBarChart.data = @[@2, @7, @1, @8, @2, @8, @8];
-        secondBarChart.xLabels = @[@"一", @"二", @"三", @"四", @"五", @"六", @"日"];
-        secondBarChart.textColor = [UIColor whiteColor];
-        secondBarChart.cornerRadius = 5;
-        [rankingBgView addSubview:secondBarChart];
-    
+        if (kWindowWidth==320) {
+            _userRankChart = [[TEABarChart alloc] initWithFrame:CGRectMake(12, 10, kWindowWidth-24, 165)];
+        } else {
+            _userRankChart = [[TEABarChart alloc] initWithFrame:CGRectMake(20, 10, kWindowWidth-40, 165)];
+
+        }
+        _userRankChart.barColor = [UIColor whiteColor];
+        _userRankChart.backgroundColor = [UIColor clearColor];
+        _userRankChart.textColor = [UIColor whiteColor];
+        _userRankChart.cornerRadius = 5;
+        [rankingBgView addSubview:_userRankChart];
+        
+        _noRankLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, _userRankChart.center.y-30, kWindowWidth-24, 20)];
+        _noRankLabel.textAlignment = NSTextAlignmentCenter;
+        _noRankLabel.textColor = [UIColor whiteColor];
+        _noRankLabel.font = [UIFont systemFontOfSize:14.0];
+        _noRankLabel.text = @"您近周的辣度为0,要加油了!";
+        [rankingBgView addSubview:_noRankLabel];
+        
         _rankingLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 190, kWindowWidth-24, 20)];
         _rankingLabel.textAlignment = NSTextAlignmentRight;
         _rankingLabel.textColor = [UIColor whiteColor];
         _rankingLabel.font = [UIFont systemFontOfSize:13.0];
-        _rankingLabel.text = @"本周您的辣妈排榜在第25名";
         [rankingBgView addSubview:_rankingLabel];
         
         _conentBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 210+64, kWindowWidth, 140)];
@@ -145,7 +156,8 @@
         [_floowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_conentBgView addSubview:_floowButton];
         
-        self.userInfo = [[LMUserDetailModel alloc] init];
+//        _userRankChart.data = @[@3, @3, @3, @1, @5, @9, @2];
+//        _userRankChart.xLabels = @[@"上周一", @"周二", @"周三", @"周四", @"周五", @"上周六", @"上周日"];
         
     }
     return self;
@@ -193,6 +205,31 @@
         offsetX += (width+30);
     }
     _tagBgView.contentSize = CGSizeMake(offsetX, 25);
+}
+
+- (void)setUserRankInfo:(NSDictionary *)userRankInfo
+{
+    _userRankInfo = userRankInfo;
+    NSMutableArray *labels = [[NSMutableArray alloc] init];
+    NSMutableArray *tempvalues = [[NSMutableArray alloc] init];
+    NSInteger maxValue = 0;
+    BOOL isNotRank = YES;
+    for (NSDictionary *dic in [_userRankInfo objectForKey:@"countList"]) {
+        [labels addObject:[dic.allKeys firstObject]];
+        [tempvalues addObject:[dic.allValues firstObject]];
+        if ([[dic.allValues firstObject] integerValue] > maxValue) {
+            maxValue = [[dic.allValues firstObject] integerValue];
+        }
+        if ([[dic.allValues firstObject] integerValue] > 0) {
+//            isNotRank = NO;
+        }
+    }
+    
+    _userRankChart.data = tempvalues;
+    _userRankChart.max = maxValue+10;
+    _userRankChart.xLabels = labels;
+    _rankingLabel.text = [NSString stringWithFormat:@"本周您的辣妈排榜在第%ld名", [[_userRankInfo objectForKey:@"rank"] integerValue]];
+    _noRankLabel.hidden = !isNotRank;
 }
 
 

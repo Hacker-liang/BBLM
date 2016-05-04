@@ -80,7 +80,7 @@
 {
     _showDetail = showDetail;
     _zanUserList = _showDetail.zanUserList;
-    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.s_avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
     [_contentImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.coverImage] placeholderImage:nil];
     
     NSMutableAttributedString *titleAttr = [[NSMutableAttributedString alloc] init];
