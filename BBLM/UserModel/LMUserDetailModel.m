@@ -27,7 +27,9 @@
         _backgroundImage = [json objectForKey:@"background"];
         _locationCity = [json objectForKey:@"city"];
         _xingzuo = [json objectForKey:@"constellation"];
-        _userTags = [[json objectForKey:@"labels"] componentsSeparatedByString:@","];
+        if ([[json objectForKey:@"labels"] length]) {
+            _userTags = [[json objectForKey:@"labels"] componentsSeparatedByString:@","];
+        }
         _tel = [json objectForKey:@"mobile"];
         _avatar = [json objectForKey:@"portrait"];
         _publishCnt = [[json objectForKey:@"publish"] integerValue];
