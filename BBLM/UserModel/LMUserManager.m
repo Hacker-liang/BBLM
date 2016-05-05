@@ -14,7 +14,13 @@
 + (void)asyncLoadUserInfoWithUserId:(NSInteger)userId completionBlock:(void (^) (BOOL isSuccess, LMUserDetailModel *userInfo))completion
 {
     NSString *url = [NSString stringWithFormat:@"%@barbie/info", BASE_API];
-    [LMNetworking GET:url parameters:@{@"memberId": [NSNumber numberWithInteger:userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    if ([[LMAccountManager shareInstance] isLogin]) {
+        [params setObject:[NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId] forKey:@"fromId"];
+    }
+    [params setObject:[NSNumber numberWithInteger:userId] forKey:@"memberId"];
+
+    [LMNetworking GET:url parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             NSDictionary *userInfoDic = [responseObject objectForKey:@"data"];
             LMUserDetailModel *user = [[LMUserDetailModel alloc] initWithJson: userInfoDic];
@@ -95,5 +101,66 @@
                                            completion(NO, nil);
                                            
                                        }];
+}
+
+
++ (void)asyncDeleteUserShowWithUserId:(NSInteger)userId showId:(NSInteger)showId completionBlock:(void (^) (BOOL isSuccess))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@dynamic/delete", BASE_API];
+    [LMNetworking GET:url parameters:@{@"memberId": [NSNumber numberWithInteger:userId],
+                                       @"dynamicId": [NSNumber numberWithInteger:showId],
+                                       } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                                           if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+                                               completion(YES);
+                                           } else {
+                                               completion(NO);
+                                           }
+                                           
+                                       } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+                                           completion(NO);
+                                           
+                                       }];
+
+}
+
++ (void)asyncFocuseUserWithUserId:(NSInteger)userId completionBlock:(void (^)(BOOL))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@barbie/focus", BASE_API];
+    [LMNetworking GET:url parameters:@{@"targetId": [NSNumber numberWithInteger:userId],
+                                       @"memberId": [NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId],
+                                    
+                                       } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                                           if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+                                               completion(YES);
+                                           } else {
+                                               completion(NO);
+                                           }
+                                           
+                                       } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+                                           completion(NO);
+                                           
+                                       }];
+
+}
+
++ (void)asyncCancelFocuseUserWithUserId:(NSInteger)userId completionBlock:(void (^)(BOOL))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@barbie/focus/cancel", BASE_API];
+    [LMNetworking GET:url parameters:@{@"targetId": [NSNumber numberWithInteger:userId],
+                                       @"memberId": [NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId],
+                                       
+                                       } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                                           if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+                                               completion(YES);
+                                           } else {
+                                               completion(NO);
+                                           }
+                                           
+                                       } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+                                           completion(NO);
+                                           
+                                       }];
+
+
 }
 @end

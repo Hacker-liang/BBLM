@@ -45,6 +45,7 @@
         _publishUser.userId = [[json objectForKey:@"memberId"] integerValue];
         _publishUser.nickname = [json objectForKey:@"nickname"];
         _publishUser.avatar = [json objectForKey:@"portrait"];
+        _publishUser.hasFocused = [[json objectForKey:@"hasFocused"] boolValue];
         
         _firstComment = [[LMShowCommentDetail alloc] init];
         _firstComment.commentId = [[json objectForKey:@"firstCommentId"] integerValue];

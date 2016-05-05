@@ -46,6 +46,33 @@
  */
 + (void)asyncLoadUserZanListInfoWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)size completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowZanDetail *> *zanList))completion;
 
+/**
+ *  删除用户的一条 show
+ *
+ *  @param userId
+ *  @param showId
+ *  @param completion
+ */
++ (void)asyncDeleteUserShowWithUserId:(NSInteger)userId showId:(NSInteger)showId completionBlock:(void (^) (BOOL isSuccess))completion;
+
+/**
+ *  关注一个人
+ *
+ *  @param userId
+ *  @param completion
+ */
++ (void)asyncFocuseUserWithUserId:(NSInteger)userId completionBlock:(void (^) (BOOL isSuccess))completion;
+
+/**
+ *  取消关注一个人
+ *
+ *  @param userId
+ *  @param completion 
+ */
++ (void)asyncCancelFocuseUserWithUserId:(NSInteger)userId completionBlock:(void (^) (BOOL isSuccess))completion;
+
+
+
 
 
 @end

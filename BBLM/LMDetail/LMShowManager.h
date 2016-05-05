@@ -41,6 +41,23 @@
 + (void)asyncLoadUserCollectionShowWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowDetailModel *>* showList))completion;
 
 /**
+ *  收藏一条动态
+ *
+ *  @param showId
+ *  @param completion
+ */
++ (void)asyncCollectionShowWithItemId:(NSInteger)showId completionBlock:(void (^) (BOOL isSuccess))completion;
+
+/**
+ *  取消收藏一条动态
+ *
+ *  @param showId
+ *  @param completion 
+ */
++ (void)asyncCancelCollectionShowWithItemId:(NSInteger)showId completionBlock:(void (^) (BOOL isSuccess))completion;
+
+
+/**
  *  加载用户的 show 列表
  *
  *  @param userId

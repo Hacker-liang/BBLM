@@ -18,5 +18,6 @@
 @property (nonatomic, strong) UIImageView *contentImageView;
 @property (nonatomic, strong) UIButton *playVideoButton;
 @property (nonatomic, strong) UIButton *zanButton;
+@property (nonatomic, strong) UIButton *headerImageButton;
 
 @end

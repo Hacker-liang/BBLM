@@ -16,7 +16,7 @@
 
 #define pageCount   10
 
-@interface LMUserProfileViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface LMUserProfileViewController ()<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<LMShowDetailModel *> *dataSource;
@@ -36,7 +36,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    _isMyselfInfo = [LMAccountManager shareInstance].account.userId == _userInfo.userId;
+    _isMyselfInfo = [LMAccountManager shareInstance].account.userId == _userId;
 
     _dataSource = [[NSMutableArray alloc] init];
     _tableView.dataSource = self;
@@ -61,7 +61,7 @@
     
     [self.view addSubview:naviBar];
     
-    [LMUserManager asyncLoadUserInfoWithUserId:[LMAccountManager shareInstance].account.userId completionBlock:^(BOOL isSuccess, LMUserDetailModel *userInfo) {
+    [LMUserManager asyncLoadUserInfoWithUserId:_userId completionBlock:^(BOOL isSuccess, LMUserDetailModel *userInfo) {
         if (isSuccess) {
             _userInfo = userInfo;
             _titleLabel.text = _userInfo.nickname;
@@ -118,6 +118,33 @@
     [self.playerController play];
 }
 
+- (void)deleteShowAction:(UIButton *)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定删除该条动态？" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView showAlertViewWithBlock:^(NSInteger buttonIndex) {
+        if (buttonIndex == 1) {
+            [LMUserManager asyncDeleteUserShowWithUserId:_userId showId:[_dataSource objectAtIndex:sender.tag].itemId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                    [_dataSource removeObjectAtIndex:sender.tag];
+                    [_tableView deleteSections:[NSIndexSet indexSetWithIndex:sender.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"删除失败"];
+                }
+            }];
+        }
+    }];
+}
+
+- (void)showMoreAction:(UIButton *)sender
+{
+    LMShowDetailModel *show = [_dataSource objectAtIndex:sender.tag];
+    NSString *colletcionStr = show.hasCollection ? @"取消收藏":@"收藏";
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:colletcionStr, @"分享", nil];
+    sheet.tintColor = APP_THEME_COLOR;
+    sheet.tag = sender.tag;
+    [sheet showInView:self.view];
+}
 
 #pragma mark - 懒加载代码
 - (MPMoviePlayerController *)playerController
@@ -163,7 +190,11 @@
     cell.actionButton.tag = indexPath.section;
     
     if (_isMyselfInfo) {
-        
+        [cell.actionButton setImage:[UIImage imageNamed:@"icon_show_delete"] forState:UIControlStateNormal];
+        [cell.actionButton addTarget:self action:@selector(deleteShowAction:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
+        [cell.actionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return cell;
 }
@@ -180,6 +211,58 @@
 {
     if (scrollView.contentOffset.y <= -64 && [scrollView isEqual:_tableView]) {
         [scrollView setContentOffset:CGPointMake(0, -64)];
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    SEL selector = NSSelectorFromString(@"_alertController");
+    if ([actionSheet respondsToSelector:selector])//ios8
+    {
+        UIAlertController *alertController = [actionSheet valueForKey:@"_alertController"];
+        if ([alertController isKindOfClass:[UIAlertController class]])
+        {
+            alertController.view.tintColor = APP_THEME_COLOR;
+        }
+    } else { //ios7
+        for( UIView * subView in actionSheet.subviews )
+        {
+            if( [subView isKindOfClass:[UIButton class]] )
+            {
+                UIButton * btn = (UIButton*)subView;
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateHighlighted];
+
+            }
+        }
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    LMShowDetailModel *show = [_dataSource objectAtIndex:actionSheet.tag];
+    if (buttonIndex == 0) {
+        if (show.hasCollection) {
+            [LMShowManager asyncCancelCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    [SVProgressHUD showSuccessWithStatus:@"取消收藏成功"];
+                    show.hasCollection = NO;
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"取消收藏失败"];
+                }
+            }];
+        } else {
+            [LMShowManager asyncCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+                    show.hasCollection = YES;
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"收藏失败"];
+                }
+            }];
+        }
     }
 }
 

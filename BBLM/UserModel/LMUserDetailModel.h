@@ -37,6 +37,8 @@ typedef enum : NSUInteger {
 @property (nonatomic) NSInteger shareCnt;
 @property (nonatomic) NSInteger publishCnt;
 
+@property (nonatomic) BOOL hasFocused;
+
 - (id)initWithJson:(id)json;
 
 @end

@@ -47,6 +47,7 @@
         } else {
             _gender = kUnknow;
         }
+        _hasFocused = [[json objectForKey:@"hasFocused"] boolValue];
     }
     return self;
 }

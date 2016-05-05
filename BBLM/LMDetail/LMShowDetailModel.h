@@ -21,7 +21,9 @@
 @property (nonatomic, copy) NSString *videoUrl;
 @property (nonatomic, strong) NSArray *imageList;
 @property (nonatomic, readonly) BOOL isVideo;
-@property (nonatomic) BOOL hasZan;
+@property (nonatomic) BOOL hasZan;    //是否已经点赞了
+@property (nonatomic) BOOL hasCollection;  //是否已经收藏了
+
 @property (nonatomic) NSInteger zanCount;
 @property (nonatomic) NSInteger commentCount;
 @property (nonatomic, strong) NSArray *zanUserList;

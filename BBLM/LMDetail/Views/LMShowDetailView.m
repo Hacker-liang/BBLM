@@ -12,7 +12,6 @@
 
 @interface LMShowDetailView()
 
-@property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UILabel *nicknameLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) NSArray<LMUserDetailModel *> *zanUserList;
@@ -33,14 +32,14 @@
         self.layer.borderColor = COLOR_LINE.CGColor;
         self.layer.borderWidth = 0.5;
         CGFloat width = self.bounds.size.width;
-        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 35, 35)];
-        [self addSubview:_headerImageView];
-        _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 8, width, 20)];
+        _headerImageButton = [[UIButton alloc] initWithFrame:CGRectMake(8, 8, 35, 35)];
+        [self addSubview:_headerImageButton];
+        _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageButton.frame) + 10, 8, width, 20)];
         _nicknameLabel.font = [UIFont systemFontOfSize:15.0];
         _nicknameLabel.textColor = COLOR_TEXT_I;
         [self addSubview:_nicknameLabel];
         
-        _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 30, width, 20)];
+        _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageButton.frame) + 10, 30, width, 20)];
         _dateLabel.font = [UIFont systemFontOfSize:13.0];
         _dateLabel.textColor = COLOR_TEXT_II;
         [self addSubview:_dateLabel];
@@ -80,7 +79,7 @@
 {
     _showDetail = showDetail;
     _zanUserList = _showDetail.zanUserList;
-    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    [_headerImageButton sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.avatar] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default"]];
     [_contentImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.coverImage] placeholderImage:nil];
     
     NSMutableAttributedString *titleAttr = [[NSMutableAttributedString alloc] init];

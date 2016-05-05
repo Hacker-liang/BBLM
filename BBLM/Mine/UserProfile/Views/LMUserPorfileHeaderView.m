@@ -8,6 +8,7 @@
 
 #import "LMUserPorfileHeaderView.h"
 #import "TEAChart.h"
+#import "LMUserManager.h"
 
 @interface LMUserPorfileHeaderView ()
 
@@ -62,7 +63,6 @@
         _noRankLabel.textAlignment = NSTextAlignmentCenter;
         _noRankLabel.textColor = [UIColor whiteColor];
         _noRankLabel.font = [UIFont systemFontOfSize:14.0];
-        _noRankLabel.text = @"您近周的辣度为0,要加油了!";
         [rankingBgView addSubview:_noRankLabel];
         
         _rankingLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 190, kWindowWidth-24, 20)];
@@ -152,12 +152,11 @@
         _floowButton.layer.cornerRadius = 3.0;
         _floowButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
         [_floowButton setTitle:@"关注" forState:UIControlStateNormal];
+        [_floowButton setTitle:@"已关注" forState:UIControlStateSelected];
+        [_floowButton addTarget:self action:@selector(focuseUserAction:) forControlEvents:UIControlEventTouchUpInside];
         [_floowButton setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateNormal];
         [_floowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_conentBgView addSubview:_floowButton];
-        
-//        _userRankChart.data = @[@3, @3, @3, @1, @5, @9, @2];
-//        _userRankChart.xLabels = @[@"上周一", @"周二", @"周三", @"周四", @"周五", @"上周六", @"上周日"];
         
     }
     return self;
@@ -168,7 +167,15 @@
     _userInfo = userInfo;
     _isMyselfInfo = [LMAccountManager shareInstance].account.userId == _userInfo.userId;
     
+    if (_isMyselfInfo) {
+        _noRankLabel.text = @"您近周的辣度为0,要加油了!";
+    } else {
+        _noRankLabel.text = @"ta近周的辣度为0";
+
+    }
+    
     _floowButton.hidden = _isMyselfInfo;
+    _floowButton.selected = _userInfo.hasFocused;
     [_rankButton setTitle:[NSString stringWithFormat:@"%ld", _userInfo.heat] forState:UIControlStateNormal];
     _shareCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.shareCnt];
     _publishCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.publishCnt];
@@ -228,9 +235,38 @@
     _userRankChart.data = tempvalues;
     _userRankChart.max = maxValue+10;
     _userRankChart.xLabels = labels;
-    _rankingLabel.text = [NSString stringWithFormat:@"本周您的辣妈排榜在第%ld名", [[_userRankInfo objectForKey:@"rank"] integerValue]];
+    if (_isMyselfInfo) {
+        _rankingLabel.text = [NSString stringWithFormat:@"本周您的辣妈排榜在第%ld名", [[_userRankInfo objectForKey:@"rank"] integerValue]];
+    } else {
+        _rankingLabel.text = [NSString stringWithFormat:@"本周ta的辣妈排榜在第%ld名", [[_userRankInfo objectForKey:@"rank"] integerValue]];
+
+    }
     _noRankLabel.hidden = !isNotRank;
 }
 
+- (void)focuseUserAction:(UIButton *)sender
+{
+    if (!sender.selected) {
+        [LMUserManager asyncFocuseUserWithUserId:_userInfo.userId completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                [SVProgressHUD showSuccessWithStatus:@"关注成功"];
+                _userInfo.hasFocused = YES;
+                sender.selected = !sender.selected;
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"关注失败"];
+            }
+        }];
+    } else {
+        [LMUserManager asyncCancelFocuseUserWithUserId:_userInfo.userId completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                [SVProgressHUD showSuccessWithStatus:@"取消关注成功"];
+                _userInfo.hasFocused = NO;
+                sender.selected = !sender.selected;
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"取消关注失败"];
+            }
+        }];
+    }
+}
 
 @end

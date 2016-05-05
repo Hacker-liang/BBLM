@@ -22,6 +22,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _coverImageView.backgroundColor = APP_PAGE_COLOR;
+    _coverImageView.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

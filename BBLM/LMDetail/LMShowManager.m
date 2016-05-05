@@ -93,6 +93,48 @@
     }];
 }
 
++ (void)asyncCollectionShowWithItemId:(NSInteger)showId completionBlock:(void (^)(BOOL))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@dynamic/collect", BASE_API];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:[NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId] forKey:@"memberId"];
+    [dic setObject:[NSNumber numberWithInteger:showId] forKey:@"dynamicId"];
+    
+    [LMNetworking GET:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            completion(YES);
+            
+        } else {
+            completion(NO);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO);
+        
+    }];
+}
+
++ (void)asyncCancelCollectionShowWithItemId:(NSInteger)showId completionBlock:(void (^)(BOOL))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@dynamic/collect/cancel", BASE_API];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:[NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId] forKey:@"memberId"];
+    [dic setObject:[NSNumber numberWithInteger:showId] forKey:@"dynamicId"];
+    
+    [LMNetworking GET:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            completion(YES);
+            
+        } else {
+            completion(NO);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO);
+        
+    }];
+}
+
 + (void)asyncLoadUserShowWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowDetailModel *>* showList))completion
 {
     NSString *url = [NSString stringWithFormat:@"%@dynamic/barbie", BASE_API];
