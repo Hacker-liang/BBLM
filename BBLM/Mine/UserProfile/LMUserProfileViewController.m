@@ -196,6 +196,7 @@
         [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
         [cell.actionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
     return cell;
 }
 

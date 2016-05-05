@@ -25,6 +25,7 @@
     [super awakeFromNib];
     _coverImageView.backgroundColor = APP_PAGE_COLOR;
     _coverImageView.clipsToBounds = YES;
+    _commentButton.userInteractionEnabled = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

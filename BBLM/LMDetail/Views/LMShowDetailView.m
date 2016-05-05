@@ -9,6 +9,7 @@
 #import "LMShowDetailView.h"
 #import "LMUserProfileViewController.h"
 #import "LMShowManager.h"
+#import "AutoSlideScrollView.h"
 
 @interface LMShowDetailView()
 
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) UILabel *descLabel;
 @property (nonatomic, strong) UIView *zanUserBgView;
 @property (nonatomic, strong) UIButton *shareButton;
+@property (nonatomic, strong) AutoSlideScrollView *galleryView;
+
 
 @end
 
@@ -47,7 +50,14 @@
         _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, 300)];
         _contentImageView.backgroundColor = APP_PAGE_COLOR;
         _contentImageView.userInteractionEnabled = YES;
+        _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _contentImageView.clipsToBounds = YES;
         [self addSubview:_contentImageView];
+        
+        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 56, width, 300)];
+        _galleryView.backgroundColor = APP_PAGE_COLOR;
+        [self addSubview:_galleryView];
+        _galleryView.hidden = YES;
         
         _playVideoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         _playVideoButton.center = CGPointMake(_contentImageView.bounds.size.width/2, _contentImageView.bounds.size.height/2);
@@ -80,7 +90,32 @@
     _showDetail = showDetail;
     _zanUserList = _showDetail.zanUserList;
     [_headerImageButton sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.avatar] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default"]];
-    [_contentImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.coverImage] placeholderImage:nil];
+    
+    if (_showDetail.isVideo) {
+        [_contentImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.coverImage] placeholderImage:nil];
+        _contentImageView.hidden = NO;
+        _galleryView.hidden = YES;
+    } else {
+        _contentImageView.hidden = YES;
+        _galleryView.hidden = NO;
+        _galleryView.totalPagesCount = ^NSInteger(void){
+            return showDetail.imageList.count;
+        };
+        
+        NSMutableArray *viewsArray = [[NSMutableArray alloc] init];
+        for (NSString *image in showDetail.imageList) {
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.galleryView.bounds.size.width, self.galleryView.bounds.size.height)];
+            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.clipsToBounds = YES;
+            [imageView sd_setImageWithURL:[NSURL URLWithString:image] placeholderImage: nil];
+            [viewsArray addObject:imageView];
+        }
+        
+        _galleryView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
+            return viewsArray[pageIndex];
+        };
+
+    }
     
     NSMutableAttributedString *titleAttr = [[NSMutableAttributedString alloc] init];
     

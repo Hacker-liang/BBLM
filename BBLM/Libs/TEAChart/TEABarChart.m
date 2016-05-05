@@ -126,6 +126,9 @@
         if (barHeight > barMaxHeight) {
             barHeight = barMaxHeight;
         }
+        if (barHeight < 0) {
+            barHeight = 0;
+        }
         if (self.roundToPixel) {
             barHeight = (int)barHeight;
         }
