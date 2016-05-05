@@ -145,16 +145,15 @@
 		D9FDE1091CD8C1CE00AA016B /* UserShowCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9FDE1071CD8C1CE00AA016B /* UserShowCollectionViewController.xib */; };
 		D9FDE10D1CD8C33300AA016B /* LMSimpleShowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE10B1CD8C33300AA016B /* LMSimpleShowTableViewCell.m */; };
 		D9FDE10E1CD8C33300AA016B /* LMSimpleShowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9FDE10C1CD8C33300AA016B /* LMSimpleShowTableViewCell.xib */; };
-		D9FDE1121CD9CAAB00AA016B /* NirKxMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE1111CD9CAAB00AA016B /* NirKxMenu.m */; };
-		D9FDE1181CD9D2F900AA016B /* UPStackMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE1151CD9D2F900AA016B /* UPStackMenu.m */; };
-		D9FDE1191CD9D2F900AA016B /* UPStackMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE1171CD9D2F900AA016B /* UPStackMenuItem.m */; };
-		D9FDE11D1CD9D7DB00AA016B /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE11C1CD9D7DB00AA016B /* PopoverView.m */; };
 		D9FDE1311CD9E10000AA016B /* MyCommentsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE12F1CD9E10000AA016B /* MyCommentsListViewController.m */; };
 		D9FDE1321CD9E10000AA016B /* MyCommentsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9FDE1301CD9E10000AA016B /* MyCommentsListViewController.xib */; };
 		D9FDE1361CD9E11000AA016B /* MyZanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE1341CD9E11000AA016B /* MyZanListViewController.m */; };
 		D9FDE1371CD9E11000AA016B /* MyZanListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9FDE1351CD9E11000AA016B /* MyZanListViewController.xib */; };
 		D9FDE13B1CD9E46C00AA016B /* MyCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE1391CD9E46C00AA016B /* MyCommentTableViewCell.m */; };
 		D9FDE13C1CD9E46C00AA016B /* MyCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9FDE13A1CD9E46C00AA016B /* MyCommentTableViewCell.xib */; };
+		D9FDE1401CD9F78000AA016B /* MyZanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE13E1CD9F78000AA016B /* MyZanTableViewCell.m */; };
+		D9FDE1411CD9F78000AA016B /* MyZanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9FDE13F1CD9F78000AA016B /* MyZanTableViewCell.xib */; };
+		D9FDE1441CD9F81400AA016B /* LMShowZanDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE1431CD9F81400AA016B /* LMShowZanDetail.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -394,14 +393,6 @@
 		D9FDE10A1CD8C33300AA016B /* LMSimpleShowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMSimpleShowTableViewCell.h; sourceTree = "<group>"; };
 		D9FDE10B1CD8C33300AA016B /* LMSimpleShowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMSimpleShowTableViewCell.m; sourceTree = "<group>"; };
 		D9FDE10C1CD8C33300AA016B /* LMSimpleShowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMSimpleShowTableViewCell.xib; sourceTree = "<group>"; };
-		D9FDE1101CD9CAAB00AA016B /* NirKxMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NirKxMenu.h; sourceTree = "<group>"; };
-		D9FDE1111CD9CAAB00AA016B /* NirKxMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NirKxMenu.m; sourceTree = "<group>"; };
-		D9FDE1141CD9D2F900AA016B /* UPStackMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPStackMenu.h; sourceTree = "<group>"; };
-		D9FDE1151CD9D2F900AA016B /* UPStackMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPStackMenu.m; sourceTree = "<group>"; };
-		D9FDE1161CD9D2F900AA016B /* UPStackMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPStackMenuItem.h; sourceTree = "<group>"; };
-		D9FDE1171CD9D2F900AA016B /* UPStackMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPStackMenuItem.m; sourceTree = "<group>"; };
-		D9FDE11B1CD9D7DB00AA016B /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
-		D9FDE11C1CD9D7DB00AA016B /* PopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverView.m; sourceTree = "<group>"; };
 		D9FDE12E1CD9E10000AA016B /* MyCommentsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentsListViewController.h; sourceTree = "<group>"; };
 		D9FDE12F1CD9E10000AA016B /* MyCommentsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentsListViewController.m; sourceTree = "<group>"; };
 		D9FDE1301CD9E10000AA016B /* MyCommentsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCommentsListViewController.xib; sourceTree = "<group>"; };
@@ -411,6 +402,11 @@
 		D9FDE1381CD9E46C00AA016B /* MyCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentTableViewCell.h; sourceTree = "<group>"; };
 		D9FDE1391CD9E46C00AA016B /* MyCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentTableViewCell.m; sourceTree = "<group>"; };
 		D9FDE13A1CD9E46C00AA016B /* MyCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCommentTableViewCell.xib; sourceTree = "<group>"; };
+		D9FDE13D1CD9F78000AA016B /* MyZanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyZanTableViewCell.h; sourceTree = "<group>"; };
+		D9FDE13E1CD9F78000AA016B /* MyZanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyZanTableViewCell.m; sourceTree = "<group>"; };
+		D9FDE13F1CD9F78000AA016B /* MyZanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyZanTableViewCell.xib; sourceTree = "<group>"; };
+		D9FDE1421CD9F81400AA016B /* LMShowZanDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMShowZanDetail.h; sourceTree = "<group>"; };
+		D9FDE1431CD9F81400AA016B /* LMShowZanDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMShowZanDetail.m; sourceTree = "<group>"; };
 		FCD4932A41E4CF79D72E9D6D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -584,9 +580,6 @@
 		D95387801CBDF99D004BD51F /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				D9FDE11A1CD9D7DB00AA016B /* PopoverView */,
-				D9FDE1131CD9D2F900AA016B /* UPStackMenu */,
-				D9FDE10F1CD9CAAB00AA016B /* NirKxMenu */,
 				D95388A91CC4FC85004BD51F /* OneSDK */,
 				D953886D1CC4DE95004BD51F /* ZHPickView */,
 				D95387E11CBFCA89004BD51F /* TEAChart */,
@@ -1062,35 +1055,6 @@
 			path = MyCollection;
 			sourceTree = "<group>";
 		};
-		D9FDE10F1CD9CAAB00AA016B /* NirKxMenu */ = {
-			isa = PBXGroup;
-			children = (
-				D9FDE1101CD9CAAB00AA016B /* NirKxMenu.h */,
-				D9FDE1111CD9CAAB00AA016B /* NirKxMenu.m */,
-			);
-			path = NirKxMenu;
-			sourceTree = "<group>";
-		};
-		D9FDE1131CD9D2F900AA016B /* UPStackMenu */ = {
-			isa = PBXGroup;
-			children = (
-				D9FDE1141CD9D2F900AA016B /* UPStackMenu.h */,
-				D9FDE1151CD9D2F900AA016B /* UPStackMenu.m */,
-				D9FDE1161CD9D2F900AA016B /* UPStackMenuItem.h */,
-				D9FDE1171CD9D2F900AA016B /* UPStackMenuItem.m */,
-			);
-			path = UPStackMenu;
-			sourceTree = "<group>";
-		};
-		D9FDE11A1CD9D7DB00AA016B /* PopoverView */ = {
-			isa = PBXGroup;
-			children = (
-				D9FDE11B1CD9D7DB00AA016B /* PopoverView.h */,
-				D9FDE11C1CD9D7DB00AA016B /* PopoverView.m */,
-			);
-			path = PopoverView;
-			sourceTree = "<group>";
-		};
 		D9FDE1261CD9E04F00AA016B /* ShowComments */ = {
 			isa = PBXGroup;
 			children = (
@@ -1114,9 +1078,14 @@
 		D9FDE1281CD9E08B00AA016B /* ZanList */ = {
 			isa = PBXGroup;
 			children = (
+				D9FDE13D1CD9F78000AA016B /* MyZanTableViewCell.h */,
+				D9FDE13E1CD9F78000AA016B /* MyZanTableViewCell.m */,
+				D9FDE13F1CD9F78000AA016B /* MyZanTableViewCell.xib */,
 				D9FDE1331CD9E11000AA016B /* MyZanListViewController.h */,
 				D9FDE1341CD9E11000AA016B /* MyZanListViewController.m */,
 				D9FDE1351CD9E11000AA016B /* MyZanListViewController.xib */,
+				D9FDE1421CD9F81400AA016B /* LMShowZanDetail.h */,
+				D9FDE1431CD9F81400AA016B /* LMShowZanDetail.m */,
 			);
 			path = ZanList;
 			sourceTree = "<group>";
@@ -1237,6 +1206,7 @@
 				D9FDE0AA1CD0C3B100AA016B /* LMShowTableViewCell.xib in Resources */,
 				D95388121CC0C430004BD51F /* LMUserTagsAddViewController.xib in Resources */,
 				D95387CF1CBE5123004BD51F /* AutoSlideScrollView.bundle in Resources */,
+				D9FDE1411CD9F78000AA016B /* MyZanTableViewCell.xib in Resources */,
 				D9FDE0ED1CD8428500AA016B /* icon_photo_selected@3x.png in Resources */,
 				D95387D51CBE52A6004BD51F /* LMLoginViewController.xib in Resources */,
 				D9FDE1321CD9E10000AA016B /* MyCommentsListViewController.xib in Resources */,
@@ -1354,18 +1324,15 @@
 				D9FDE0FB1CD8428500AA016B /* UserAlbumPreviewCollectionViewCell.m in Sources */,
 				D95387CE1CBE5123004BD51F /* NSTimer+Addition.m in Sources */,
 				D95388081CC0BDFE004BD51F /* TZTableViewController.m in Sources */,
-				D9FDE11D1CD9D7DB00AA016B /* PopoverView.m in Sources */,
 				D95389691CC8898B004BD51F /* LMShowCommentDetail.m in Sources */,
 				D95387F11CBFCA89004BD51F /* TEATimeRange.m in Sources */,
 				D9FDE0F91CD8428500AA016B /* UserAlbumOverViewTableViewController.m in Sources */,
 				D9FDE10D1CD8C33300AA016B /* LMSimpleShowTableViewCell.m in Sources */,
 				D95387CD1CBE5123004BD51F /* MyPageControl.m in Sources */,
 				D95387B21CBE4B6C004BD51F /* LMShowDetailModel.m in Sources */,
-				D9FDE1191CD9D2F900AA016B /* UPStackMenuItem.m in Sources */,
 				D95388201CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m in Sources */,
 				D9FDE1311CD9E10000AA016B /* MyCommentsListViewController.m in Sources */,
 				D95388091CC0BDFE004BD51F /* TZViewController.m in Sources */,
-				D9FDE1181CD9D2F900AA016B /* UPStackMenu.m in Sources */,
 				D95387D91CBF98B0004BD51F /* MineHeaderView.m in Sources */,
 				D95387AF1CBE4513004BD51F /* LMHomeShowView.m in Sources */,
 				D9FDE0F31CD8428500AA016B /* UploadUserPhotoOperationView.m in Sources */,
@@ -1376,10 +1343,10 @@
 				D95387901CBE1877004BD51F /* LMHomeViewController.m in Sources */,
 				D95387F01CBFCA89004BD51F /* TEAContributionGraph.m in Sources */,
 				D9FDE1031CD8438000AA016B /* UploadUserVideoViewController.m in Sources */,
+				D9FDE1401CD9F78000AA016B /* MyZanTableViewCell.m in Sources */,
 				D9FDE0B31CD201D100AA016B /* LMShowCommentManager.m in Sources */,
 				D95388561CC4BABC004BD51F /* LMUserProfileViewController.m in Sources */,
 				D9FDE0F71CD8428500AA016B /* UserAlbumOverviewCell.m in Sources */,
-				D9FDE1121CD9CAAB00AA016B /* NirKxMenu.m in Sources */,
 				D95388701CC4DE95004BD51F /* ZHPickView.m in Sources */,
 				D95388F41CC50821004BD51F /* UCZProgressView.m in Sources */,
 				D9FDE0AD1CD0C4DE00AA016B /* LMUserManager.m in Sources */,
@@ -1405,6 +1372,7 @@
 				D95389861CCDC4DE004BD51F /* LMShowManager.m in Sources */,
 				D9FDE1001CD8428500AA016B /* UserAlbumSelectViewController.m in Sources */,
 				D953882E1CC0C5B0004BD51F /* CityCardReusableView.m in Sources */,
+				D9FDE1441CD9F81400AA016B /* LMShowZanDetail.m in Sources */,
 				D9FDE0F01CD8428500AA016B /* UploadUserAlbumCollectionViewCell.m in Sources */,
 				D953874B1CBDF95F004BD51F /* main.m in Sources */,
 				D95387FB1CC08FF9004BD51F /* LMPushMessageTableViewCell.m in Sources */,

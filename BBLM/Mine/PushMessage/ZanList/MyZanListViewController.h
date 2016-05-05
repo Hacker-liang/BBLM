@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyZanListViewController : UIViewController
+@interface MyZanListViewController : TZViewController
 
 @end

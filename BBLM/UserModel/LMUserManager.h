@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LMShowCommentDetail.h"
+#import "LMShowZanDetail.h"
 
 @interface LMUserManager : NSObject
 
@@ -35,6 +36,15 @@
  */
 + (void)asyncLoadUserCommentsListInfoWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)size completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList))completion;
 
+/**
+ *  加载用户被赞的列表
+ *
+ *  @param userId
+ *  @param page
+ *  @param size
+ *  @param completion 
+ */
++ (void)asyncLoadUserZanListInfoWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)size completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowZanDetail *> *zanList))completion;
 
 
 

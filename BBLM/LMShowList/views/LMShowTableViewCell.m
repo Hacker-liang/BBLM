@@ -7,7 +7,7 @@
 //
 
 #import "LMShowTableViewCell.h"
-#import "PopoverView.h"
+#import "LMShowManager.h"
 
 @interface LMShowTableViewCell ()
 
@@ -23,8 +23,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
-    
+    _coverImageView.backgroundColor = APP_PAGE_COLOR;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -54,20 +53,43 @@
     [_coverImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.coverImage] placeholderImage:nil];
     _playVideoButton.hidden = !showDetail.isVideo;
     _showDescLabel.text = _showDetail.showDesc;
+    [_zanButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
+    [_zanButton setTitleColor:APP_THEME_COLOR forState:UIControlStateSelected];
     [_zanButton setImage:[UIImage imageNamed:@"icon_showList_zan_normal"] forState:UIControlStateNormal];
     [_zanButton setImage:[UIImage imageNamed:@"icon_showList_zan_selected"] forState:UIControlStateSelected];
     _zanButton.selected = _showDetail.hasZan;
+    [_zanButton addTarget:self action:@selector(zanShowAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [_zanButton setTitle:[NSString stringWithFormat:@"%ld", _showDetail.zanCount] forState:UIControlStateNormal];
     
     [_commentButton setImage:[UIImage imageNamed:@"icon_showList_comment"] forState:UIControlStateNormal];
     [_commentButton setTitle:[NSString stringWithFormat:@"%ld", _showDetail.commentCount] forState:UIControlStateNormal];
-    
-    
-    
 }
 
 
+- (void)zanShowAction:(UIButton *)sender
+{
+    if (!sender.selected) {
+        [LMShowManager asyncZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                _showDetail.hasZan = YES;
+                _showDetail.zanCount++;
+                sender.selected = !sender.selected;
+                [sender setTitle:[NSString stringWithFormat:@"%ld", _showDetail.zanCount] forState:UIControlStateNormal];
+
+            }
+        }];
+    } else {
+        [LMShowManager asyncCancelZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                _showDetail.hasZan = NO;
+                sender.selected = !sender.selected;
+                _showDetail.zanCount--;
+                [sender setTitle:[NSString stringWithFormat:@"%ld", _showDetail.zanCount] forState:UIControlStateNormal];
+            }
+        }];
+    }
+}
 
 
 @end

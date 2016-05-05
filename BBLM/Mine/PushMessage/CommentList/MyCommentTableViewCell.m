@@ -7,6 +7,7 @@
 //
 
 #import "MyCommentTableViewCell.h"
+#import "LMShowDetailModel.h"
 
 @implementation MyCommentTableViewCell
 
@@ -23,9 +24,11 @@
 {
     _commentDetail = commentDetail;
     [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:_commentDetail.user.avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    
     _nicknameLabel.text = _commentDetail.user.nickname;
     _contentLabel.text = _commentDetail.content;
     _dateLabel.text = _commentDetail.publishDateDesc;
+    [_showImageView sd_setImageWithURL:[NSURL URLWithString: _commentDetail.show.coverImage] placeholderImage:nil];
 }
 
 @end

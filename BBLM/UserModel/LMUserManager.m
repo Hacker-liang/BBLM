@@ -7,6 +7,7 @@
 //
 
 #import "LMUserManager.h"
+#import "LMShowZanDetail.h"
 
 @implementation LMUserManager
 
@@ -70,5 +71,29 @@
         completion(NO, nil);
         
     }];
+}
+
++ (void)asyncLoadUserZanListInfoWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)size completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowZanDetail *> *zanList))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@message/praise", BASE_API];
+    [LMNetworking GET:url parameters:@{@"memberId": [NSNumber numberWithInteger:userId],
+                                       @"page": [NSNumber numberWithInteger:page],
+                                       @"pageSize": [NSNumber numberWithInteger:size]
+                                       } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                                           if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+                                               NSMutableArray *retList = [[NSMutableArray alloc] init];
+                                               for (NSDictionary *dic in [responseObject objectForKey:@"data"]) {
+                                                   LMShowZanDetail *zan = [[LMShowZanDetail alloc] initWithJson:dic];
+                                                   [retList addObject:zan];
+                                               }
+                                               completion(YES, retList);
+                                           } else {
+                                               completion(NO, nil);
+                                           }
+                                           
+                                       } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+                                           completion(NO, nil);
+                                           
+                                       }];
 }
 @end

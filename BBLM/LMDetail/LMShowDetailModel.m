@@ -33,6 +33,7 @@
         _publishDateDesc = [json objectForKey:@"commitdate"];
         _showDesc = [json objectForKey:@"words"];
         _zanCount = [[json objectForKey:@"praiseCount"] integerValue];
+        _hasZan = [[json objectForKey:@"hasPraised"] boolValue];
         
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         for (NSDictionary *dic in [json objectForKey:@"praiseList"]) {

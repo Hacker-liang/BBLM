@@ -1,5 +1,5 @@
 //
-//  MyCommentTableViewCell.h
+//  MyZanTableViewCell.h
 //  BBLM
 //
 //  Created by liangpengshuai on 5/4/16.
@@ -7,17 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LMShowCommentDetail.h"
+#import "LMShowZanDetail.h"
 
-@interface MyCommentTableViewCell : UITableViewCell
+@interface MyZanTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *showImageView;
 
-@property (nonatomic, strong) LMShowCommentDetail *commentDetail;
+@property (nonatomic, strong) LMShowZanDetail *zanDetail;
 
 
 @end

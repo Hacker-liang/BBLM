@@ -91,7 +91,6 @@
         completion(NO, nil);
         
     }];
-
 }
 
 + (void)asyncLoadUserShowWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowDetailModel *>* showList))completion

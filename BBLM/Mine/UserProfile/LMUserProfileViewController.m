@@ -13,7 +13,6 @@
 #import "LMShowTableViewCell.h"
 #import "LMShowManager.h"
 #import "LMShowDetailViewController.h"
-#import "PopoverView.h"
 
 #define pageCount   10
 

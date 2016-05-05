@@ -131,7 +131,7 @@
                             <constraint firstAttribute="width" constant="46" id="2Nm-k7-KkN"/>
                             <constraint firstAttribute="height" constant="41" id="jWc-en-t9w"/>
                         </constraints>
-                        <state key="normal" title="more">
+                        <state key="normal">
                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>

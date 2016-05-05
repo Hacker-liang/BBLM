@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyCommentsListViewController : UIViewController
+@interface MyCommentsListViewController : TZViewController
 
 @end
