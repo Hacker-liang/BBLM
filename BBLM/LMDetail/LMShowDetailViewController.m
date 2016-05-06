@@ -14,6 +14,7 @@
 #import "LMShowDetailView.h"
 #import "LMInputToolBar.h"
 #import "LMUserProfileViewController.h"
+#import "LMShowZanListViewController.h"
 
 @interface LMShowDetailViewController () <LMInputToolBarDelegate>
 
@@ -38,10 +39,12 @@
     [self.view addSubview:_tableView];
     
     _showDetailView = [[LMShowDetailView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 460)];
+    _showDetailView.containerCtl = self;
     [_showDetailView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
     _tableView.tableHeaderView = _showDetailView;
     [_showDetailView.headerImageButton addTarget:self action:@selector(gotoPublishUserProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_showDetailView.zanButton addTarget:self action:@selector(zanShowAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_showDetailView.zanUserCntButton addTarget:self action:@selector(showMoreZanUserAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [LMShowManager asyncLoadShowDetialWithShowId:_showId completionBlock:^(BOOL isSuccess, LMShowDetailModel *showDetail) {
         _showDetail = showDetail;
@@ -64,6 +67,13 @@
 {
     LMUserProfileViewController *ctl = [[LMUserProfileViewController alloc] init];
     ctl.userId = _showDetail.publishUser.userId;
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
+- (void)showMoreZanUserAction:(UIButton *)sender
+{
+    LMShowZanListViewController *ctl = [[LMShowZanListViewController alloc] init];
+    ctl.showId = _showId;
     [self.navigationController pushViewController:ctl animated:YES];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JPUSHService.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

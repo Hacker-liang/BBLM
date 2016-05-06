@@ -21,3 +21,5 @@
 
 
 #define BASE_API    @"http://jtest.babilama.com/"
+
+#define JPushAppKey @"980accd495131a358bb90ed2"

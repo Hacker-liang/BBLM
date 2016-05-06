@@ -165,6 +165,37 @@
     }];
 }
 
++ (void)asyncLoadZanUserOfShowWithShowId:(NSInteger)showId page:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMUserDetailModel *>* userList))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@dynamic/praise/list", BASE_API];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:[NSNumber numberWithInteger:showId] forKey:@"dynamicId"];
+    [dic setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [dic setObject:[NSNumber numberWithInteger:pageSize] forKey:@"pageSize"];
+    if ([[LMAccountManager shareInstance] isLogin]) {
+        [dic setObject:[NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId] forKey:@"memberId"];
+    }
+    [LMNetworking GET:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            NSMutableArray *retList = [[NSMutableArray alloc] init];
+            NSArray *data = [responseObject objectForKey:@"data"];
+            for (NSDictionary *dic in data) {
+                LMUserDetailModel *show = [[LMUserDetailModel alloc] initWithJson:dic];
+                [retList addObject:show];
+            }
+            completion(YES, retList);
+            
+        } else {
+            completion(NO, nil);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO, nil);
+        
+    }];
+
+}
+
 + (void)asyncLoadShowDetialWithShowId:(NSInteger)showId completionBlock:(void (^) (BOOL isSuccess, LMShowDetailModel *showDetail))completion
 {
     NSString *url = [NSString stringWithFormat:@"%@dynamic/detail", BASE_API];

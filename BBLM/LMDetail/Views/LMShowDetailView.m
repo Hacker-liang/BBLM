@@ -81,6 +81,9 @@
         _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(kWindowWidth-50,_zanButton.frame.origin.y, 50, 35)];
         [_shareButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
         [self addSubview:_shareButton];
+        
+        _zanUserCntButton = [[UIButton alloc] init];
+
     }
     return self;
 }
@@ -141,6 +144,7 @@
         [userButton removeFromSuperview];
     }
     CGFloat offsetX = 0;
+    NSInteger count = 0;
     for (int i=0; i<_zanUserList.count; i++) {
         if (_zanUserBgView.bounds.size.width-offsetX < 100) {
             break;
@@ -153,17 +157,18 @@
         [zanUserButton addTarget:self action:@selector(showUserProfile:) forControlEvents:UIControlEventTouchUpInside];
         [_zanUserBgView addSubview:zanUserButton];
         offsetX += 40;
+//        count = i+1;
     }
-    if (_zanUserList.count > 5) {
-        UILabel *zanUserCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(offsetX+5, 5, 35, 25)];
-        zanUserCntLabel.layer.cornerRadius = 2.0;
-        zanUserCntLabel.clipsToBounds = YES;
-        zanUserCntLabel.text = [NSString stringWithFormat:@"%ld", _zanUserList.count];
-        zanUserCntLabel.backgroundColor = [UIColor lightGrayColor];
-        zanUserCntLabel.font = [UIFont systemFontOfSize:14.0];
-        zanUserCntLabel.textColor = [UIColor whiteColor];
-        zanUserCntLabel.textAlignment = NSTextAlignmentCenter;
-        [_zanUserBgView addSubview:zanUserCntLabel];
+    if (_zanUserList.count > count) {
+        _zanUserCntButton.frame = CGRectMake(offsetX+5, 5, 35, 25);
+        _zanUserCntButton.layer.cornerRadius = 2.0;
+        _zanUserCntButton.clipsToBounds = YES;
+        [_zanUserCntButton setTitle:[NSString stringWithFormat:@"%ld", _zanUserList.count] forState:UIControlStateNormal];
+        _zanUserCntButton.backgroundColor = [UIColor lightGrayColor];
+        _zanUserCntButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+        [_zanUserCntButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [_zanUserBgView addSubview:_zanUserCntButton];
     }
 }
 

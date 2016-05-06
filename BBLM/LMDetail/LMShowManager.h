@@ -40,6 +40,18 @@
  */
 + (void)asyncLoadUserCollectionShowWithUserId:(NSInteger)userId page:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMShowDetailModel *>* showList))completion;
 
+
+/**
+ *  加载一条 show 的点赞列表
+ *
+ *  @param showId
+ *  @param page
+ *  @param pageSize
+ *  @param completion
+ */
++ (void)asyncLoadZanUserOfShowWithShowId:(NSInteger)showId page:(NSInteger)page pageSize:(NSInteger)pageSize completionBlock:(void (^) (BOOL isSuccess, NSArray<LMUserDetailModel *>* userList))completion;
+
+
 /**
  *  收藏一条动态
  *

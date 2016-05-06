@@ -101,6 +101,18 @@
 		D953896C1CC89FF4004BD51F /* LMShowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D953896B1CC89FF4004BD51F /* LMShowDetailViewController.m */; };
 		D953896F1CC8AC21004BD51F /* LMInputToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D953896E1CC8AC21004BD51F /* LMInputToolBar.m */; };
 		D95389861CCDC4DE004BD51F /* LMShowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D95389851CCDC4DE004BD51F /* LMShowManager.m */; };
+		D96085891CDB5ED80078657B /* LMShowZanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96085871CDB5ED80078657B /* LMShowZanListViewController.m */; };
+		D960858A1CDB5ED80078657B /* LMShowZanListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96085881CDB5ED80078657B /* LMShowZanListViewController.xib */; };
+		D960858E1CDB5F550078657B /* LMShowZanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D960858C1CDB5F550078657B /* LMShowZanTableViewCell.m */; };
+		D960858F1CDB5F550078657B /* LMShowZanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960858D1CDB5F550078657B /* LMShowZanTableViewCell.xib */; };
+		D9DBFC191CDC404600A367A3 /* jpush-ios-2.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */; };
+		D9DBFC1A1CDC404600A367A3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9DBFC181CDC404600A367A3 /* PushConfig.plist */; };
+		D9DBFC1C1CDC40BD00A367A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC1B1CDC40BD00A367A3 /* CFNetwork.framework */; };
+		D9DBFC1E1CDC40DF00A367A3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC1D1CDC40DF00A367A3 /* CoreFoundation.framework */; };
+		D9DBFC201CDC40E500A367A3 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC1F1CDC40E500A367A3 /* CoreTelephony.framework */; };
+		D9DBFC221CDC40F500A367A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC211CDC40F500A367A3 /* SystemConfiguration.framework */; };
+		D9DBFC241CDC410D00A367A3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC231CDC410D00A367A3 /* UIKit.framework */; };
+		D9DBFC261CDC411300A367A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC251CDC411300A367A3 /* Security.framework */; };
 		D9FDE0931CCDC68000AA016B /* LMNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE0901CCDC68000AA016B /* LMNetworking.m */; };
 		D9FDE0971CCDC76400AA016B /* LMAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE0961CCDC76400AA016B /* LMAccountManager.m */; };
 		D9FDE09E1CCF0E3300AA016B /* LMHotShowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FDE09C1CCF0E3300AA016B /* LMHotShowListViewController.m */; };
@@ -325,6 +337,21 @@
 		D953896E1CC8AC21004BD51F /* LMInputToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMInputToolBar.m; sourceTree = "<group>"; };
 		D95389841CCDC4DD004BD51F /* LMShowManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMShowManager.h; sourceTree = "<group>"; };
 		D95389851CCDC4DE004BD51F /* LMShowManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMShowManager.m; sourceTree = "<group>"; };
+		D96085861CDB5ED80078657B /* LMShowZanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMShowZanListViewController.h; sourceTree = "<group>"; };
+		D96085871CDB5ED80078657B /* LMShowZanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMShowZanListViewController.m; sourceTree = "<group>"; };
+		D96085881CDB5ED80078657B /* LMShowZanListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMShowZanListViewController.xib; sourceTree = "<group>"; };
+		D960858B1CDB5F550078657B /* LMShowZanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMShowZanTableViewCell.h; sourceTree = "<group>"; };
+		D960858C1CDB5F550078657B /* LMShowZanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMShowZanTableViewCell.m; sourceTree = "<group>"; };
+		D960858D1CDB5F550078657B /* LMShowZanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMShowZanTableViewCell.xib; sourceTree = "<group>"; };
+		D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.6.a"; sourceTree = "<group>"; };
+		D9DBFC171CDC404600A367A3 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		D9DBFC181CDC404600A367A3 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		D9DBFC1B1CDC40BD00A367A3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D9DBFC1D1CDC40DF00A367A3 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		D9DBFC1F1CDC40E500A367A3 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		D9DBFC211CDC40F500A367A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D9DBFC231CDC410D00A367A3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D9DBFC251CDC411300A367A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D9FDE08F1CCDC68000AA016B /* LMNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNetworking.h; sourceTree = "<group>"; };
 		D9FDE0901CCDC68000AA016B /* LMNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNetworking.m; sourceTree = "<group>"; };
 		D9FDE0951CCDC76400AA016B /* LMAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMAccountManager.h; sourceTree = "<group>"; };
@@ -415,6 +442,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9DBFC261CDC411300A367A3 /* Security.framework in Frameworks */,
+				D9DBFC241CDC410D00A367A3 /* UIKit.framework in Frameworks */,
+				D9DBFC221CDC40F500A367A3 /* SystemConfiguration.framework in Frameworks */,
+				D9DBFC201CDC40E500A367A3 /* CoreTelephony.framework in Frameworks */,
+				D9DBFC1E1CDC40DF00A367A3 /* CoreFoundation.framework in Frameworks */,
+				D9DBFC1C1CDC40BD00A367A3 /* CFNetwork.framework in Frameworks */,
 				D95388B91CC4FC85004BD51F /* UTMini.framework in Frameworks */,
 				D95388951CC4FB2F004BD51F /* libz.tbd in Frameworks */,
 				D95388B61CC4FC85004BD51F /* SecurityGuardSDK.framework in Frameworks */,
@@ -427,6 +460,7 @@
 				D95388891CC4FB06004BD51F /* CoreMedia.framework in Frameworks */,
 				D95388871CC4FAFE004BD51F /* AssetsLibrary.framework in Frameworks */,
 				D95388BE1CC4FCC2004BD51F /* ALBBQuPai.framework in Frameworks */,
+				D9DBFC191CDC404600A367A3 /* jpush-ios-2.1.6.a in Frameworks */,
 				D95388BB1CC4FC85004BD51F /* ZipArchive.framework in Frameworks */,
 				D95388851CC4FAF7004BD51F /* MobileCoreServices.framework in Frameworks */,
 				D95388831CC4FAED004BD51F /* MediaPlayer.framework in Frameworks */,
@@ -461,6 +495,12 @@
 		55600AE24F655E20C5110FB5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D9DBFC251CDC411300A367A3 /* Security.framework */,
+				D9DBFC231CDC410D00A367A3 /* UIKit.framework */,
+				D9DBFC211CDC40F500A367A3 /* SystemConfiguration.framework */,
+				D9DBFC1F1CDC40E500A367A3 /* CoreTelephony.framework */,
+				D9DBFC1D1CDC40DF00A367A3 /* CoreFoundation.framework */,
+				D9DBFC1B1CDC40BD00A367A3 /* CFNetwork.framework */,
 				D95388941CC4FB2F004BD51F /* libz.tbd */,
 				D95388921CC4FB2A004BD51F /* Photos.framework */,
 				D95388901CC4FB23004BD51F /* CoreMotion.framework */,
@@ -580,6 +620,7 @@
 		D95387801CBDF99D004BD51F /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				D9DBFC151CDC404600A367A3 /* JPush */,
 				D95388A91CC4FC85004BD51F /* OneSDK */,
 				D953886D1CC4DE95004BD51F /* ZHPickView */,
 				D95387E11CBFCA89004BD51F /* TEAChart */,
@@ -592,6 +633,7 @@
 		D953878B1CBE1861004BD51F /* LMDetail */ = {
 			isa = PBXGroup;
 			children = (
+				D96085851CDB5ED80078657B /* LMShowZan */,
 				D953895D1CC87673004BD51F /* Views */,
 				D95387C21CBE4CC9004BD51F /* Model */,
 				D953896A1CC89FF4004BD51F /* LMShowDetailViewController.h */,
@@ -940,6 +982,29 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D96085851CDB5ED80078657B /* LMShowZan */ = {
+			isa = PBXGroup;
+			children = (
+				D96085861CDB5ED80078657B /* LMShowZanListViewController.h */,
+				D96085871CDB5ED80078657B /* LMShowZanListViewController.m */,
+				D96085881CDB5ED80078657B /* LMShowZanListViewController.xib */,
+				D960858B1CDB5F550078657B /* LMShowZanTableViewCell.h */,
+				D960858C1CDB5F550078657B /* LMShowZanTableViewCell.m */,
+				D960858D1CDB5F550078657B /* LMShowZanTableViewCell.xib */,
+			);
+			path = LMShowZan;
+			sourceTree = "<group>";
+		};
+		D9DBFC151CDC404600A367A3 /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */,
+				D9DBFC171CDC404600A367A3 /* JPUSHService.h */,
+				D9DBFC181CDC404600A367A3 /* PushConfig.plist */,
+			);
+			path = JPush;
+			sourceTree = "<group>";
+		};
 		D9FDE08E1CCDC68000AA016B /* LMNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1160,6 +1225,7 @@
 				TargetAttributes = {
 					D95387451CBDF95F004BD51F = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 9N6KGJNF7D;
 					};
 					D95387611CBDF95F004BD51F = {
 						CreatedOnToolsVersion = 7.3;
@@ -1202,6 +1268,7 @@
 				D95388251CC0C4C3004BD51F /* InputTagTableViewCell.xib in Resources */,
 				D95388611CC4CC4E004BD51F /* LMEditUserProfileViewController.xib in Resources */,
 				D95387FC1CC08FF9004BD51F /* LMPushMessageTableViewCell.xib in Resources */,
+				D960858A1CDB5ED80078657B /* LMShowZanListViewController.xib in Resources */,
 				D95388BA1CC4FC85004BD51F /* yw_1222.jpg in Resources */,
 				D9FDE0AA1CD0C3B100AA016B /* LMShowTableViewCell.xib in Resources */,
 				D95388121CC0C430004BD51F /* LMUserTagsAddViewController.xib in Resources */,
@@ -1211,6 +1278,7 @@
 				D95387D51CBE52A6004BD51F /* LMLoginViewController.xib in Resources */,
 				D9FDE1321CD9E10000AA016B /* MyCommentsListViewController.xib in Resources */,
 				D9FDE0E71CD8428500AA016B /* icon_photo_bar_normal@3x.png in Resources */,
+				D9DBFC1A1CDC404600A367A3 /* PushConfig.plist in Resources */,
 				D95388671CC4CD4C004BD51F /* LMEditUserAvatarTableViewCell.xib in Resources */,
 				D953875C1CBDF95F004BD51F /* LaunchScreen.storyboard in Resources */,
 				D95387F71CC08F79004BD51F /* LMPushMessageViewController.xib in Resources */,
@@ -1223,6 +1291,7 @@
 				D9FDE0F11CD8428500AA016B /* UploadUserAlbumCollectionViewCell.xib in Resources */,
 				D9FDE0FC1CD8428500AA016B /* UserAlbumPreviewCollectionViewCell.xib in Resources */,
 				D9FDE0E91CD8428500AA016B /* icon_photo_bar_selected@3x.png in Resources */,
+				D960858F1CDB5F550078657B /* LMShowZanTableViewCell.xib in Resources */,
 				D9FDE0EB1CD8428500AA016B /* icon_photo_normal@3x.png in Resources */,
 				D95387951CBE1889004BD51F /* MineViewController.xib in Resources */,
 				D9FDE0E41CD8428500AA016B /* icon_big_add_photo@2x.png in Resources */,
@@ -1339,6 +1408,7 @@
 				D95388111CC0C430004BD51F /* LMUserTagsAddViewController.m in Sources */,
 				D95389631CC87A63004BD51F /* LMCommentsTableView.m in Sources */,
 				D953885B1CC4BB72004BD51F /* LMUserPorfileHeaderView.m in Sources */,
+				D960858E1CDB5F550078657B /* LMShowZanTableViewCell.m in Sources */,
 				D95388741CC4E0C1004BD51F /* UIAlertView+Block.m in Sources */,
 				D95387901CBE1877004BD51F /* LMHomeViewController.m in Sources */,
 				D95387F01CBFCA89004BD51F /* TEAContributionGraph.m in Sources */,
@@ -1367,6 +1437,7 @@
 				D95388241CC0C4C3004BD51F /* InputTagTableViewCell.m in Sources */,
 				D95387C11CBE4BF0004BD51F /* LMUserDetailModel.m in Sources */,
 				D9FDE0A91CD0C3B100AA016B /* LMShowTableViewCell.m in Sources */,
+				D96085891CDB5ED80078657B /* LMShowZanListViewController.m in Sources */,
 				D95388311CC0C648004BD51F /* TaoziCollectionLayout.m in Sources */,
 				D95387ED1CBFCA89004BD51F /* NSDate+TEAExtensions.m in Sources */,
 				D95389861CCDC4DE004BD51F /* LMShowManager.m in Sources */,
@@ -1484,6 +1555,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "e9c966c8-bffa-4f46-8d53-4701dec4efe9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1531,6 +1603,7 @@
 			baseConfigurationReference = 8842D4975AB52F4B2E732EC3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1543,8 +1616,13 @@
 				INFOPLIST_FILE = BBLM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BBLM/Libs/JPush",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ynx.BBLM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e9c966c8-bffa-4f46-8d53-4701dec4efe9";
 			};
 			name = Debug;
 		};
@@ -1553,6 +1631,7 @@
 			baseConfigurationReference = FCD4932A41E4CF79D72E9D6D /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1565,6 +1644,10 @@
 				INFOPLIST_FILE = BBLM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BBLM/Libs/JPush",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ynx.BBLM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
