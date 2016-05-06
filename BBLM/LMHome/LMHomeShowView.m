@@ -15,7 +15,6 @@
 @property (nonatomic, strong) UILabel *nicknameLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UIButton *rankButton;
-@property (nonatomic, strong) UIButton *playVideoButton;
 
 @end
 
@@ -35,6 +34,10 @@
         _nicknameLabel.font = [UIFont systemFontOfSize:15.0];
         _nicknameLabel.textColor = COLOR_TEXT_I;
         [self addSubview:_nicknameLabel];
+        
+        _moreActionButton = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width-50,0, 50, 50)];
+        [_moreActionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
+        [self addSubview:_moreActionButton];
         
         _rankButton = [[UIButton alloc] init];
         [self addSubview:_rankButton];

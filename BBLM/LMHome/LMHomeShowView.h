@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "LMShowDetailModel.h"
 
+
 @interface LMHomeShowView : UIView
 
 @property (nonatomic, strong) LMShowDetailModel *showDetail;
+@property (nonatomic, strong) UIButton *playVideoButton;
+@property (nonatomic, strong) UIButton *moreActionButton;
+
+
 
 @end

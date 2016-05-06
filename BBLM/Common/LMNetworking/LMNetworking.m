@@ -17,7 +17,7 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSString *type = @"text/plain";
+    NSString *type = @"text/html";
     NSMutableSet *set = [[NSMutableSet alloc] initWithObjects:type, nil];
     manager.responseSerializer.acceptableContentTypes =  set;
     

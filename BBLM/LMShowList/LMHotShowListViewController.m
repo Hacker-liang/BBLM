@@ -6,14 +6,17 @@
 //  Copyright © 2016 com.xuejian. All rights reserved.
 //
 
+#import <MediaPlayer/MediaPlayer.h>
+
 #import "LMHotShowListViewController.h"
 #import "LMShowManager.h"
 #import "MJRefresh.h"
 #import "LMShowTableViewCell.h"
 #import "LMShowDetailViewController.h"
-#import <MediaPlayer/MediaPlayer.h>
+#import "ShareActivity.h"
 
-@interface LMHotShowListViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@interface LMHotShowListViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSInteger page;
@@ -113,6 +116,16 @@
 }
 
 
+- (void)showMoreAction:(UIButton *)sender
+{
+    LMShowDetailModel *show = [_dataSource objectAtIndex:sender.tag];
+    NSString *colletcionStr = show.hasCollection ? @"取消收藏":@"收藏";
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:colletcionStr, @"分享", nil];
+    sheet.tintColor = APP_THEME_COLOR;
+    sheet.tag = sender.tag;
+    [sheet showInView:self.view];
+}
+
 #pragma mark - 懒加载代码
 - (MPMoviePlayerController *)playerController
 {
@@ -153,6 +166,7 @@
     LMShowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.showDetail = [_dataSource objectAtIndex:indexPath.row];
     [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
+    cell.actionButton.tag = indexPath.section;
     if (indexPath.section < 5) {
         cell.rankLabel.hidden = NO;
         cell.rankBgImageView.hidden = NO;
@@ -162,6 +176,8 @@
         cell.rankBgImageView.hidden = YES;
     }
     [cell.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
+    [cell.actionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -173,10 +189,69 @@
     [self.navigationController pushViewController:ctl animated:YES];
 }
 
+#pragma mark - UIActionSheetDelegate
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    SEL selector = NSSelectorFromString(@"_alertController");
+    if ([actionSheet respondsToSelector:selector])//ios8
+    {
+        UIAlertController *alertController = [actionSheet valueForKey:@"_alertController"];
+        if ([alertController isKindOfClass:[UIAlertController class]])
+        {
+            alertController.view.tintColor = APP_THEME_COLOR;
+        }
+    } else { //ios7
+        for( UIView * subView in actionSheet.subviews )
+        {
+            if( [subView isKindOfClass:[UIButton class]] )
+            {
+                UIButton * btn = (UIButton*)subView;
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateHighlighted];
+                
+            }
+        }
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    LMShowDetailModel *show = [_dataSource objectAtIndex:actionSheet.tag];
+    if (buttonIndex == 0) {
+        if (show.hasCollection) {
+            [LMShowManager asyncCancelCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    [SVProgressHUD showSuccessWithStatus:@"取消收藏成功"];
+                    show.hasCollection = NO;
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"取消收藏失败"];
+                }
+            }];
+        } else {
+            [LMShowManager asyncCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+                    show.hasCollection = YES;
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"收藏失败"];
+                }
+            }];
+        }
+    } else if (buttonIndex == 1) {
+        NSString *content;
+        if (show.isVideo) {
+            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的短视频，速来围观", show.publishUser.nickname];
+        } else {
+            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的照片，速来围观", show.publishUser.nickname];
+            
+        }
+        ShareActivity *shareView = [[ShareActivity alloc] initWithShareTitle:@"芭比辣妈,看全球辣妈的分享" andShareContent:content shareUrl:@"www.baidu.com" shareImage:nil shareImageUrl:show.coverImage];
+        [shareView showInViewController:self];
+    }
+}
+
 @end
-
-
-
 
 
 

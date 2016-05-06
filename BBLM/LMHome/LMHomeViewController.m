@@ -17,8 +17,9 @@
 #import "MineViewController.h"
 #import "LMLoginViewController.h"
 #import "LMShowManager.h"
+#import "ShareActivity.h"
 
-@interface LMHomeViewController () <iCarouselDataSource, iCarouselDelegate>
+@interface LMHomeViewController () <iCarouselDataSource, iCarouselDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) UIScrollView *bgScrollView;
 @property (nonatomic, strong) iCarousel *carousel;
@@ -119,6 +120,16 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)showMoreAction:(UIButton *)sender
+{
+    LMShowDetailModel *show = [_dataSource objectAtIndex:sender.tag];
+    NSString *colletcionStr = show.hasCollection ? @"取消收藏":@"收藏";
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:colletcionStr, @"分享", nil];
+    sheet.tintColor = APP_THEME_COLOR;
+    sheet.tag = sender.tag;
+    [sheet showInView:self.view];
+}
+
 - (void)gotoPushMessage:(UIButton *)sender
 {
     if (![[LMAccountManager shareInstance] isLogin]) {
@@ -167,8 +178,10 @@
     if (view == nil)
     {
         view = [[LMHomeShowView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
+        [((LMHomeShowView *)view).moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     ((LMHomeShowView *)view).showDetail = [_dataSource objectAtIndex:index];
+    ((LMHomeShowView *)view).moreActionButton.tag = index;
     return view;
 }
 
@@ -246,4 +259,67 @@
     NSLog(@"首页第 %ld", carousel.currentItemIndex);
     
 }
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    SEL selector = NSSelectorFromString(@"_alertController");
+    if ([actionSheet respondsToSelector:selector])//ios8
+    {
+        UIAlertController *alertController = [actionSheet valueForKey:@"_alertController"];
+        if ([alertController isKindOfClass:[UIAlertController class]])
+        {
+            alertController.view.tintColor = APP_THEME_COLOR;
+        }
+    } else { //ios7
+        for( UIView * subView in actionSheet.subviews )
+        {
+            if( [subView isKindOfClass:[UIButton class]] )
+            {
+                UIButton * btn = (UIButton*)subView;
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateHighlighted];
+                
+            }
+        }
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    LMShowDetailModel *show = [_dataSource objectAtIndex:actionSheet.tag];
+    if (buttonIndex == 0) {
+        if (show.hasCollection) {
+            [LMShowManager asyncCancelCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    [SVProgressHUD showSuccessWithStatus:@"取消收藏成功"];
+                    show.hasCollection = NO;
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"取消收藏失败"];
+                }
+            }];
+        } else {
+            [LMShowManager asyncCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+                    show.hasCollection = YES;
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"收藏失败"];
+                }
+            }];
+        }
+    } else if (buttonIndex == 1) {
+        NSString *content;
+        if (show.isVideo) {
+            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的短视频，速来围观", show.publishUser.nickname];
+        } else {
+            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的照片，速来围观", show.publishUser.nickname];
+            
+        }
+        ShareActivity *shareView = [[ShareActivity alloc] initWithShareTitle:@"芭比辣妈,看全球辣妈的分享" andShareContent:content shareUrl:@"www.baidu.com" shareImage:nil shareImageUrl:show.coverImage];
+        [shareView showInViewController:self];
+    }
+}
+
 @end

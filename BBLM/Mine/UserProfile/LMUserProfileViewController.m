@@ -13,6 +13,7 @@
 #import "LMShowTableViewCell.h"
 #import "LMShowManager.h"
 #import "LMShowDetailViewController.h"
+#import "ShareActivity.h"
 
 #define pageCount   10
 
@@ -264,6 +265,16 @@
                 }
             }];
         }
+    } else if (buttonIndex == 1) {
+        NSString *content;
+        if (show.isVideo) {
+            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的短视频，速来围观", show.publishUser.nickname];
+        } else {
+            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的照片，速来围观", show.publishUser.nickname];
+
+        }
+        ShareActivity *shareView = [[ShareActivity alloc] initWithShareTitle:@"芭比辣妈,看全球辣妈的分享" andShareContent:content shareUrl:@"www.baidu.com" shareImage:nil shareImageUrl:show.coverImage];
+        [shareView showInViewController:self];
     }
 }
 

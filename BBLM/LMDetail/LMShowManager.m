@@ -16,6 +16,10 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [dic setObject:[NSNumber numberWithInteger:pageSize] forKey:@"pageSize"];
+    if ([[LMAccountManager shareInstance] isLogin]) {
+        [dic setObject:[NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId] forKey:@"memberId"];
+    }
+
     [LMNetworking GET:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             NSMutableArray *retList = [[NSMutableArray alloc] init];

@@ -121,6 +121,10 @@
 		D960DA151CDC795B00020C42 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D960D9FF1CDC795A00020C42 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		D960DA161CDC795B00020C42 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D960DA021CDC795A00020C42 /* libSocialWechat.a */; };
 		D960DA171CDC795B00020C42 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D960DA031CDC795A00020C42 /* libWeChatSDK.a */; };
+		D960DA1B1CDC8D6900020C42 /* ShareActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA1A1CDC8D6900020C42 /* ShareActivity.m */; };
+		D960DA1D1CDC8E0700020C42 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D960DA1C1CDC8E0700020C42 /* libsqlite3.tbd */; };
+		D960DA1F1CDC8E8100020C42 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D960DA1E1CDC8E8100020C42 /* libiconv.tbd */; };
+		D960DA211CDC8E9A00020C42 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D960DA201CDC8E9A00020C42 /* libstdc++.tbd */; };
 		D9DBFC191CDC404600A367A3 /* jpush-ios-2.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */; };
 		D9DBFC1A1CDC404600A367A3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9DBFC181CDC404600A367A3 /* PushConfig.plist */; };
 		D9DBFC1C1CDC40BD00A367A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC1B1CDC40BD00A367A3 /* CFNetwork.framework */; };
@@ -392,6 +396,11 @@
 		D960DA051CDC795A00020C42 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		D960DA061CDC795A00020C42 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		D960DA071CDC795A00020C42 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		D960DA191CDC8D6900020C42 /* ShareActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareActivity.h; sourceTree = "<group>"; };
+		D960DA1A1CDC8D6900020C42 /* ShareActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareActivity.m; sourceTree = "<group>"; };
+		D960DA1C1CDC8E0700020C42 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		D960DA1E1CDC8E8100020C42 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		D960DA201CDC8E9A00020C42 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.6.a"; sourceTree = "<group>"; };
 		D9DBFC171CDC404600A367A3 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		D9DBFC181CDC404600A367A3 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
@@ -491,10 +500,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D960DA211CDC8E9A00020C42 /* libstdc++.tbd in Frameworks */,
+				D9DBFC201CDC40E500A367A3 /* CoreTelephony.framework in Frameworks */,
+				D9DBFC221CDC40F500A367A3 /* SystemConfiguration.framework in Frameworks */,
+				D960DA1F1CDC8E8100020C42 /* libiconv.tbd in Frameworks */,
+				D960DA1D1CDC8E0700020C42 /* libsqlite3.tbd in Frameworks */,
 				D9DBFC261CDC411300A367A3 /* Security.framework in Frameworks */,
 				D9DBFC241CDC410D00A367A3 /* UIKit.framework in Frameworks */,
-				D9DBFC221CDC40F500A367A3 /* SystemConfiguration.framework in Frameworks */,
-				D9DBFC201CDC40E500A367A3 /* CoreTelephony.framework in Frameworks */,
 				D9DBFC1E1CDC40DF00A367A3 /* CoreFoundation.framework in Frameworks */,
 				D9DBFC1C1CDC40BD00A367A3 /* CFNetwork.framework in Frameworks */,
 				D960DA161CDC795B00020C42 /* libSocialWechat.a in Frameworks */,
@@ -549,6 +561,9 @@
 		55600AE24F655E20C5110FB5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D960DA201CDC8E9A00020C42 /* libstdc++.tbd */,
+				D960DA1E1CDC8E8100020C42 /* libiconv.tbd */,
+				D960DA1C1CDC8E0700020C42 /* libsqlite3.tbd */,
 				D9DBFC251CDC411300A367A3 /* Security.framework */,
 				D9DBFC231CDC410D00A367A3 /* UIKit.framework */,
 				D9DBFC211CDC40F500A367A3 /* SystemConfiguration.framework */,
@@ -659,6 +674,7 @@
 		D953877F1CBDF99D004BD51F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D960DA181CDC8D6900020C42 /* Share */,
 				D9FDE08E1CCDC68000AA016B /* LMNetworking */,
 				D95388F11CC50821004BD51F /* UCZProgressView */,
 				D95388711CC4E0A1004BD51F /* Category */,
@@ -1129,6 +1145,15 @@
 			path = Wechat;
 			sourceTree = "<group>";
 		};
+		D960DA181CDC8D6900020C42 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				D960DA191CDC8D6900020C42 /* ShareActivity.h */,
+				D960DA1A1CDC8D6900020C42 /* ShareActivity.m */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		D9DBFC151CDC404600A367A3 /* JPush */ = {
 			isa = PBXGroup;
 			children = (
@@ -1379,6 +1404,14 @@
 				en,
 				Base,
 				"zh-Hans",
+				da,
+				de,
+				"es-ES",
+				es,
+				fr,
+				ja,
+				pt,
+				"zh-Hant",
 			);
 			mainGroup = D953873D1CBDF95F004BD51F;
 			productRefGroup = D95387471CBDF95F004BD51F /* Products */;
@@ -1538,6 +1571,7 @@
 				D953874E1CBDF95F004BD51F /* AppDelegate.m in Sources */,
 				D9FDE0FB1CD8428500AA016B /* UserAlbumPreviewCollectionViewCell.m in Sources */,
 				D95387CE1CBE5123004BD51F /* NSTimer+Addition.m in Sources */,
+				D960DA1B1CDC8D6900020C42 /* ShareActivity.m in Sources */,
 				D95388081CC0BDFE004BD51F /* TZTableViewController.m in Sources */,
 				D95389691CC8898B004BD51F /* LMShowCommentDetail.m in Sources */,
 				D95387F11CBFCA89004BD51F /* TEATimeRange.m in Sources */,

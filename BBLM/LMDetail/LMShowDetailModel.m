@@ -28,6 +28,7 @@
         if ([[json objectForKey:@"pictureUrl"] length]) {
             _imageList = [[json objectForKey:@"pictureUrl"] componentsSeparatedByString:@","];
         }
+        _hasCollection = [[json objectForKey:@"hasCollected"] boolValue];
         _heat = [[json objectForKey:@"heat"] integerValue];
         _commentCount = [[json objectForKey:@"commentCount"] integerValue];
         _publishDateDesc = [json objectForKey:@"commitdate"];

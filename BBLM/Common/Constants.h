@@ -22,5 +22,7 @@
 
 #define BASE_API    @"http://jtest.babilama.com/"
 
-#define JPushAppKey @"980accd495131a358bb90ed2"
-#define UMengKey    @"572c3f20e0f55a46e200214c"
+#define JPushAppKey         @"980accd495131a358bb90ed2"
+#define UMengKey            @"572c3f20e0f55a46e200214c"
+#define WechatAppId         @"wxf002ea2189fae2b0"
+#define WechatAppSecret     @"d848584b13832673860715c1dbc4877f"

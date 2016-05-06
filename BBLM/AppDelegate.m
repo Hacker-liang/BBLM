@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import <ALBBSDK/ALBBSDK.h>
-
+#import "UMSocial.h"
+#import "UMSocialData.h"
+#import "UMSocialWechatHandler.h"
 
 @interface AppDelegate ()
 
@@ -48,6 +50,11 @@
     
     [JPUSHService setupWithOption:launchOptions appKey:JPushAppKey channel:@"App Store" apsForProduction:YES];
 
+    /** 设置友盟分享**/
+    [UMSocialData openLog:NO];
+    [UMSocialData setAppKey:UMengKey];
+    [UMSocialWechatHandler setWXAppId:WechatAppId appSecret:WechatAppSecret url:@"http://www.baidu.com"];
+    
     return YES;
 }
 
@@ -120,10 +127,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
 }
 
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo
-fetchCompletionHandler:
-(void (^)(UIBackgroundFetchResult))completionHandler {
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [JPUSHService handleRemoteNotification:userInfo];
     NSLog(@"收到通知:%@", [self logDic:userInfo]);
 
