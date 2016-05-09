@@ -261,7 +261,9 @@
             content = [NSString stringWithFormat:@"我分享了一张\"%@\"的照片，速来围观", show.publishUser.nickname];
             
         }
-        ShareActivity *shareView = [[ShareActivity alloc] initWithShareTitle:@"芭比辣妈,看全球辣妈的分享" andShareContent:content shareUrl:@"www.baidu.com" shareImage:nil shareImageUrl:show.coverImage];
+        NSString *shareUrl = [NSString stringWithFormat:@"%@/share?dynamicId=%ld", BASE_API, show.itemId];
+
+        ShareActivity *shareView = [[ShareActivity alloc] initWithShareTitle:@"芭比辣妈,看全球辣妈的分享" andShareContent:content shareUrl:shareUrl shareImage:nil shareImageUrl:show.coverImage];
         [shareView showInViewController:self];
     }
 }
