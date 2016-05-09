@@ -15,7 +15,7 @@
 @property (nonatomic, strong) LMShowDetailModel *showDetail;
 @property (nonatomic, strong) UIButton *playVideoButton;
 @property (nonatomic, strong) UIButton *moreActionButton;
-
+@property (nonatomic, strong) UIImageView *contentImageView;
 
 
 @end

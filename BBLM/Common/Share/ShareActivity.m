@@ -10,7 +10,7 @@
 #import "UMSocial.h"
 
 #define WINDOW_COLOR                            [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6]
-#define ANIMATE_DURATION                        0.4f
+#define ANIMATE_DURATION                        0.3f
 
 #define CORNER_RADIUS                           5
 #define SHAREBUTTON_BORDER_WIDTH                0.5f

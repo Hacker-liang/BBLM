@@ -11,7 +11,6 @@
 @interface LMHomeShowView()
 
 @property (nonatomic, strong) UIImageView *headerImageView;
-@property (nonatomic, strong) UIImageView *contentImageView;
 @property (nonatomic, strong) UILabel *nicknameLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UIButton *rankButton;
@@ -49,6 +48,9 @@
         
         _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, 300)];
         _contentImageView.backgroundColor = APP_PAGE_COLOR;
+        _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
+        _contentImageView.clipsToBounds = YES;
+        _contentImageView.userInteractionEnabled = YES;
         [self addSubview:_contentImageView];
         
         _playVideoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];

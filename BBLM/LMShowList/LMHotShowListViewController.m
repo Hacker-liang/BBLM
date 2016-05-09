@@ -14,7 +14,7 @@
 #import "LMShowTableViewCell.h"
 #import "LMShowDetailViewController.h"
 #import "ShareActivity.h"
-
+#import "CommonWebViewController.h"
 
 @interface LMHotShowListViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
@@ -83,6 +83,10 @@
 
 - (void)aboutAction:(UIButton *)sender
 {
+    CommonWebViewController *ctl = [[CommonWebViewController alloc] init];
+    ctl.urlStr = [NSString stringWithFormat:@"%@resources/protocol/index.html", BASE_API];
+    ctl.naviBarTitle = @"辣度规则";
+    [self.navigationController pushViewController:ctl animated:YES];
     
 }
 

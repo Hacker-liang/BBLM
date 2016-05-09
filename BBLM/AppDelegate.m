@@ -49,6 +49,7 @@
     }
     
     [JPUSHService setupWithOption:launchOptions appKey:JPushAppKey channel:@"App Store" apsForProduction:YES];
+    [JPUSHService setBadge:0];
 
     /** 设置友盟分享**/
     [UMSocialData openLog:NO];

@@ -125,6 +125,8 @@
 		D960DA1D1CDC8E0700020C42 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D960DA1C1CDC8E0700020C42 /* libsqlite3.tbd */; };
 		D960DA1F1CDC8E8100020C42 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D960DA1E1CDC8E8100020C42 /* libiconv.tbd */; };
 		D960DA211CDC8E9A00020C42 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D960DA201CDC8E9A00020C42 /* libstdc++.tbd */; };
+		D960DA6A1CE02E2A00020C42 /* CommonWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA681CE02E2A00020C42 /* CommonWebViewController.m */; };
+		D960DA6B1CE02E2A00020C42 /* CommonWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA691CE02E2A00020C42 /* CommonWebViewController.xib */; };
 		D9DBFC191CDC404600A367A3 /* jpush-ios-2.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */; };
 		D9DBFC1A1CDC404600A367A3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9DBFC181CDC404600A367A3 /* PushConfig.plist */; };
 		D9DBFC1C1CDC40BD00A367A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC1B1CDC40BD00A367A3 /* CFNetwork.framework */; };
@@ -401,6 +403,9 @@
 		D960DA1C1CDC8E0700020C42 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		D960DA1E1CDC8E8100020C42 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		D960DA201CDC8E9A00020C42 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		D960DA671CE02E2A00020C42 /* CommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonWebViewController.h; sourceTree = "<group>"; };
+		D960DA681CE02E2A00020C42 /* CommonWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonWebViewController.m; sourceTree = "<group>"; };
+		D960DA691CE02E2A00020C42 /* CommonWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonWebViewController.xib; sourceTree = "<group>"; };
 		D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.6.a"; sourceTree = "<group>"; };
 		D9DBFC171CDC404600A367A3 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		D9DBFC181CDC404600A367A3 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
@@ -674,6 +679,7 @@
 		D953877F1CBDF99D004BD51F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D960DA661CE02E1400020C42 /* CommonWebView */,
 				D960DA181CDC8D6900020C42 /* Share */,
 				D9FDE08E1CCDC68000AA016B /* LMNetworking */,
 				D95388F11CC50821004BD51F /* UCZProgressView */,
@@ -1154,6 +1160,16 @@
 			path = Share;
 			sourceTree = "<group>";
 		};
+		D960DA661CE02E1400020C42 /* CommonWebView */ = {
+			isa = PBXGroup;
+			children = (
+				D960DA671CE02E2A00020C42 /* CommonWebViewController.h */,
+				D960DA681CE02E2A00020C42 /* CommonWebViewController.m */,
+				D960DA691CE02E2A00020C42 /* CommonWebViewController.xib */,
+			);
+			path = CommonWebView;
+			sourceTree = "<group>";
+		};
 		D9DBFC151CDC404600A367A3 /* JPush */ = {
 			isa = PBXGroup;
 			children = (
@@ -1460,6 +1476,7 @@
 				D95387571CBDF95F004BD51F /* Main.storyboard in Resources */,
 				D9FDE0EC1CD8428500AA016B /* icon_photo_selected@2x.png in Resources */,
 				D960DA0A1CDC795A00020C42 /* UMSCommentDetailController.xib in Resources */,
+				D960DA6B1CE02E2A00020C42 /* CommonWebViewController.xib in Resources */,
 				D95388BF1CC4FCC2004BD51F /* ALBBQuPaiPlugin.bundle in Resources */,
 				D9FDE0F11CD8428500AA016B /* UploadUserAlbumCollectionViewCell.xib in Resources */,
 				D9FDE0FC1CD8428500AA016B /* UserAlbumPreviewCollectionViewCell.xib in Resources */,
@@ -1613,6 +1630,7 @@
 				D9FDE0EF1CD8428500AA016B /* UploadShowImageModel.m in Sources */,
 				D9FDE1081CD8C1CE00AA016B /* UserShowCollectionViewController.m in Sources */,
 				D95387EE1CBFCA89004BD51F /* TEABarChart.m in Sources */,
+				D960DA6A1CE02E2A00020C42 /* CommonWebViewController.m in Sources */,
 				D9FDE0931CCDC68000AA016B /* LMNetworking.m in Sources */,
 				D95388241CC0C4C3004BD51F /* InputTagTableViewCell.m in Sources */,
 				D95387C11CBE4BF0004BD51F /* LMUserDetailModel.m in Sources */,

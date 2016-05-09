@@ -10,6 +10,7 @@
 #import "LMCommentsTableViewCell.h"
 #import "LMShowCommentDetail.h"
 #import "LMShowCommentManager.h"
+#import "MJRefresh.h"
 
 @interface LMCommentsTableView ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -55,16 +56,39 @@
         if (isSuccess) {
             [_commentsList removeAllObjects];
             [_commentsList addObjectsFromArray:commentList];
+            if (commentList.count<10) {
+                [self.footer endRefreshingWithNoMoreData];
+            }
             [self reloadData];
+
+            _page++;
         }
+    }];
+    
+    self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+}
+
+- (void)loadMoreData
+{
+    [LMShowCommentManager asyncLoadShowCommentsListWithShowId:_showId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList) {
+        if (isSuccess) {
+            [_commentsList addObjectsFromArray:commentList];
+            [self reloadData];
+            _page++;
+            if (commentList.count<10) {
+                [self.footer endRefreshingWithNoMoreData];
+            }
+        }
+        [self.footer endRefreshing];
+
     }];
 }
 
 - (void)addNewComment:(LMShowCommentDetail *)comment
 {
-    [_commentsList addObject:comment];
+    [_commentsList insertObject:comment atIndex:0];
     [self reloadData];
-    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_commentsList.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 
 }
 

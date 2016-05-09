@@ -19,7 +19,6 @@
 
 @property (nonatomic, strong) UILabel *descLabel;
 @property (nonatomic, strong) UIView *zanUserBgView;
-@property (nonatomic, strong) UIButton *shareButton;
 @property (nonatomic, strong) AutoSlideScrollView *galleryView;
 
 
@@ -78,9 +77,9 @@
         _zanUserBgView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame)+10, _zanButton.frame.origin.y, kWindowWidth-120, 35)];
         [self addSubview:_zanUserBgView];
         
-        _shareButton = [[UIButton alloc] initWithFrame:CGRectMake(kWindowWidth-50,_zanButton.frame.origin.y, 50, 35)];
-        [_shareButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
-        [self addSubview:_shareButton];
+        _moreActionButton = [[UIButton alloc] initWithFrame:CGRectMake(kWindowWidth-50,_zanButton.frame.origin.y, 50, 35)];
+        [_moreActionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
+        [self addSubview:_moreActionButton];
         
         _zanUserCntButton = [[UIButton alloc] init];
 

@@ -206,7 +206,7 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
     [dic setObject:[NSNumber numberWithInteger:showId] forKey:@"dynamicId"];
     if ([[LMAccountManager shareInstance] isLogin]) {
-        [dic setObject:[NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId] forKey:@"memberId"];
+        [dic setObject:[NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId] forKey:@"fromId"];
     }
     [LMNetworking GET:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {

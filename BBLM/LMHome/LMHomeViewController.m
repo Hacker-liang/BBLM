@@ -6,6 +6,8 @@
 //  Copyright © 2016 com.xuejian. All rights reserved.
 //
 
+#import <MediaPlayer/MediaPlayer.h>
+
 #import "LMHomeViewController.h"
 #import "constants.h"
 #import "iCarousel.h"
@@ -32,6 +34,8 @@
 @property (nonatomic, strong) AutoSlideScrollView *galleryView;
 @property (nonatomic) NSInteger page;
 @property (nonatomic) BOOL isLoading;
+@property (nonatomic, strong) MPMoviePlayerController *playerController;
+
 
 @end
 
@@ -107,6 +111,11 @@
     [_galleryView.scrollView setContentOffset:CGPointZero];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self stopPlayVideo];
+}
 
 - (UIImageView *)galleryImageView
 {
@@ -114,6 +123,16 @@
         _galleryImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 150)];
     }
     return _galleryImageView;
+}
+
+#pragma mark - 懒加载代码
+- (MPMoviePlayerController *)playerController
+{
+    if (_playerController == nil) {
+        _playerController = [[MPMoviePlayerController alloc] init];
+        _playerController.movieSourceType = MPMovieSourceTypeUnknown;
+    }
+    return _playerController;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -149,6 +168,31 @@
     }
 }
 
+- (void)playVideo:(UIButton *)sender
+{
+    [self stopPlayVideo];
+    LMShowDetailModel *show = [_dataSource objectAtIndex:sender.tag];
+    
+    NSURL *url = [NSURL URLWithString:show.videoUrl];
+    
+    self.playerController.contentURL = url;
+    
+    LMHomeShowView *view = (LMHomeShowView *)[_carousel itemViewAtIndex: sender.tag];
+//    CGPoint point = [view.contentImageView convertPoint:CGPointZero toView:self.view];
+//    self.playerController.view.frame = CGRectMake(point.x, point.y, view.contentImageView.bounds.size.width, view.contentImageView.bounds.size.height);
+    self.playerController.view.frame = view.contentImageView.bounds;
+    [view.contentImageView addSubview:self.playerController.view];
+    [self.playerController play];
+}
+
+- (void)stopPlayVideo
+{
+    if (self.playerController.view.superview) {
+        [self.playerController.view removeFromSuperview];
+        [self.playerController stop];
+    }
+}
+
 - (void)gotoMine:(UIButton *)sender
 {
     if (![[LMAccountManager shareInstance] isLogin]) {
@@ -179,9 +223,11 @@
     {
         view = [[LMHomeShowView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
         [((LMHomeShowView *)view).moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
+         [((LMHomeShowView *)view).playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
     }
     ((LMHomeShowView *)view).showDetail = [_dataSource objectAtIndex:index];
     ((LMHomeShowView *)view).moreActionButton.tag = index;
+     ((LMHomeShowView *)view).playVideoButton.tag = index;
     return view;
 }
 
@@ -256,6 +302,7 @@
             }
         }];
     }
+    [self stopPlayVideo];
     NSLog(@"首页第 %ld", carousel.currentItemIndex);
     
 }

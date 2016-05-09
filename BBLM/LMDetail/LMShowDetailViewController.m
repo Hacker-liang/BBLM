@@ -15,8 +15,9 @@
 #import "LMInputToolBar.h"
 #import "LMUserProfileViewController.h"
 #import "LMShowZanListViewController.h"
+#import "ShareActivity.h"
 
-@interface LMShowDetailViewController () <LMInputToolBarDelegate>
+@interface LMShowDetailViewController () <LMInputToolBarDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, strong) LMCommentsTableView *tableView;
 
@@ -45,6 +46,7 @@
     [_showDetailView.headerImageButton addTarget:self action:@selector(gotoPublishUserProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_showDetailView.zanButton addTarget:self action:@selector(zanShowAction:) forControlEvents:UIControlEventTouchUpInside];
     [_showDetailView.zanUserCntButton addTarget:self action:@selector(showMoreZanUserAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_showDetailView.moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [LMShowManager asyncLoadShowDetialWithShowId:_showId completionBlock:^(BOOL isSuccess, LMShowDetailModel *showDetail) {
         _showDetail = showDetail;
@@ -90,6 +92,16 @@
     self.playerController.view.frame = _showDetailView.contentImageView.bounds;
     [_showDetailView.contentImageView addSubview:self.playerController.view];
     [self.playerController play];
+}
+
+- (void)showMoreAction:(UIButton *)sender
+{
+    LMShowDetailModel *show = _showDetail;
+    NSString *colletcionStr = show.hasCollection ? @"取消收藏":@"收藏";
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:colletcionStr, @"分享", nil];
+    sheet.tintColor = APP_THEME_COLOR;
+    sheet.tag = sender.tag;
+    [sheet showInView:self.view];
 }
 
 - (void)zanShowAction:(UIButton *)sender
@@ -159,4 +171,67 @@
         }
     }];
 }
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    SEL selector = NSSelectorFromString(@"_alertController");
+    if ([actionSheet respondsToSelector:selector])//ios8
+    {
+        UIAlertController *alertController = [actionSheet valueForKey:@"_alertController"];
+        if ([alertController isKindOfClass:[UIAlertController class]])
+        {
+            alertController.view.tintColor = APP_THEME_COLOR;
+        }
+    } else { //ios7
+        for( UIView * subView in actionSheet.subviews )
+        {
+            if( [subView isKindOfClass:[UIButton class]] )
+            {
+                UIButton * btn = (UIButton*)subView;
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateHighlighted];
+                
+            }
+        }
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    LMShowDetailModel *show = _showDetail;
+    if (buttonIndex == 0) {
+        if (show.hasCollection) {
+            [LMShowManager asyncCancelCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    [SVProgressHUD showSuccessWithStatus:@"取消收藏成功"];
+                    show.hasCollection = NO;
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"取消收藏失败"];
+                }
+            }];
+        } else {
+            [LMShowManager asyncCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
+                if (isSuccess) {
+                    [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+                    show.hasCollection = YES;
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"收藏失败"];
+                }
+            }];
+        }
+    } else if (buttonIndex == 1) {
+        NSString *content;
+        if (show.isVideo) {
+            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的短视频，速来围观", show.publishUser.nickname];
+        } else {
+            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的照片，速来围观", show.publishUser.nickname];
+            
+        }
+        ShareActivity *shareView = [[ShareActivity alloc] initWithShareTitle:@"芭比辣妈,看全球辣妈的分享" andShareContent:content shareUrl:@"www.baidu.com" shareImage:nil shareImageUrl:show.coverImage];
+        [shareView showInViewController:self];
+    }
+}
+
 @end
