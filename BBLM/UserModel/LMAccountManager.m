@@ -157,5 +157,21 @@
     }];
 }
 
+- (void)asyncUploadJPushRegId:(NSString *)registerId completionBlock:(void (^) (BOOL isSuccess))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@barbie/device", BASE_API];
+    [LMNetworking GET:url parameters:@{@"deviceNo": registerId, @"memberId": [NSNumber numberWithInteger:_account.userId], @"deviceType": [NSNumber numberWithInteger:2]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            completion(YES);
+            
+        } else {
+            completion(NO);
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        completion(NO);
+    }];
+
+}
 
 @end

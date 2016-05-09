@@ -1,5 +1,5 @@
 //
-//  MyZanTableViewCell.h
+//  LMMessageTableViewCell.h
 //  BBLM
 //
 //  Created by liangpengshuai on 5/4/16.
@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LMShowZanDetail.h"
+#import "LMPushMessageDetail.h"
 
-@interface MyZanTableViewCell : UITableViewCell
+@interface LMMessageTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *showImageView;
 @property (weak, nonatomic) IBOutlet UIButton *avatarButton;
 
-@property (nonatomic, strong) LMShowZanDetail *zanDetail;
+@property (nonatomic, strong) LMPushMessageDetail *pushMessage;
 
 
 @end

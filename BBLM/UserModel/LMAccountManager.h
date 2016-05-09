@@ -64,5 +64,13 @@
  */
 - (void)asyncDeleteUserTag:(NSString *)tag completionBlock:(void (^) (BOOL isSuccess, NSString *errorStr))completion;
 
+/**
+ *  上传 jpush registerId
+ *
+ *  @param registerId
+ *  @param completion
+ */
+- (void)asyncUploadJPushRegId:(NSString *)registerId completionBlock:(void (^) (BOOL isSuccess))completion;
+
 
 @end

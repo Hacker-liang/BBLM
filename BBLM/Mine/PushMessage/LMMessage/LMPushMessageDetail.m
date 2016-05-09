@@ -1,30 +1,23 @@
 //
-//  MyCommentModel.m
+//  LMPushMessageDetail.m
 //  BBLM
 //
-//  Created by liangpengshuai on 5/9/16.
+//  Created by liangpengshuai on 5/4/16.
 //  Copyright © 2016 com.xuejian. All rights reserved.
 //
 
-#import "MyCommentModel.h"
+#import "LMPushMessageDetail.h"
 
-@implementation MyCommentModel
+@implementation LMPushMessageDetail
 
 - (id)initWithJson:(id)json
 {
     if (self = [super init]) {
-        _commentId = [[json objectForKey:@"id"] integerValue];
         _content = [json objectForKey:@"content"];
-        _user = [[LMUserDetailModel alloc] init];
-        _user.userId = [[json objectForKey:@"memberId"] integerValue];
-        _user.nickname = [json objectForKey:@"nickname"];
-        _user.avatar = [json objectForKey:@"portrait"];
-        _isMine = _user.userId == [LMAccountManager shareInstance].account.userId;
+        _title = [json objectForKey:@"title"];
+        _avatar = [json objectForKey:@"portrait"];
+        _coverImage = [[[json objectForKey:@"imgs"] componentsSeparatedByString:@","] firstObject];
         _publishDate = [[json objectForKey:@"time"] longLongValue]/1000;
-        
-        _show = [[LMShowDetailModel alloc] init];
-        _show.itemId = [[json objectForKey:@"dynamicId"] integerValue];
-        _show.imageList = [[json objectForKey:@"imgs"] componentsSeparatedByString:@","];
         
     }
     return self;
@@ -50,5 +43,4 @@
         
     }
 }
-
 @end

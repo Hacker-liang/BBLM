@@ -10,11 +10,13 @@
 #import "MyCommentTableViewCell.h"
 #import "LMUserManager.h"
 #import "MJRefresh.h"
+#import "LMShowDetailViewController.h"
+
 
 @interface MyCommentsListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray<MyCommentModel *> *dataSource;
 @property (nonatomic) NSInteger page;
 
 @end
@@ -110,6 +112,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
+    ctl.showId = [_dataSource objectAtIndex:indexPath.row].show.itemId;
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 @end

@@ -49,7 +49,8 @@
     }
     
     [JPUSHService setupWithOption:launchOptions appKey:JPushAppKey channel:@"App Store" apsForProduction:YES];
-    [JPUSHService setBadge:0];
+    [JPUSHService resetBadge];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 
     /** 设置友盟分享**/
     [UMSocialData openLog:NO];
@@ -165,7 +166,14 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
 
 - (void)didRegisterJPush:(NSNotification *)noti
 {
-    NSLog(@"jpush 注册成功 regid 为：%@", [JPUSHService registrationID]);
+    if ([[LMAccountManager shareInstance] isLogin]) {
+        [[LMAccountManager shareInstance] asyncUploadJPushRegId:[JPUSHService registrationID] completionBlock:^(BOOL isSuccess) {
+            if (isSuccess) {
+                NSLog(@"jpush 注册成功 regid 为：%@", [JPUSHService registrationID]);
+            }
+        }];
+    }
+    
 }
 
 - (void)didReceiveJPushMessage:(NSNotification *)noti

@@ -14,10 +14,12 @@
 {
     if (self = [super init]) {
         _user = [[LMUserDetailModel alloc] init];
+        _user.userId = [[json objectForKey:@"memberId"] integerValue];
         _user.nickname = [json objectForKey:@"nickname"];
         _user.avatar = [json objectForKey:@"portrait"];
         _showImage = [[[json objectForKey:@"imgs"] componentsSeparatedByString:@","] firstObject];
         _publishDate = [[json objectForKey:@"time"] longLongValue]/1000;
+        _showId = [[json objectForKey:@"dynamicId"] integerValue];
         
     }
     return self;

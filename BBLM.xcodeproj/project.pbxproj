@@ -129,6 +129,11 @@
 		D960DA6B1CE02E2A00020C42 /* CommonWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA691CE02E2A00020C42 /* CommonWebViewController.xib */; };
 		D960DA6E1CE03AE600020C42 /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA6D1CE03AE600020C42 /* UIView+FindUIViewController.m */; };
 		D960DA711CE049FA00020C42 /* MyCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA701CE049FA00020C42 /* MyCommentModel.m */; };
+		D960DA7B1CE076E100020C42 /* LMPushMessageDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA741CE076E100020C42 /* LMPushMessageDetail.m */; };
+		D960DA7C1CE076E100020C42 /* LMMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA761CE076E100020C42 /* LMMessageListViewController.m */; };
+		D960DA7D1CE076E100020C42 /* LMMessageListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA771CE076E100020C42 /* LMMessageListViewController.xib */; };
+		D960DA7E1CE076E100020C42 /* LMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA791CE076E100020C42 /* LMMessageTableViewCell.m */; };
+		D960DA7F1CE076E100020C42 /* LMMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA7A1CE076E100020C42 /* LMMessageTableViewCell.xib */; };
 		D9DBFC191CDC404600A367A3 /* jpush-ios-2.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */; };
 		D9DBFC1A1CDC404600A367A3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9DBFC181CDC404600A367A3 /* PushConfig.plist */; };
 		D9DBFC1C1CDC40BD00A367A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC1B1CDC40BD00A367A3 /* CFNetwork.framework */; };
@@ -412,6 +417,14 @@
 		D960DA6D1CE03AE600020C42 /* UIView+FindUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindUIViewController.m"; sourceTree = "<group>"; };
 		D960DA6F1CE049FA00020C42 /* MyCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentModel.h; sourceTree = "<group>"; };
 		D960DA701CE049FA00020C42 /* MyCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentModel.m; sourceTree = "<group>"; };
+		D960DA731CE076E100020C42 /* LMPushMessageDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMPushMessageDetail.h; sourceTree = "<group>"; };
+		D960DA741CE076E100020C42 /* LMPushMessageDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMPushMessageDetail.m; sourceTree = "<group>"; };
+		D960DA751CE076E100020C42 /* LMMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMMessageListViewController.h; sourceTree = "<group>"; };
+		D960DA761CE076E100020C42 /* LMMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMMessageListViewController.m; sourceTree = "<group>"; };
+		D960DA771CE076E100020C42 /* LMMessageListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMMessageListViewController.xib; sourceTree = "<group>"; };
+		D960DA781CE076E100020C42 /* LMMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMMessageTableViewCell.h; sourceTree = "<group>"; };
+		D960DA791CE076E100020C42 /* LMMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMMessageTableViewCell.m; sourceTree = "<group>"; };
+		D960DA7A1CE076E100020C42 /* LMMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMMessageTableViewCell.xib; sourceTree = "<group>"; };
 		D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.6.a"; sourceTree = "<group>"; };
 		D9DBFC171CDC404600A367A3 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		D9DBFC181CDC404600A367A3 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
@@ -887,6 +900,7 @@
 		D95387F21CC08F65004BD51F /* PushMessage */ = {
 			isa = PBXGroup;
 			children = (
+				D960DA721CE076E100020C42 /* LMMessage */,
 				D9FDE1271CD9E08B00AA016B /* CommentList */,
 				D9FDE1281CD9E08B00AA016B /* ZanList */,
 				D95388021CC09250004BD51F /* Views */,
@@ -1178,6 +1192,21 @@
 			path = CommonWebView;
 			sourceTree = "<group>";
 		};
+		D960DA721CE076E100020C42 /* LMMessage */ = {
+			isa = PBXGroup;
+			children = (
+				D960DA731CE076E100020C42 /* LMPushMessageDetail.h */,
+				D960DA741CE076E100020C42 /* LMPushMessageDetail.m */,
+				D960DA751CE076E100020C42 /* LMMessageListViewController.h */,
+				D960DA761CE076E100020C42 /* LMMessageListViewController.m */,
+				D960DA771CE076E100020C42 /* LMMessageListViewController.xib */,
+				D960DA781CE076E100020C42 /* LMMessageTableViewCell.h */,
+				D960DA791CE076E100020C42 /* LMMessageTableViewCell.m */,
+				D960DA7A1CE076E100020C42 /* LMMessageTableViewCell.xib */,
+			);
+			path = LMMessage;
+			sourceTree = "<group>";
+		};
 		D9DBFC151CDC404600A367A3 /* JPush */ = {
 			isa = PBXGroup;
 			children = (
@@ -1466,6 +1495,7 @@
 				D95388BA1CC4FC85004BD51F /* yw_1222.jpg in Resources */,
 				D9FDE0AA1CD0C3B100AA016B /* LMShowTableViewCell.xib in Resources */,
 				D95388121CC0C430004BD51F /* LMUserTagsAddViewController.xib in Resources */,
+				D960DA7D1CE076E100020C42 /* LMMessageListViewController.xib in Resources */,
 				D95387CF1CBE5123004BD51F /* AutoSlideScrollView.bundle in Resources */,
 				D9FDE1411CD9F78000AA016B /* MyZanTableViewCell.xib in Resources */,
 				D960DA0B1CDC795A00020C42 /* UMSCommentInputController.xib in Resources */,
@@ -1490,6 +1520,7 @@
 				D95388BF1CC4FCC2004BD51F /* ALBBQuPaiPlugin.bundle in Resources */,
 				D9FDE0F11CD8428500AA016B /* UploadUserAlbumCollectionViewCell.xib in Resources */,
 				D9FDE0FC1CD8428500AA016B /* UserAlbumPreviewCollectionViewCell.xib in Resources */,
+				D960DA7F1CE076E100020C42 /* LMMessageTableViewCell.xib in Resources */,
 				D960DA111CDC795A00020C42 /* UMSShareListController.xib in Resources */,
 				D9FDE0E91CD8428500AA016B /* icon_photo_bar_selected@3x.png in Resources */,
 				D960858F1CDB5F550078657B /* LMShowZanTableViewCell.xib in Resources */,
@@ -1604,6 +1635,7 @@
 				D95387F11CBFCA89004BD51F /* TEATimeRange.m in Sources */,
 				D9FDE0F91CD8428500AA016B /* UserAlbumOverViewTableViewController.m in Sources */,
 				D9FDE10D1CD8C33300AA016B /* LMSimpleShowTableViewCell.m in Sources */,
+				D960DA7C1CE076E100020C42 /* LMMessageListViewController.m in Sources */,
 				D95387CD1CBE5123004BD51F /* MyPageControl.m in Sources */,
 				D95387B21CBE4B6C004BD51F /* LMShowDetailModel.m in Sources */,
 				D95388201CC0C4C3004BD51F /* LMUserTagCollectionViewCell.m in Sources */,
@@ -1618,6 +1650,8 @@
 				D953885B1CC4BB72004BD51F /* LMUserPorfileHeaderView.m in Sources */,
 				D960858E1CDB5F550078657B /* LMShowZanTableViewCell.m in Sources */,
 				D95388741CC4E0C1004BD51F /* UIAlertView+Block.m in Sources */,
+				D960DA7E1CE076E100020C42 /* LMMessageTableViewCell.m in Sources */,
+				D960DA7B1CE076E100020C42 /* LMPushMessageDetail.m in Sources */,
 				D95387901CBE1877004BD51F /* LMHomeViewController.m in Sources */,
 				D95387F01CBFCA89004BD51F /* TEAContributionGraph.m in Sources */,
 				D9FDE1031CD8438000AA016B /* UploadUserVideoViewController.m in Sources */,

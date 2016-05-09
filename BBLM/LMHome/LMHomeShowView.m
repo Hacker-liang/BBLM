@@ -44,13 +44,26 @@
         
         _rankButton = [[UIButton alloc] init];
         [self addSubview:_rankButton];
+        
+        if (kWindowHeight == 480) {
+            _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 25, width, 20)];
+            
+        } else {
+            _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 30, width, 20)];
+            
+        }
     
-        _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 30, width, 20)];
         _dateLabel.font = [UIFont systemFontOfSize:13.0];
         _dateLabel.textColor = COLOR_TEXT_II;
         [self addSubview:_dateLabel];
         
-        _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, self.frame.size.height-56-50)];
+        if (kWindowHeight == 480) {
+            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 46, width, self.frame.size.height-46-40)];
+
+        } else {
+            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, self.frame.size.height-56-50)];
+
+        }
         _contentImageView.backgroundColor = APP_PAGE_COLOR;
         _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
         _contentImageView.clipsToBounds = YES;
@@ -62,7 +75,13 @@
         [_playVideoButton setImage:[UIImage imageNamed:@"icon_playVideo"] forState:UIControlStateNormal];
         [_contentImageView addSubview:_playVideoButton];
         
-        _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, self.frame.size.height-40, (width-30-30)/2, 30)];
+        if (kWindowHeight == 480) {
+            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, self.frame.size.height-35, (width-30-30)/2, 30)];
+            
+        } else {
+            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, self.frame.size.height-40, (width-30-30)/2, 30)];
+            
+        }
         [_zanButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
         [_zanButton setTitleEdgeInsets:UIEdgeInsetsMake(2, 10, 0, 0)];
         _zanButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
@@ -74,7 +93,13 @@
         [_zanButton addTarget:self action:@selector(zanShowAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_zanButton];
         
-        _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 30, self.frame.size.height-40, (width-30-30)/2, 30)];
+        if (kWindowHeight == 480) {
+            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 30, self.frame.size.height-35, (width-30-30)/2, 30)];
+            
+        } else {
+            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 30, self.frame.size.height-40, (width-30-30)/2, 30)];
+            
+        }
         [_commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
         _commentButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
         [_commentButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];

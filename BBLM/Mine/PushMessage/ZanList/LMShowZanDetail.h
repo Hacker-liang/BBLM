@@ -14,6 +14,7 @@
 @property (nonatomic) long long publishDate;
 @property (nonatomic, copy) NSString *publishDateDesc;
 @property (nonatomic, copy) NSString *showImage;
+@property (nonatomic) NSInteger showId;
 
 - (id)initWithJson:(id)json;
 

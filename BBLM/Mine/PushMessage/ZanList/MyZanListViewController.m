@@ -10,11 +10,13 @@
 #import "MyZanTableViewCell.h"
 #import "LMUserManager.h"
 #import "MJRefresh.h"
+#import "LMUserProfileViewController.h"
+#import "LMShowDetailViewController.h"
 
 @interface MyZanListViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray <LMShowZanDetail *>*dataSource;
 @property (nonatomic) NSInteger page;
 
 @end
@@ -37,7 +39,7 @@
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page = 1;
         
-        [LMUserManager asyncLoadUserZanListInfoWithUserId:[LMAccountManager shareInstance].account.userId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList) {
+        [LMUserManager asyncLoadUserZanListInfoWithUserId:[LMAccountManager shareInstance].account.userId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowZanDetail *> *commentList) {
             if (isSuccess) {
                 [_dataSource removeAllObjects];
                 
@@ -66,7 +68,7 @@
 
 - (void)loadMoreData
 {
-    [LMUserManager asyncLoadUserZanListInfoWithUserId:[LMAccountManager shareInstance].account.userId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList) {
+    [LMUserManager asyncLoadUserZanListInfoWithUserId:[LMAccountManager shareInstance].account.userId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowZanDetail *> *commentList) {
         if (isSuccess) {
             [_dataSource addObjectsFromArray:commentList];
             [self.tableView reloadData];
@@ -78,6 +80,15 @@
         [_tableView.footer endRefreshing];
         
     }];
+}
+
+- (void)gotoUserProfile:(UIButton *)sender
+{
+    LMShowZanDetail *zan = [_dataSource objectAtIndex:sender.tag];
+    LMUserProfileViewController *ctl = [[LMUserProfileViewController alloc] init];
+    ctl.userId = zan.user.userId;
+    [self.navigationController pushViewController:ctl animated:YES];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -104,12 +115,17 @@
 {
     MyZanTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.zanDetail = [_dataSource objectAtIndex:indexPath.row];
+//    [cell.avatarButton addTarget:self action:@selector(gotoUserProfile:) forControlEvents:UIControlEventTouchUpInside];
+    cell.avatarButton.tag = indexPath.row;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
+    ctl.showId = [_dataSource objectAtIndex:indexPath.row].showId;
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 @end

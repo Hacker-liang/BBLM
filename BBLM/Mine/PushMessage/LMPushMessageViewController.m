@@ -11,6 +11,7 @@
 #import "LMPushMessageDetailTableViewCell.h"
 #import "MyCommentsListViewController.h"
 #import "MyZanListViewController.h"
+#import "LMMessageListViewController.h"
 
 @interface LMPushMessageViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -122,6 +123,9 @@
         
     } else if (indexPath.row == 1) {
         MyZanListViewController *ctl = [[MyZanListViewController alloc] init];
+        [self.navigationController pushViewController:ctl animated:YES];
+    } else {
+        LMMessageListViewController *ctl = [[LMMessageListViewController alloc] init];
         [self.navigationController pushViewController:ctl animated:YES];
     }
 

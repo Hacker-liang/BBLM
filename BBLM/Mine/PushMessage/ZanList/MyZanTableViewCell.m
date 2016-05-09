@@ -21,7 +21,7 @@
 - (void)setZanDetail:(LMShowZanDetail *)zanDetail
 {
     _zanDetail = zanDetail;
-    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:_zanDetail.user.avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    [_avatarButton sd_setImageWithURL:[NSURL URLWithString:_zanDetail.user.avatar] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default"]];
     _nicknameLabel.text = _zanDetail.user.nickname;
     [_showImageView sd_setImageWithURL:[NSURL URLWithString:_zanDetail.showImage] placeholderImage:nil];
     _dateLabel.text = _zanDetail.publishDateDesc;

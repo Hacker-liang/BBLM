@@ -52,15 +52,25 @@
     _bgScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     _bgScrollView.backgroundColor = APP_PAGE_COLOR;
     [self.view addSubview:_bgScrollView];
-    _carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 200, kWindowWidth, kWindowHeight-200-49)];
+    
+    if (kWindowHeight == 568) {
+        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 100) animationDuration:10];
+    } else if (kWindowHeight == 480) {
+        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 80) animationDuration:10];
+    } else {
+        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 120) animationDuration:10];
+    }
+    _galleryView.backgroundColor = [UIColor clearColor];
+    [self.bgScrollView addSubview:_galleryView];
+    
+    CGFloat y = CGRectGetMaxY(_galleryView.frame)+10;
+    _carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, y, kWindowWidth, kWindowHeight-y-49)];
     _carousel.delegate = self;
     _carousel.dataSource = self;
     _carousel.type = iCarouselTypeRotary;
     [_bgScrollView addSubview:_carousel];
     
-    _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 120) animationDuration:10];
-    _galleryView.backgroundColor = [UIColor clearColor];
-    [self.bgScrollView addSubview:_galleryView];
+   
     
     UIButton *showPushMessageBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [showPushMessageBtn setImage:[UIImage imageNamed:@"icon_pushMessage"] forState:UIControlStateNormal];
