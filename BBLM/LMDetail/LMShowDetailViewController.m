@@ -106,6 +106,17 @@
 
 - (void)zanShowAction:(UIButton *)sender
 {
+    if (![[LMAccountManager shareInstance] isLogin]) {
+        LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin, NSString *errorStr) {
+            if (isLogin) {
+                
+            } else {
+            }
+        }];
+        [self presentViewController:ctl animated:YES completion:nil];
+        
+        return;
+    }
     if (!sender.selected) {
         [LMShowManager asyncZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
             if (isSuccess) {
@@ -158,6 +169,17 @@
 
 - (void)toolbarSendComment:(NSString *)comment
 {
+    if (![[LMAccountManager shareInstance] isLogin]) {
+        LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin, NSString *errorStr) {
+            if (isLogin) {
+                
+            } else {
+            }
+        }];
+        [self presentViewController:ctl animated:YES completion:nil];
+        
+        return;
+    }
     if (!comment.length) {
         return;
     }
@@ -202,6 +224,17 @@
 {
     LMShowDetailModel *show = _showDetail;
     if (buttonIndex == 0) {
+        if (![[LMAccountManager shareInstance] isLogin]) {
+            LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin, NSString *errorStr) {
+                if (isLogin) {
+                    
+                } else {
+                }
+            }];
+            [self presentViewController:ctl animated:YES completion:nil];
+            
+            return;
+        }
         if (show.hasCollection) {
             [LMShowManager asyncCancelCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
                 if (isSuccess) {

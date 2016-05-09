@@ -127,6 +127,7 @@
 		D960DA211CDC8E9A00020C42 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D960DA201CDC8E9A00020C42 /* libstdc++.tbd */; };
 		D960DA6A1CE02E2A00020C42 /* CommonWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA681CE02E2A00020C42 /* CommonWebViewController.m */; };
 		D960DA6B1CE02E2A00020C42 /* CommonWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA691CE02E2A00020C42 /* CommonWebViewController.xib */; };
+		D960DA6E1CE03AE600020C42 /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA6D1CE03AE600020C42 /* UIView+FindUIViewController.m */; };
 		D9DBFC191CDC404600A367A3 /* jpush-ios-2.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */; };
 		D9DBFC1A1CDC404600A367A3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9DBFC181CDC404600A367A3 /* PushConfig.plist */; };
 		D9DBFC1C1CDC40BD00A367A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC1B1CDC40BD00A367A3 /* CFNetwork.framework */; };
@@ -406,6 +407,8 @@
 		D960DA671CE02E2A00020C42 /* CommonWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonWebViewController.h; sourceTree = "<group>"; };
 		D960DA681CE02E2A00020C42 /* CommonWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonWebViewController.m; sourceTree = "<group>"; };
 		D960DA691CE02E2A00020C42 /* CommonWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonWebViewController.xib; sourceTree = "<group>"; };
+		D960DA6C1CE03AE600020C42 /* UIView+FindUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindUIViewController.h"; sourceTree = "<group>"; };
+		D960DA6D1CE03AE600020C42 /* UIView+FindUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindUIViewController.m"; sourceTree = "<group>"; };
 		D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.6.a"; sourceTree = "<group>"; };
 		D9DBFC171CDC404600A367A3 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		D9DBFC181CDC404600A367A3 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
@@ -1019,6 +1022,8 @@
 				D9FDE0AF1CD0CDF000AA016B /* NSMutableDictionary+MyDictionary.m */,
 				D95388721CC4E0C1004BD51F /* UIAlertView+Block.h */,
 				D95388731CC4E0C1004BD51F /* UIAlertView+Block.m */,
+				D960DA6C1CE03AE600020C42 /* UIView+FindUIViewController.h */,
+				D960DA6D1CE03AE600020C42 /* UIView+FindUIViewController.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1624,6 +1629,7 @@
 				D95387941CBE1889004BD51F /* MineViewController.m in Sources */,
 				D9FDE0FE1CD8428500AA016B /* UserAlbumSelectCollectionViewCell.m in Sources */,
 				D953880C1CC0C0AB004BD51F /* TZNavigationViewController.m in Sources */,
+				D960DA6E1CE03AE600020C42 /* UIView+FindUIViewController.m in Sources */,
 				D95388001CC090E5004BD51F /* LMPushMessageDetailTableViewCell.m in Sources */,
 				D95387AB1CBE3FA6004BD51F /* iCarousel.m in Sources */,
 				D9FDE1361CD9E11000AA016B /* MyZanListViewController.m in Sources */,

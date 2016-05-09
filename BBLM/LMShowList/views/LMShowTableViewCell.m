@@ -71,6 +71,17 @@
 
 - (void)zanShowAction:(UIButton *)sender
 {
+    if (![[LMAccountManager shareInstance] isLogin]) {
+        LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin, NSString *errorStr) {
+            if (isLogin) {
+                
+            } else {
+            }
+        }];
+        [[self findContainerViewController] presentViewController:ctl animated:YES completion:nil];
+        
+        return;
+    }
     if (!sender.selected) {
         [LMShowManager asyncZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
             if (isSuccess) {

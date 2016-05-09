@@ -23,5 +23,7 @@
 #import "LMAccountManager.h"
 #import "LMUserManager.h"
 #import "NSMutableDictionary+MyDictionary.h"
+#import "LMLoginViewController.h"
+#import "UIView+FindUIViewController.h"
 
 #endif /* PrefixHeader_pch */

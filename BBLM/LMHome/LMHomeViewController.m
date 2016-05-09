@@ -52,7 +52,7 @@
     _bgScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     _bgScrollView.backgroundColor = APP_PAGE_COLOR;
     [self.view addSubview:_bgScrollView];
-    _carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 200, kWindowWidth, kWindowHeight-200)];
+    _carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, 200, kWindowWidth, kWindowHeight-200-49)];
     _carousel.delegate = self;
     _carousel.dataSource = self;
     _carousel.type = iCarouselTypeRotary;
@@ -337,6 +337,17 @@
 {
     LMShowDetailModel *show = [_dataSource objectAtIndex:actionSheet.tag];
     if (buttonIndex == 0) {
+        if (![[LMAccountManager shareInstance] isLogin]) {
+            LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin, NSString *errorStr) {
+                if (isLogin) {
+                    
+                } else {
+                }
+            }];
+            [self presentViewController:ctl animated:YES completion:nil];
+            
+            return;
+        }
         if (show.hasCollection) {
             [LMShowManager asyncCancelCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
                 if (isSuccess) {

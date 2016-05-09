@@ -223,6 +223,17 @@
 {
     LMShowDetailModel *show = [_dataSource objectAtIndex:actionSheet.tag];
     if (buttonIndex == 0) {
+        if (![[LMAccountManager shareInstance] isLogin]) {
+            LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin, NSString *errorStr) {
+                if (isLogin) {
+                    
+                } else {
+                }
+            }];
+            [self presentViewController:ctl animated:YES completion:nil];
+            
+            return;
+        }
         if (show.hasCollection) {
             [LMShowManager asyncCancelCollectionShowWithItemId:show.itemId completionBlock:^(BOOL isSuccess) {
                 if (isSuccess) {
