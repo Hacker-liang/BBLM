@@ -17,16 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (![[self.navigationController.viewControllers firstObject] isEqual:self]) {
-        UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:[UIImage imageNamed:@"common_icon_navigation_back_normal.png"] forState:UIControlStateNormal];
-        
-        [button addTarget:self action:@selector(goBack)forControlEvents:UIControlEventTouchUpInside];
-        [button setFrame:CGRectMake(0, 0, 30, 30)];
-        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-        self.navigationItem.leftBarButtonItem = barButton;
-    }
+    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:@"common_icon_navigation_back_normal.png"] forState:UIControlStateNormal];
+    
+    [button addTarget:self action:@selector(goBack)forControlEvents:UIControlEventTouchUpInside];
+    [button setFrame:CGRectMake(0, 0, 30, 30)];
+    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.leftBarButtonItem = barButton;
 }
 
 - (void)viewWillAppear:(BOOL)animated

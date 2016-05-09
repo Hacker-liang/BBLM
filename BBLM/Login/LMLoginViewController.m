@@ -7,6 +7,7 @@
 //
 
 #import "LMLoginViewController.h"
+#import "CommonWebViewController.h"
 
 @interface LMLoginViewController () <UITextFieldDelegate>
 {
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *captchaTextField;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *getCatchaButton;
+@property (weak, nonatomic) IBOutlet UIButton *protocolButton;
 
 @property (nonatomic, copy) void (^loginCompletionBlock) (BOOL isLogin, NSString *errorStr);
 
@@ -47,6 +49,11 @@
     
     _telTextField.delegate = self;
     _captchaTextField.delegate = self;
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:@"登录即表示您同意《芭比辣妈用户协议》"];
+    [attr addAttribute:NSForegroundColorAttributeName value:APP_THEME_COLOR range:NSMakeRange(8, 10)];
+    [attr addAttribute:NSForegroundColorAttributeName value:COLOR_TEXT_II range:NSMakeRange(0, 8)];
+
+    [_protocolButton setAttributedTitle:attr forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +63,12 @@
 - (IBAction)dismiss:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
     
+}
+- (IBAction)gotoProtocolAction:(id)sender {
+    CommonWebViewController *ctl = [[CommonWebViewController  alloc] init];
+    ctl.naviBarTitle = @"用户协议";
+    ctl.urlStr = [NSString stringWithFormat:@"%@resources/protocol/register.html", BASE_API];
+    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
 }
 
 - (IBAction)loginAction:(id)sender {
