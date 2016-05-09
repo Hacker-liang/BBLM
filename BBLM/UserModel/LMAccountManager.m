@@ -77,7 +77,7 @@
 
 - (void)asyncLogoutWichCompletionBlock:(void (^)(BOOL, NSString *))completion
 {
-    NSString *url = [NSString stringWithFormat:@"%@login", BASE_API];
+    NSString *url = [NSString stringWithFormat:@"%@logout", BASE_API];
     [LMNetworking GET:url parameters:@{@"memberId": [NSNumber numberWithInteger:_account.userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             _account = nil;

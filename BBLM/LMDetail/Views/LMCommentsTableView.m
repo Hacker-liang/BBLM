@@ -65,7 +65,11 @@
         }
     }];
     
-    self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    footer.refreshingTitleHidden = YES;
+    [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
+    self.footer = footer;
+    
 }
 
 - (void)loadMoreData

@@ -31,7 +31,7 @@
         _hasCollection = [[json objectForKey:@"hasCollected"] boolValue];
         _heat = [[json objectForKey:@"heat"] integerValue];
         _commentCount = [[json objectForKey:@"commentCount"] integerValue];
-        _publishDateDesc = [json objectForKey:@"commitdate"];
+        _publishDateDesc = [json objectForKey:@"createTime"];
         _showDesc = [json objectForKey:@"words"];
         _zanCount = [[json objectForKey:@"praiseCount"] integerValue];
         _hasZan = [[json objectForKey:@"hasPraised"] boolValue];

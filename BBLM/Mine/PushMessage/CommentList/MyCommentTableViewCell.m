@@ -20,7 +20,7 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)setCommentDetail:(LMShowCommentDetail *)commentDetail
+- (void)setCommentDetail:(MyCommentModel *)commentDetail
 {
     _commentDetail = commentDetail;
     [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:_commentDetail.user.avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];

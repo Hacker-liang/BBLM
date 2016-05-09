@@ -19,7 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (strong, nonatomic) NSArray *dataSource;
 
 + (CGFloat)heigthOfCellWithDataSource:(NSArray *)dataSource;
 

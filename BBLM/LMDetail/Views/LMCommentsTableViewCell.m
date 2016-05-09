@@ -84,9 +84,9 @@
     if (!isMine) {
         _contentLabel.textColor = COLOR_TEXT_I;
         _avatarImageView.frame = CGRectMake(12, 10, 35, 35);
-        _nicknameLabel.frame = CGRectMake(CGRectGetMaxX(_avatarImageView.frame)+8, 10, kWindowWidth-110, 18);
+        _nicknameLabel.frame = CGRectMake(CGRectGetMaxX(_avatarImageView.frame)+8, 10, kWindowWidth-150, 18);
         _nicknameLabel.textAlignment = NSTextAlignmentLeft;
-        _dateLabel.frame = CGRectMake(kWindowWidth-60, 10, 50, 18);
+        _dateLabel.frame = CGRectMake(kWindowWidth-90, 10, 80, 18);
         _dateLabel.textAlignment = NSTextAlignmentRight;
         if (_commentDetail.content) {
             CGFloat maxWidth = kWindowWidth-70-80;
@@ -99,9 +99,9 @@
     } else {
         _contentLabel.textColor = [UIColor whiteColor];
         _avatarImageView.frame = CGRectMake(kWindowWidth-12-35, 10, 35, 35);
-        _nicknameLabel.frame = CGRectMake(80, 10, kWindowWidth-80-35-20, 18);
+        _nicknameLabel.frame = CGRectMake(80, 10, kWindowWidth-90-35-20, 18);
         _nicknameLabel.textAlignment = NSTextAlignmentRight;
-        _dateLabel.frame = CGRectMake(12, 10, 50, 18);
+        _dateLabel.frame = CGRectMake(12, 10, 80, 18);
         _dateLabel.textAlignment = NSTextAlignmentLeft;
         if (_commentDetail.content) {
             CGFloat maxWidth = kWindowWidth-70-80;

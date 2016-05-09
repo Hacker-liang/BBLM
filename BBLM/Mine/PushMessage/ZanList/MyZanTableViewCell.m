@@ -24,6 +24,7 @@
     [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:_zanDetail.user.avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
     _nicknameLabel.text = _zanDetail.user.nickname;
     [_showImageView sd_setImageWithURL:[NSURL URLWithString:_zanDetail.showImage] placeholderImage:nil];
+    _dateLabel.text = _zanDetail.publishDateDesc;
 }
 
 @end

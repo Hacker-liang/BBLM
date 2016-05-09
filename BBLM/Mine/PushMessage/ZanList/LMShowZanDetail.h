@@ -11,7 +11,7 @@
 @interface LMShowZanDetail : NSObject
 
 @property (nonatomic, strong) LMUserDetailModel *user;
-@property (nonatomic, copy) NSString *publishDate;
+@property (nonatomic) long long publishDate;
 @property (nonatomic, copy) NSString *publishDateDesc;
 @property (nonatomic, copy) NSString *showImage;
 

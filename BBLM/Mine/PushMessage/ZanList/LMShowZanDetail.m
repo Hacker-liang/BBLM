@@ -16,12 +16,31 @@
         _user = [[LMUserDetailModel alloc] init];
         _user.nickname = [json objectForKey:@"nickname"];
         _user.avatar = [json objectForKey:@"portrait"];
-        _publishDate = [json objectForKey:@"time"];
         _showImage = [[[json objectForKey:@"imgs"] componentsSeparatedByString:@","] firstObject];
-
+        _publishDate = [[json objectForKey:@"time"] longLongValue]/1000;
         
     }
     return self;
 }
 
+- (NSString *)publishDateDesc
+{
+    long long nowTime = [[NSDate date] timeIntervalSince1970];
+    long space = nowTime - _publishDate;
+    if (space < 60*60) {
+        if (space/60 == 0) {
+            return @"刚刚";
+        }
+        return [[NSString alloc] initWithFormat:@"%ld分钟前", (NSInteger)(space/60)];
+    } else if (space < 60*60*24) {
+        
+        return [[NSString alloc] initWithFormat:@"%ld小时前", (NSInteger)(space/3600)];
+    } else if (space < 60*60*24*15) {
+        
+        return [[NSString alloc] initWithFormat:@"%ld天前", (NSInteger)(space/3600/24)];
+    } else {
+        return [ConvertMethods dateToString:[NSDate dateWithTimeIntervalSince1970:_publishDate] withFormat:@"yyyy-MM-dd" withTimeZone:[NSTimeZone systemTimeZone]];
+        
+    }
+}
 @end

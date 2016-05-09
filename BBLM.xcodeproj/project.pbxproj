@@ -128,6 +128,7 @@
 		D960DA6A1CE02E2A00020C42 /* CommonWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA681CE02E2A00020C42 /* CommonWebViewController.m */; };
 		D960DA6B1CE02E2A00020C42 /* CommonWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA691CE02E2A00020C42 /* CommonWebViewController.xib */; };
 		D960DA6E1CE03AE600020C42 /* UIView+FindUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA6D1CE03AE600020C42 /* UIView+FindUIViewController.m */; };
+		D960DA711CE049FA00020C42 /* MyCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA701CE049FA00020C42 /* MyCommentModel.m */; };
 		D9DBFC191CDC404600A367A3 /* jpush-ios-2.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */; };
 		D9DBFC1A1CDC404600A367A3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9DBFC181CDC404600A367A3 /* PushConfig.plist */; };
 		D9DBFC1C1CDC40BD00A367A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC1B1CDC40BD00A367A3 /* CFNetwork.framework */; };
@@ -409,6 +410,8 @@
 		D960DA691CE02E2A00020C42 /* CommonWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonWebViewController.xib; sourceTree = "<group>"; };
 		D960DA6C1CE03AE600020C42 /* UIView+FindUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FindUIViewController.h"; sourceTree = "<group>"; };
 		D960DA6D1CE03AE600020C42 /* UIView+FindUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FindUIViewController.m"; sourceTree = "<group>"; };
+		D960DA6F1CE049FA00020C42 /* MyCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentModel.h; sourceTree = "<group>"; };
+		D960DA701CE049FA00020C42 /* MyCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentModel.m; sourceTree = "<group>"; };
 		D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.6.a"; sourceTree = "<group>"; };
 		D9DBFC171CDC404600A367A3 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		D9DBFC181CDC404600A367A3 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
@@ -1316,6 +1319,8 @@
 				D9FDE1381CD9E46C00AA016B /* MyCommentTableViewCell.h */,
 				D9FDE1391CD9E46C00AA016B /* MyCommentTableViewCell.m */,
 				D9FDE13A1CD9E46C00AA016B /* MyCommentTableViewCell.xib */,
+				D960DA6F1CE049FA00020C42 /* MyCommentModel.h */,
+				D960DA701CE049FA00020C42 /* MyCommentModel.m */,
 			);
 			path = CommentList;
 			sourceTree = "<group>";
@@ -1605,6 +1610,7 @@
 				D9FDE1311CD9E10000AA016B /* MyCommentsListViewController.m in Sources */,
 				D95388091CC0BDFE004BD51F /* TZViewController.m in Sources */,
 				D95387D91CBF98B0004BD51F /* MineHeaderView.m in Sources */,
+				D960DA711CE049FA00020C42 /* MyCommentModel.m in Sources */,
 				D95387AF1CBE4513004BD51F /* LMHomeShowView.m in Sources */,
 				D9FDE0F31CD8428500AA016B /* UploadUserPhotoOperationView.m in Sources */,
 				D95388111CC0C430004BD51F /* LMUserTagsAddViewController.m in Sources */,

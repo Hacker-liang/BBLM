@@ -68,7 +68,10 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     LMUserTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"grabTagCollectionCell" forIndexPath:indexPath];
-    cell.tabBkgImage = @"icon_tag_normal";
+    cell.grabTagBtn.layer.borderColor = COLOR_LINE.CGColor;
+    cell.grabTagBtn.layer.borderWidth = 0.5;
+    cell.grabTagBtn.layer.cornerRadius = 3.0;
+    cell.grabTagBtn.titleEdgeInsets = UIEdgeInsetsZero;
     [cell.grabTagBtn setTitle:[_dataSource objectAtIndex:indexPath.row] forState:UIControlStateNormal];
     
     return cell;

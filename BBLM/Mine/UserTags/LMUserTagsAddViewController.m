@@ -14,7 +14,7 @@
 @interface LMUserTagsAddViewController () <UITableViewDataSource, UITableViewDelegate, LMUserSetTagTableViewCellDelegate, HotTagTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *hotTagsList;
+@property (strong, nonatomic) NSArray *hotTagsList;
 @property (strong, nonatomic) NSMutableArray *selectedTagsList;
 
 @end
@@ -28,11 +28,11 @@
     _tableView.delegate = self;
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.separatorColor = COLOR_LINE;
-    _hotTagsList = [@[@"90后", @"辣妹子", @"测试数据", @"90后", @"辣妹子", @"测试数据", @"90后", @"辣妹子", @"测试数据", @"90后", @"辣妹子", @"测试数据"] mutableCopy];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"LMUserSetTagTableViewCell" bundle:nil] forCellReuseIdentifier:@"grabSetTagCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"InputTagTableViewCell" bundle:nil] forCellReuseIdentifier:@"inputTagCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HotTagTableViewCell" bundle:nil] forCellReuseIdentifier:@"hotTagCell"];
+    [self getHotTgas];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,6 +103,21 @@
             }
             
         }
+    }];
+}
+
+- (void)getHotTgas
+{
+    NSString *url = [NSString stringWithFormat:@"%@companeyInfo", BASE_API];
+
+    [LMNetworking GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            _hotTagsList = [[responseObject objectForKey:@"data"] objectForKey:@"hotLabels"];
+            [_tableView reloadData];
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        
     }];
 }
 

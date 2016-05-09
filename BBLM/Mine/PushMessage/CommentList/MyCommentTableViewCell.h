@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LMShowCommentDetail.h"
+#import "MyCommentModel.h"
+
 
 @interface MyCommentTableViewCell : UITableViewCell
 
@@ -17,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *showImageView;
 
-@property (nonatomic, strong) LMShowCommentDetail *commentDetail;
+@property (nonatomic, strong) MyCommentModel *commentDetail;
 
 
 @end

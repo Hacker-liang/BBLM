@@ -37,7 +37,7 @@
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         _page = 1;
         
-        [LMUserManager asyncLoadUserCommentsListInfoWithUserId:[LMAccountManager shareInstance].account.userId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList) {
+        [LMUserManager asyncLoadUserCommentsListInfoWithUserId:[LMAccountManager shareInstance].account.userId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<MyCommentModel *> *commentList) {
             if (isSuccess) {
                 [_dataSource removeAllObjects];
                 
@@ -66,7 +66,7 @@
 
 - (void)loadMoreData
 {
-    [LMUserManager asyncLoadUserCommentsListInfoWithUserId:[LMAccountManager shareInstance].account.userId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList) {
+    [LMUserManager asyncLoadUserCommentsListInfoWithUserId:[LMAccountManager shareInstance].account.userId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<MyCommentModel *> *commentList) {
         if (isSuccess) {
             [_dataSource addObjectsFromArray:commentList];
             [self.tableView reloadData];
