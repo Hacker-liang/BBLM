@@ -56,7 +56,7 @@
     CGFloat barMaxHeight = CGRectGetHeight(rect);
     NSInteger numberOfBars = self.data.count;
     
-    CGFloat barWidth = 16;
+    CGFloat barWidth = 14;
     CGFloat fontSize = 12;
     if (kWindowWidth == 320) {
         barWidth = 14;
