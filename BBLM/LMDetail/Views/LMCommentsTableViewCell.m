@@ -59,8 +59,8 @@
     [_contentBgView addSubview:_contentLabel];
     
     _dateLabel = [[UILabel alloc] init];
-    _dateLabel.textColor = COLOR_TEXT_II;
-    _dateLabel.font = [UIFont systemFontOfSize:13.0];
+    _dateLabel.textColor = COLOR_TEXT_III;
+    _dateLabel.font = [UIFont systemFontOfSize:12.0];
     [self addSubview:_dateLabel];
 }
 
@@ -119,7 +119,7 @@
     CGFloat maxWidth = kWindowWidth-70-80;
     NSAttributedString *attrstr = [[NSAttributedString alloc] initWithString:commentDetail.content attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
     CGRect rect = [attrstr boundingRectWithSize:(CGSize){maxWidth, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-    return rect.size.height+70;
+    return rect.size.height+65;
 }
 
 

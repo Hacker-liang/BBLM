@@ -109,6 +109,15 @@
  */
 - (void)tabBarDidClickPlusButton:(LMTabBar *)tabBar
 {
+    if (![[LMAccountManager shareInstance] isLogin]) {
+        LMLoginViewController *ctl = [[LMLoginViewController alloc] initWithCompletionBlock:^(BOOL isLogin, NSString *errorStr) {
+            if (isLogin) {
+               
+            }
+        }];
+        [self presentViewController:ctl animated:YES completion:nil];
+        return;
+    }
     if (_publishBgView) {
         [_publishBgView removeFromSuperview];
         _publishBgView = nil;
