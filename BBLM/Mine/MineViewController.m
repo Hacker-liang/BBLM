@@ -40,7 +40,6 @@
     [_headerView.avatarButton addTarget:self action:@selector(showUserProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_headerView.editUserInfoButton addTarget:self action:@selector(editUserInfo:) forControlEvents:UIControlEventTouchUpInside];
     _headerView.userInfo = _userInfo;
-    self.navigationItem.title = _userInfo.nickname;
 
     [LMUserManager asyncLoadUserInfoWithUserId:[LMAccountManager shareInstance].account.userId completionBlock:^(BOOL isSuccess, LMUserDetailModel *userInfo) {
         if (isSuccess) {
@@ -58,6 +57,7 @@
 {
     [super viewWillAppear:animated];
     _headerView.userInfo = _userInfo;
+    self.navigationItem.title = _userInfo.nickname;
 }
 
 - (void)didReceiveMemoryWarning {

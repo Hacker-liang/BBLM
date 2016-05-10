@@ -207,6 +207,7 @@
         if (isSuccess) {
             [[LMAccountManager shareInstance] asyncChangeUserInfoWithChangeType:@"portrait" andChangeContent:image.imageId completionBlock:^(BOOL isSuccess) {
                 if (isSuccess) {
+                    _userInfo.avatar = [NSString stringWithFormat:@"http://7xsqyg.com1.z0.glb.clouddn.com/%@", image.imageId];
                     LMEditUserAvatarTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
                     [cell.headerImageButton setImage:headerImage forState:UIControlStateNormal];
                 }
