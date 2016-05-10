@@ -164,4 +164,24 @@
 
 
 }
+
++ (void)asyncMakeMessageReadWithUserId:(NSInteger)userId andMessageType:(NSInteger)type messageId:(NSInteger)messageId completionBlock:(void (^) (BOOL isSuccess))completion
+{
+    NSString *url = [NSString stringWithFormat:@"%@barbie/focus/cancel", BASE_API];
+    [LMNetworking GET:url parameters:@{@"targetId": [NSNumber numberWithInteger:userId],
+                                       @"memberId": [NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId],
+                                       
+                                       } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                                           if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+                                               completion(YES);
+                                           } else {
+                                               completion(NO);
+                                           }
+                                           
+                                       } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+                                           completion(NO);
+                                           
+                                       }];
+
+}
 @end

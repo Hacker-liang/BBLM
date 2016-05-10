@@ -46,7 +46,6 @@
     self.navigationItem.title = @"芭比辣妈";
 
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _page = 1;
     _dataSource = [NSMutableArray array];
   
     _bgScrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -83,6 +82,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:showMineBtn];
     
     _isLoading = YES;
+    _page = 1;
     [LMShowManager asyncLoadRecommendShowWithPage:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
         _isLoading = NO;
         if (isSuccess) {
@@ -109,8 +109,6 @@
             _galleryView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
                 return viewsArray[pageIndex];
             };
-
-
         }
     }];
 }

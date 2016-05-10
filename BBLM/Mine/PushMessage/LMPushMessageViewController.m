@@ -57,6 +57,12 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -89,6 +95,9 @@
         cell.contentLabel.text = @"评论";
         if (_commentUnreadCnt>0) {
             cell.unReadCntLabel.text = [NSString stringWithFormat:@"%ld", _commentUnreadCnt];
+        } else {
+            cell.unReadCntLabel.text = @"";
+            
         }
         cell.headerImageView.image = [UIImage imageNamed:@"icon_pushMessage_comment"];
         return cell;
@@ -99,6 +108,9 @@
         cell.contentLabel.text = @"赞我的";
         if (_zanUnreadCnt>0) {
             cell.unReadCntLabel.text = [NSString stringWithFormat:@"%ld", _zanUnreadCnt];
+        } else {
+            cell.unReadCntLabel.text = @"";
+
         }
         cell.headerImageView.image = [UIImage imageNamed:@"icon_pushMessage_zan"];
         return cell;
@@ -119,10 +131,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
         MyCommentsListViewController *ctl = [[MyCommentsListViewController alloc] init];
+        _commentUnreadCnt = 0;
         [self.navigationController pushViewController:ctl animated:YES];
         
     } else if (indexPath.row == 1) {
         MyZanListViewController *ctl = [[MyZanListViewController alloc] init];
+        _zanUnreadCnt = 0;
         [self.navigationController pushViewController:ctl animated:YES];
     } else {
         LMMessageListViewController *ctl = [[LMMessageListViewController alloc] init];
