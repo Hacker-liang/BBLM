@@ -94,7 +94,7 @@
 - (void)publishVideo
 {
     [self closePublishView];
-    UIViewController *ctl = [self.qupaiSDK createRecordViewControllerWithMinDuration:2 maxDuration:10 bitRate:600*1200];
+    UIViewController *ctl = [self.qupaiSDK createRecordViewControllerWithMinDuration:3 maxDuration:300 bitRate:800*600];
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:ctl];
     navigation.navigationBarHidden = YES;
     
