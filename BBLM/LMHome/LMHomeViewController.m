@@ -227,15 +227,38 @@
 
 - (UIView *)carousel:(__unused iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
 {
+//    if (view == nil)
+//    {
+//        view = [[LMHomeShowView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
+//        [((LMHomeShowView *)view).moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
+//         [((LMHomeShowView *)view).playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    ((LMHomeShowView *)view).showDetail = [_dataSource objectAtIndex:index];
+//    ((LMHomeShowView *)view).moreActionButton.tag = index;
+//     ((LMHomeShowView *)view).playVideoButton.tag = index;
+//    return view;
+    
     if (view == nil)
     {
-        view = [[LMHomeShowView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
-        [((LMHomeShowView *)view).moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
-         [((LMHomeShowView *)view).playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
+        view.backgroundColor = APP_PAGE_COLOR;
+        LMHomeShowView *showView = [[LMHomeShowView alloc] initWithFrame:CGRectMake(15, 0, view.bounds.size.width-30, carousel.bounds.size.height)];
+        showView.tag = 1001;
+        [showView.moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
+        [showView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:showView];
+        
     }
-    ((LMHomeShowView *)view).showDetail = [_dataSource objectAtIndex:index];
-    ((LMHomeShowView *)view).moreActionButton.tag = index;
-     ((LMHomeShowView *)view).playVideoButton.tag = index;
+    LMHomeShowView *showView;
+    for (UIView *tmp in view.subviews) {
+        if (tmp.tag == 1001) {
+            showView = (LMHomeShowView *)tmp;
+            break;
+        }
+    }
+    showView.showDetail = [_dataSource objectAtIndex:index];
+    showView.moreActionButton.tag = index;
+    showView.playVideoButton.tag = index;
     return view;
 }
 
@@ -259,7 +282,7 @@
         case iCarouselOptionSpacing:
         {
             //add a bit of spacing between the dataSource views
-            return value * 1.05f;
+            return value * 1.05;
         }
         case iCarouselOptionFadeMax:
         {
