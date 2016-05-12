@@ -55,7 +55,7 @@
     UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, SCREENSIZE.width - 80, 39.5)];
     titleLbl.text = title;
     titleLbl.textAlignment = NSTextAlignmentCenter;
-    titleLbl.textColor = [UIColor blackColor];
+    titleLbl.textColor = APP_THEME_COLOR;
     titleLbl.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.0];
     [header addSubview:titleLbl];
     
@@ -63,7 +63,7 @@
     
     UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(SCREENSIZE.width - 50, 5, 50 ,29.5)];
     [submit setTitle:@"确定" forState:UIControlStateNormal];
-    [submit setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [submit setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
     submit.backgroundColor = [UIColor whiteColor];
     submit.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
     [submit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,7 +71,7 @@
     
     UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 50 ,29.5)];
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
-    [cancel setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [cancel setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
     cancel.backgroundColor = [UIColor whiteColor];
     cancel.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
     [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
@@ -114,7 +114,7 @@
     UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, SCREENSIZE.width - 80, 39.5)];
     titleLbl.text = title;
     titleLbl.textAlignment = NSTextAlignmentCenter;
-    titleLbl.textColor = [self getColor:@"FF8000"];
+    titleLbl.textColor = APP_THEME_COLOR;
     titleLbl.font = [UIFont fontWithName:@"Helvetica-Bold" size:17.0];
     [header addSubview:titleLbl];
     
@@ -122,7 +122,7 @@
     
     UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(SCREENSIZE.width - 50, 10, 50 ,29.5)];
     [submit setTitle:@"确定" forState:UIControlStateNormal];
-    [submit setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+    [submit setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
     submit.backgroundColor = [UIColor whiteColor];
     submit.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
     [submit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
@@ -130,7 +130,7 @@
     
     UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 50 ,29.5)];
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
-    [cancel setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [cancel setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
     cancel.backgroundColor = [UIColor whiteColor];
     cancel.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.0];
     [cancel addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];

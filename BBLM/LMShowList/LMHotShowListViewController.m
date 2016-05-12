@@ -168,7 +168,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LMShowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.showDetail = [_dataSource objectAtIndex:indexPath.row];
+    cell.showDetail = [_dataSource objectAtIndex:indexPath.section];
     [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
     cell.actionButton.tag = indexPath.section;
     if (indexPath.section < 5) {

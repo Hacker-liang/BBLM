@@ -65,6 +65,7 @@
     CGFloat y = CGRectGetMaxY(_galleryView.frame)+10;
     _carousel = [[iCarousel alloc] initWithFrame:CGRectMake(0, y, kWindowWidth, kWindowHeight-y-49)];
     _carousel.delegate = self;
+    _carousel.pagingEnabled = YES;
     _carousel.dataSource = self;
     _carousel.type = iCarouselTypeRotary;
     [_bgScrollView addSubview:_carousel];

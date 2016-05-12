@@ -134,6 +134,8 @@
 		D960DA7D1CE076E100020C42 /* LMMessageListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA771CE076E100020C42 /* LMMessageListViewController.xib */; };
 		D960DA7E1CE076E100020C42 /* LMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA791CE076E100020C42 /* LMMessageTableViewCell.m */; };
 		D960DA7F1CE076E100020C42 /* LMMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA7A1CE076E100020C42 /* LMMessageTableViewCell.xib */; };
+		D9A957E91CE458AD00745C99 /* LMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A957E71CE458AD00745C99 /* LMAboutViewController.m */; };
+		D9A957EA1CE458AD00745C99 /* LMAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A957E81CE458AD00745C99 /* LMAboutViewController.xib */; };
 		D9DBFC191CDC404600A367A3 /* jpush-ios-2.1.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */; };
 		D9DBFC1A1CDC404600A367A3 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9DBFC181CDC404600A367A3 /* PushConfig.plist */; };
 		D9DBFC1C1CDC40BD00A367A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9DBFC1B1CDC40BD00A367A3 /* CFNetwork.framework */; };
@@ -425,6 +427,9 @@
 		D960DA781CE076E100020C42 /* LMMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMMessageTableViewCell.h; sourceTree = "<group>"; };
 		D960DA791CE076E100020C42 /* LMMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMMessageTableViewCell.m; sourceTree = "<group>"; };
 		D960DA7A1CE076E100020C42 /* LMMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMMessageTableViewCell.xib; sourceTree = "<group>"; };
+		D9A957E61CE458AD00745C99 /* LMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMAboutViewController.h; sourceTree = "<group>"; };
+		D9A957E71CE458AD00745C99 /* LMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMAboutViewController.m; sourceTree = "<group>"; };
+		D9A957E81CE458AD00745C99 /* LMAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMAboutViewController.xib; sourceTree = "<group>"; };
 		D9DBFC161CDC404600A367A3 /* jpush-ios-2.1.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.6.a"; sourceTree = "<group>"; };
 		D9DBFC171CDC404600A367A3 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
 		D9DBFC181CDC404600A367A3 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
@@ -752,6 +757,7 @@
 		D953878D1CBE1861004BD51F /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				D9A957E51CE4589B00745C99 /* About */,
 				D9FDE1261CD9E04F00AA016B /* ShowComments */,
 				D9FDE1041CD8C19E00AA016B /* MyCollection */,
 				D95388521CC4BAAC004BD51F /* UserProfile */,
@@ -1207,6 +1213,16 @@
 			path = LMMessage;
 			sourceTree = "<group>";
 		};
+		D9A957E51CE4589B00745C99 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				D9A957E61CE458AD00745C99 /* LMAboutViewController.h */,
+				D9A957E71CE458AD00745C99 /* LMAboutViewController.m */,
+				D9A957E81CE458AD00745C99 /* LMAboutViewController.xib */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		D9DBFC151CDC404600A367A3 /* JPush */ = {
 			isa = PBXGroup;
 			children = (
@@ -1532,6 +1548,7 @@
 				D9FDE0FA1CD8428500AA016B /* UserAlbumOverViewTableViewController.xib in Resources */,
 				D9FDE13C1CD9E46C00AA016B /* MyCommentTableViewCell.xib in Resources */,
 				D9FDE0E51CD8428500AA016B /* icon_big_add_photo@3x.png in Resources */,
+				D9A957EA1CE458AD00745C99 /* LMAboutViewController.xib in Resources */,
 				D960DA101CDC795A00020C42 /* UMSnsAccountViewController.xib in Resources */,
 				D95388011CC090E5004BD51F /* LMPushMessageDetailTableViewCell.xib in Resources */,
 				D9FDE0FF1CD8428500AA016B /* UserAlbumSelectCollectionViewCell.xib in Resources */,
@@ -1698,6 +1715,7 @@
 				D95388221CC0C4C3004BD51F /* LMUserSetTagTableViewCell.m in Sources */,
 				D95387991CBE1920004BD51F /* LMTabBar.m in Sources */,
 				D9FDE0EE1CD8428500AA016B /* PhotoPreivewView.m in Sources */,
+				D9A957E91CE458AD00745C99 /* LMAboutViewController.m in Sources */,
 				D9FDE09E1CCF0E3300AA016B /* LMHotShowListViewController.m in Sources */,
 				D953896C1CC89FF4004BD51F /* LMShowDetailViewController.m in Sources */,
 				D9FDE0F51CD8428500AA016B /* UploadUserPhotoStatus.m in Sources */,

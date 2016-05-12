@@ -76,10 +76,9 @@
  *
  *  @param userId
  *  @param type       消息类型 1评论 ，2赞 ，3系统消息  必填
- *  @param messageId  消息 ID
  *  @param completion
  */
-+ (void)asyncMakeMessageReadWithUserId:(NSInteger)userId andMessageType:(NSInteger)type messageId:(NSInteger)messageId completionBlock:(void (^) (BOOL isSuccess))completion;
++ (void)asyncMakeMessageReadWithUserId:(NSInteger)userId andMessageType:(NSInteger)type completionBlock:(void (^) (BOOL isSuccess))completion;
 
 
 

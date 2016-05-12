@@ -220,6 +220,32 @@
     
 }
 
+#pragma mark - UIActionSheetDelegate
+
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+{
+    SEL selector = NSSelectorFromString(@"_alertController");
+    if ([actionSheet respondsToSelector:selector])//ios8
+    {
+        UIAlertController *alertController = [actionSheet valueForKey:@"_alertController"];
+        if ([alertController isKindOfClass:[UIAlertController class]])
+        {
+            alertController.view.tintColor = APP_THEME_COLOR;
+        }
+    } else { //ios7
+        for( UIView * subView in actionSheet.subviews )
+        {
+            if( [subView isKindOfClass:[UIButton class]] )
+            {
+                UIButton * btn = (UIButton*)subView;
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
+                [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateHighlighted];
+                
+            }
+        }
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == 101) {  //选择上传头像方式

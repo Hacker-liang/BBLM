@@ -12,6 +12,8 @@
 #import "LMUserProfileViewController.h"
 #import "LMEditUserProfileViewController.h"
 #import "UserShowCollectionViewController.h"
+#import "CommonWebViewController.h"
+#import "LMAboutViewController.h"
 
 @interface MineViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -126,6 +128,17 @@
         UserShowCollectionViewController *ctl = [[UserShowCollectionViewController alloc] init];
         ctl.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:ctl animated:YES];
+        
+    } else if (indexPath.row == 2) {
+        CommonWebViewController *ctl = [[CommonWebViewController alloc] init];
+        ctl.urlStr = [NSString stringWithFormat:@"%@resources/protocol/index.html", BASE_API];
+        ctl.naviBarTitle = @"辣度规则";
+        [self.navigationController pushViewController:ctl animated:YES];
+        
+    } else if (indexPath.row == 3) {
+        LMAboutViewController *ctl = [[LMAboutViewController alloc] init];
+        [self.navigationController pushViewController:ctl animated:YES];
+        
     } else if (indexPath.row == 4) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定退出登录?" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView showAlertViewWithBlock:^(NSInteger buttonIndex) {

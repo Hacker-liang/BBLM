@@ -153,6 +153,8 @@
         _floowButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
         [_floowButton setTitle:@"关注" forState:UIControlStateNormal];
         [_floowButton setTitle:@"已关注" forState:UIControlStateSelected];
+        [_floowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_floowButton setTitleColor:COLOR_TEXT_II forState:UIControlStateSelected];
         [_floowButton addTarget:self action:@selector(focuseUserAction:) forControlEvents:UIControlEventTouchUpInside];
         [_floowButton setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateNormal];
         [_floowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

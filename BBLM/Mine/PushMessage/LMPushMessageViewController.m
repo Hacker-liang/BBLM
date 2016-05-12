@@ -118,7 +118,6 @@
     if (indexPath.row == 2) {
         LMPushMessageDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellDetail" forIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.contentLabel.text = @"亲爱的芭比用户，恭喜您获得。。。";
         cell.nicknameLabel.text = @"芭比";
         cell.headerImageView.image = [UIImage imageNamed:@"icon_pushMessage_bb"];
         return cell;
@@ -133,14 +132,25 @@
         MyCommentsListViewController *ctl = [[MyCommentsListViewController alloc] init];
         _commentUnreadCnt = 0;
         [self.navigationController pushViewController:ctl animated:YES];
+        [LMUserManager asyncMakeMessageReadWithUserId:[LMAccountManager shareInstance].account.userId andMessageType:1 completionBlock:^(BOOL isSuccess) {
+            
+        }];
         
     } else if (indexPath.row == 1) {
         MyZanListViewController *ctl = [[MyZanListViewController alloc] init];
         _zanUnreadCnt = 0;
         [self.navigationController pushViewController:ctl animated:YES];
+        [LMUserManager asyncMakeMessageReadWithUserId:[LMAccountManager shareInstance].account.userId andMessageType:2 completionBlock:^(BOOL isSuccess) {
+            
+        }];
+        
     } else {
         LMMessageListViewController *ctl = [[LMMessageListViewController alloc] init];
         [self.navigationController pushViewController:ctl animated:YES];
+        [LMUserManager asyncMakeMessageReadWithUserId:[LMAccountManager shareInstance].account.userId andMessageType:3 completionBlock:^(BOOL isSuccess) {
+            
+        }];
+        
     }
 
 }
