@@ -46,7 +46,7 @@
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             _commentUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"commentUnread"] integerValue];
             _zanUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"praiseUnread"] integerValue];
-            _lmbbUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"praiseUnread"] integerValue];
+            _lmbbUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"barbieUnread"] integerValue];
             [self.tableView reloadData];
         } else {
             

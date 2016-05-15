@@ -112,6 +112,22 @@
     return self;
 }
 
+- (void)showPlusNoti:(CGPoint)startPoint
+{
+    UILabel *plusLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y-20, 30, 20)];
+    plusLabel.text = @"+1";
+    plusLabel.textColor = APP_THEME_COLOR;
+    plusLabel.font  =[UIFont systemFontOfSize:14.0];
+    [self addSubview:plusLabel];
+    [UIView animateWithDuration:1 animations:^{
+        plusLabel.frame = CGRectMake(startPoint.x, startPoint.y-80, 30, 20);
+        plusLabel.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        [plusLabel removeFromSuperview];
+    }];
+}
+
 - (void)setShowDetail:(LMShowDetailModel *)showDetail
 {
     _showDetail = showDetail;
@@ -155,22 +171,34 @@
         return;
     }
     if (!sender.selected) {
+        _showDetail.hasZan = YES;
+        _showDetail.zanCount++;
+        sender.selected = !sender.selected;
+        [sender setTitle:[NSString stringWithFormat:@"%ld", _showDetail.zanCount] forState:UIControlStateNormal];
+        [self showPlusNoti:sender.center];
+
         [LMShowManager asyncZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
-            if (isSuccess) {
-                _showDetail.hasZan = YES;
-                _showDetail.zanCount++;
-                sender.selected = !sender.selected;
-                [sender setTitle:[NSString stringWithFormat:@"%ld", _showDetail.zanCount] forState:UIControlStateNormal];
-                
-            }
-        }];
-    } else {
-        [LMShowManager asyncCancelZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
-            if (isSuccess) {
+            if (!isSuccess) {
                 _showDetail.hasZan = NO;
                 sender.selected = !sender.selected;
                 _showDetail.zanCount--;
                 [sender setTitle:[NSString stringWithFormat:@"%ld", _showDetail.zanCount] forState:UIControlStateNormal];
+            }
+        }];
+    } else {
+        _showDetail.hasZan = NO;
+        sender.selected = !sender.selected;
+        _showDetail.zanCount--;
+        [sender setTitle:[NSString stringWithFormat:@"%ld", _showDetail.zanCount] forState:UIControlStateNormal];
+        
+        [LMShowManager asyncCancelZanShowWithItemId:_showDetail.itemId completionBlock:^(BOOL isSuccess) {
+            if (!isSuccess) {
+                _showDetail.hasZan = YES;
+                _showDetail.zanCount++;
+                sender.selected = !sender.selected;
+                [sender setTitle:[NSString stringWithFormat:@"%ld", _showDetail.zanCount] forState:UIControlStateNormal];
+                [self showPlusNoti:sender.center];
+
             }
         }];
     }

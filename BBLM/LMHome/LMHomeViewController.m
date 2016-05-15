@@ -31,6 +31,9 @@
 
 @property (nonatomic, strong) UIImageView *galleryImageView;
 
+@property (nonatomic, strong) UIView *unReadMsgNotiView;
+
+
 @property (nonatomic, strong) AutoSlideScrollView *galleryView;
 @property (nonatomic) NSInteger page;
 @property (nonatomic) BOOL isLoading;
@@ -77,6 +80,13 @@
     [showPushMessageBtn addTarget:self action:@selector(gotoPushMessage:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:showPushMessageBtn];
     
+    _unReadMsgNotiView = [[UIView alloc] initWithFrame:CGRectMake(32, 6, 6, 6)];
+    _unReadMsgNotiView.backgroundColor = APP_THEME_COLOR;
+    _unReadMsgNotiView.layer.cornerRadius = 3;
+    _unReadMsgNotiView.clipsToBounds = YES;
+    _unReadMsgNotiView.hidden = YES;
+    [showPushMessageBtn addSubview:_unReadMsgNotiView];
+    
     UIButton *showMineBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [showMineBtn setImage:[UIImage imageNamed:@"icon_home_mine"] forState:UIControlStateNormal];
     [showMineBtn addTarget:self action:@selector(gotoMine:) forControlEvents:UIControlEventTouchUpInside];
@@ -118,6 +128,10 @@
 {
     [super viewWillAppear:animated];
     [_galleryView.scrollView setContentOffset:CGPointZero];
+    
+    if ([[LMAccountManager shareInstance] isLogin]) {
+        [self loadUnreadMessageCount];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -132,6 +146,32 @@
         _galleryImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 150)];
     }
     return _galleryImageView;
+}
+
+
+- (void)loadUnreadMessageCount
+{
+    NSString *url = [NSString stringWithFormat:@"%@message/count", BASE_API];
+    [LMNetworking GET:url parameters:@{@"memberId": [NSNumber numberWithInteger: [LMAccountManager shareInstance].account.userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+            NSInteger commentUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"commentUnread"] integerValue];
+            NSInteger zanUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"praiseUnread"] integerValue];
+            NSInteger lmbbUnreadCnt = [[[responseObject objectForKey:@"data"] objectForKey:@"barbieUnread"] integerValue];
+            if (commentUnreadCnt || zanUnreadCnt || lmbbUnreadCnt) {
+                _unReadMsgNotiView.hidden = NO;
+            } else {
+                _unReadMsgNotiView.hidden = YES;
+
+            }
+        } else {
+            _unReadMsgNotiView.hidden = YES;
+
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+        _unReadMsgNotiView.hidden = YES;
+
+    }];
 }
 
 #pragma mark - 懒加载代码

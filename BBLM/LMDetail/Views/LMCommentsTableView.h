@@ -15,4 +15,7 @@
 
 - (void)addNewComment:(LMShowCommentDetail *)comment;
 
+@property (nonatomic, weak) UIViewController *containerCtl;
+
+
 @end

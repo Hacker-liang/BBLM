@@ -37,6 +37,7 @@
     self.navigationItem.title = @"作品详情";
     
     _tableView = [[LMCommentsTableView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight-49) andShowId: _showId];
+    _tableView.containerCtl = self;
     [self.view addSubview:_tableView];
     
     _showDetailView = [[LMShowDetailView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 460)];
@@ -102,6 +103,23 @@
     sheet.tintColor = APP_THEME_COLOR;
     sheet.tag = sender.tag;
     [sheet showInView:self.view];
+}
+
+
+- (void)showPlusNoti:(CGPoint)startPoint
+{
+    UILabel *plusLabel = [[UILabel alloc] initWithFrame:CGRectMake(startPoint.x, startPoint.y-20, 30, 20)];
+    plusLabel.text = @"+1";
+    plusLabel.textColor = APP_THEME_COLOR;
+    plusLabel.font  =[UIFont systemFontOfSize:14.0];
+    [self.view addSubview:plusLabel];
+    [UIView animateWithDuration:1 animations:^{
+        plusLabel.frame = CGRectMake(startPoint.x, startPoint.y-80, 30, 20);
+        plusLabel.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        [plusLabel removeFromSuperview];
+    }];
 }
 
 - (void)zanShowAction:(UIButton *)sender

@@ -11,7 +11,6 @@
 @interface LMCommentsTableViewCell ()
 
 @property (nonatomic, strong) UILabel *nicknameLabel;
-@property (nonatomic, strong) UIImageView *avatarImageView;
 @property (nonatomic, strong) UIImageView *contentBgView;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
@@ -39,16 +38,16 @@
 
 - (void)firstRender
 {
-    self.backgroundColor = APP_PAGE_COLOR;
+    self.backgroundColor = UIColorFromRGB(0xf0f0f0);
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.textColor = COLOR_TEXT_II;
     _nicknameLabel.font = [UIFont systemFontOfSize:14.0];
     [self addSubview:_nicknameLabel];
-    _avatarImageView = [[UIImageView alloc] init];
-    _avatarImageView.layer.cornerRadius = 3.0;
-    _avatarImageView.clipsToBounds = YES;
-    _avatarImageView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:_avatarImageView];
+    _avatarImageButton = [[UIButton alloc] init];
+    _avatarImageButton.layer.cornerRadius = 3.0;
+    _avatarImageButton.clipsToBounds = YES;
+    _avatarImageButton.backgroundColor = [UIColor whiteColor];
+    [self addSubview:_avatarImageButton];
     
     _contentBgView = [[UIImageView alloc] init];
     [self addSubview:_contentBgView];
@@ -67,7 +66,7 @@
 - (void)setCommentDetail:(LMShowCommentDetail *)commentDetail
 {
     _commentDetail = commentDetail;
-    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:_commentDetail.user.avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    [_avatarImageButton sd_setBackgroundImageWithURL:[NSURL URLWithString:_commentDetail.user.avatar] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default"]];
     _nicknameLabel.text = _commentDetail.user.nickname;
     _contentLabel.text = _commentDetail.content;
     _dateLabel.text = _commentDetail.publishDateDesc;
@@ -83,8 +82,8 @@
     BOOL isMine = _commentDetail.isMine;
     if (!isMine) {
         _contentLabel.textColor = COLOR_TEXT_I;
-        _avatarImageView.frame = CGRectMake(12, 10, 35, 35);
-        _nicknameLabel.frame = CGRectMake(CGRectGetMaxX(_avatarImageView.frame)+8, 10, kWindowWidth-150, 18);
+        _avatarImageButton.frame = CGRectMake(12, 10, 35, 35);
+        _nicknameLabel.frame = CGRectMake(CGRectGetMaxX(_avatarImageButton.frame)+8, 10, kWindowWidth-150, 18);
         _nicknameLabel.textAlignment = NSTextAlignmentLeft;
         _dateLabel.frame = CGRectMake(kWindowWidth-90, 10, 80, 18);
         _dateLabel.textAlignment = NSTextAlignmentRight;
@@ -98,7 +97,7 @@
         }
     } else {
         _contentLabel.textColor = [UIColor whiteColor];
-        _avatarImageView.frame = CGRectMake(kWindowWidth-12-35, 10, 35, 35);
+        _avatarImageButton.frame = CGRectMake(kWindowWidth-12-35, 10, 35, 35);
         _nicknameLabel.frame = CGRectMake(80, 10, kWindowWidth-90-35-20, 18);
         _nicknameLabel.textAlignment = NSTextAlignmentRight;
         _dateLabel.frame = CGRectMake(12, 10, 80, 18);

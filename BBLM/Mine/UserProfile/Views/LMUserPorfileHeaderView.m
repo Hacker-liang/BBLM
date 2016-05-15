@@ -39,13 +39,13 @@
     if (self) {
         self.backgroundColor = APP_PAGE_COLOR;
         
-        UIView *naviBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWindowWidth, 64)];
-        naviBar.backgroundColor = APP_THEME_COLOR;
-        [self addSubview:naviBar];
+        UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth,210+64)];
+        bgView.image = [UIImage imageNamed:@"icon_user_bgView"];
+        bgView.userInteractionEnabled = YES;
+        [self addSubview:bgView];
         
-        UIView *rankingBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, kWindowWidth,210)];
-        rankingBgView.backgroundColor = APP_THEME_COLOR;
-        [self addSubview:rankingBgView];
+        UIView *rankingBgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, kWindowWidth,210)];
+        [bgView addSubview:rankingBgView];
 
         if (kWindowWidth==320) {
             _userRankChart = [[TEABarChart alloc] initWithFrame:CGRectMake(12, 10, kWindowWidth-24, 165)];
@@ -56,7 +56,7 @@
         _userRankChart.barColor = [UIColor whiteColor];
         _userRankChart.backgroundColor = [UIColor clearColor];
         _userRankChart.textColor = [UIColor whiteColor];
-        _userRankChart.cornerRadius = 5;
+        _userRankChart.cornerRadius = 4;
         [rankingBgView addSubview:_userRankChart];
         
         _noRankLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, _userRankChart.center.y-30, kWindowWidth-24, 20)];
@@ -159,7 +159,6 @@
         [_floowButton setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateNormal];
         [_floowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_conentBgView addSubview:_floowButton];
-        
     }
     return self;
 }

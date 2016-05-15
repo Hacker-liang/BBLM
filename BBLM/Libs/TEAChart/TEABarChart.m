@@ -143,8 +143,7 @@
         CGFloat y = barMaxHeight - barHeight + 20;
 
         if (barHeight != 0) {
-        
-            // 简便起见，这里把圆角半径设置为长和宽平均值的1/10
+            height += 5;
             CGFloat radius = _cornerRadius;
             
             // 获取CGContext，注意UIKit里用的是一个专门的函数

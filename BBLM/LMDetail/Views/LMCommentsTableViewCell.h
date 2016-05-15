@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) LMShowCommentDetail *commentDetail;
 
+@property (nonatomic, strong) UIButton *avatarImageButton;
+
 + (CGFloat)heightWithCommentDetail:(LMShowCommentDetail *)commentDetail;
 
 @end

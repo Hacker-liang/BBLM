@@ -25,6 +25,8 @@
 @property (nonatomic, strong) MPMoviePlayerController *playerController;
 
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIView *naviBar;
+
 @property (nonatomic, strong) LMUserDetailModel *userInfo;
 
 @property (nonatomic) BOOL isMyselfInfo;
@@ -47,20 +49,22 @@
     LMUserPorfileHeaderView *headerView = [[LMUserPorfileHeaderView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 414)];
     _tableView.tableHeaderView = headerView;
     
-    UIView *naviBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWindowWidth, 64)];
-    naviBar.backgroundColor = APP_THEME_COLOR;
+    _naviBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWindowWidth, 64)];
+    _naviBar.backgroundColor = [APP_THEME_COLOR colorWithAlphaComponent:0];
     
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 20, kWindowWidth-160, 44)];
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.font = [UIFont systemFontOfSize:17.0];
-    [naviBar addSubview:_titleLabel];
-    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 40, 44)];
-    [backButton setImage:[UIImage imageNamed:@"common_icon_navigation_back_normal"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(dismissCtl) forControlEvents:UIControlEventTouchUpInside];
-    [naviBar addSubview:backButton];
+    [_naviBar addSubview:_titleLabel];
     
-    [self.view addSubview:naviBar];
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 40, 44)];
+    [backButton setImage:[UIImage imageNamed:@"icon_navi_back_white"] forState:UIControlStateNormal];
+    backButton.tintColor = [UIColor whiteColor];
+    [backButton addTarget:self action:@selector(dismissCtl) forControlEvents:UIControlEventTouchUpInside];
+    [_naviBar addSubview:backButton];
+    
+    [self.view addSubview:_naviBar];
     
     [LMUserManager asyncLoadUserInfoWithUserId:_userId completionBlock:^(BOOL isSuccess, LMUserDetailModel *userInfo) {
         if (isSuccess) {
@@ -214,6 +218,8 @@
     if (scrollView.contentOffset.y <= -64 && [scrollView isEqual:_tableView]) {
         [scrollView setContentOffset:CGPointMake(0, -64)];
     }
+    CGFloat alpha = scrollView.contentOffset.y/100;
+    _naviBar.backgroundColor = [APP_THEME_COLOR colorWithAlphaComponent:alpha];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -290,5 +296,6 @@
         [shareView showInViewController:self];
     }
 }
+
 
 @end

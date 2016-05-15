@@ -156,7 +156,7 @@
         [zanUserButton addTarget:self action:@selector(showUserProfile:) forControlEvents:UIControlEventTouchUpInside];
         [_zanUserBgView addSubview:zanUserButton];
         offsetX += 40;
-//        count = i+1;
+        count = i+1;
     }
     if (_zanUserList.count > count) {
         _zanUserCntButton.frame = CGRectMake(offsetX+5, 5, 35, 25);
@@ -177,5 +177,7 @@
     ctl.userId = [_zanUserList objectAtIndex:sender.tag].userId;
     [self.containerCtl.navigationController pushViewController:ctl animated:YES];
 }
+
+
 
 @end

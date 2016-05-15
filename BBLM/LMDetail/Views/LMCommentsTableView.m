@@ -11,6 +11,7 @@
 #import "LMShowCommentDetail.h"
 #import "LMShowCommentManager.h"
 #import "MJRefresh.h"
+#import "LMUserProfileViewController.h"
 
 @interface LMCommentsTableView ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -46,7 +47,7 @@
 {
     _page = 1;
     self.allowsSelection = NO;
-    self.backgroundColor = APP_PAGE_COLOR;
+    self.backgroundColor = UIColorFromRGB(0xf0f0f0);
     _commentsList = [[NSMutableArray alloc] init];
     [self registerClass:[LMCommentsTableViewCell class] forCellReuseIdentifier:@"cell"];
     self.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -96,6 +97,14 @@
 
 }
 
+- (void)showUserProfile:(UIButton *)sender
+{
+    LMUserProfileViewController *ctl = [[LMUserProfileViewController alloc] init];
+    LMShowCommentDetail *comment = [_commentsList objectAtIndex:sender.tag];
+    ctl.userId = comment.user.userId;
+    [self.containerCtl.navigationController pushViewController:ctl animated:YES];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _commentsList.count;
@@ -123,6 +132,8 @@
         cell = [[LMCommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     cell.commentDetail = [_commentsList objectAtIndex:indexPath.row];
+    cell.avatarImageButton.tag = indexPath.row;
+    [cell.avatarImageButton addTarget:self action:@selector(showUserProfile:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
