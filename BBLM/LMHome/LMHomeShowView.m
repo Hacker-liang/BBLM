@@ -31,6 +31,10 @@
         self.layer.borderColor = COLOR_LINE.CGColor;
         self.layer.borderWidth = 0.5;
         CGFloat width = self.bounds.size.width;
+        
+        UIView *nickBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 56)];
+        nickBgView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:nickBgView];
         _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 35, 35)];
         [self addSubview:_headerImageView];
         _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 8, width, 20)];
@@ -57,13 +61,14 @@
         _dateLabel.textColor = COLOR_TEXT_II;
         [self addSubview:_dateLabel];
         
+        
         if (kWindowHeight == 480) {
             _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 46, width, self.frame.size.height-46-40)];
 
         } else {
             _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, self.frame.size.height-56-50)];
-
         }
+        
         _contentImageView.backgroundColor = APP_PAGE_COLOR;
         _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
         _contentImageView.clipsToBounds = YES;

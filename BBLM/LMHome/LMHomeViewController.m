@@ -226,11 +226,16 @@
     
     self.playerController.contentURL = url;
     
-    LMHomeShowView *view = (LMHomeShowView *)[_carousel itemViewAtIndex: sender.tag];
-//    CGPoint point = [view.contentImageView convertPoint:CGPointZero toView:self.view];
-//    self.playerController.view.frame = CGRectMake(point.x, point.y, view.contentImageView.bounds.size.width, view.contentImageView.bounds.size.height);
-    self.playerController.view.frame = view.contentImageView.bounds;
-    [view.contentImageView addSubview:self.playerController.view];
+    UIView *view = [_carousel itemViewAtIndex: sender.tag];
+    LMHomeShowView *showView;
+    for (UIView *tmp in view.subviews) {
+        if (tmp.tag == 1001) {
+            showView = (LMHomeShowView *)tmp;
+            break;
+        }
+    }
+    self.playerController.view.frame = showView.contentImageView.bounds;
+    [showView.contentImageView addSubview:self.playerController.view];
     [self.playerController play];
 }
 
@@ -268,17 +273,6 @@
 
 - (UIView *)carousel:(__unused iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
 {
-//    if (view == nil)
-//    {
-//        view = [[LMHomeShowView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
-//        [((LMHomeShowView *)view).moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
-//         [((LMHomeShowView *)view).playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-//    }
-//    ((LMHomeShowView *)view).showDetail = [_dataSource objectAtIndex:index];
-//    ((LMHomeShowView *)view).moreActionButton.tag = index;
-//     ((LMHomeShowView *)view).playVideoButton.tag = index;
-//    return view;
-    
     if (view == nil)
     {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
@@ -287,8 +281,9 @@
         showView.tag = 1001;
         [showView.moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
         [showView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+        showView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        showView.layer.borderWidth = 0.5;
         [view addSubview:showView];
-        
     }
     LMHomeShowView *showView;
     for (UIView *tmp in view.subviews) {
