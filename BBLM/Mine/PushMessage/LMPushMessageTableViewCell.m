@@ -12,6 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    _unReadCntLabel.clipsToBounds = YES;
+    _unReadCntLabel.layer.cornerRadius = 7.5;
+    _unReadCntLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

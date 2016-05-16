@@ -98,6 +98,11 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [self.containterView.collectionView reloadData];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -160,6 +165,11 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [self.view endEditing:YES];
     if (!_containterView.textView.text.length) {
         [SVProgressHUD showErrorWithStatus:@"请输入图片描述"];
+        return;
+    }
+    if (!_selectedPhotos.count) {
+        [SVProgressHUD showErrorWithStatus:@"抱歉，请您上传图片"];
+        return;
     }
     [_userAlbumUploadStatusList removeAllObjects];
     [SVProgressHUD showWithStatus:@"正在上传"];

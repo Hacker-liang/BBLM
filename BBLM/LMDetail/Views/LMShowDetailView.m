@@ -56,7 +56,9 @@
         _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 56, width, 300)];
         _galleryView.backgroundColor = APP_PAGE_COLOR;
         [self addSubview:_galleryView];
+        _galleryView.showPageControl = YES;
         _galleryView.hidden = YES;
+        
         
         _playVideoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         _playVideoButton.center = CGPointMake(_contentImageView.bounds.size.width/2, _contentImageView.bounds.size.height/2);

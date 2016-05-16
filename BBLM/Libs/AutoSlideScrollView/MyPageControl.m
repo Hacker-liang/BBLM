@@ -39,9 +39,12 @@
         self.highlightedDotImage = hImage;
         self.pageNumbers = pageNum;
         
-        UIImageView *dotImageView_h = [[UIImageView alloc] initWithImage:self.highlightedDotImage];
+        UIImageView *dotImageView_h = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.dotsSize, self.dotsSize)];
         [dotImageView_h.layer setMasksToBounds:NO];
-        dotImageView_h.frame = CGRectMake(0, 0, self.dotsSize, self.dotsSize);
+        dotImageView_h.layer.cornerRadius = self.dotsSize/2;
+        dotImageView_h.backgroundColor = APP_THEME_COLOR;
+        dotImageView_h.clipsToBounds = YES;
+        
         self.highlightedDotImageView = dotImageView_h;
         
         for (int i = 0; i != self.pageNumbers; ++ i) {
@@ -53,7 +56,9 @@
                 self.highlightedDotImageView.frame = CGRectMake((size + gap) * i, 0, size, size);
             }
 
-            dotsImageView.image = self.normalDotImage;
+            dotsImageView.layer.cornerRadius = self.dotsSize/2;
+            dotsImageView.backgroundColor = [UIColor whiteColor];
+            dotsImageView.clipsToBounds = YES;
             [dotsImageView.layer setMasksToBounds:NO];
             
             UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dotsDidTouched:)];

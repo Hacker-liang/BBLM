@@ -95,8 +95,10 @@
         cell.contentLabel.text = @"评论";
         if (_commentUnreadCnt>0) {
             cell.unReadCntLabel.text = [NSString stringWithFormat:@"%ld", _commentUnreadCnt];
+            cell.unReadCntLabel.hidden = NO;
         } else {
-            cell.unReadCntLabel.text = @"";
+            cell.unReadCntLabel.text = @"1";
+            cell.unReadCntLabel.hidden = YES;
             
         }
         cell.headerImageView.image = [UIImage imageNamed:@"icon_pushMessage_comment"];
@@ -108,7 +110,9 @@
         cell.contentLabel.text = @"赞我的";
         if (_zanUnreadCnt>0) {
             cell.unReadCntLabel.text = [NSString stringWithFormat:@"%ld", _zanUnreadCnt];
+            cell.unReadCntLabel.hidden = NO;
         } else {
+            cell.unReadCntLabel.hidden = YES;
             cell.unReadCntLabel.text = @"";
 
         }

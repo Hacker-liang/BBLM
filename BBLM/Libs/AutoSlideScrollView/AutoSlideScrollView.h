@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyPageControl.h"
 
 @interface AutoSlideScrollView : UIView
 
@@ -20,6 +21,9 @@
  *  @return instance
  */
 - (id)initWithFrame:(CGRect)frame animationDuration:(NSTimeInterval)animationDuration;
+
+@property (nonatomic , strong) MyPageControl *pageControl;
+
 
 /**
  数据源：获取总的page个数，如果少于2个，不自动滚动

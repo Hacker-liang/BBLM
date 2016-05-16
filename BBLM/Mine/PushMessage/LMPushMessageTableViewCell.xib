@@ -31,19 +31,20 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJB-Cn-eF5">
-                        <rect key="frame" x="256" y="16.5" width="56" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJB-Cn-eF5">
+                        <rect key="frame" x="303" y="18.5" width="15" height="15"/>
+                        <color key="backgroundColor" red="0.98431372549999996" green="0.074509803920000006" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="56" id="6yU-6V-mDv"/>
-                            <constraint firstAttribute="height" constant="21" id="8Jw-bQ-Jcn"/>
+                            <constraint firstAttribute="width" constant="15" id="6yU-6V-mDv"/>
+                            <constraint firstAttribute="height" constant="15" id="8Jw-bQ-Jcn"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="eJB-Cn-eF5" secondAttribute="trailing" constant="8" id="7Pl-g2-vQT"/>
+                    <constraint firstAttribute="trailing" secondItem="eJB-Cn-eF5" secondAttribute="trailing" constant="2" id="7Pl-g2-vQT"/>
                     <constraint firstItem="pP3-5x-iBD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="DFk-Xa-X2z"/>
                     <constraint firstItem="vJ5-ss-mYN" firstAttribute="leading" secondItem="pP3-5x-iBD" secondAttribute="trailing" constant="8" id="dLK-Q4-PjF"/>
                     <constraint firstItem="eJB-Cn-eF5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fl2-Mm-ahc"/>

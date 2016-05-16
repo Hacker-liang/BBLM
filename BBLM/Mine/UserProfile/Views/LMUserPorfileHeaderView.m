@@ -113,21 +113,18 @@
         
         _publishCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 40, 20)];
         _publishCntLabel.font = [UIFont systemFontOfSize:16.0];
-        _publishCntLabel.text = @"58";
         _publishCntLabel.textAlignment = NSTextAlignmentCenter;
         _publishCntLabel.textColor = APP_THEME_COLOR;
         [_conentBgView addSubview:_publishCntLabel];
         
         _followerCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 50, 40, 20)];
         _followerCntLabel.font = [UIFont systemFontOfSize:16.0];
-        _followerCntLabel.text = @"58";
         _followerCntLabel.textAlignment = NSTextAlignmentCenter;
         _followerCntLabel.textColor = APP_THEME_COLOR;
         [_conentBgView addSubview:_followerCntLabel];
         
         _shareCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 50, 40, 20)];
         _shareCntLabel.font = [UIFont systemFontOfSize:16.0];
-        _shareCntLabel.text = @"58";
         _shareCntLabel.textAlignment = NSTextAlignmentCenter;
         _shareCntLabel.textColor = APP_THEME_COLOR;
         [_conentBgView addSubview:_shareCntLabel];
@@ -155,8 +152,11 @@
         [_floowButton setTitle:@"已关注" forState:UIControlStateSelected];
         [_floowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_floowButton setTitleColor:COLOR_TEXT_II forState:UIControlStateSelected];
+        
         [_floowButton addTarget:self action:@selector(focuseUserAction:) forControlEvents:UIControlEventTouchUpInside];
         [_floowButton setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateNormal];
+        [_floowButton setBackgroundImage:[ConvertMethods createImageWithColor:[UIColor lightGrayColor]] forState:UIControlStateSelected];
+
         [_floowButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_conentBgView addSubview:_floowButton];
     }
@@ -194,10 +194,6 @@
     NSInteger i = 0;
     CGFloat offsetX = 0;
     for (NSString *tag in _userInfo.userTags) {
-        if (i>2) {
-            break;
-        }
-        
         CGFloat width = [tag sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.0]}].width;
         UILabel *tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(offsetX, 0, width+20, 25)];
         tagLabel.text = tag;

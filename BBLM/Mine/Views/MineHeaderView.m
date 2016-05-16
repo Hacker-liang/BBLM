@@ -115,10 +115,7 @@
     NSInteger i = 0;
     CGFloat offsetX = 0;
     for (NSString *tag in _userInfo.userTags) {
-        if (i>2) {
-            break;
-        }
-        
+      
         CGFloat width = [tag sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.0]}].width;
         UILabel *tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(offsetX, 0, width+20, 25)];
         tagLabel.text = tag;
@@ -141,6 +138,7 @@
     [_addTagButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
     [_tagBgView addSubview:_addTagButton];
     _tagBgView.contentSize = CGSizeMake(offsetX+50, 25);
+    [_tagBgView setContentOffset:CGPointMake(_tagBgView.bounds.size.width, 0)];
 }
 
 @end

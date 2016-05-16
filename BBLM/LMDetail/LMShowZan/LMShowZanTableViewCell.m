@@ -20,9 +20,11 @@
     [_focusButton setTitle:@"关注" forState:UIControlStateNormal];
     [_focusButton setTitle:@"已关注" forState:UIControlStateSelected];
     [_focusButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
     [_focusButton setTitleColor:COLOR_TEXT_II forState:UIControlStateSelected];
     [_focusButton setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateNormal];
-    [_focusButton setBackgroundImage:[ConvertMethods createImageWithColor:APP_THEME_COLOR] forState:UIControlStateSelected];
+
+    [_focusButton setBackgroundImage:[ConvertMethods createImageWithColor:UIColorFromRGB(0xf0f0f0)] forState:UIControlStateSelected];
 
     [_focusButton addTarget:self action:@selector(focuseUserAction:) forControlEvents:UIControlEventTouchUpInside];
 

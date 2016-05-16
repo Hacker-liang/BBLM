@@ -138,16 +138,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LMSimpleShowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.showDetail = [_dataSource objectAtIndex:indexPath.row];
+    cell.showDetail = [_dataSource objectAtIndex:indexPath.section];
     [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
-    if (indexPath.section < 5) {
-        cell.rankLabel.hidden = NO;
-        cell.rankBgImageView.hidden = NO;
-        cell.rankLabel.text = [NSString stringWithFormat:@"%ld", indexPath.section+1];
-    } else {
-        cell.rankLabel.hidden = YES;
-        cell.rankBgImageView.hidden = YES;
-    }
+    cell.rankBgImageView.hidden = YES;
     [cell.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }

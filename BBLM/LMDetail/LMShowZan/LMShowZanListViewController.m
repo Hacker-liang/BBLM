@@ -31,7 +31,7 @@
     _tableView.backgroundColor = APP_PAGE_COLOR;
     _tableView.separatorColor = COLOR_LINE;
     [_tableView registerNib:[UINib nibWithNibName:@"LMShowZanTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    self.navigationItem.title = @"点赞的";
+    self.navigationItem.title = @"赞过用户";
     
     _page = 1;
     self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];

@@ -8,7 +8,6 @@
 
 #import "AutoSlideScrollView.h"
 #import "NSTimer+Addition.h"
-#import "MyPageControl.h"
 
 @interface AutoSlideScrollView () <UIScrollViewDelegate>
 {
@@ -22,7 +21,6 @@
 @property (nonatomic , strong) NSTimer *animationTimer;
 @property (nonatomic , assign) NSTimeInterval animationDuration;
 
-@property (nonatomic , strong) MyPageControl *pageControl;
 
 @end
 

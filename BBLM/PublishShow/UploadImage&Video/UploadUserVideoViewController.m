@@ -98,6 +98,12 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [self.containterView.collectionView reloadData];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
