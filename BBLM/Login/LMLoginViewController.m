@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = APP_PAGE_COLOR;
+    self.view.backgroundColor = UIColorFromRGB(0xfafafa);
     _getCatchaButton.layer.borderColor = COLOR_LINE.CGColor;
     _getCatchaButton.layer.borderWidth = 0.5;
     _getCatchaButton.layer.cornerRadius = 15;

@@ -8,11 +8,14 @@
 
 #import "LMHomeShowView.h"
 #import "LMShowManager.h"
+#import "LMCommentsTableView.h"
 
 @interface LMHomeShowView()
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UILabel *nicknameLabel;
+@property (nonatomic, strong) LMCommentsTableView *tableView;
+
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UIButton *rankButton;
 @property (nonatomic, strong) UIButton *zanButton;
@@ -27,27 +30,33 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = APP_PAGE_COLOR;
         self.layer.borderColor = COLOR_LINE.CGColor;
         self.layer.borderWidth = 0.5;
         CGFloat width = self.bounds.size.width;
         
+        _tableView = [[LMCommentsTableView alloc] initWithFrame:self.bounds];
+        _tableView.backgroundColor = APP_PAGE_COLOR;
+        
+        [self addSubview:_tableView];
+        
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, frame.size.height-70)];
+        headerView.backgroundColor = APP_PAGE_COLOR;
+        
         UIView *nickBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 56)];
         nickBgView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:nickBgView];
+        [headerView addSubview:nickBgView];
         _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 35, 35)];
-        [self addSubview:_headerImageView];
+        [headerView addSubview:_headerImageView];
         _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 8, width, 20)];
         _nicknameLabel.font = [UIFont systemFontOfSize:15.0];
         _nicknameLabel.textColor = COLOR_TEXT_I;
-        [self addSubview:_nicknameLabel];
+        [headerView addSubview:_nicknameLabel];
         
         _moreActionButton = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width-50,0, 50, 50)];
         [_moreActionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
-        [self addSubview:_moreActionButton];
         
         _rankButton = [[UIButton alloc] init];
-        [self addSubview:_rankButton];
+        [headerView addSubview:_rankButton];
         
         if (kWindowHeight == 480) {
             _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 25, width, 20)];
@@ -59,32 +68,37 @@
     
         _dateLabel.font = [UIFont systemFontOfSize:13.0];
         _dateLabel.textColor = COLOR_TEXT_II;
-        [self addSubview:_dateLabel];
+        [headerView addSubview:_dateLabel];
         
-        
+        _detailActionButton = [[UIButton alloc] initWithFrame:headerView.bounds];
+        [headerView addSubview:_detailActionButton];
+
         if (kWindowHeight == 480) {
-            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 46, width, self.frame.size.height-46-40)];
+            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 46, width, headerView.bounds.size.height-46-40)];
 
         } else {
-            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, self.frame.size.height-56-50)];
+            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, headerView.bounds.size.height-56-50)];
         }
         
         _contentImageView.backgroundColor = APP_PAGE_COLOR;
         _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
         _contentImageView.clipsToBounds = YES;
         _contentImageView.userInteractionEnabled = YES;
-        [self addSubview:_contentImageView];
+        [headerView addSubview:_contentImageView];
         
+        
+        [headerView addSubview:_moreActionButton];
+
         _playVideoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
         _playVideoButton.center = CGPointMake(_contentImageView.bounds.size.width/2, _contentImageView.bounds.size.height/2);
         [_playVideoButton setImage:[UIImage imageNamed:@"icon_playVideo"] forState:UIControlStateNormal];
         [_contentImageView addSubview:_playVideoButton];
         
         if (kWindowHeight == 480) {
-            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, self.frame.size.height-35, (width-30-30)/2, 30)];
+            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, headerView.frame.size.height-35, (width-30-30)/2, 30)];
             
         } else {
-            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, self.frame.size.height-40, (width-30-30)/2, 30)];
+            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, headerView.frame.size.height-40, (width-30-30)/2, 30)];
             
         }
         [_zanButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
@@ -96,13 +110,13 @@
         [_zanButton setImage:[UIImage imageNamed:@"icon_showList_zan_selected"] forState:UIControlStateSelected];
         _zanButton.selected = _showDetail.hasZan;
         [_zanButton addTarget:self action:@selector(zanShowAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:_zanButton];
+        [headerView addSubview:_zanButton];
         
         if (kWindowHeight == 480) {
-            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 30, self.frame.size.height-35, (width-30-30)/2, 30)];
+            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 30, headerView.bounds.size.height-35, (width-30-30)/2, 30)];
             
         } else {
-            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 30, self.frame.size.height-40, (width-30-30)/2, 30)];
+            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 30, headerView.bounds.size.height-40, (width-30-30)/2, 30)];
             
         }
         [_commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
@@ -111,8 +125,9 @@
         _commentButton.backgroundColor = [UIColor whiteColor];
         _commentButton.userInteractionEnabled = NO;
         [_commentButton setImage:[UIImage imageNamed:@"icon_showList_comment"] forState:UIControlStateNormal];
-        [self addSubview:_commentButton];
+        [headerView addSubview:_commentButton];
 
+        _tableView.tableHeaderView = headerView;
     }
     return self;
 }
@@ -159,6 +174,10 @@
     _zanButton.selected = _showDetail.hasZan;
     [_zanButton setTitle:[NSString stringWithFormat:@"%ld", _showDetail.zanCount] forState:UIControlStateNormal];
     [_commentButton setTitle:[NSString stringWithFormat:@"%ld", _showDetail.commentCount] forState:UIControlStateNormal];
+    if (_showDetail.firstComment) {
+        _tableView.commentsList = [@[_showDetail.firstComment] mutableCopy];
+        [_tableView reloadData];
+    }
 
 }
 

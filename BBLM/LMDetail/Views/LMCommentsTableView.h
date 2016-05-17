@@ -15,6 +15,8 @@
 
 - (void)addNewComment:(LMShowCommentDetail *)comment;
 
+@property (nonatomic, strong) NSMutableArray *commentsList;
+
 @property (nonatomic, weak) UIViewController *containerCtl;
 
 

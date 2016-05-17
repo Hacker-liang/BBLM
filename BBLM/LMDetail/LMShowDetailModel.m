@@ -48,11 +48,15 @@
         _publishUser.avatar = [json objectForKey:@"portrait"];
         _publishUser.hasFocused = [[json objectForKey:@"hasFocused"] boolValue];
         
-        _firstComment = [[LMShowCommentDetail alloc] init];
-        _firstComment.commentId = [[json objectForKey:@"firstCommentId"] integerValue];
-        _firstComment.user = [[LMUserDetailModel alloc] init];
-        _firstComment.user.nickname = [json objectForKey:@"firstCommentNickname"];
-        _firstComment.user.avatar = [json objectForKey:@"firstCommentPortrait"];
+        if ([[json objectForKey:@"firstComment"] length] > 0) {
+            _firstComment = [[LMShowCommentDetail alloc] init];
+            _firstComment.commentId = [[json objectForKey:@"firstCommentId"] integerValue];
+            _firstComment.publishDate = [[json objectForKey:@"firstCommentDateTime"] longLongValue]/1000;
+            _firstComment.user = [[LMUserDetailModel alloc] init];
+            _firstComment.user.nickname = [json objectForKey:@"firstCommentNickname"];
+            _firstComment.user.avatar = [json objectForKey:@"firstCommentPortrait"];
+            _firstComment.content = [json objectForKey:@"firstComment"];
+        }
 
     }
     return self;

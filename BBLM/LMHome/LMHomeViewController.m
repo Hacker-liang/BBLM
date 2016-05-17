@@ -56,11 +56,11 @@
     [self.view addSubview:_bgScrollView];
     
     if (kWindowHeight == 568) {
-        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 100) animationDuration:10];
+        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 70) animationDuration:10];
     } else if (kWindowHeight == 480) {
-        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 80) animationDuration:10];
+        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 60) animationDuration:10];
     } else {
-        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 120) animationDuration:10];
+        _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 90) animationDuration:10];
     }
     _galleryView.backgroundColor = [UIColor clearColor];
     [self.bgScrollView addSubview:_galleryView];
@@ -131,6 +131,8 @@
     
     if ([[LMAccountManager shareInstance] isLogin]) {
         [self loadUnreadMessageCount];
+    } else {
+        _unReadMsgNotiView.hidden = YES;
     }
 }
 
@@ -247,6 +249,14 @@
     }
 }
 
+- (void)gotoShowDetail:(UIButton *)sender
+{
+    LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
+    ctl.hidesBottomBarWhenPushed = YES;
+    ctl.showId = [_dataSource objectAtIndex:sender.tag].itemId;
+    [self.navigationController pushViewController:ctl animated:YES];
+}
+
 - (void)gotoMine:(UIButton *)sender
 {
     if (![[LMAccountManager shareInstance] isLogin]) {
@@ -283,8 +293,10 @@
         [showView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
         showView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         showView.layer.borderWidth = 0.5;
+        [showView.detailActionButton addTarget:self action:@selector(gotoShowDetail:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:showView];
     }
+    
     LMHomeShowView *showView;
     for (UIView *tmp in view.subviews) {
         if (tmp.tag == 1001) {
@@ -292,6 +304,7 @@
             break;
         }
     }
+    showView.detailActionButton.tag = index;
     showView.showDetail = [_dataSource objectAtIndex:index];
     showView.moreActionButton.tag = index;
     showView.playVideoButton.tag = index;
@@ -350,10 +363,7 @@
 
 - (void)carousel:(__unused iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
-    ctl.hidesBottomBarWhenPushed = YES;
-    ctl.showId = [_dataSource objectAtIndex:index].itemId;
-    [self.navigationController pushViewController:ctl animated:YES];
+    
     
 }
 

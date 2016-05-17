@@ -38,7 +38,7 @@
 
 - (void)firstRender
 {
-    self.backgroundColor = UIColorFromRGB(0xf0f0f0);
+    self.backgroundColor = APP_PAGE_COLOR;
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.textColor = COLOR_TEXT_II;
     _nicknameLabel.font = [UIFont systemFontOfSize:14.0];

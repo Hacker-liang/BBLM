@@ -15,7 +15,6 @@
 
 @interface LMCommentsTableView ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSMutableArray *commentsList;
 @property (nonatomic) NSInteger showId;
 
 @property (nonatomic) NSInteger page;
@@ -28,6 +27,14 @@
 {
     self = [super init];
     if (self) {
+        [self initData];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
         [self initData];
     }
     return self;
@@ -47,30 +54,31 @@
 {
     _page = 1;
     self.allowsSelection = NO;
-    self.backgroundColor = UIColorFromRGB(0xf0f0f0);
-    _commentsList = [[NSMutableArray alloc] init];
+    self.backgroundColor = APP_PAGE_COLOR;
     [self registerClass:[LMCommentsTableViewCell class] forCellReuseIdentifier:@"cell"];
     self.separatorStyle = UITableViewCellSelectionStyleNone;
     self.dataSource = self;
     self.delegate = self;
-    [LMShowCommentManager asyncLoadShowCommentsListWithShowId:_showId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList) {
-        if (isSuccess) {
-            [_commentsList removeAllObjects];
-            [_commentsList addObjectsFromArray:commentList];
-            if (commentList.count<10) {
-                [self.footer endRefreshingWithNoMoreData];
-            }
-            [self reloadData];
+    _commentsList = [[NSMutableArray alloc] init];
 
-            _page++;
-        }
-    }];
-    
-    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    footer.refreshingTitleHidden = YES;
-    [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
-    self.footer = footer;
-    
+    if (_showId > 0) {
+        [LMShowCommentManager asyncLoadShowCommentsListWithShowId:_showId page:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowCommentDetail *> *commentList) {
+            if (isSuccess) {
+                [_commentsList removeAllObjects];
+                [_commentsList addObjectsFromArray:commentList];
+                if (commentList.count<10) {
+                    [self.footer endRefreshingWithNoMoreData];
+                }
+                [self reloadData];
+                
+                _page++;
+            }
+        }];
+        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+        footer.refreshingTitleHidden = YES;
+        [footer setTitle:@"" forState:MJRefreshStateNoMoreData];
+        self.footer = footer;
+    }
 }
 
 - (void)loadMoreData
@@ -117,7 +125,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 5;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
