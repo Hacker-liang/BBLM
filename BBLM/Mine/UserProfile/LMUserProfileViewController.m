@@ -194,6 +194,7 @@
     cell.playVideoButton.tag = indexPath.section;
     cell.actionButton.tag = indexPath.section;
     cell.rankBgImageView.hidden = YES;
+    cell.rankLabel.hidden = YES;
     if (_isMyselfInfo) {
         [cell.actionButton setImage:[UIImage imageNamed:@"icon_show_delete"] forState:UIControlStateNormal];
         [cell.actionButton addTarget:self action:@selector(deleteShowAction:) forControlEvents:UIControlEventTouchUpInside];

@@ -12,4 +12,5 @@
 
 - (id)initWithCompletionBlock:(void (^) (BOOL isLogin, NSString *errorStr))completion;
 
+
 @end

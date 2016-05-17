@@ -33,10 +33,11 @@
 
 @property (nonatomic, strong) UIView *unReadMsgNotiView;
 
-
 @property (nonatomic, strong) AutoSlideScrollView *galleryView;
 @property (nonatomic) NSInteger page;
 @property (nonatomic) BOOL isLoading;
+@property (nonatomic) BOOL hasGotoDetail;
+
 @property (nonatomic, strong) MPMoviePlayerController *playerController;
 
 
@@ -134,6 +135,7 @@
     } else {
         _unReadMsgNotiView.hidden = YES;
     }
+    _hasGotoDetail = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -236,8 +238,8 @@
             break;
         }
     }
-    self.playerController.view.frame = showView.contentImageView.bounds;
-    [showView.contentImageView addSubview:self.playerController.view];
+    self.playerController.view.frame = showView.contentImageView.frame;
+    [showView addSubview:self.playerController.view];
     [self.playerController play];
 }
 
@@ -249,12 +251,20 @@
     }
 }
 
-- (void)gotoShowDetail:(UIButton *)sender
+- (void)gotoShowDetailAction:(UIButton *)sender
 {
-    LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
-    ctl.hidesBottomBarWhenPushed = YES;
-    ctl.showId = [_dataSource objectAtIndex:sender.tag].itemId;
-    [self.navigationController pushViewController:ctl animated:YES];
+    [self gotoShowDetail:[_dataSource objectAtIndex:sender.tag].itemId];
+}
+
+- (void)gotoShowDetail:(NSInteger)showId
+{
+    if (!_hasGotoDetail) {
+        LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
+        ctl.hidesBottomBarWhenPushed = YES;
+        ctl.showId = showId;
+        [self.navigationController pushViewController:ctl animated:YES];
+        _hasGotoDetail = YES;
+    }
 }
 
 - (void)gotoMine:(UIButton *)sender
@@ -288,12 +298,13 @@
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth-40, carousel.bounds.size.height)];
         view.backgroundColor = APP_PAGE_COLOR;
         LMHomeShowView *showView = [[LMHomeShowView alloc] initWithFrame:CGRectMake(15, 0, view.bounds.size.width-30, carousel.bounds.size.height)];
+        showView.containerCtl = self;
         showView.tag = 1001;
         [showView.moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
         [showView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
         showView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         showView.layer.borderWidth = 0.5;
-        [showView.detailActionButton addTarget:self action:@selector(gotoShowDetail:) forControlEvents:UIControlEventTouchUpInside];
+        [showView.detailActionButton addTarget:self action:@selector(gotoShowDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:showView];
     }
     

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LMShowDetailModel.h"
 
+@class LMHomeViewController;
 
 @interface LMHomeShowView : UIView
 
@@ -19,5 +20,6 @@
 
 @property (nonatomic, strong) UIImageView *contentImageView;
 
+@property (nonatomic, weak) LMHomeViewController *containerCtl;
 
 @end

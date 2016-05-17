@@ -49,7 +49,6 @@
         _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, 300)];
         _contentImageView.backgroundColor = APP_PAGE_COLOR;
         _contentImageView.userInteractionEnabled = YES;
-        _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
         _contentImageView.clipsToBounds = YES;
         [self addSubview:_contentImageView];
         

@@ -145,4 +145,12 @@
     return cell;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (_myDelegate) {
+        [_myDelegate commentTableViewDidScroll:scrollView.contentOffset];
+    }
+    
+}
+
 @end

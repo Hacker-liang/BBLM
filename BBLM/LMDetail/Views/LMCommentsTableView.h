@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "LMShowCommentDetail.h"
 
+@protocol LMCommentsTableViewDelegate <NSObject>
+
+- (void)commentTableViewDidScroll:(CGPoint)offset;
+
+@end
+
 @interface LMCommentsTableView : UITableView
 
 - (instancetype)initWithFrame:(CGRect)frame andShowId:(NSInteger)showId;
@@ -18,6 +24,9 @@
 @property (nonatomic, strong) NSMutableArray *commentsList;
 
 @property (nonatomic, weak) UIViewController *containerCtl;
+
+@property (nonatomic, weak) id<LMCommentsTableViewDelegate> myDelegate;
+
 
 
 @end

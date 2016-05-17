@@ -9,13 +9,15 @@
 #import "LMHomeShowView.h"
 #import "LMShowManager.h"
 #import "LMCommentsTableView.h"
+#import "LMShowDetailViewController.h"
+#import "LMHomeViewController.h"
 
-@interface LMHomeShowView()
+@interface LMHomeShowView() <LMCommentsTableViewDelegate>
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UILabel *nicknameLabel;
 @property (nonatomic, strong) LMCommentsTableView *tableView;
-
+@property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UIButton *rankButton;
 @property (nonatomic, strong) UIButton *zanButton;
@@ -36,6 +38,7 @@
         
         _tableView = [[LMCommentsTableView alloc] initWithFrame:self.bounds];
         _tableView.backgroundColor = APP_PAGE_COLOR;
+        _tableView.myDelegate = self;
         
         [self addSubview:_tableView];
         
@@ -70,14 +73,11 @@
         _dateLabel.textColor = COLOR_TEXT_II;
         [headerView addSubview:_dateLabel];
         
-        _detailActionButton = [[UIButton alloc] initWithFrame:headerView.bounds];
-        [headerView addSubview:_detailActionButton];
-
         if (kWindowHeight == 480) {
-            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 46, width, headerView.bounds.size.height-46-40)];
+            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 46, width, headerView.bounds.size.height-46-40-25)];
 
         } else {
-            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, headerView.bounds.size.height-56-50)];
+            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, headerView.bounds.size.height-56-50-25)];
         }
         
         _contentImageView.backgroundColor = APP_PAGE_COLOR;
@@ -86,13 +86,22 @@
         _contentImageView.userInteractionEnabled = YES;
         [headerView addSubview:_contentImageView];
         
+        _detailActionButton = [[UIButton alloc] initWithFrame:headerView.bounds];
+        [headerView addSubview:_detailActionButton];
+
         
         [headerView addSubview:_moreActionButton];
 
         _playVideoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-        _playVideoButton.center = CGPointMake(_contentImageView.bounds.size.width/2, _contentImageView.bounds.size.height/2);
+        _playVideoButton.center = CGPointMake(_contentImageView.bounds.size.width/2, _contentImageView.bounds.size.height/2+_contentImageView.frame.origin.y);
         [_playVideoButton setImage:[UIImage imageNamed:@"icon_playVideo"] forState:UIControlStateNormal];
-        [_contentImageView addSubview:_playVideoButton];
+        [headerView addSubview:_playVideoButton];
+        
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentImageView.frame), width, 25)];
+        _contentLabel.backgroundColor = [UIColor whiteColor];
+        _contentLabel.textColor = COLOR_TEXT_I;
+        _contentLabel.font = [UIFont systemFontOfSize:13.0];
+        [headerView addSubview:_contentLabel];
         
         if (kWindowHeight == 480) {
             _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, headerView.frame.size.height-35, (width-30-30)/2, 30)];
@@ -178,6 +187,7 @@
         _tableView.commentsList = [@[_showDetail.firstComment] mutableCopy];
         [_tableView reloadData];
     }
+    _contentLabel.text = [NSString stringWithFormat:@"  %@", _showDetail.showDesc];
 
 }
 
@@ -227,5 +237,15 @@
         }];
     }
 }
+
+- (void)commentTableViewDidScroll:(CGPoint)offset
+{
+    if (offset.y>0) {
+        _tableView.contentOffset = CGPointZero;
+        [self.containerCtl gotoShowDetail:_showDetail.itemId];
+    }
+}
+
+
 
 @end

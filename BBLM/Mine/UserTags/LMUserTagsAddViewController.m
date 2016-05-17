@@ -59,6 +59,10 @@
 
 - (void)addUserTag:(NSString *)tag
 {
+    if (_selectedTagsList.count == 8) {
+        [SVProgressHUD showErrorWithStatus:@"最多可设置8个标签"];
+        return;
+    }
     [[LMAccountManager shareInstance] asyncAddUserTag:tag completionBlock:^(BOOL isSuccess, NSString *errorStr) {
         if (isSuccess) {
             for (NSString *temp in _selectedTagsList) {

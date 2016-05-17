@@ -141,6 +141,7 @@
     cell.showDetail = [_dataSource objectAtIndex:indexPath.section];
     [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
     cell.rankBgImageView.hidden = YES;
+    cell.rankLabel.hidden = YES;
     [cell.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }

@@ -313,10 +313,11 @@
     UMSocialUrlResource *resource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:_shareImageUrl];
 
     if (button.tag == 0) {
+        NSString *title = [NSString stringWithFormat:@"%@\n%@", _shareTitle, _shareContent];
+
         [UMSocialData defaultData].extConfig.wechatTimelineData.url = _shareUrl;
-        [UMSocialData defaultData].extConfig.wechatTimelineData.title = _shareTitle;
-        
-        [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:_shareContent image:nil location:nil urlResource:resource presentedController:nil completion:^(UMSocialResponseEntity *response){
+        [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
+        [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:title image:nil location:nil urlResource:resource presentedController:nil completion:^(UMSocialResponseEntity *response){
             if (response.responseCode == UMSResponseCodeSuccess) {
                 NSLog(@"分享成功！");
             }

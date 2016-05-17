@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) UILabel *publishCntLabel;
 @property (nonatomic, strong) UILabel *followerCntLabel;
+@property (nonatomic, strong) UILabel *shareCntLabel;
 
 @property (nonatomic, strong) UIScrollView *tagBgView;
 
@@ -48,12 +49,23 @@
         spaceView.backgroundColor = COLOR_LINE;
         [self addSubview:spaceView];
         
-        UILabel *tempLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(170, 20, 40, 20)];
+        UILabel *tempLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(160, 20, 40, 20)];
         tempLabel2.font = [UIFont systemFontOfSize:17.0];
         tempLabel2.text = @"粉丝";
         tempLabel2.textAlignment = NSTextAlignmentCenter;
         tempLabel2.textColor = COLOR_TEXT_II;
         [self addSubview:tempLabel2];
+        
+        UIView *spaceView2 = [[UIView alloc] initWithFrame:CGRectMake(210, 25, 0.5, 50)];
+        spaceView2.backgroundColor = COLOR_LINE;
+        [self addSubview:spaceView2];
+        
+        UILabel *tempLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(220, 20, 40, 20)];
+        tempLabel3.font = [UIFont systemFontOfSize:17.0];
+        tempLabel3.text = @"分享";
+        tempLabel3.textAlignment = NSTextAlignmentCenter;
+        tempLabel3.textColor = COLOR_TEXT_II;
+        [self addSubview:tempLabel3];
         
         _publishCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 50, 40, 20)];
         _publishCntLabel.font = [UIFont systemFontOfSize:16.0];
@@ -61,11 +73,17 @@
         _publishCntLabel.textColor = APP_THEME_COLOR;
         [self addSubview:_publishCntLabel];
         
-        _followerCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(170, 50, 40, 20)];
+        _followerCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 50, 40, 20)];
         _followerCntLabel.font = [UIFont systemFontOfSize:16.0];
         _followerCntLabel.textAlignment = NSTextAlignmentCenter;
         _followerCntLabel.textColor = APP_THEME_COLOR;
         [self addSubview:_followerCntLabel];
+        
+        _shareCntLabel = [[UILabel alloc] initWithFrame:CGRectMake(220, 50, 40, 20)];
+        _shareCntLabel.font = [UIFont systemFontOfSize:16.0];
+        _shareCntLabel.textAlignment = NSTextAlignmentCenter;
+        _shareCntLabel.textColor = APP_THEME_COLOR;
+        [self addSubview:_shareCntLabel];
         
         _rankButton = [[UIButton alloc] initWithFrame:CGRectMake(12, 83, 65, 17)];
         [_rankButton setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
@@ -101,7 +119,8 @@
     [_rankButton setTitle:[NSString stringWithFormat:@"%ld", _userInfo.heat] forState:UIControlStateNormal];
     _publishCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.publishCnt];
     _followerCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.fansCnt];
-    
+    _shareCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.shareCnt];
+
     [_avatarButton sd_setImageWithURL:[NSURL URLWithString:_userInfo.avatar] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default"]];
     
     if (_tagBgView) {

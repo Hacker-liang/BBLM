@@ -322,11 +322,14 @@
 {
     NSLog(@"Qupai SDK compelete %@",videoPath);
     [self dismissViewControllerAnimated:YES completion:nil];
-    UploadUserVideoViewController *ctl = [[UploadUserVideoViewController alloc] init];
-    ctl.selectedVideoPath = videoPath;
-    ctl.selectedVideoCoverPath = thumbnailPath;
-    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
+    if (videoPath.length > 0) {
+        UploadUserVideoViewController *ctl = [[UploadUserVideoViewController alloc] init];
+        ctl.selectedVideoPath = videoPath;
+        ctl.selectedVideoCoverPath = thumbnailPath;
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:ctl] animated:YES completion:nil];
 
+    }
+   
 }
 
 

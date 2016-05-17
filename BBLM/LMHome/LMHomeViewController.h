@@ -10,4 +10,6 @@
 
 @interface LMHomeViewController : TZViewController
 
+- (void)gotoShowDetail:(NSInteger)showId;
+
 @end
