@@ -363,7 +363,8 @@
     self.pageControl.numberOfPages = _pages.count;
     [self addSubview:self.pageControl];
     
-    self.skipButton = [[UIButton alloc] initWithFrame:CGRectMake(40, self.frame.size.height-120, self.frame.size.width-80, 80)];
+    self.skipButton = [[UIButton alloc] initWithFrame:CGRectMake(40, self.frame.size.height-80, self.frame.size.width-80, 60)];
+    [self.skipButton setImage:[UIImage imageNamed:@"icon_intro_skip"] forState:UIControlStateNormal];
 //    [self.skipButton setTitle:NSLocalizedString(@"Skip", nil) forState:UIControlStateNormal];
     [self.skipButton addTarget:self action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.skipButton];

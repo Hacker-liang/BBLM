@@ -15,7 +15,7 @@
 @property (nonatomic, strong) UILabel *publishCntLabel;
 @property (nonatomic, strong) UILabel *followerCntLabel;
 @property (nonatomic, strong) UILabel *shareCntLabel;
-
+@property (nonatomic, strong) UIButton *addTagButton;
 @property (nonatomic, strong) UIScrollView *tagBgView;
 
 @end
@@ -136,16 +136,18 @@
     for (NSString *tag in _userInfo.userTags) {
       
         CGFloat width = [tag sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.0]}].width;
-        UILabel *tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(offsetX, 0, width+20, 25)];
-        tagLabel.text = tag;
-        tagLabel.textColor = COLOR_TEXT_II;
-        tagLabel.layer.borderColor = COLOR_LINE.CGColor;
-        tagLabel.layer.borderWidth = 0.5;
-        tagLabel.layer.cornerRadius = 3.0;
-        tagLabel.clipsToBounds = YES;
-        tagLabel.textAlignment = NSTextAlignmentCenter;
-        tagLabel.font = [UIFont systemFontOfSize:13.0];
-        [_tagBgView addSubview:tagLabel];
+        UIButton *tagButton = [[UIButton alloc] initWithFrame:CGRectMake(offsetX, 0, width+20, 25)];
+        [tagButton setTitle:tag forState:UIControlStateNormal];
+        [tagButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
+        tagButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
+        
+        tagButton.layer.borderColor = COLOR_LINE.CGColor;
+        tagButton.layer.borderWidth = 0.5;
+        tagButton.layer.cornerRadius = 3.0;
+        tagButton.clipsToBounds = YES;
+
+        [tagButton addTarget:self action:@selector(tagButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        [_tagBgView addSubview:tagButton];
         i++;
         offsetX += (width+30);
     }
@@ -155,11 +157,21 @@
     _addTagButton.layer.cornerRadius = 3.0;
     [_addTagButton setTitle:@"+" forState:UIControlStateNormal];
     [_addTagButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
+    [_addTagButton addTarget:self action:@selector(tagButtonAction) forControlEvents:UIControlEventTouchUpInside];
+
     [_tagBgView addSubview:_addTagButton];
     _tagBgView.contentSize = CGSizeMake(offsetX+50, 25);
-    [_tagBgView setContentOffset:CGPointMake(_tagBgView.bounds.size.width, 0)];
+    if (offsetX>_tagBgView.bounds.size.width) {
+        [_tagBgView setContentOffset:CGPointMake(offsetX+25+15-_tagBgView.bounds.size.width, 0)];
+    }
 }
 
+- (void)tagButtonAction
+{
+    if (_delegate) {
+        [_delegate touchUserTag];
+    }
+}
 @end
 
 

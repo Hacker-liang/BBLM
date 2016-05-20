@@ -38,7 +38,6 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     _library = [[ALAssetsLibrary alloc] init];
-    _uploadSuccessImageList = [[NSMutableArray alloc] init];
     self.navigationItem.title = @"图片发布";
     self.view.backgroundColor = APP_PAGE_COLOR;
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
@@ -143,6 +142,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [_containterView.collectionView reloadData];
 
     _publishBgView.frame = CGRectMake(0, CGRectGetMaxY(_containterView.frame)+20, kWindowWidth, 80);
+    _uploadSuccessImageList = [[NSMutableArray alloc] initWithCapacity:_selectedPhotos.count];
 
 }
 
@@ -165,6 +165,10 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [self.view endEditing:YES];
     if (!_containterView.textView.text.length) {
         [SVProgressHUD showErrorWithStatus:@"请输入图片描述"];
+        return;
+    }
+    if (_containterView.textView.text.length > 140) {
+        [SVProgressHUD showErrorWithStatus:@"描述字数不能多余140个字"];
         return;
     }
     if (!_selectedPhotos.count) {
@@ -212,7 +216,10 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     cell.uploadStatus = status;
     
     if (albumImage) {
-        [_uploadSuccessImageList addObject:albumImage];
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:albumImage forKey:[NSString stringWithFormat:@"%ld", index]];
+        
+        [_uploadSuccessImageList addObject:dic];
     }
     
     for (UploadUserPhotoStatus *status in _userAlbumUploadStatusList) {
@@ -220,6 +227,22 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
             return;
         }
     }
+    
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    [_uploadSuccessImageList sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSInteger index1 = [((NSDictionary *)obj1).allKeys.firstObject integerValue];
+        NSInteger index2 = [((NSDictionary *)obj2).allKeys.firstObject integerValue];
+        if (index1 > index2) {
+            return NSOrderedDescending;
+        } else {
+            return NSOrderedAscending;
+        }
+    }];
+    
+    for (NSDictionary *dic in _uploadSuccessImageList) {
+        [tempArray addObject:[dic.allValues firstObject]];
+    }
+    _uploadSuccessImageList = tempArray;
     
     [LMShowManager asyncPublishImageWithImageList:_uploadSuccessImageList desc:_containterView.textView.text completionBlock:^(BOOL isSuccess, NSInteger showId) {
         if (isSuccess) {
@@ -234,8 +257,8 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 
 - (void)choseMorePhotos
 {
-    if (_selectedPhotos.count == 5) {
-        [SVProgressHUD showErrorWithStatus:@"最多只能选择5张图片"];
+    if (_selectedPhotos.count == 9) {
+        [SVProgressHUD showErrorWithStatus:@"最多只能选择9张图片"];
         return;
     }
     UIActionSheet *sheetDelegate = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"还可以选择%ld张图片", (5-_selectedPhotos.count)] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"相册", nil];

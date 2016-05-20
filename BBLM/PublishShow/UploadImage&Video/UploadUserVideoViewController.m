@@ -16,7 +16,11 @@
 #import "LMShowManager.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface UploadUserVideoViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+#import <ALBBSDK/ALBBSDK.h>
+#import <ALBBQuPai/ALBBQuPaiService.h>
+#import <ALBBQuPai/QPEffectMusic.h>
+
+@interface UploadUserVideoViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, QupaiSDKDelegate>
 
 @property (nonatomic, strong) UploadUserPhotoOperationView *containterView;
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -160,6 +164,11 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [self.view endEditing:YES];
     if (!_containterView.textView.text.length) {
         [SVProgressHUD showErrorWithStatus:@"请输入视频描述"];
+        return;
+    }
+    if (_containterView.textView.text.length > 140) {
+        [SVProgressHUD showErrorWithStatus:@"描述字数不能多余140个字"];
+        return;
     }
     [self.userAlbumUploadStatusList removeAllObjects];
     [SVProgressHUD showWithStatus:@"正在上传"];
@@ -212,6 +221,13 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [self presentViewController:ctl animated:YES completion:nil];
 }
 
+- (void)deleteSelectImages:(UIButton *)sender
+{
+    _selectedVideoPath = nil;
+    _selectedVideoCoverPath = nil;
+    [self renderContentView];
+}
+
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -224,30 +240,31 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UploadUserAlbumCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.deleteButton.hidden = YES;
-    cell.image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfFile:_selectedVideoCoverPath]];
-//    for (UIView *views in cell.subviews) {
-//        if (views.tag == 101) {
-//            [views removeFromSuperview];
-//        }
-//    }
-//    UIButton *playButton = [[UIButton alloc] initWithFrame:cell.bounds];
-//    [playButton setImage:[UIImage imageNamed:@"icon_playVideo"] forState:UIControlStateNormal];
-//    [playButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-//    [playButton setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.3]];
-//    playButton.tag = 101;
-//    [cell addSubview:playButton];
-    UploadUserPhotoStatus *status = [_userAlbumUploadStatusList objectAtIndex:indexPath.row];
-    cell.uploadStatus = status;
-    
+
+    if (_selectedVideoCoverPath) {
+        cell.image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfFile:_selectedVideoCoverPath]];
+        [cell.deleteButton addTarget:self action:@selector(deleteSelectImages:) forControlEvents:UIControlEventTouchUpInside];
+        UploadUserPhotoStatus *status = [_userAlbumUploadStatusList objectAtIndex:indexPath.row];
+        cell.uploadStatus = status;
+        cell.deleteButton.hidden = NO;
+        
+    } else {
+        cell.image = [UIImage imageNamed:@"icon_big_add_photo.png"];
+        cell.deleteButton.hidden = YES;
+    }
     return cell;
+
 }
 
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self playVideo:nil];
+    if (_selectedVideoCoverPath) {
+        [self playVideo:nil];
+    } else {
+        [self publishVideo];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -255,6 +272,33 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
+}
+
+#pragma mark - QupaiSDKDelegate
+
+- (void)qupaiSDK:(id<ALBBQuPaiService>)sdk compeleteVideoPath:(NSString *)videoPath thumbnailPath:(NSString *)thumbnailPath
+{
+    NSLog(@"Qupai SDK compelete %@",videoPath);
+    [self dismissViewControllerAnimated:YES completion:nil];
+    if (videoPath.length > 0) {
+        
+        self.selectedVideoPath = videoPath;
+        self.selectedVideoCoverPath = thumbnailPath;
+        [self renderContentView];
+    }
+}
+
+- (void)publishVideo
+{
+    id <ALBBQuPaiService> qupaiSDK  = [[ALBBSDK sharedInstance] getService:@protocol(ALBBQuPaiService)];
+    [qupaiSDK setDelegte:self];
+    UIViewController *ctl = [qupaiSDK createRecordViewControllerWithMinDuration:3 maxDuration:300 bitRate:800*600];
+    UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:ctl];
+    navigation.navigationBarHidden = YES;
+    
+    [self presentViewController:navigation animated:YES completion:^{
+        
+    }];
 }
 
 @end

@@ -16,9 +16,12 @@
 
 @implementation LMShowTableViewCell
 
-+ (CGFloat)heightOfShowListCell
++ (CGFloat)heightOfShowListCellWithShowDetail:(LMShowDetailModel *)show
 {
-    return kWindowWidth*3/4 + 50 + 50;
+    NSAttributedString *attrstr = [[NSAttributedString alloc] initWithString:show.showDesc attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
+    CGRect rect = [attrstr boundingRectWithSize:(CGSize){kWindowWidth-16, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    
+    return kWindowWidth*3/4 + 50 + 50 ;
 }
 
 - (void)awakeFromNib {

@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIButton *rankButton;
 @property (nonatomic, strong) UIButton *zanButton;
 @property (nonatomic, strong) UIButton *commentButton;
+@property (nonatomic, strong) UIButton *detailActionButton;
 
 
 @end
@@ -39,6 +40,10 @@
         _tableView = [[LMCommentsTableView alloc] initWithFrame:self.bounds];
         _tableView.backgroundColor = APP_PAGE_COLOR;
         _tableView.myDelegate = self;
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, frame.size.height-70, width, 70)];
+        [_tableView addSubview:button];
+        [button addTarget:self action:@selector(gotoShowDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [self addSubview:_tableView];
         
@@ -87,6 +92,8 @@
         [headerView addSubview:_contentImageView];
         
         _detailActionButton = [[UIButton alloc] initWithFrame:headerView.bounds];
+        [_detailActionButton addTarget:self action:@selector(gotoShowDetailAction:) forControlEvents:UIControlEventTouchUpInside];
+
         [headerView addSubview:_detailActionButton];
 
         
@@ -238,11 +245,21 @@
     }
 }
 
+- (void)gotoShowDetailAction:(UIButton *)sender
+{
+    [self.containerCtl gotoShowDetail:_showDetail.itemId];
+
+}
+
 - (void)commentTableViewDidScroll:(CGPoint)offset
 {
-    if (offset.y>0) {
+    if (offset.y>5) {
         _tableView.contentOffset = CGPointZero;
         [self.containerCtl gotoShowDetail:_showDetail.itemId];
+    }
+    if (offset.y < 0) {
+        _tableView.contentOffset = CGPointZero;
+
     }
 }
 

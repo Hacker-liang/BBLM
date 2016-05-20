@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MineHeaderViewDelegate <NSObject>
+
+- (void)touchUserTag;
+
+@end
+
 @interface MineHeaderView : UIView
 
 @property (nonatomic, strong) LMUserDetailModel *userInfo;
 
-@property (nonatomic, strong) UIButton *addTagButton;
 @property (nonatomic, strong) UIButton *avatarButton;
 @property (nonatomic, strong) UIButton *editUserInfoButton;
+
+@property (nonatomic, weak) id<MineHeaderViewDelegate> delegate;
 
 @end

@@ -67,7 +67,7 @@
             [ud synchronize];
             completion(YES, nil);
         } else {
-            completion(NO, nil);
+            completion(NO, [responseObject objectForKey:@"message"]);
         }
         
     } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {

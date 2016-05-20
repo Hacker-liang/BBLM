@@ -50,13 +50,13 @@
     [self addChildVc:_hotShowListCtl title:nil image:@"icon_tabbar_hot_normal" selectedImage:@"icon_tabbar_hot_selected"];
     
     [self setupConverView];
+    [self.qupaiSDK setDelegte:self];
 }
 
 - (id <ALBBQuPaiService>)qupaiSDK
 {
     if (!_qupaiSDK) {
        _qupaiSDK  = [[ALBBSDK sharedInstance] getService:@protocol(ALBBQuPaiService)];
-        [_qupaiSDK setDelegte:self];
     }
     return _qupaiSDK;
 }
@@ -72,7 +72,9 @@
     BOOL shouldSkipLoadIntro = [[[NSUserDefaults standardUserDefaults] objectForKey:version] boolValue];
     if (!shouldSkipLoadIntro) {
         [self setupSplashImage];
-        [self beginIntroduce];
+        [self performSelector:@selector(dismissSplashImage) withObject:nil afterDelay:2];
+        [self performSelector:@selector(beginIntroduce) withObject:nil afterDelay:2];
+
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:version];
     } else {
         [self setupSplashImage];
@@ -192,16 +194,14 @@
 - (void)intro:(EAIntroView *)introView pageAppeared:(EAIntroPage *)page withIndex:(NSInteger)pageIndex
 {
     if (pageIndex == 3) {
-
-
+        _introView.skipButton.hidden = NO;
     } else {
-        
+        _introView.skipButton.hidden = YES;
     }
 }
 
 - (void)introDidFinish:(EAIntroView *)introView
 {
-    [self performSelector:@selector(dismissSplashImage) withObject:nil afterDelay:2];
 
 }
 

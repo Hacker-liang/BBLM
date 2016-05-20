@@ -17,7 +17,7 @@
 
 + (CGFloat)heightOfShowListCell
 {
-    return kWindowWidth*3/4 + 50 + 50;
+    return kWindowWidth*3/4 + 30;
 }
 
 - (void)awakeFromNib {

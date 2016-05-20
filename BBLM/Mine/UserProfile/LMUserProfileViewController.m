@@ -183,7 +183,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [LMShowTableViewCell heightOfShowListCell];
+    return [LMShowTableViewCell heightOfShowListCellWithShowDetail:[_dataSource objectAtIndex:indexPath.section]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -26,6 +26,19 @@
 
 @implementation LMShowDetailView
 
++ (CGFloat)heithWithShowDetail:(LMShowDetailModel *)show
+{
+    if ([show.showDesc stringByReplacingOccurrencesOfString:@" " withString:@""].length>0) {
+        NSAttributedString *attrstr = [[NSAttributedString alloc] initWithString:show.showDesc attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
+        CGRect rect = [attrstr boundingRectWithSize:(CGSize){kWindowWidth-24, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+        return 450+rect.size.height-20;
+    } else {
+        return 430;
+    }
+   
+
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -64,7 +77,7 @@
         [_playVideoButton setImage:[UIImage imageNamed:@"icon_playVideo"] forState:UIControlStateNormal];
         [_contentImageView addSubview:_playVideoButton];
         
-        _descLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 300+60, kWindowWidth-24, 40)];
+        _descLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, 300+60, kWindowWidth-24, frame.size.height-CGRectGetMaxY(_contentImageView.frame)-50)];
         _descLabel.textColor = COLOR_TEXT_I;
         _descLabel.numberOfLines = 0;
         _descLabel.font = [UIFont systemFontOfSize:15.0];
@@ -83,7 +96,6 @@
         [self addSubview:_moreActionButton];
         
         _zanUserCntButton = [[UIButton alloc] init];
-
     }
     return self;
 }
@@ -98,6 +110,7 @@
         [_contentImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.coverImage] placeholderImage:nil];
         _contentImageView.hidden = NO;
         _galleryView.hidden = YES;
+        
     } else {
         _contentImageView.hidden = YES;
         _galleryView.hidden = NO;

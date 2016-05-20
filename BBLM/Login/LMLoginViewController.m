@@ -82,6 +82,13 @@
             [LMUserManager asyncLoadUserInfoWithUserId:[LMAccountManager shareInstance].account.userId completionBlock:^(BOOL isSuccess, LMUserDetailModel *userInfo) {
                 
             }]; //登录成功去取一遍自己的信息
+        } else {
+            if (errorStr) {
+                [SVProgressHUD showErrorWithStatus:errorStr];
+            } else {
+                [SVProgressHUD showErrorWithStatus:@"登录失败，请重试"];
+
+            }
         }
     }];
     

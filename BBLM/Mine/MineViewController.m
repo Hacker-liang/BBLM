@@ -15,7 +15,7 @@
 #import "CommonWebViewController.h"
 #import "LMAboutViewController.h"
 
-@interface MineViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MineViewController () <UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -38,7 +38,7 @@
     _dataSource = @[@"我的辣妈空间", @"我的收藏", @"辣度规则", @"关于芭比辣妈", @"退出"];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     _headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 150)];
-    [_headerView.addTagButton addTarget:self action:@selector(addUserTags:) forControlEvents:UIControlEventTouchUpInside];
+    _headerView.delegate = self;
     [_headerView.avatarButton addTarget:self action:@selector(showUserProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_headerView.editUserInfoButton addTarget:self action:@selector(editUserInfo:) forControlEvents:UIControlEventTouchUpInside];
     _headerView.userInfo = _userInfo;
@@ -66,14 +66,15 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)addUserTags:(UIButton *)sender
+
+- (void)touchUserTag
 {
     LMUserTagsAddViewController *ctl = [[LMUserTagsAddViewController alloc] init];
     ctl.hidesBottomBarWhenPushed = YES;
     ctl.userInfo = _userInfo;
     [self.navigationController pushViewController:ctl animated:YES];
-}
 
+}
 
 - (void)showUserProfile:(UIButton *)sender
 {

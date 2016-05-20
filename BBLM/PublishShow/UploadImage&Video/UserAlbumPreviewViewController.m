@@ -129,6 +129,10 @@
         [self removeAssetFromSelectedPhotos:asset];
         _selectBtn.selected = NO;
     } else {
+        if (_selectedPhotos.count==9) {
+            [SVProgressHUD showErrorWithStatus:@"图片最多只能选择9张"];
+            return;
+        }
         [self.selectedPhotos addObject:asset];
         _selectBtn.selected = YES;
     }

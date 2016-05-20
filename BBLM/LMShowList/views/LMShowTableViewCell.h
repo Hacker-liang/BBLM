@@ -11,7 +11,8 @@
 
 @interface LMShowTableViewCell : UITableViewCell
 
-+ (CGFloat)heightOfShowListCell;
++ (CGFloat)heightOfShowListCellWithShowDetail:(LMShowDetailModel *)show;
+
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImagView;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;

@@ -56,7 +56,7 @@
         _userRankChart.barColor = [UIColor whiteColor];
         _userRankChart.backgroundColor = [UIColor clearColor];
         _userRankChart.textColor = [UIColor whiteColor];
-        _userRankChart.cornerRadius = 4;
+        _userRankChart.cornerRadius = 6;
         [rankingBgView addSubview:_userRankChart];
         
         _noRankLabel = [[UILabel alloc] initWithFrame:CGRectMake(12, _userRankChart.center.y-30, kWindowWidth-24, 20)];

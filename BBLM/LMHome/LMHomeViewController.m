@@ -141,7 +141,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self stopPlayVideo];
 }
 
 - (UIImageView *)galleryImageView
@@ -209,16 +208,28 @@
             if (isLogin) {
                 LMPushMessageViewController *ctl = [[LMPushMessageViewController alloc] init];
                 ctl.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:ctl animated:YES];
+                [self pushController:ctl];
             }
         }];
-        [self presentViewController:ctl animated:YES completion:nil];
+        [self presentController:ctl];
+        
     } else {
         LMPushMessageViewController *ctl = [[LMPushMessageViewController alloc] init];
         ctl.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:ctl animated:YES];
-
+        [self pushController:ctl];
     }
+}
+
+- (void)pushController:(UIViewController *)ctl
+{
+    [self.navigationController pushViewController:ctl animated:YES];
+    [self stopPlayVideo];
+}
+
+- (void)presentController:(UIViewController *)ctl
+{
+    [self.navigationController presentViewController:ctl animated:YES completion:nil];
+    [self stopPlayVideo];
 }
 
 - (void)playVideo:(UIButton *)sender
@@ -262,7 +273,7 @@
         LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
         ctl.hidesBottomBarWhenPushed = YES;
         ctl.showId = showId;
-        [self.navigationController pushViewController:ctl animated:YES];
+        [self pushController:ctl];
         _hasGotoDetail = YES;
     }
 }
@@ -274,14 +285,14 @@
             if (isLogin) {
                 MineViewController *ctl = [[MineViewController alloc] init];
                 ctl.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:ctl animated:YES];
+                [self pushController:ctl];
             }
         }];
-        [self presentViewController:ctl animated:YES completion:nil];
+        [self presentController:ctl];
     } else {
         MineViewController *ctl = [[MineViewController alloc] init];
         ctl.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:ctl animated:YES];
+        [self pushController:ctl];
     }
     
 }
@@ -304,7 +315,6 @@
         [showView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
         showView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         showView.layer.borderWidth = 0.5;
-        [showView.detailActionButton addTarget:self action:@selector(gotoShowDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:showView];
     }
     
@@ -315,7 +325,6 @@
             break;
         }
     }
-    showView.detailActionButton.tag = index;
     showView.showDetail = [_dataSource objectAtIndex:index];
     showView.moreActionButton.tag = index;
     showView.playVideoButton.tag = index;
@@ -432,7 +441,7 @@
                 } else {
                 }
             }];
-            [self presentViewController:ctl animated:YES completion:nil];
+            [self presentController:ctl];
             
             return;
         }

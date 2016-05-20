@@ -157,6 +157,10 @@ static NSString * const reuseIdentifier = @"userAlbumSelectCell";
     if ([self photoIsSelected:asset]) {
         [self removeAssetFromSelectedPhotos:asset];
     } else {
+        if (_selectedPhotos.count==9) {
+            [SVProgressHUD showErrorWithStatus:@"图片最多只能选择9张"];
+            return;
+        }
         [_selectedPhotos addObject:asset];
     }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];

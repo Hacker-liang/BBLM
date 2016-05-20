@@ -39,18 +39,18 @@
     _tableView = [[LMCommentsTableView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, kWindowHeight-49) andShowId: _showId];
     _tableView.containerCtl = self;
     [self.view addSubview:_tableView];
-    
-    _showDetailView = [[LMShowDetailView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 460)];
-    _showDetailView.containerCtl = self;
-    [_showDetailView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-    _tableView.tableHeaderView = _showDetailView;
-    [_showDetailView.headerImageButton addTarget:self action:@selector(gotoPublishUserProfile:) forControlEvents:UIControlEventTouchUpInside];
-    [_showDetailView.zanButton addTarget:self action:@selector(zanShowAction:) forControlEvents:UIControlEventTouchUpInside];
-    [_showDetailView.zanUserCntButton addTarget:self action:@selector(showMoreZanUserAction:) forControlEvents:UIControlEventTouchUpInside];
-    [_showDetailView.moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [LMShowManager asyncLoadShowDetialWithShowId:_showId completionBlock:^(BOOL isSuccess, LMShowDetailModel *showDetail) {
         _showDetail = showDetail;
+        CGFloat height = [LMShowDetailView heithWithShowDetail:_showDetail];
+        _showDetailView = [[LMShowDetailView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, height)];
+        [_showDetailView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+        _tableView.tableHeaderView = _showDetailView;
+        [_showDetailView.headerImageButton addTarget:self action:@selector(gotoPublishUserProfile:) forControlEvents:UIControlEventTouchUpInside];
+        [_showDetailView.zanButton addTarget:self action:@selector(zanShowAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_showDetailView.zanUserCntButton addTarget:self action:@selector(showMoreZanUserAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_showDetailView.moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
+        _showDetailView.containerCtl = self;
         _showDetailView.showDetail = _showDetail;
     }];
     
@@ -62,8 +62,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [_playerController stop];
-    [_playerController.view removeFromSuperview];
 }
 
 - (void)gotoPublishUserProfile:(UIButton *)sender

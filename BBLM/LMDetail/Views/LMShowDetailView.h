@@ -22,5 +22,6 @@
 @property (nonatomic, strong) UIButton *zanUserCntButton;
 @property (nonatomic, strong) UIButton *moreActionButton;
 
++ (CGFloat)heithWithShowDetail:(LMShowDetailModel *)show;
 
 @end

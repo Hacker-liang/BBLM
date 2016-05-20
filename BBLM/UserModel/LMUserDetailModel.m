@@ -33,6 +33,8 @@
         _xingzuo = [json objectForKey:@"constellation"];
         if ([[json objectForKey:@"labels"] length]) {
             _userTags = [[json objectForKey:@"labels"] componentsSeparatedByString:@","];
+        } else {
+            _userTags = [[NSArray alloc] init];
         }
         _tel = [json objectForKey:@"mobile"];
         _avatar = [json objectForKey:@"portrait"];
