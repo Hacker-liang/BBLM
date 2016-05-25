@@ -18,10 +18,9 @@
 #import "UploadUserAlbumViewController.h"
 #import "LMLoginViewController.h"
 #import "UploadUserVideoViewController.h"
+#import "AutoSlideScrollView.h"
 
-#import "EAIntroView.h"
-
-@interface LMRootViewController () <LMTabBarDelegate, QupaiSDKDelegate, EAIntroDelegate>
+@interface LMRootViewController () <LMTabBarDelegate, QupaiSDKDelegate>
 
 @property (nonatomic, strong) UIView *publishBgView;
 @property (nonatomic, strong) UIView *publishContentView;
@@ -30,7 +29,8 @@
 @property (nonatomic, strong) LMHomeViewController *homeCtl;
 @property (nonatomic, strong) LMHotShowListViewController *hotShowListCtl;
 
-@property (nonatomic, strong)  EAIntroView *introView;  //引导页
+@property (nonatomic, strong) UIScrollView *introView;
+
 @property (nonatomic, strong) UIImageView *splashImageView;  //闪屏页面
 
 
@@ -48,15 +48,17 @@
     _hotShowListCtl = [[LMHotShowListViewController alloc] init];
     [self addChildVc:_homeCtl title:nil image:@"icon_tabbar_home_normal" selectedImage:@"icon_tabbar_home_selected"];
     [self addChildVc:_hotShowListCtl title:nil image:@"icon_tabbar_hot_normal" selectedImage:@"icon_tabbar_hot_selected"];
-    
+
     [self setupConverView];
     [self.qupaiSDK setDelegte:self];
+    
 }
 
 - (id <ALBBQuPaiService>)qupaiSDK
 {
     if (!_qupaiSDK) {
        _qupaiSDK  = [[ALBBSDK sharedInstance] getService:@protocol(ALBBQuPaiService)];
+        _qupaiSDK.enableMoreMusic = NO;
     }
     return _qupaiSDK;
 }
@@ -74,12 +76,11 @@
         [self setupSplashImage];
         [self performSelector:@selector(dismissSplashImage) withObject:nil afterDelay:2];
         [self performSelector:@selector(beginIntroduce) withObject:nil afterDelay:2];
-
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:version];
+        
     } else {
         [self setupSplashImage];
         [self performSelector:@selector(dismissSplashImage) withObject:nil afterDelay:2];
-
     }
 }
 
@@ -114,11 +115,11 @@
 
 - (void)beginIntroduce
 {
-    EAIntroPage *page1 = [EAIntroPage page];
-    EAIntroPage *page2 = [EAIntroPage page];
-    EAIntroPage *page3 = [EAIntroPage page];
-    EAIntroPage *page4 = [EAIntroPage page];
-    
+    _introView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    _introView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_introView];
+
+    NSMutableArray *viewsArray = [[NSMutableArray alloc] init];
     {
         NSString *imageName;
         
@@ -133,9 +134,8 @@
         }
         UIImageView *image = [[UIImageView alloc] initWithFrame:self.view.bounds];
         image.image = [UIImage imageNamed:imageName];
-        page1.bgImage = image;
+        [viewsArray addObject:image];
     }
-    
     {
         NSString *imageName;
         if (self.view.frame.size.height == 480) {
@@ -148,9 +148,8 @@
         }
         UIImageView *image = [[UIImageView alloc] initWithFrame:self.view.bounds];
         image.image = [UIImage imageNamed:imageName];
-        page2.bgImage = image;
+        [viewsArray addObject:image];
     }
-    
     {
         NSString *imageName;
         if (self.view.frame.size.height == 480) {
@@ -163,9 +162,8 @@
         }
         UIImageView *image = [[UIImageView alloc] initWithFrame:self.view.bounds];
         image.image = [UIImage imageNamed:imageName];
-        page3.bgImage = image;
+        [viewsArray addObject:image];
     }
-    
     {
         NSString *imageName;
         if (self.view.frame.size.height == 480) {
@@ -178,31 +176,30 @@
         }
         UIImageView *image = [[UIImageView alloc] initWithFrame:self.view.bounds];
         image.image = [UIImage imageNamed:imageName];
-        page4.bgImage = image;
+        [viewsArray addObject:image];
+        UIButton *skipButton = [[UIButton alloc] initWithFrame:CGRectMake(12, image.bounds.size.height-60, image.bounds.size.width-24, 40)];
+        [skipButton addTarget:self action:@selector(skipIntro) forControlEvents:UIControlEventTouchUpInside];
+        [skipButton setImage:[UIImage imageNamed:@"icon_intro_skip.png"] forState:UIControlStateNormal];
+        image.userInteractionEnabled = YES;
+        [image addSubview:skipButton];
     }
-    
-    _introView = [[EAIntroView alloc] initWithFrame:self.view.bounds andPages:@[page1,page2,page3,page4]];
-    [_introView setDelegate:self];
-    _introView.hideOffscreenPages = YES;
-//    _introView.skipButton.hidden = YES;
-//    _introView.pageControl.hidden = YES;
-    [_introView showInView:self.view animateDuration:0];
-}
-
-#pragma mark - EAIntroDelegate
-
-- (void)intro:(EAIntroView *)introView pageAppeared:(EAIntroPage *)page withIndex:(NSInteger)pageIndex
-{
-    if (pageIndex == 3) {
-        _introView.skipButton.hidden = NO;
-    } else {
-        _introView.skipButton.hidden = YES;
+    _introView.contentSize = CGSizeMake(viewsArray.count*self.view.bounds.size.width, self.view.bounds.size.height);
+    _introView.pagingEnabled = YES;
+    _introView.showsHorizontalScrollIndicator = NO;
+    NSInteger index = 0;
+    for (UIView *view in viewsArray) {
+        view.frame = CGRectMake(index*self.view.bounds.size.width, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+        [_introView addSubview:view];
+        index++;
     }
 }
 
-- (void)introDidFinish:(EAIntroView *)introView
+- (void)skipIntro
 {
-
+    if (_introView) {
+        [_introView removeFromSuperview];
+        _introView = nil;
+    }
 }
 
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage
@@ -306,15 +303,12 @@
     title1.textColor = COLOR_TEXT_I;
     [_publishContentView addSubview:title1];
     
-    
     [UIView animateWithDuration:0.2 animations:^{
         _publishContentView.frame = CGRectMake(0, kWindowHeight-240, kWindowWidth, 240);
     } completion:^(BOOL finished) {
         
     }];
 }
-
-
 
 #pragma mark - QupaiSDKDelegate
 
@@ -332,8 +326,20 @@
    
 }
 
-
-
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item;
+{
+    NSInteger index = [self.tabBar.items indexOfObject:item];
+    if (index == 0) {
+        if (_hotShowListCtl) {
+            [_hotShowListCtl stopPlayVideo];
+        }
+    }
+    if (index == 1) {
+        if (_homeCtl) {
+            [_homeCtl stopPlayVideo];
+        }
+    }
+}
 
 @end
 

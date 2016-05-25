@@ -129,13 +129,11 @@
         _shareCntLabel.textColor = APP_THEME_COLOR;
         [_conentBgView addSubview:_shareCntLabel];
 
-        
-        _rankButton = [[UIButton alloc] initWithFrame:CGRectMake(12, 83, 65, 17)];
+        _rankButton = [[UIButton alloc] initWithFrame:CGRectMake(12, 83, 80, 17)];
         [_rankButton setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
         _rankButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         [_rankButton setImage:[UIImage imageNamed:@"icon_mine_rank.png"] forState:UIControlStateNormal];
         _rankButton.userInteractionEnabled = NO;
-        [_rankButton setTitle:@"121" forState:UIControlStateNormal];
         [_rankButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
         [_rankButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 5)];
         [_conentBgView addSubview:_rankButton];
@@ -259,6 +257,8 @@
             if (isSuccess) {
                 [SVProgressHUD showSuccessWithStatus:@"关注成功"];
                 _userInfo.hasFocused = YES;
+                _userInfo.fansCnt++;
+                _followerCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.fansCnt];
                 sender.selected = !sender.selected;
             } else {
                 [SVProgressHUD showErrorWithStatus:@"关注失败"];
@@ -269,6 +269,8 @@
             if (isSuccess) {
                 [SVProgressHUD showSuccessWithStatus:@"取消关注成功"];
                 _userInfo.hasFocused = NO;
+                _userInfo.fansCnt--;
+                _followerCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.fansCnt];
                 sender.selected = !sender.selected;
             } else {
                 [SVProgressHUD showErrorWithStatus:@"取消关注失败"];

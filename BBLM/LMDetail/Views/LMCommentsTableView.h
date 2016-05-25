@@ -25,6 +25,8 @@
 
 @property (nonatomic, weak) UIViewController *containerCtl;
 
+@property (nonatomic) BOOL hideNickName;   //是否隐藏用户名
+
 @property (nonatomic, weak) id<LMCommentsTableViewDelegate> myDelegate;
 
 

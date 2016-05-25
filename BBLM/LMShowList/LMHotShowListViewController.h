@@ -10,4 +10,6 @@
 
 @interface LMHotShowListViewController : UIViewController
 
+- (void)stopPlayVideo;
+
 @end

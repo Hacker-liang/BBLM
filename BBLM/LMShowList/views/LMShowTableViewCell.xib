@@ -135,6 +135,13 @@
                             <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QZE-Ei-0CJ">
+                        <rect key="frame" x="8" y="8" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="8hC-Ng-CFo"/>
+                            <constraint firstAttribute="height" constant="34" id="waR-Yk-6Kc"/>
+                        </constraints>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -142,6 +149,7 @@
                     <constraint firstItem="za6-nK-zLf" firstAttribute="top" secondItem="OH6-jx-BWY" secondAttribute="bottom" constant="8" id="Cog-4B-IyJ"/>
                     <constraint firstItem="DBf-2a-6iZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="Fkb-hu-De6"/>
                     <constraint firstItem="JJn-nU-9HZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="PcH-C2-Dib"/>
+                    <constraint firstItem="QZE-Ei-0CJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="RLf-9a-hbs"/>
                     <constraint firstItem="d2K-OI-Urc" firstAttribute="width" secondItem="za6-nK-zLf" secondAttribute="width" id="TK7-4G-PbK"/>
                     <constraint firstAttribute="trailing" secondItem="OH6-jx-BWY" secondAttribute="trailing" id="UKl-sr-eRm"/>
                     <constraint firstItem="98G-BH-qtD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="28" id="Uu9-tr-Vkk"/>
@@ -154,6 +162,7 @@
                     <constraint firstItem="d2K-OI-Urc" firstAttribute="height" secondItem="za6-nK-zLf" secondAttribute="height" id="qbn-ft-fyf"/>
                     <constraint firstAttribute="trailing" secondItem="DBf-2a-6iZ" secondAttribute="trailing" constant="8" id="sBb-9O-JkQ"/>
                     <constraint firstItem="OH6-jx-BWY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tU9-Wb-Zlf"/>
+                    <constraint firstItem="QZE-Ei-0CJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="tvr-YL-GU1"/>
                     <constraint firstItem="d2K-OI-Urc" firstAttribute="top" secondItem="OH6-jx-BWY" secondAttribute="bottom" constant="8" id="u04-3F-iwt"/>
                     <constraint firstAttribute="trailing" secondItem="uJ0-sd-jLt" secondAttribute="trailing" constant="61" id="vEX-l8-uxN"/>
                     <constraint firstItem="uJ0-sd-jLt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="wcQ-gz-kZo"/>
@@ -171,6 +180,7 @@
                 <outlet property="rankBgImageView" destination="icc-my-7Zf" id="ET8-YL-px0"/>
                 <outlet property="rankLabel" destination="yVs-gh-UKr" id="Hig-oe-nHy"/>
                 <outlet property="showDescLabel" destination="rH4-Ee-sgo" id="huc-2x-gaX"/>
+                <outlet property="showUserInfoButton" destination="QZE-Ei-0CJ" id="7QP-xt-png"/>
                 <outlet property="zanButton" destination="za6-nK-zLf" id="tCO-b7-BoT"/>
             </connections>
             <point key="canvasLocation" x="179" y="269"/>

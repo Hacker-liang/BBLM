@@ -15,6 +15,7 @@
 #import "LMShowDetailViewController.h"
 #import "ShareActivity.h"
 #import "CommonWebViewController.h"
+#import "LMUserProfileViewController.h"
 
 @interface LMHotShowListViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
@@ -73,8 +74,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [_playerController stop];
-    [_playerController.view removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,7 +86,9 @@
     ctl.urlStr = [NSString stringWithFormat:@"%@resources/protocol/index.html", BASE_API];
     ctl.naviBarTitle = @"辣度规则";
     [self.navigationController pushViewController:ctl animated:YES];
-    
+    [_playerController stop];
+    [_playerController.view removeFromSuperview];
+
 }
 
 - (void)loadMoreData
@@ -97,19 +98,21 @@
         if (isSuccess) {
             [_dataSource addObjectsFromArray:showList];
             [self.tableView reloadData];
-            _page++;
+            if (showList.count) {
+                _page++;
+            }
         }
     }];
 }
 
 - (void)playVideo:(UIButton *)sender
 {
-    if (self.playerController.view.superview) {
-        [self.playerController.view removeFromSuperview];
-        [self.playerController stop];
+    if (_playerController.view.superview) {
+        [_playerController.view removeFromSuperview];
+        [_playerController stop];
+        _playerController = nil;
     }
     NSURL *url = [NSURL URLWithString:[_dataSource objectAtIndex:sender.tag].videoUrl];
-    
     
     self.playerController.contentURL = url;
     LMShowTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:sender.tag]];
@@ -117,6 +120,13 @@
     self.playerController.view.frame = CGRectMake(point.x, point.y, cell.coverImageView.bounds.size.width, cell.coverImageView.bounds.size.height);
     [_tableView addSubview:self.playerController.view];
     [self.playerController play];
+}
+
+- (void)stopPlayVideo
+{
+    [_playerController stop];
+    [_playerController.view removeFromSuperview];
+    _playerController = nil;
 }
 
 
@@ -128,6 +138,14 @@
     sheet.tintColor = APP_THEME_COLOR;
     sheet.tag = sender.tag;
     [sheet showInView:self.view];
+}
+
+- (void)gotoUserInfo:(UIButton *)sender
+{
+    LMUserProfileViewController *ctl = [[LMUserProfileViewController alloc] init];
+    ctl.userId = [_dataSource objectAtIndex:sender.tag].publishUser.userId;
+    [self.navigationController pushViewController:ctl animated:YES];
+
 }
 
 #pragma mark - 懒加载代码
@@ -171,7 +189,7 @@
     cell.showDetail = [_dataSource objectAtIndex:indexPath.section];
     [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
     cell.actionButton.tag = indexPath.section;
-    if (indexPath.section < 5) {
+    if (indexPath.section < 10) {
         cell.rankLabel.hidden = NO;
         cell.rankBgImageView.hidden = NO;
         cell.rankLabel.text = [NSString stringWithFormat:@"%ld", indexPath.section+1];
@@ -179,9 +197,15 @@
         cell.rankLabel.hidden = YES;
         cell.rankBgImageView.hidden = YES;
     }
+    cell.showUserInfoButton.tag = indexPath.section;
+    
+    cell.playVideoButton.tag = indexPath.section;
     [cell.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
     [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
     [cell.actionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.showUserInfoButton addTarget:self action:@selector(gotoUserInfo:) forControlEvents:UIControlEventTouchUpInside];
+
+ 
     return cell;
 }
 
@@ -191,6 +215,9 @@
     LMShowDetailViewController *ctl = [[LMShowDetailViewController alloc] init];
     ctl.showId = [_dataSource objectAtIndex:indexPath.section].itemId;
     [self.navigationController pushViewController:ctl animated:YES];
+    [_playerController stop];
+    [_playerController.view removeFromSuperview];
+
 }
 
 #pragma mark - UIActionSheetDelegate

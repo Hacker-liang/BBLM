@@ -11,10 +11,11 @@
 #import "LMCommentsTableView.h"
 #import "LMShowDetailViewController.h"
 #import "LMHomeViewController.h"
+#import "LMUserProfileViewController.h"
 
 @interface LMHomeShowView() <LMCommentsTableViewDelegate>
 
-@property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UIButton *headerImageButton;
 @property (nonatomic, strong) UILabel *nicknameLabel;
 @property (nonatomic, strong) LMCommentsTableView *tableView;
 @property (nonatomic, strong) UILabel *contentLabel;
@@ -33,29 +34,32 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.borderColor = COLOR_LINE.CGColor;
-        self.layer.borderWidth = 0.5;
+        self.layer.shadowColor = UIColorFromRGB(0x555555).CGColor;//shadowColor阴影颜色
+        self.layer.shadowOpacity = 0.4;//阴影透明度，默认0
+        
         CGFloat width = self.bounds.size.width;
         
         _tableView = [[LMCommentsTableView alloc] initWithFrame:self.bounds];
+        _tableView.hideNickName = YES;
         _tableView.backgroundColor = APP_PAGE_COLOR;
         _tableView.myDelegate = self;
-        
+        _tableView.showsHorizontalScrollIndicator = NO;
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, frame.size.height-70, width, 70)];
         [_tableView addSubview:button];
         [button addTarget:self action:@selector(gotoShowDetailAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [self addSubview:_tableView];
         
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, frame.size.height-70)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, frame.size.height-50)];
         headerView.backgroundColor = APP_PAGE_COLOR;
         
         UIView *nickBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 56)];
         nickBgView.backgroundColor = [UIColor whiteColor];
         [headerView addSubview:nickBgView];
-        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 35, 35)];
-        [headerView addSubview:_headerImageView];
-        _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 8, width, 20)];
+        _headerImageButton = [[UIButton alloc] initWithFrame:CGRectMake(8, 8, 35, 35)];
+        [_headerImageButton addTarget:self action:@selector(gotoUserInfoAction:) forControlEvents:UIControlEventTouchUpInside];
+        [headerView addSubview:_headerImageButton];
+        _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageButton.frame) + 10, 8, width, 20)];
         _nicknameLabel.font = [UIFont systemFontOfSize:15.0];
         _nicknameLabel.textColor = COLOR_TEXT_I;
         [headerView addSubview:_nicknameLabel];
@@ -67,10 +71,10 @@
         [headerView addSubview:_rankButton];
         
         if (kWindowHeight == 480) {
-            _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 25, width, 20)];
+            _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageButton.frame) + 10, 25, width, 20)];
             
         } else {
-            _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 30, width, 20)];
+            _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageButton.frame) + 10, 30, width, 20)];
             
         }
     
@@ -79,10 +83,10 @@
         [headerView addSubview:_dateLabel];
         
         if (kWindowHeight == 480) {
-            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 46, width, headerView.bounds.size.height-46-40-25)];
+            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 46, width, headerView.bounds.size.height-46-40-30)];
 
         } else {
-            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, headerView.bounds.size.height-56-50-25)];
+            _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, headerView.bounds.size.height-56-50-30)];
         }
         
         _contentImageView.backgroundColor = APP_PAGE_COLOR;
@@ -91,7 +95,7 @@
         _contentImageView.userInteractionEnabled = YES;
         [headerView addSubview:_contentImageView];
         
-        _detailActionButton = [[UIButton alloc] initWithFrame:headerView.bounds];
+        _detailActionButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 56, width, self.bounds.size.height-56)];
         [_detailActionButton addTarget:self action:@selector(gotoShowDetailAction:) forControlEvents:UIControlEventTouchUpInside];
 
         [headerView addSubview:_detailActionButton];
@@ -104,20 +108,22 @@
         [_playVideoButton setImage:[UIImage imageNamed:@"icon_playVideo"] forState:UIControlStateNormal];
         [headerView addSubview:_playVideoButton];
         
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentImageView.frame), width, 25)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_contentImageView.frame), width, 30)];
         _contentLabel.backgroundColor = [UIColor whiteColor];
         _contentLabel.textColor = COLOR_TEXT_I;
         _contentLabel.font = [UIFont systemFontOfSize:13.0];
         [headerView addSubview:_contentLabel];
         
         if (kWindowHeight == 480) {
-            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, headerView.frame.size.height-35, (width-30-30)/2, 30)];
+            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(10, headerView.frame.size.height-35, (width-30)/2, 30)];
             
         } else {
-            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(15, headerView.frame.size.height-40, (width-30-30)/2, 30)];
+            _zanButton = [[UIButton alloc] initWithFrame:CGRectMake(10, headerView.frame.size.height-40, (width-30)/2, 30)];
             
         }
         [_zanButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
+        _zanButton.layer.cornerRadius = 3.0;
+        _zanButton.clipsToBounds = YES;
         [_zanButton setTitleEdgeInsets:UIEdgeInsetsMake(2, 10, 0, 0)];
         _zanButton.titleLabel.font = [UIFont systemFontOfSize:13.0];
         _zanButton.backgroundColor = [UIColor whiteColor];
@@ -129,10 +135,10 @@
         [headerView addSubview:_zanButton];
         
         if (kWindowHeight == 480) {
-            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 30, headerView.bounds.size.height-35, (width-30-30)/2, 30)];
+            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 10, headerView.bounds.size.height-35, (width-30)/2, 30)];
             
         } else {
-            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 30, headerView.bounds.size.height-40, (width-30-30)/2, 30)];
+            _commentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_zanButton.frame) + 10, headerView.bounds.size.height-40, (width-30)/2, 30)];
             
         }
         [_commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
@@ -140,6 +146,8 @@
         [_commentButton setTitleColor:COLOR_TEXT_II forState:UIControlStateNormal];
         _commentButton.backgroundColor = [UIColor whiteColor];
         _commentButton.userInteractionEnabled = NO;
+        _commentButton.layer.cornerRadius = 3.0;
+        _commentButton.clipsToBounds = YES;
         [_commentButton setImage:[UIImage imageNamed:@"icon_showList_comment"] forState:UIControlStateNormal];
         [headerView addSubview:_commentButton];
 
@@ -167,7 +175,7 @@
 - (void)setShowDetail:(LMShowDetailModel *)showDetail
 {
     _showDetail = showDetail;
-    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.avatar] placeholderImage:[UIImage imageNamed:@"avatar_default"]];
+    [_headerImageButton sd_setImageWithURL:[NSURL URLWithString:_showDetail.publishUser.avatar]  forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"avatar_default"]];
     [_contentImageView sd_setImageWithURL:[NSURL URLWithString:_showDetail.coverImage] placeholderImage:nil];
     
     NSMutableAttributedString *titleAttr = [[NSMutableAttributedString alloc] init];
@@ -251,9 +259,18 @@
 
 }
 
+- (void)gotoUserInfoAction:(UIButton *)sender
+{
+    LMUserProfileViewController *ctl = [[LMUserProfileViewController alloc] init];
+    ctl.userId = _showDetail.publishUser.userId;
+    [self.containerCtl.navigationController pushViewController:ctl animated:YES];
+
+    
+}
+
 - (void)commentTableViewDidScroll:(CGPoint)offset
 {
-    if (offset.y>5) {
+    if (offset.y>20) {
         _tableView.contentOffset = CGPointZero;
         [self.containerCtl gotoShowDetail:_showDetail.itemId];
     }

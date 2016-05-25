@@ -199,10 +199,11 @@
     if (!comment.length) {
         return;
     }
+    _inputToolBar.inputTextField.text = @"";
+
     [LMShowCommentManager asyncMakeComment2ShowWithShowId:_showId commentContent:comment completionBlock:^(BOOL isSuccess, LMShowCommentDetail *comment) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"评论成功"];
-            _inputToolBar.inputTextField.text = @"";
             [_tableView addNewComment:comment];
         } else {
             [SVProgressHUD showErrorWithStatus:@"评论失败"];

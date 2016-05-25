@@ -72,6 +72,11 @@
 }
 
 
+- (void)gotoUserProfile
+{
+    
+}
+
 - (void)zanShowAction:(UIButton *)sender
 {
     if (![[LMAccountManager shareInstance] isLogin]) {

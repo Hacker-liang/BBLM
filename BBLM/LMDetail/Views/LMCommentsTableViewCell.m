@@ -80,6 +80,8 @@
     [super layoutSubviews];
    
     BOOL isMine = _commentDetail.isMine;
+    _nicknameLabel.hidden = _hideNickName;
+    
     if (!isMine) {
         _contentLabel.textColor = COLOR_TEXT_I;
         _avatarImageButton.frame = CGRectMake(12, 10, 35, 35);
@@ -92,7 +94,12 @@
             NSAttributedString *attrstr = [[NSAttributedString alloc] initWithString:_commentDetail.content attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
             CGRect rect = [attrstr boundingRectWithSize:(CGSize){maxWidth, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
             _contentLabel.frame = CGRectMake(20, 10, rect.size.width, rect.size.height);
-            _contentBgView.frame = CGRectMake(_nicknameLabel.frame.origin.x, 30, rect.size.width+35, rect.size.height+20);
+            if (_hideNickName) {
+                _contentBgView.frame = CGRectMake(_nicknameLabel.frame.origin.x, 10, rect.size.width+35, rect.size.height+20);
+            } else {
+                _contentBgView.frame = CGRectMake(_nicknameLabel.frame.origin.x, 30, rect.size.width+35, rect.size.height+20);
+
+            }
             _contentBgView.image = [[UIImage imageNamed:@"icon_comments_bg_other"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 20, 10, 20)];
         }
     } else {
@@ -107,18 +114,28 @@
             NSAttributedString *attrstr = [[NSAttributedString alloc] initWithString:_commentDetail.content attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
             CGRect rect = [attrstr boundingRectWithSize:(CGSize){maxWidth, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
             _contentLabel.frame = CGRectMake(15, 10, rect.size.width, rect.size.height);
-            _contentBgView.frame = CGRectMake(kWindowWidth-rect.size.width-35-20-35, 30, rect.size.width+35, rect.size.height+20);
+            if (_hideNickName) {
+                _contentBgView.frame = CGRectMake(kWindowWidth-rect.size.width-35-20-35, 10, rect.size.width+35, rect.size.height+20);
+
+            } else {
+                _contentBgView.frame = CGRectMake(kWindowWidth-rect.size.width-35-20-35, 30, rect.size.width+35, rect.size.height+20);
+            }
             _contentBgView.image = [[UIImage imageNamed:@"icon_comments_bg_mine"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 20, 10, 20)];
         }
     }
 }
 
-+ (CGFloat)heightWithCommentDetail:(LMShowCommentDetail *)commentDetail
++ (CGFloat)heightWithCommentDetail:(LMShowCommentDetail *)commentDetail hideNickName:(BOOL)hide
 {
     CGFloat maxWidth = kWindowWidth-70-80;
+
     NSAttributedString *attrstr = [[NSAttributedString alloc] initWithString:commentDetail.content attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
     CGRect rect = [attrstr boundingRectWithSize:(CGSize){maxWidth, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    if (hide) {
+        return rect.size.height+45;
+    }
     return rect.size.height+65;
+
 }
 
 

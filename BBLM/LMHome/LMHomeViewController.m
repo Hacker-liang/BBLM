@@ -74,8 +74,6 @@
     _carousel.type = iCarouselTypeRotary;
     [_bgScrollView addSubview:_carousel];
     
-   
-    
     UIButton *showPushMessageBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [showPushMessageBtn setImage:[UIImage imageNamed:@"icon_pushMessage"] forState:UIControlStateNormal];
     [showPushMessageBtn addTarget:self action:@selector(gotoPushMessage:) forControlEvents:UIControlEventTouchUpInside];
@@ -351,7 +349,7 @@
         case iCarouselOptionSpacing:
         {
             //add a bit of spacing between the dataSource views
-            return value * 1.05;
+            return value * 1.03;
         }
         case iCarouselOptionFadeMax:
         {

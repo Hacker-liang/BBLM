@@ -123,6 +123,7 @@
 
 - (void)showInViewController:(UIViewController *)viewController
 {
+    self.containerCtl = viewController;
     [[UIApplication sharedApplication].delegate.window.rootViewController.view addSubview:self];
 }
 
@@ -317,18 +318,41 @@
 
         [UMSocialData defaultData].extConfig.wechatTimelineData.url = _shareUrl;
         [UMSocialData defaultData].extConfig.wechatTimelineData.title = title;
-        [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:title image:nil location:nil urlResource:resource presentedController:nil completion:^(UMSocialResponseEntity *response){
+        [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:title image:nil location:nil urlResource:resource presentedController:self.containerCtl completion:^(UMSocialResponseEntity *response){
             if (response.responseCode == UMSResponseCodeSuccess) {
                 NSLog(@"分享成功！");
+                NSString *url = [NSString stringWithFormat:@"%@barbie/edit", BASE_API];
+                [LMNetworking GET:url parameters:@{@"share": [NSNumber numberWithInteger:1], @"id": [NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                    if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"shareSuccess" object:nil];
+
+                    } else {
+                        
+                    }
+                    
+                } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+                }];
             }
         }];
+        
     
     } else if (button.tag == 1) {
         [UMSocialData defaultData].extConfig.wechatSessionData.url = _shareUrl;
         [UMSocialData defaultData].extConfig.wechatSessionData.title = _shareTitle;
         [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:_shareContent image:nil location:nil urlResource:resource presentedController:nil completion:^(UMSocialResponseEntity *response){
             if (response.responseCode == UMSResponseCodeSuccess) {
-                NSLog(@"分享成功！");
+                NSString *url = [NSString stringWithFormat:@"%@barbie/edit", BASE_API];
+                [LMNetworking GET:url parameters:@{@"share": [NSNumber numberWithInteger:1], @"id": [NSNumber numberWithInteger:[LMAccountManager shareInstance].account.userId]} success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                    if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"shareSuccess" object:nil];
+
+                    } else {
+                        
+                    }
+                    
+                } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+                }];
+
             }
         }];
         

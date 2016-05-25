@@ -130,12 +130,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [LMCommentsTableViewCell heightWithCommentDetail:[_commentsList objectAtIndex:indexPath.row]];
+    return [LMCommentsTableViewCell heightWithCommentDetail:[_commentsList objectAtIndex:indexPath.row] hideNickName:_hideNickName];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LMCommentsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.hideNickName = _hideNickName;
     if (!cell) {
         cell = [[LMCommentsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }

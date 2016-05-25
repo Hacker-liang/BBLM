@@ -15,6 +15,9 @@
 
 @property (nonatomic, strong) UIButton *avatarImageButton;
 
-+ (CGFloat)heightWithCommentDetail:(LMShowCommentDetail *)commentDetail;
++ (CGFloat)heightWithCommentDetail:(LMShowCommentDetail *)commentDetail hideNickName:(BOOL)hide;
+
+@property (nonatomic) BOOL hideNickName;   //是否隐藏用户名
+
 
 @end

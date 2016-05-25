@@ -133,10 +133,9 @@
 		D960DA7D1CE076E100020C42 /* LMMessageListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA771CE076E100020C42 /* LMMessageListViewController.xib */; };
 		D960DA7E1CE076E100020C42 /* LMMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D960DA791CE076E100020C42 /* LMMessageTableViewCell.m */; };
 		D960DA7F1CE076E100020C42 /* LMMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D960DA7A1CE076E100020C42 /* LMMessageTableViewCell.xib */; };
+		D973A1951CF5426F00B02BFE /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = D973A1941CF5426F00B02BFE /* EAIntroView.m */; };
 		D9A957E91CE458AD00745C99 /* LMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A957E71CE458AD00745C99 /* LMAboutViewController.m */; };
 		D9A957EA1CE458AD00745C99 /* LMAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A957E81CE458AD00745C99 /* LMAboutViewController.xib */; };
-		D9A957F91CE57EB600745C99 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A957F61CE57EB600745C99 /* EAIntroPage.m */; };
-		D9A957FA1CE57EB600745C99 /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A957F81CE57EB600745C99 /* EAIntroView.m */; };
 		D9A958081CE583B000745C99 /* introduce_4_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9A957FC1CE583B000745C99 /* introduce_4_1@2x.png */; };
 		D9A958091CE583B000745C99 /* introduce_4_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9A957FD1CE583B000745C99 /* introduce_4_2@2x.png */; };
 		D9A9580A1CE583B000745C99 /* introduce_4_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D9A957FE1CE583B000745C99 /* introduce_4_3@2x.png */; };
@@ -444,13 +443,13 @@
 		D960DA781CE076E100020C42 /* LMMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMMessageTableViewCell.h; sourceTree = "<group>"; };
 		D960DA791CE076E100020C42 /* LMMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMMessageTableViewCell.m; sourceTree = "<group>"; };
 		D960DA7A1CE076E100020C42 /* LMMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMMessageTableViewCell.xib; sourceTree = "<group>"; };
+		D973A18C1CF537D200B02BFE /* KSGuideManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSGuideManager.h; sourceTree = "<group>"; };
+		D973A18D1CF537D200B02BFE /* KSGuideManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSGuideManager.m; sourceTree = "<group>"; };
+		D973A1931CF5426F00B02BFE /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
+		D973A1941CF5426F00B02BFE /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
 		D9A957E61CE458AD00745C99 /* LMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMAboutViewController.h; sourceTree = "<group>"; };
 		D9A957E71CE458AD00745C99 /* LMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMAboutViewController.m; sourceTree = "<group>"; };
 		D9A957E81CE458AD00745C99 /* LMAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMAboutViewController.xib; sourceTree = "<group>"; };
-		D9A957F51CE57EB600745C99 /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
-		D9A957F61CE57EB600745C99 /* EAIntroPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroPage.m; sourceTree = "<group>"; };
-		D9A957F71CE57EB600745C99 /* EAIntroView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroView.h; sourceTree = "<group>"; };
-		D9A957F81CE57EB600745C99 /* EAIntroView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAIntroView.m; sourceTree = "<group>"; };
 		D9A957FC1CE583B000745C99 /* introduce_4_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "introduce_4_1@2x.png"; sourceTree = "<group>"; };
 		D9A957FD1CE583B000745C99 /* introduce_4_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "introduce_4_2@2x.png"; sourceTree = "<group>"; };
 		D9A957FE1CE583B000745C99 /* introduce_4_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "introduce_4_3@2x.png"; sourceTree = "<group>"; };
@@ -758,6 +757,7 @@
 		D95387801CBDF99D004BD51F /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				D973A18B1CF537D200B02BFE /* KSGuideManager */,
 				D9A957F01CE57EB600745C99 /* Introduction */,
 				D960D9E01CDC795A00020C42 /* UMSocial_Sdk_5.1 */,
 				D960D9FB1CDC795A00020C42 /* UMSocial_Sdk_Extra_Frameworks */,
@@ -1252,6 +1252,15 @@
 			path = LMMessage;
 			sourceTree = "<group>";
 		};
+		D973A18B1CF537D200B02BFE /* KSGuideManager */ = {
+			isa = PBXGroup;
+			children = (
+				D973A18C1CF537D200B02BFE /* KSGuideManager.h */,
+				D973A18D1CF537D200B02BFE /* KSGuideManager.m */,
+			);
+			path = KSGuideManager;
+			sourceTree = "<group>";
+		};
 		D9A957E51CE4589B00745C99 /* About */ = {
 			isa = PBXGroup;
 			children = (
@@ -1278,10 +1287,8 @@
 				D9A957F21CE57EB600745C99 /* 1 */,
 				D9A957F31CE57EB600745C99 /* 2 */,
 				D9A957F41CE57EB600745C99 /* 3 */,
-				D9A957F51CE57EB600745C99 /* EAIntroPage.h */,
-				D9A957F61CE57EB600745C99 /* EAIntroPage.m */,
-				D9A957F71CE57EB600745C99 /* EAIntroView.h */,
-				D9A957F81CE57EB600745C99 /* EAIntroView.m */,
+				D973A1931CF5426F00B02BFE /* EAIntroView.h */,
+				D973A1941CF5426F00B02BFE /* EAIntroView.m */,
 			);
 			path = EAIntroView;
 			sourceTree = "<group>";
@@ -1787,6 +1794,7 @@
 				D95388111CC0C430004BD51F /* LMUserTagsAddViewController.m in Sources */,
 				D95389631CC87A63004BD51F /* LMCommentsTableView.m in Sources */,
 				D953885B1CC4BB72004BD51F /* LMUserPorfileHeaderView.m in Sources */,
+				D973A1951CF5426F00B02BFE /* EAIntroView.m in Sources */,
 				D960858E1CDB5F550078657B /* LMShowZanTableViewCell.m in Sources */,
 				D95388741CC4E0C1004BD51F /* UIAlertView+Block.m in Sources */,
 				D960DA7E1CE076E100020C42 /* LMMessageTableViewCell.m in Sources */,
@@ -1813,7 +1821,6 @@
 				D95387AB1CBE3FA6004BD51F /* iCarousel.m in Sources */,
 				D9FDE1361CD9E11000AA016B /* MyZanListViewController.m in Sources */,
 				D9FDE0EF1CD8428500AA016B /* UploadShowImageModel.m in Sources */,
-				D9A957F91CE57EB600745C99 /* EAIntroPage.m in Sources */,
 				D9FDE1081CD8C1CE00AA016B /* UserShowCollectionViewController.m in Sources */,
 				D95387EE1CBFCA89004BD51F /* TEABarChart.m in Sources */,
 				D960DA6A1CE02E2A00020C42 /* CommonWebViewController.m in Sources */,
@@ -1826,7 +1833,6 @@
 				D95387ED1CBFCA89004BD51F /* NSDate+TEAExtensions.m in Sources */,
 				D95389861CCDC4DE004BD51F /* LMShowManager.m in Sources */,
 				D9FDE1001CD8428500AA016B /* UserAlbumSelectViewController.m in Sources */,
-				D9A957FA1CE57EB600745C99 /* EAIntroView.m in Sources */,
 				D953882E1CC0C5B0004BD51F /* CityCardReusableView.m in Sources */,
 				D9FDE1441CD9F81400AA016B /* LMShowZanDetail.m in Sources */,
 				D9FDE0F01CD8428500AA016B /* UploadUserAlbumCollectionViewCell.m in Sources */,

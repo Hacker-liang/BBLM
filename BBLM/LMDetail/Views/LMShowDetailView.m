@@ -121,7 +121,7 @@
         NSMutableArray *viewsArray = [[NSMutableArray alloc] init];
         for (NSString *image in showDetail.imageList) {
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.galleryView.bounds.size.width, self.galleryView.bounds.size.height)];
-            imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.contentMode = UIViewContentModeScaleAspectFit;
             imageView.clipsToBounds = YES;
             [imageView sd_setImageWithURL:[NSURL URLWithString:image] placeholderImage: nil];
             [viewsArray addObject:imageView];
@@ -129,6 +129,9 @@
         
         _galleryView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
             return viewsArray[pageIndex];
+        };
+        _galleryView.TapActionBlock = ^(NSInteger pageIndex) {
+            
         };
 
     }

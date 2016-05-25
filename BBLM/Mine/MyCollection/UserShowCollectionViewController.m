@@ -85,9 +85,10 @@
 
 - (void)playVideo:(UIButton *)sender
 {
-    if (self.playerController.view.superview) {
-        [self.playerController.view removeFromSuperview];
-        [self.playerController stop];
+    if (_playerController.view.superview) {
+        [_playerController.view removeFromSuperview];
+        [_playerController stop];
+        _playerController = nil;
     }
     NSURL *url = [NSURL URLWithString:[_dataSource objectAtIndex:sender.tag].videoUrl];
     
@@ -154,6 +155,7 @@
     cell.rankBgImageView.hidden = YES;
     cell.rankLabel.hidden = YES;
     cell.actionButton.tag = indexPath.section;
+    cell.playVideoButton.tag = indexPath.section;
     [cell.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
     [cell.actionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
 

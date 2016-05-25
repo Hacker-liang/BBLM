@@ -12,6 +12,7 @@
 @interface LMShowTableViewCell : UITableViewCell
 
 + (CGFloat)heightOfShowListCellWithShowDetail:(LMShowDetailModel *)show;
+@property (weak, nonatomic) IBOutlet UIButton *showUserInfoButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImagView;
 @property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
@@ -27,7 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 
 @property (nonatomic, strong) LMShowDetailModel *showDetail;
-
 
 
 

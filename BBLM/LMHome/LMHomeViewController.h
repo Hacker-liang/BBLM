@@ -12,4 +12,6 @@
 
 - (void)gotoShowDetail:(NSInteger)showId;
 
+- (void)stopPlayVideo;
+
 @end

@@ -40,6 +40,8 @@
  **/
 @property (nonatomic , copy) void (^TapActionBlock)(NSInteger pageIndex);
 
+@property (nonatomic , copy) void (^DidScrollToIndx)(NSInteger pageIndex);
+
 @property (nonatomic) BOOL showPageControl;  //默认不现实
 
 @end

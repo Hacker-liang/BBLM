@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *naviBar;
+@property (nonatomic, strong) LMUserPorfileHeaderView *headerView;
+
 
 @property (nonatomic, strong) LMUserDetailModel *userInfo;
 
@@ -46,8 +48,8 @@
     _tableView.delegate = self;
     _tableView.separatorColor = COLOR_LINE;
     [_tableView registerNib:[UINib nibWithNibName:@"LMShowTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    LMUserPorfileHeaderView *headerView = [[LMUserPorfileHeaderView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 414)];
-    _tableView.tableHeaderView = headerView;
+    _headerView = [[LMUserPorfileHeaderView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 414)];
+    _tableView.tableHeaderView = _headerView;
     
     _naviBar = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kWindowWidth, 64)];
     _naviBar.backgroundColor = [APP_THEME_COLOR colorWithAlphaComponent:0];
@@ -70,7 +72,7 @@
         if (isSuccess) {
             _userInfo = userInfo;
             _titleLabel.text = _userInfo.nickname;
-            headerView.userInfo = userInfo;
+            _headerView.userInfo = userInfo;
         }
         
     }];
@@ -83,7 +85,7 @@
     }];
     [LMUserManager asyncLoadUserRankInfoWithUserId:_userId completionBlock:^(BOOL isSuccess, NSDictionary *rankInfo) {
         if (isSuccess) {
-            headerView.userRankInfo = rankInfo;
+            _headerView.userRankInfo = rankInfo;
         }
     }];
 }
@@ -92,6 +94,12 @@
 {
     [super viewWillAppear: animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [LMUserManager asyncLoadUserRankInfoWithUserId:_userId completionBlock:^(BOOL isSuccess, NSDictionary *rankInfo) {
+        if (isSuccess) {
+            _headerView.userRankInfo = rankInfo;
+        }
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

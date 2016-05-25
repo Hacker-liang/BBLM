@@ -291,6 +291,8 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
 - (void)publishVideo
 {
     id <ALBBQuPaiService> qupaiSDK  = [[ALBBSDK sharedInstance] getService:@protocol(ALBBQuPaiService)];
+    qupaiSDK.enableMoreMusic = NO;
+
     [qupaiSDK setDelegte:self];
     UIViewController *ctl = [qupaiSDK createRecordViewControllerWithMinDuration:3 maxDuration:300 bitRate:800*600];
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:ctl];
