@@ -204,7 +204,11 @@
     [LMShowCommentManager asyncMakeComment2ShowWithShowId:_showId commentContent:comment completionBlock:^(BOOL isSuccess, LMShowCommentDetail *comment) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"评论成功"];
+            LMShowDetailModel *show = [[LMShowDetailModel alloc] init];
+            show.itemId = _showId;
+            comment.show = show;
             [_tableView addNewComment:comment];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"publishNewComment" object:nil userInfo:@{@"comment": comment}];
         } else {
             [SVProgressHUD showErrorWithStatus:@"评论失败"];
         }

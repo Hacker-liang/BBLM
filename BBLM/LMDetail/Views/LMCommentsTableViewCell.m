@@ -78,19 +78,19 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-   
+
     BOOL isMine = _commentDetail.isMine;
     _nicknameLabel.hidden = _hideNickName;
     
     if (!isMine) {
         _contentLabel.textColor = COLOR_TEXT_I;
         _avatarImageButton.frame = CGRectMake(12, 10, 35, 35);
-        _nicknameLabel.frame = CGRectMake(CGRectGetMaxX(_avatarImageButton.frame)+8, 10, kWindowWidth-150, 18);
+        _nicknameLabel.frame = CGRectMake(CGRectGetMaxX(_avatarImageButton.frame)+8, 10, _viewWidth-150, 18);
         _nicknameLabel.textAlignment = NSTextAlignmentLeft;
-        _dateLabel.frame = CGRectMake(kWindowWidth-90, 10, 80, 18);
+        _dateLabel.frame = CGRectMake(_viewWidth-90, 10, 80, 18);
         _dateLabel.textAlignment = NSTextAlignmentRight;
         if (_commentDetail.content) {
-            CGFloat maxWidth = kWindowWidth-70-80;
+            CGFloat maxWidth = _viewWidth-70-80;
             NSAttributedString *attrstr = [[NSAttributedString alloc] initWithString:_commentDetail.content attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
             CGRect rect = [attrstr boundingRectWithSize:(CGSize){maxWidth, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
             _contentLabel.frame = CGRectMake(20, 10, rect.size.width, rect.size.height);
@@ -104,30 +104,30 @@
         }
     } else {
         _contentLabel.textColor = [UIColor whiteColor];
-        _avatarImageButton.frame = CGRectMake(kWindowWidth-12-35, 10, 35, 35);
-        _nicknameLabel.frame = CGRectMake(80, 10, kWindowWidth-90-35-20, 18);
+        _avatarImageButton.frame = CGRectMake(_viewWidth-12-35, 10, 35, 35);
+        _nicknameLabel.frame = CGRectMake(80, 10, _viewWidth-90-35-20, 18);
         _nicknameLabel.textAlignment = NSTextAlignmentRight;
         _dateLabel.frame = CGRectMake(12, 10, 80, 18);
         _dateLabel.textAlignment = NSTextAlignmentLeft;
         if (_commentDetail.content) {
-            CGFloat maxWidth = kWindowWidth-70-80;
+            CGFloat maxWidth = _viewWidth-70-80;
             NSAttributedString *attrstr = [[NSAttributedString alloc] initWithString:_commentDetail.content attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
             CGRect rect = [attrstr boundingRectWithSize:(CGSize){maxWidth, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];
             _contentLabel.frame = CGRectMake(15, 10, rect.size.width, rect.size.height);
             if (_hideNickName) {
-                _contentBgView.frame = CGRectMake(kWindowWidth-rect.size.width-35-20-35, 10, rect.size.width+35, rect.size.height+20);
+                _contentBgView.frame = CGRectMake(_viewWidth-rect.size.width-35-20-35, 10, rect.size.width+35, rect.size.height+20);
 
             } else {
-                _contentBgView.frame = CGRectMake(kWindowWidth-rect.size.width-35-20-35, 30, rect.size.width+35, rect.size.height+20);
+                _contentBgView.frame = CGRectMake(_viewWidth-rect.size.width-35-20-35, 30, rect.size.width+35, rect.size.height+20);
             }
             _contentBgView.image = [[UIImage imageNamed:@"icon_comments_bg_mine"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 20, 10, 20)];
         }
     }
 }
 
-+ (CGFloat)heightWithCommentDetail:(LMShowCommentDetail *)commentDetail hideNickName:(BOOL)hide
++ (CGFloat)heightWithCommentDetail:(LMShowCommentDetail *)commentDetail hideNickName:(BOOL)hide withHeight:(CGFloat)width
 {
-    CGFloat maxWidth = kWindowWidth-70-80;
+    CGFloat maxWidth = width-70-80;
 
     NSAttributedString *attrstr = [[NSAttributedString alloc] initWithString:commentDetail.content attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15.0]}];
     CGRect rect = [attrstr boundingRectWithSize:(CGSize){maxWidth, CGFLOAT_MAX} options:NSStringDrawingUsesLineFragmentOrigin context:nil];

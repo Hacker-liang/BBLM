@@ -121,6 +121,7 @@
             };
         }
     }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertComment:) name:@"publishNewComment" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -139,6 +140,32 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+}
+
+- (void)insertComment:(NSNotification *)noti
+{
+    NSInteger index = 0;
+    LMShowDetailModel *tempShow;
+    LMShowCommentDetail *comment = [noti.userInfo objectForKey:@"comment"];
+    for (LMShowDetailModel *show in _dataSource) {
+        if (show.itemId == comment.show.itemId) {
+            show.firstComment = comment;
+            tempShow = show;
+            break;
+        }
+        index++;
+    }
+    UIView *view = [_carousel itemViewAtIndex: index];
+    LMHomeShowView *showView;
+    for (UIView *tmp in view.subviews) {
+        if (tmp.tag == 1001) {
+            showView = (LMHomeShowView *)tmp;
+            if (tempShow) {
+                showView.showDetail = tempShow;
+            }
+            break;
+        }
+    }
 }
 
 - (UIImageView *)galleryImageView
@@ -311,8 +338,6 @@
         showView.tag = 1001;
         [showView.moreActionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
         [showView.playVideoButton addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
-        showView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        showView.layer.borderWidth = 0.5;
         [view addSubview:showView];
     }
     
@@ -393,6 +418,7 @@
             _isLoading = NO;
             if (isSuccess) {
                 [_dataSource addObjectsFromArray:showList];
+                _page++;
                 [_carousel reloadData];
             }
         }];

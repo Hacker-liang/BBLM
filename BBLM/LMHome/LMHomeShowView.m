@@ -17,14 +17,13 @@
 
 @property (nonatomic, strong) UIButton *headerImageButton;
 @property (nonatomic, strong) UILabel *nicknameLabel;
-@property (nonatomic, strong) LMCommentsTableView *tableView;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UIButton *rankButton;
 @property (nonatomic, strong) UIButton *zanButton;
 @property (nonatomic, strong) UIButton *commentButton;
 @property (nonatomic, strong) UIButton *detailActionButton;
-
+@property (nonatomic, strong) LMCommentsTableView *tableView;
 
 @end
 
@@ -34,9 +33,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.shadowColor = UIColorFromRGB(0x555555).CGColor;//shadowColor阴影颜色
-        self.layer.shadowOpacity = 0.4;//阴影透明度，默认0
-        
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowOpacity = 0.6;
+        self.layer.shadowRadius = 4;
+        self.layer.shadowOffset = CGSizeMake(0,0);
         CGFloat width = self.bounds.size.width;
         
         _tableView = [[LMCommentsTableView alloc] initWithFrame:self.bounds];
@@ -270,9 +270,9 @@
 
 - (void)commentTableViewDidScroll:(CGPoint)offset
 {
-    if (offset.y>20) {
-        _tableView.contentOffset = CGPointZero;
+    if (offset.y>10) {
         [self.containerCtl gotoShowDetail:_showDetail.itemId];
+        _tableView.contentOffset = CGPointZero;
     }
     if (offset.y < 0) {
         _tableView.contentOffset = CGPointZero;

@@ -269,7 +269,11 @@
             if (isSuccess) {
                 [SVProgressHUD showSuccessWithStatus:@"取消关注成功"];
                 _userInfo.hasFocused = NO;
+                
                 _userInfo.fansCnt--;
+                if (_userInfo.fansCnt<0) {
+                    _userInfo.fansCnt = 0;
+                }
                 _followerCntLabel.text = [NSString stringWithFormat:@"%ld", _userInfo.fansCnt];
                 sender.selected = !sender.selected;
             } else {

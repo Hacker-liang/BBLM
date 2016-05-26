@@ -21,6 +21,7 @@
     }
 
     [LMNetworking GET:url parameters:dic success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"正在加载首页数据 %@", operation);
         if ([[responseObject objectForKey:@"code"] integerValue] == 0) {
             NSMutableArray *retList = [[NSMutableArray alloc] init];
             NSArray *data = [responseObject objectForKey:@"data"];
