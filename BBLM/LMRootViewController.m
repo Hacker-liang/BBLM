@@ -20,7 +20,7 @@
 #import "UploadUserVideoViewController.h"
 #import "AutoSlideScrollView.h"
 
-@interface LMRootViewController () <LMTabBarDelegate, QupaiSDKDelegate>
+@interface LMRootViewController () <LMTabBarDelegate, QupaiSDKDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIView *publishBgView;
 @property (nonatomic, strong) UIView *publishContentView;
@@ -30,6 +30,8 @@
 @property (nonatomic, strong) LMHotShowListViewController *hotShowListCtl;
 
 @property (nonatomic, strong) UIScrollView *introView;
+@property (nonatomic, strong) UIPageControl *pageControl;
+
 
 @property (nonatomic, strong) UIImageView *splashImageView;  //闪屏页面
 
@@ -117,6 +119,7 @@
 {
     _introView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     _introView.backgroundColor = [UIColor whiteColor];
+    _introView.delegate = self;
     [self.view addSubview:_introView];
 
     NSMutableArray *viewsArray = [[NSMutableArray alloc] init];
@@ -177,7 +180,7 @@
         UIImageView *image = [[UIImageView alloc] initWithFrame:self.view.bounds];
         image.image = [UIImage imageNamed:imageName];
         [viewsArray addObject:image];
-        UIButton *skipButton = [[UIButton alloc] initWithFrame:CGRectMake(12, image.bounds.size.height-60, image.bounds.size.width-24, 40)];
+        UIButton *skipButton = [[UIButton alloc] initWithFrame:CGRectMake(12, image.bounds.size.height-70, image.bounds.size.width-24, 40)];
         [skipButton addTarget:self action:@selector(skipIntro) forControlEvents:UIControlEventTouchUpInside];
         [skipButton setImage:[UIImage imageNamed:@"icon_intro_skip.png"] forState:UIControlStateNormal];
         image.userInteractionEnabled = YES;
@@ -192,6 +195,11 @@
         [_introView addSubview:view];
         index++;
     }
+    
+    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake((kWindowWidth-80)/2, kWindowHeight-40, 80, 20)];
+    _pageControl.numberOfPages = viewsArray.count;
+    _pageControl.pageIndicatorTintColor = APP_THEME_COLOR;
+    [self.view addSubview:_pageControl];
 }
 
 - (void)skipIntro
@@ -199,6 +207,8 @@
     if (_introView) {
         [_introView removeFromSuperview];
         _introView = nil;
+        [_pageControl removeFromSuperview];
+        _pageControl = nil;
     }
 }
 
@@ -339,6 +349,12 @@
             [_homeCtl stopPlayVideo];
         }
     }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSInteger pageIndx = scrollView.contentOffset.x/scrollView.bounds.size.width;
+    _pageControl.currentPage = pageIndx;
 }
 
 @end

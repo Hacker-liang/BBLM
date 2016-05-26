@@ -205,7 +205,6 @@
     [cell.actionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
     [cell.showUserInfoButton addTarget:self action:@selector(gotoUserInfo:) forControlEvents:UIControlEventTouchUpInside];
 
- 
     return cell;
 }
 
@@ -217,7 +216,6 @@
     [self.navigationController pushViewController:ctl animated:YES];
     [_playerController stop];
     [_playerController.view removeFromSuperview];
-
 }
 
 #pragma mark - UIActionSheetDelegate

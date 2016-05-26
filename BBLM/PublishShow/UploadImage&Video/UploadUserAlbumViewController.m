@@ -247,6 +247,7 @@ static NSString * const reuseIdentifier = @"uploadPhotoCell";
     [LMShowManager asyncPublishImageWithImageList:_uploadSuccessImageList desc:_containterView.textView.text completionBlock:^(BOOL isSuccess, NSInteger showId) {
         if (isSuccess) {
             [SVProgressHUD showSuccessWithStatus:@"发布成功"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"postNewShow" object:nil];
             [self performSelector:@selector(dismissCtl) withObject:nil afterDelay:0.3];
 
         } else {

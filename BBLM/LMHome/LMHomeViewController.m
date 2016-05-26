@@ -122,6 +122,8 @@
         }
     }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertComment:) name:@"publishNewComment" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDataSource:) name:@"postNewShow" object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -140,6 +142,19 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+}
+
+- (void)refreshDataSource:(NSNotification *)noti
+{
+    _page = 1;
+    [LMShowManager asyncLoadRecommendShowWithPage:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
+        _isLoading = NO;
+        if (isSuccess) {
+            [_dataSource removeAllObjects];
+            [_dataSource addObjectsFromArray:showList];
+            [_carousel reloadData];
+        }
+    }];
 }
 
 - (void)insertComment:(NSNotification *)noti

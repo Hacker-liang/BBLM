@@ -14,6 +14,7 @@
 #import "LMShowManager.h"
 #import "LMShowDetailViewController.h"
 #import "ShareActivity.h"
+#import "MJRefresh.h"
 
 #define pageCount   10
 
@@ -21,17 +22,14 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<LMShowDetailModel *> *dataSource;
-
 @property (nonatomic, strong) MPMoviePlayerController *playerController;
-
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *naviBar;
 @property (nonatomic, strong) LMUserPorfileHeaderView *headerView;
-
-
 @property (nonatomic, strong) LMUserDetailModel *userInfo;
 
 @property (nonatomic) BOOL isMyselfInfo;
+@property (nonatomic) NSInteger page;
 
 @end
 
@@ -39,6 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _page = 1;
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     _isMyselfInfo = [LMAccountManager shareInstance].account.userId == _userId;
@@ -77,12 +76,22 @@
         
     }];
     
-    [LMShowManager asyncLoadUserShowWithUserId:_userId page:1 pageSize:pageCount completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
+    [LMShowManager asyncLoadUserShowWithUserId:_userId page:_page pageSize:pageCount completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
+        [_tableView.footer endRefreshing];
         if (isSuccess) {
+            [_dataSource removeAllObjects];
             [_dataSource addObjectsFromArray:showList];
             [_tableView reloadData];
+            if (showList.count) {
+                _page++;
+            }
+            
         }
     }];
+    
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+
+    
     [LMUserManager asyncLoadUserRankInfoWithUserId:_userId completionBlock:^(BOOL isSuccess, NSDictionary *rankInfo) {
         if (isSuccess) {
             _headerView.userRankInfo = rankInfo;
@@ -113,6 +122,21 @@
 - (void)dismissCtl
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)loadMoreData
+{
+    [LMShowManager asyncLoadUserShowWithUserId:_userId page:_page pageSize:pageCount completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
+        [_tableView.footer endRefreshing];
+        if (isSuccess) {
+            [_dataSource addObjectsFromArray:showList];
+            [_tableView reloadData];
+            if (showList.count) {
+                _page++;
+            }
+            
+        }
+    }];
 }
 
 - (void)playVideo:(UIButton *)sender
@@ -210,7 +234,6 @@
         [cell.actionButton setImage:[UIImage imageNamed:@"icon_showList_more"] forState:UIControlStateNormal];
         [cell.actionButton addTarget:self action:@selector(showMoreAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
     return cell;
 }
 
@@ -251,7 +274,6 @@
                 UIButton * btn = (UIButton*)subView;
                 [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateNormal];
                 [btn setTitleColor:APP_THEME_COLOR forState:UIControlStateHighlighted];
-
             }
         }
     }
