@@ -216,7 +216,13 @@
             show.itemId = showId;
             completion(YES, show);
             
-        } else {
+        } else if ([[responseObject objectForKey:@"code"] integerValue] == 1844) {
+            [SVProgressHUD showErrorWithStatus:@"该条动态已删除"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshHomeShowData" object:nil];
+
+            completion(NO, nil);
+            
+        }else {
             completion(NO, nil);
         }
         

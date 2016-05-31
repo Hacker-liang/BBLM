@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LMAboutViewController">
             <connections>
-                <outlet property="versionLabel" destination="MQs-tu-abm" id="M3o-dL-cM6"/>
+                <outlet property="contentView" destination="eM4-q9-Dk2" id="xc4-No-HkY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,19 +16,23 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQs-tu-abm">
-                    <rect key="frame" x="8" y="116" width="584" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eM4-q9-Dk2">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <mutableString key="text">芭比辣妈社区为全球辣妈提供展示、分享的平台，鼓励妈妈们在这里秀热辣技能、快乐惬意的生活方式、自己的爱好和萌萌的宝贝，生活过得老幸福了，为啥不秀呢^^，欢迎有故事、热爱生活的你过来分享和交流，找到更爱的自己，大家也更爱你，一起行动起来秀出优秀的自己吧~！这里是：更具青春氛围的妈妈圈有干货秀技能的妈妈圈红人妈妈经济的妈妈圈妈妈UP值爆棚的妈妈圈玩命帮妈妈赚钱的平台（后续的迭代版本更猛哦，敬请期待~）《芭比辣妈社区规范》为了维护和谐友好的社区氛围，保护用户的原创内容，《芭比辣妈社区规范》将持续完善对用户名、个人资料、评论和发布内容等用户行为的维护和管理。违规行为界定及相应处罚措施：1、	禁止在用户名、个人资料、评论、发布内容中发布只含有广告销售的信息，我们更欢迎妈妈们分享精彩生活、爱好、技能等的原创内容，不欢迎只上传广告销售的行为：λ	只上传广告销售行为的定义：″	不注重原创内容分享，只发布含有微信、QQ、微博等代购信息″	不注重原创内容分享，只发布含有具体淘宝店铺、微店等网店广告信息″	不注重原创内容分享，只发布含有官方描述、官方链接等软文广告信息λ	利益相关性：″	如果分享的内容及产品存在利益相关性，例如品牌宣传、品牌赠送、品牌邀请试用、品牌签约、特邀撰写内容等，需要在发布的内容中公开说明λ	只上传广告销售行为的处罚措施：″	如证实是只上传广告销售的行为，将采取包括删除修改内容、限制内容曝光和限制用户社区行为等处理措施″	对于不标明“利益相关性”的内容，将采取包括修改内容和限制内容曝光等处理措施2、	禁止在用户名、个人资料、评论、发布内容中含有不友善内容：λ	不友善内容的定义：″	含有轻蔑、嘲讽、挑衅、羞辱、谩骂、歧视、威胁等不友善内容λ	不友善行为的处罚措施：″	如证实是不友善行为，将采取包括删除修改内容、限制内容曝光和限制用户社区行为等处理措施3、	禁止在评论、发布内容中出现无价值内容：λ	无价值内容的定义：″	盗用他人或其他渠道的图片、文字内容″	A货、三无商品、高仿假货、批量代购货品类型的发布内容″	重复发布相似内容、评论λ	使用官网或其他渠道的图片、文字内容：″	需注明引用作者、来源，并注明非原创λ	无价值内容的处罚措施：″	如证实盗用他人或其他渠道的图片或者文字内容，将采取包括删除修改内容、限制内容曝光和限制用户社区行为等处理措施″	如证实发布A货、三无商品、高仿假货、批量代购货品类型的发布内容，将采取包括删除修改内容、限制内容曝光和限制用户社区行为等处理措施″	如证实连续重复发布相似内容或者评论，将采取包括删除修改内容或限制内容曝光等处理措施4、	禁止在用户名、个人资料、评论、发布内容中含有违法违规内容：λ	违法违规内容的定义：″	含有诽谤他人、泄露他人隐私、侵害他人合法权益、散布谣言、扰乱社会秩序、破坏社会稳定等内容λ	违法违规内容的处罚措施：″	如证实发布的内容、评论存在违法违规，视严重程度进行处置申诉反馈流程如果用户对基于本规范做出的处理有任何异议，可以通过联系小芭邮箱：xiaoxiao@babilama.com进行反馈</mutableString>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="MQs-tu-abm" secondAttribute="trailing" constant="8" id="B68-oB-X8L"/>
-                <constraint firstItem="MQs-tu-abm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="116" id="UEZ-2r-0QB"/>
-                <constraint firstItem="MQs-tu-abm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="W21-tx-y2g"/>
+                <constraint firstItem="eM4-q9-Dk2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fNM-W4-jr4"/>
+                <constraint firstAttribute="bottom" secondItem="eM4-q9-Dk2" secondAttribute="bottom" id="ffI-3A-nh4"/>
+                <constraint firstItem="eM4-q9-Dk2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hSP-mW-BWp"/>
+                <constraint firstAttribute="trailing" secondItem="eM4-q9-Dk2" secondAttribute="trailing" id="ybw-EC-OLM"/>
             </constraints>
+            <point key="canvasLocation" x="137" y="119"/>
         </view>
     </objects>
 </document>

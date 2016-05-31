@@ -41,9 +41,9 @@
         
         _tableView = [[LMCommentsTableView alloc] initWithFrame:self.bounds];
         _tableView.hideNickName = YES;
-        _tableView.backgroundColor = APP_PAGE_COLOR;
+        _tableView.backgroundColor = UIColorFromRGB(0xe5e5e5);
         _tableView.myDelegate = self;
-        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.showsVerticalScrollIndicator = NO;
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, frame.size.height-70, width, 70)];
         [_tableView addSubview:button];
         [button addTarget:self action:@selector(gotoShowDetailAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -51,7 +51,7 @@
         [self addSubview:_tableView];
         
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, frame.size.height-50)];
-        headerView.backgroundColor = APP_PAGE_COLOR;
+        headerView.backgroundColor = UIColorFromRGB(0xe5e5e5);
         
         UIView *nickBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 56)];
         nickBgView.backgroundColor = [UIColor whiteColor];
@@ -89,7 +89,7 @@
             _contentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 56, width, headerView.bounds.size.height-56-50-30)];
         }
         
-        _contentImageView.backgroundColor = APP_PAGE_COLOR;
+        _contentImageView.backgroundColor = UIColorFromRGB(0xe5e5e5);
         _contentImageView.contentMode = UIViewContentModeScaleAspectFill;
         _contentImageView.clipsToBounds = YES;
         _contentImageView.userInteractionEnabled = YES;

@@ -38,7 +38,7 @@
 
 - (void)firstRender
 {
-    self.backgroundColor = APP_PAGE_COLOR;
+    self.backgroundColor = UIColorFromRGB(0xe5e5e5);
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.textColor = COLOR_TEXT_II;
     _nicknameLabel.font = [UIFont systemFontOfSize:14.0];
@@ -72,7 +72,6 @@
     _dateLabel.text = _commentDetail.publishDateDesc;
 
     [self layoutIfNeeded];
-    
 }
 
 - (void)layoutSubviews

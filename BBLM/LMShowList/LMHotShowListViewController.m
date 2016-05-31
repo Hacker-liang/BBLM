@@ -281,7 +281,7 @@
     } else if (buttonIndex == 1) {
         NSString *content;
         if (show.isVideo) {
-            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的短视频，速来围观", show.publishUser.nickname];
+            content = [NSString stringWithFormat:@"我分享了一个\"%@\"的短视频，速来围观", show.publishUser.nickname];
         } else {
             content = [NSString stringWithFormat:@"我分享了一张\"%@\"的照片，速来围观", show.publishUser.nickname];
             

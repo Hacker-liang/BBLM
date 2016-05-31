@@ -13,5 +13,6 @@
 @property (nonatomic, copy) NSString *urlStr;
 @property (nonatomic, copy) NSString *naviBarTitle;
 
+@property (strong, nonatomic) UIWebView *webView;
 
 @end

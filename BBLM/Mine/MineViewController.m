@@ -14,6 +14,7 @@
 #import "UserShowCollectionViewController.h"
 #import "CommonWebViewController.h"
 #import "LMAboutViewController.h"
+#import "TousuViewController.h"
 
 @interface MineViewController () <UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate>
 
@@ -42,6 +43,9 @@
     [_headerView.avatarButton addTarget:self action:@selector(showUserProfile:) forControlEvents:UIControlEventTouchUpInside];
     [_headerView.editUserInfoButton addTarget:self action:@selector(editUserInfo:) forControlEvents:UIControlEventTouchUpInside];
     _headerView.userInfo = _userInfo;
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"投诉" style:UIBarButtonItemStylePlain target:self action:@selector(tousuAction)];
+    self.navigationItem.rightBarButtonItem = item;
 
     [LMUserManager asyncLoadUserInfoWithUserId:[LMAccountManager shareInstance].account.userId completionBlock:^(BOOL isSuccess, LMUserDetailModel *userInfo) {
         if (isSuccess) {
@@ -66,6 +70,11 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)tousuAction
+{
+    TousuViewController *ctl = [[TousuViewController alloc] init];
+    [self.navigationController pushViewController:ctl animated:YES];
+}
 
 - (void)touchUserTag
 {
@@ -137,8 +146,11 @@
         [self.navigationController pushViewController:ctl animated:YES];
         
     } else if (indexPath.row == 3) {
-        LMAboutViewController *ctl = [[LMAboutViewController alloc] init];
+        CommonWebViewController *ctl = [[CommonWebViewController alloc] init];
+        ctl.urlStr = [NSString stringWithFormat:@"%@resources/protocol/about.html", BASE_API];
+        ctl.naviBarTitle = @"关于芭比辣妈";
         [self.navigationController pushViewController:ctl animated:YES];
+
         
     } else if (indexPath.row == 4) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"确定退出登录?" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];

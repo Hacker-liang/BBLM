@@ -10,7 +10,6 @@
 
 @interface CommonWebViewController ()
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) NSURLRequest *request;
 
 @end
@@ -19,8 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:_webView];
     [_webView loadRequest:_request];
-
+    NSLog(@"requestUrl: %@", _urlStr);
 }
 
 - (void)didReceiveMemoryWarning {

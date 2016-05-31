@@ -20,7 +20,8 @@
 #define APP_THEME_COLOR                 UIColorFromRGB(0xFF2144)
 
 
-#define BASE_API    @"http://jtest.babilama.com/"
+//#define BASE_API    @"http://jtest.babilama.com/"
+#define BASE_API    @"http://app.babilama.com/"
 
 #define JPushAppKey         @"980accd495131a358bb90ed2"
 #define UMengKey            @"572c3f20e0f55a46e200214c"

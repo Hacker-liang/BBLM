@@ -20,6 +20,8 @@
 #import "LMLoginViewController.h"
 #import "LMShowManager.h"
 #import "ShareActivity.h"
+#import "CommonWebViewController.h"
+#import "LMADWebViewController.h"
 
 @interface LMHomeViewController () <iCarouselDataSource, iCarouselDelegate, UIActionSheetDelegate>
 
@@ -63,6 +65,7 @@
     } else {
         _galleryView = [[AutoSlideScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 90) animationDuration:10];
     }
+    _galleryView.showPageControl = YES;
     _galleryView.backgroundColor = [UIColor clearColor];
     [self.bgScrollView addSubview:_galleryView];
     
@@ -100,6 +103,7 @@
             [_carousel reloadData];
         }
     }];
+    __weak LMHomeViewController *weakSelf = self;
     [LMShowManager asyncLoadHomeAdWithCompletionBlock:^(BOOL isSuccess, NSArray<NSDictionary *> *adList) {
         if (isSuccess) {
             _adDataSource = adList;
@@ -119,10 +123,21 @@
             _galleryView.fetchContentViewAtIndex = ^UIView *(NSInteger pageIndex){
                 return viewsArray[pageIndex];
             };
+        
+            _galleryView.TapActionBlock = ^(NSInteger pageIndex) {
+                NSDictionary *dic = [weakSelf.adDataSource objectAtIndex:pageIndex];
+                NSString *url = [dic objectForKey:@"url"];
+                LMADWebViewController *ctl = [[LMADWebViewController alloc] init];
+                ctl.urlStr = url;
+                ctl.naviBarTitle = @"芭比辣妈";
+                [weakSelf.navigationController pushViewController:ctl animated:YES];
+                
+            };
         }
     }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(insertComment:) name:@"publishNewComment" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDataSource:) name:@"postNewShow" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDataSource:) name:@"refreshHomeShowData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publishNewShow:) name:@"publishNewData" object:nil];
 
 }
 
@@ -144,9 +159,26 @@
     [super viewWillDisappear:animated];
 }
 
+- (void)publishNewShow:(NSNotification *)noti
+{
+    _page = 1;
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    [LMShowManager asyncLoadRecommendShowWithPage:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
+        _isLoading = NO;
+        if (isSuccess) {
+            [_dataSource removeAllObjects];
+            [_dataSource addObjectsFromArray:showList];
+            [_carousel reloadData];
+            [_carousel scrollToItemAtIndex:0 animated:YES];
+        }
+        [SVProgressHUD showSuccessWithStatus:@"加载成功"];
+    }];
+}
+
 - (void)refreshDataSource:(NSNotification *)noti
 {
     _page = 1;
+    
     [LMShowManager asyncLoadRecommendShowWithPage:_page pageSize:10 completionBlock:^(BOOL isSuccess, NSArray<LMShowDetailModel *> *showList) {
         _isLoading = NO;
         if (isSuccess) {
@@ -506,7 +538,7 @@
     } else if (buttonIndex == 1) {
         NSString *content;
         if (show.isVideo) {
-            content = [NSString stringWithFormat:@"我分享了一张\"%@\"的短视频，速来围观", show.publishUser.nickname];
+            content = [NSString stringWithFormat:@"我分享了一个\"%@\"的短视频，速来围观", show.publishUser.nickname];
         } else {
             content = [NSString stringWithFormat:@"我分享了一张\"%@\"的照片，速来围观", show.publishUser.nickname];
             
